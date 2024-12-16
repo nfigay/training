@@ -1,3 +1,8 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore all .pages files
+*.pages
 # Build and Release Folders
 bin-debug/
 bin-release/
