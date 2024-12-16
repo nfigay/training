@@ -1,5 +1,6 @@
 # Ignore macOS system files
 .DS_Store
+.mp4
 
 # Ignore all .pages files
 *.pages
