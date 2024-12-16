@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>MasterClass Interopérabilité Sémantique pour GS1</title>
+
+	<meta name="description"
+		content="De la sémiotique à l'interopérabilité sémantiques des entreprises dans le monde numérique">
+	<meta name="author" content="Nicolas Figay">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h3>De la sémiotique à l'interopérabilité sémantiques des entreprises dans le monde numérique</h3>
+				<p>
+					<small>Créé par <a href="https://www.linkedin.com/in/nfigay/">Nicolas Figay</a> et <a
+							href="https://www.linkedin.com/in/pierre-moyen-67031137/">Pierre Moyen</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Les divers thèmes abordés</h2>
+				<ul style="font-size: 0.8em;">
+					<li><a href="#/2">Le triangle sémiotique en contexte</a></li>
+					<li><a href="#/3">Catégorisation et classification</a></li>
+					<li><a href="#/4">Intégrer la philosophie de l'action et le pragmatisme</a></li>
+					<li><a href="#/5">Capture de la sémantique et Interopérabilité Sémantique</a></li>
+					<li><a href="#/6">Prise en compte de la perception contextuelle</a></li>
+					<li><a href="#/7">La communication dans les entreprises digitales</a></li>
+					<li><a href="#/8">Illustration des langages formels standardisés avec ArchiMate et des protocoles
+							métiers</a></li>
+					<li><a href="#/9">Le rôle de la normalisation</a></li>
+					<li><a href="#/10">Lien avec la babélisation</a></li>
+					<li><a href="#/11">Urbaniser et modéliser l'entreprise</a></li>
+					<li><a href="#/12">Freins à l'urbanisation</a></li>
+					<li><a href="#/13">Incommunicabilité entre les acteurs</a></li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h2>Le triangle sémiotique en contexte</h2>
+					<p> Motivation: définir plus en détail ce qu’est la sémantique afin de la lier aux problématique de
+						l’interopérabilité et des standards informatiques </p>
+					<aside class="notes">
+						Ceci est une note privée que seul le présentateur peut voir.
+						Vous pouvez ajouter des commentaires, des rappels ou des instructions pour vous-même ici.
+					</aside>
+				</section>
+				<section>
+					<p>Le triangle sémiotique</p>
+					<img src="./img/triangleSemantique.png" alt="Image locale" style="max-width: 50%; height: auto;" />
+
+					<aside class="notes">
+						<p>Le triangle sémiotique (aussi appelé triangle sémantique ou triangle de la signification) est
+							un modèle théorique utilisé en linguistique pour illustrer la relation entre un symbole (ou
+							signe), un concept (ou référent) et l'objet réel auquel ce concept renvoie.
+							<br>Ce modèle aide à comprendre comment le langage fonctionne pour représenter la réalité.
+							<br>Les trois éléments du triangle sémiotique sont:
+						<ul>
+							<li>Le Symbole (ou signe) : Il s'agit de la forme linguistique, comme un mot, un signe
+								écrit, un son, etc. Par exemple, le mot "chien" est un symbole. </li>
+							<li>Le Concept (ou référent mental): c'est l'idée ou la notion dans l'esprit de l'individu
+								qui est associée au symbole. Pour le mot "chien", le concept pourrait être l'image
+								mentale que vous avez d'un chien. </li>
+							<li>Le Référent (ou objet réel) : c'est l'objet réel ou l'entité dans le monde que le
+								concept mental représente. Pour "chien", il s'agit de l'animal réel que l'on peut voir,
+								toucher, etc.</li>
+						</ul>
+						<br>Les Relations entre ces éléments sont les suivantes.
+						Le Symbole est lié au Concept par une relation d'association. Par exemple, le mot "chien" évoque
+						(active) l'idée d'un chien dans l'esprit de l'auditeur.
+						Le Concept est lié au Référent par une relation de référence. L'idée de "chien" renvoie à un
+						véritable chien dans le monde réel.
+						<br>Le Symbole et le Référent ne sont pas directement liés ; leur relation est indirecte et
+						passe toujours par le Concept. Le mot "chien" ne renvoie pas directement au chien réel, mais au
+						concept de chien que nous avons dans notre esprit.
+						</p>
+					</aside>
+
+				</section>
+				<section>
+					<p>Triangle sémiotique et sémantique</p>
+					<p>Etude du sens dans le language</p>
+					<img src="./img/TriangleSemantiqueSens.png" alt="Triangle Sémiotique et sémantique"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<p>Triangle sémiotique et sémantique</p>
+					<p>Les mots renvoient à des objets réels dans le monde</p>
+					<img src="./img/triangleSemantiqueHomonyme.png" alt="Triangle Sémiotique et homonymes"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<p>Triangle sémiotique et syntaxe</p>
+					<p style="font-size: 0.7em;">La syntactique (ou syntaxe) est l’étude des relations formelles entre
+						les signes dans un système symbolique, sans se préoccuper de leur signification.</p>
+					<img src="./img/triangleSemantiqueSyntaxe.png" alt="Triangle Sémiotique et syntaxe"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<p>Le même terme (symbole) mais pas le même concept?</p>
+					<img src="./img/Homonymie.png" alt="Homonymie" style="max-width: 100%; height: auto;" />
+				</section>
+				<section>
+					<p>Triangle Sémiotique et pragmatique</p>
+					<img src="./img/triangleSemantiquePragmatique.png" alt="Triangle Sémiotique et pragmatique"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<p>Triangle Sémiotique, rhétorique et communication directe</p>
+					<img src="./img/TriangleSemantiqueCommucationDirecte.png"
+						alt="Triangle Sémiotique, rhétorique et communication directe"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<p>Triangle Sémiotique, rhétorique et communication indirecte</p>
+					<img src="./img/triangleSemantiquecommunicationIndirecte.png"
+						alt="Triangle Sémiotique, rhétorique et communication indirecte"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<h3 style="font-size: 0.6em;">Importance distinction communication directe et indirecte<br>pour
+						pragmatique</h3>
+					<p style="font-size: 0.5em;">La pragmatique s'intéresse à la manière dont les énoncés sont
+						interprété <br>en fonction du contexte et des intentions sous-jacentes. </p>
+					<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
+						puisque le message est explicite.</p>
+					<p style="font-size: 0.5em;">En revanche, la communication indirecte introduit une couche
+						supplémentaire de complexité:<br>le récepteur doit inférer l'intention à partir des éléments
+						contextuels, des relations entre les interlocuteurs, et des conventions sociales</p>
+				</section>
+				<section>
+					<h3 style="font-size: 0.6em;">Exemple en milieu professionnel</h3>
+					<p style="font-size: 0.5em;">
+						Dans un cadre professionnel, la communication directe peut être utilisée pour donner des
+						instructions précises, tandis que la communication indirecte peut servir à éviter les conflits
+						ou à naviguer dans des relations hiérarchiques complexes.
+					<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
+						puisque le message est explicite.</p>
+					<p style="font-size: 0.5em;">
+						Par exemple, un supérieur pourrait dire « Je me demande si ce projet avance comme prévu » au
+						lieu de dire directement « Vous êtes en retard sur ce projet »,
+						<br> laissant ainsi au subordonné l'interprétation de la demande d'action.
+					</p>
+				</section>
+				<section>
+					<h3 style="font-size: 0.6em;">Impact de l’usage du numériquel</h3>
+					<p style="font-size: 0.5em;">
+						L'usage du numérique renforce la communication indirecte en raison des limitations imposées par
+						l'absence de signaux non verbaux et par la nature asynchrone des échanges.
+					<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
+						puisque le message est explicite.</p>
+					<p style="font-size: 0.5em;">
+						Cela fait de la pragmatique une dimension essentielle de la communication numérique, car elle
+						aide à décoder l’intention derrière les messages textuels et à gérer les échanges dans des
+						environnements où les interactions indirectes sont la norme.
+				</section>
+				<section>
+					<h3 style="font-size: 0.6em;">Le lien entre le triangle sémiotique et la sémantique est donc
+						fondamental.</h3>
+					<p style="font-size: 0.5em;">
+					<ul style="font-size: 0.5em;">
+						<li>Le triangle sémiotique illustre comment le langage représente la réalité à travers une
+							structure symbolique.</li>
+						<li>La sémantique est l’étude de cette structure, en analysant comment les mots (symboles) sont
+							associés à des concepts (sens) et comment ils réfèrent à des objets réels ou imaginaires
+							(référents) en fonction du contexte et de l’usage.</li>
+						<li>Pragmatique et rhétorique fournissent des éléments de contextes souvent implicites qui
+							contribuent à choisir le sens des symboles (désambiguïsation) dans un contexte autre que
+							lexical/sémantique (place d’un mot dans une phrase ou d’un symbole dans un diagramme)</li>
+						<li>Cela fait de la pragmatique une dimension essentielle de la communication numérique, car
+							elle
+							aide à décoder l’intention derrière les messages textuels et à gérer les échanges dans des
+							environnements où les interactions indirectes sont la norme.</li>
+					</ul>
+					<p style="font-size: 0.5em;">Nous allons maintenant explorer les notions de catégorisation et de
+						classification.</p>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Catégorisation et classification</h2>
+					<img src="./img/CategorisationClassfication.png" alt="Catégorisation et Classification"
+						style="max-width: 50%; height: auto;" />
+				</section>
+				<section>
+					<p style="font-size: 0.4em;">Les termes "catégorisation" et "classification" sont souvent utilisés de manière interchangeable,
+						mais ils ont des significations distinctes, notamment dans des contextes spécifiques tels que la
+						linguistique, la philosophie et la science de l'information.</p>
+						<img src="./img/CategorisationClassification2.png" alt="Catégorisation et Classification"
+						style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.4em;">Catégorisation: Processus de regroupement d'entités en fonction de caractéristiques partagées ou de similitudes conceptuelles.</p>						
+						<p style="font-size: 0.4em;">Classification: Organisation systématique d'éléments en groupes hiérarchiques prédéfinis basés sur des critères.</p>						
+	
+					</section>
+					<section>
+						<p style="font-size: 0.5em;">Lien catégorisation et triangle sémantique.</p>
+							<img src="./img/CategorisationTriangle.png" alt="Catégorisation et triangle"
+							style="max-width: 40%; height: auto;" />
+							<p style="font-size: 0.4em;">La catégorisation opère principalement entre concepts et référents.<br><br>Elle nous aide à organiser le monde en catégories mentales compréhensibles basées sur nos expériences avec des objets réels.<br><br> Par exemple, en rencontrant un chien, nous le catégorisons mentalement en fonction des traits qu'il partage avec d'autres chiens.</p>								
+						</section>					
+						<section>
+							<p style="font-size: 0.5em;">Lien classification et triangle sémantique.</p>
+								<img src="./img/triangleClassification.png" alt="Triangle et Classification"
+								style="max-width: 40%; height: auto;" />
+								<p style="font-size: 0.4em;">La classification est donc un processus plus rigide et structuré que la catégorisation.<br><br> Elle formalise la façon dont les objets (référents) sont regroupés en concepts et garantit que ces regroupements suivent des critères spécifiques, souvent basés sur une base scientifique ou logique. <br><br>Cela est particulièrement important dans des domaines comme la biologie, où le système de classification est bien défini et globalement compris.</p>								
+							</section>	
+					</section>
+			<section>
+				<h2>Intégrer la philosophie de l'action et le pragmatisme</h2>
+			</section>
+			<section>
+				<h2>Capture de la sémantique et Interopérabilité Sémantique</h2>
+			</section>
+			<section>
+				<h2>Prise en compte de la perception contextuelle</h2>
+			</section>
+			<section>
+				<h2>La communication dans les entreprises digitales</h2>
+			</section>
+			<section>
+				<h2>Illustration des langages formels standardisés avec ArchiMate et des protocoles métiers</h2>
+			</section>
+			<section>
+				<h2>Le rôle de la normalisation</h2>
+			</section>
+			<section>
+				<h2>Lien avec la babélisation</h2>
+			</section>
+			<section>
+				<h2>Urbaniser et modéliser l'entreprise</h2>
+			</section>
+			<section>
+				<h2>Freins à l'urbanisation</h2>
+			</section>
+			<section>
+				<h2>Incommunicabilité entre les acteurs</h2>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+			history: true,
+			slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
+			notes: true,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight],
+		});
+
+	</script>
+
+</body>
+
+</html>

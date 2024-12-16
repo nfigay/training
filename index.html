@@ -1,99 +1,44 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste de Cours</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .course {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        .course-title {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        .course-info {
-            font-size: 1em;
-            color: #555;
-        }
-        .course-summary, .course-objectives, .references {
-            margin-top: 15px;
-        }
-        .references h4 {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            color: #34495e;
-        }
-       
-    </style>
-</head>
-<body>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <h1>Liste de Cours</h1>
+		<title>reveal.js</title>
 
-    <!-- Cours 1 -->
-    <div class="course">
-        <div class="course-title">Introduction à UML</div>
-        <div class="course-info">
-            <strong>Organisation :</strong> Université Lyon 1<br>
-            <strong>Objectifs :</strong> Comprendre les origines d'UML et ses usages pour supporter le développement d'un système<br>
-            <strong>Sommaire :</strong>
-            <ul>
-                <li>Comprendre pourquoi UML a été créé , à quoi il sert et à qui il sert</li>
-                <li>Comprendre le langage, les concepts sous jacents, ces constructions</li>
-            <li>Faire le lien avec le développement d’un système informatisé, en fonction du rôle des acteurs impliqués et de la phase de vie
-                    du projet de développement</li>
-                <li>Identifier les modèles nécessaires pour certaines des tâches associées à ces rôle</li>
-                <li>Savoir choisir les outils, diagrammes et types d’élément du modèle à utiliser pour créer ces modèles</li>
-            </ul>
-        </div>
-        
-        <div class="references">
-            <h4>Supports de cours :</h4>
-            <ul>
-                <li><a href="IntroductionUML.pdf">Introduction à UML (PDF)</a></li>
-            </ul>
-            
-            <h4>Enregistrements vidéo :</h4>
-            <ul>
-                <li>Session 01 partie 1</li>
-                <li>Session 01 partie 2</li>
-                <li>Session 02 partie 1</li>
-                <li>Session 02 partie 2</li>
-                <li>Session 03 partie 1</li>
-                <li>Session 03 partie 2</li>
-                <li>Session 04 partie 1</li>
-                <li>Session 04 partie 2</li>                                  
-            </ul>
-            
-            <h4>Documents externes :</h4>
-            <ul>
-                <li><a href="https://www.omg.org/spec/UML/2.5.1/About-UML" target="_blank">Spécification UML 2.5</a></li>
-                <li><a href="https://www.iso.org/fr/standard/32624.html" target="_blank">ISO/IEC 19505-1:2012
-                    Technologies de l'information — Langage de modélisation unifié OMG (OMG UML)
-                    Partie 1: Infrastructure</a></li>
-                <li><a href="https://www.iso.org/fr/standard/52854.html" target="_blank">ISO/IEC 19505-2:2012
-                    Technologies de l'information — Langage de modélisation unifié OMG (OMG UML)
-                    Partie 2: Superstructure</a></li>    
-            </ul>
-        </div>
-    </div>
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
 
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3 style="font-size: 0.6em;">Supports de cours</h2>
+					<ul style="font-size: 0.5em;">
+						<li><a href="./SemanticEnterprise.html">L'entreprise sémantique</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
 
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
 
-    <!-- Ajouter d'autres cours ici -->
-
-</body>
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
 </html>
