@@ -21,785 +21,1155 @@
 
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		/* Restrict the presentation area */
+		#presentation-container {
+			width: 1400px;
+			height: 800px;
+			border: 1px solid #ccc;
+			overflow: hidden;
+			margin: 20px auto;
+		}
+	</style>
+
 </head>
 
 <body>
+	<div id="presentation-container">
+		<div class="reveal">
 
-	<div class="reveal">
-
-		<!-- Any section element inside of this container is displayed as a slide -->
-		<div class="slides">
-			<section>
-				<h3>De la sémiotique à l'interopérabilité sémantiques des entreprises dans le monde numérique</h3>
-				<p>
-					<small>Créé par <a href="https://www.linkedin.com/in/nfigay/">Nicolas Figay</a> et <a
-							href="https://www.linkedin.com/in/pierre-moyen-67031137/">Pierre Moyen</a></small>
-				</p>
-			</section>
-
-			<section>
-				<h2 style="font-size: 0.8em;">Les divers thèmes abordés</h2>
-				<ul style="font-size: 0.5em;">
-					<li><a href="#/2">Le triangle sémiotique en contexte</a></li>
-					<li><a href="#/3">Catégorisation et classification</a></li>
-					<li><a href="#/4">Sémantique, Information et Connaissance</a></li>
-					<li><a href="#/5">Connotation, dénotation et perception contextuelle</a></li>
-					<li><a href="#/6">Intégrer philosophie de l'action, praxis et le pragmatisme</a></li>
-					<li><a href="#/7">Sémantique et Informatique</a></li>
-					<li><a href="#/8">Capture de la sémantique et Intéropérabilité Sémantique</a></li>
-					<li><a href="#/9">La communication dans les entreprises digitales</a></li>
-					<li><a href="#/10">A propos des ontologies</a></li>
-					<li><a href="#/11">Les ontologies dans le contexte du triange sémantique</a></li>
-					<li><a href="#/12">Illustration des langages formels standardisés avec ArchiMate et des protocoles
-							métiers</a></li>
-					<li><a href="#/13">Le rôle de la normalisation</a></li>
-					<li><a href="#/14">Lien avec la babélisation</a></li>
-					<li><a href="#/15">Urbaniser et modéliser l'entreprise</a></li>
-					<li><a href="#/16">Freins à l'urbanisation</a></li>
-					<li><a href="#/17">Incommunicabilité entre les acteurs</a></li>
-				</ul>
-			</section>
-			<section>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
 				<section>
-					<h2 style="font-size: 0.8em;">Le triangle sémiotique en contexte</h2>
-					<img src="./img/TriangleSemiotiqueContexte.png" alt="Catégorisation et Classification"
-						style="max-width: 40%; height: auto;" />
-					<p style="font-size: 0.6em;"> Motivation: définir plus en détail ce qu’est la sémantique afin de la
-						lier aux problématique de
-						l’interopérabilité et des standards informatiques </p>
-					<aside class="notes">
-						Ceci est une note privée que seul le présentateur peut voir.
-						Vous pouvez ajouter des commentaires, des rappels ou des instructions pour vous-même ici.
-					</aside>
-				</section>
-				<section>
-					<p>Le triangle sémiotique</p>
-					<img src="./img/triangleSemantique.png" alt="Image locale" style="max-width: 50%; height: auto;" />
-
-					<aside class="notes">
-						<p>Le triangle sémiotique (aussi appelé triangle sémantique ou triangle de la signification) est
-							un modèle théorique utilisé en linguistique pour illustrer la relation entre un symbole (ou
-							signe), un concept (ou référent) et l'objet réel auquel ce concept renvoie.
-							<br>Ce modèle aide à comprendre comment le langage fonctionne pour représenter la réalité.
-							<br>Les trois éléments du triangle sémiotique sont:
-						<ul>
-							<li>Le Symbole (ou signe) : Il s'agit de la forme linguistique, comme un mot, un signe
-								écrit, un son, etc. Par exemple, le mot "chien" est un symbole. </li>
-							<li>Le Concept (ou référent mental): c'est l'idée ou la notion dans l'esprit de l'individu
-								qui est associée au symbole. Pour le mot "chien", le concept pourrait être l'image
-								mentale que vous avez d'un chien. </li>
-							<li>Le Référent (ou objet réel) : c'est l'objet réel ou l'entité dans le monde que le
-								concept mental représente. Pour "chien", il s'agit de l'animal réel que l'on peut voir,
-								toucher, etc.</li>
-						</ul>
-						<br>Les Relations entre ces éléments sont les suivantes.
-						Le Symbole est lié au Concept par une relation d'association. Par exemple, le mot "chien" évoque
-						(active) l'idée d'un chien dans l'esprit de l'auditeur.
-						Le Concept est lié au Référent par une relation de référence. L'idée de "chien" renvoie à un
-						véritable chien dans le monde réel.
-						<br>Le Symbole et le Référent ne sont pas directement liés ; leur relation est indirecte et
-						passe toujours par le Concept. Le mot "chien" ne renvoie pas directement au chien réel, mais au
-						concept de chien que nous avons dans notre esprit.
-						</p>
-					</aside>
-
-				</section>
-				<section>
-					<p>Triangle sémiotique et sémantique</p>
-					<p>Etude du sens dans le language</p>
-					<img src="./img/TriangleSemantiqueSens.png" alt="Triangle Sémiotique et sémantique"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p>Triangle sémiotique et sémantique</p>
-					<p>Les mots renvoient à des objets réels dans le monde</p>
-					<img src="./img/triangleSemantiqueHomonyme.png" alt="Triangle Sémiotique et homonymes"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p>Triangle sémiotique et syntaxe</p>
-					<p style="font-size: 0.7em;">La syntactique (ou syntaxe) est l’étude des relations formelles entre
-						les signes dans un système symbolique, sans se préoccuper de leur signification.</p>
-					<img src="./img/triangleSemantiqueSyntaxe.png" alt="Triangle Sémiotique et syntaxe"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p>Le même terme (symbole) mais pas le même concept?</p>
-					<img src="./img/homonymie.png" alt="Homonymie" style="max-width: 100%; height: auto;" />
-				</section>
-				<section>
-					<p>Triangle Sémiotique et pragmatique</p>
-					<img src="./img/triangleSemantiquePragmatique.png" alt="Triangle Sémiotique et pragmatique"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p>Triangle Sémiotique et Rhétorique</p>
-					<img src="./img/triangleSemantiqueRhetorique.png" alt="Triangle Sémiotique et pragmatique"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p style="font-size: 0.6em;">Triangle Sémiotique, rhétorique et communication directe</p>
-					<img src="./img/TriangleSemantiqueCommucationDirecte.png"
-						alt="Triangle Sémiotique, rhétorique et communication directe"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p style="font-size: 0.6em;">Triangle Sémiotique, rhétorique et communication indirecte</p>
-					<img src="./img/triangleSemantiquecommunicationIndirecte.png"
-						alt="Triangle Sémiotique, rhétorique et communication indirecte"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<h3 style="font-size: 0.6em;">Importance distinction communication directe et indirecte<br>pour
-						pragmatique</h3>
-					<p style="font-size: 0.5em;">La pragmatique s'intéresse à la manière dont les énoncés sont
-						interprété <br>en fonction du contexte et des intentions sous-jacentes. </p>
-					<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
-						puisque le message est explicite.</p>
-					<p style="font-size: 0.5em;">En revanche, la communication indirecte introduit une couche
-						supplémentaire de complexité:<br>le récepteur doit inférer l'intention à partir des éléments
-						contextuels, des relations entre les interlocuteurs, et des conventions sociales</p>
-				</section>
-				<section>
-					<h3 style="font-size: 0.6em;">Exemple en milieu professionnel</h3>
-					<p style="font-size: 0.5em;">
-						Dans un cadre professionnel, la communication directe peut être utilisée pour donner des
-						instructions précises, tandis que la communication indirecte peut servir à éviter les conflits
-						ou à naviguer dans des relations hiérarchiques complexes.
-					<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
-						puisque le message est explicite.</p>
-					<p style="font-size: 0.5em;">
-						Par exemple, un supérieur pourrait dire « Je me demande si ce projet avance comme prévu » au
-						lieu de dire directement « Vous êtes en retard sur ce projet »,
-						<br> laissant ainsi au subordonné l'interprétation de la demande d'action.
+					<h1 style="font-size: 0.8em;">De la sémiotique à l'interopérabilité sémantiques des entreprises dans
+						le monde numérique</h1>
+					<p>
+						<small>Créé par <a href="https://www.linkedin.com/in/nfigay/">Nicolas Figay</a> et <a
+								href="https://www.linkedin.com/in/pierre-moyen-67031137/">Pierre Moyen</a></small>
 					</p>
 				</section>
+
 				<section>
-					<h3 style="font-size: 0.6em;">Impact de l’usage du numérique</h3>
-					<p style="font-size: 0.5em;">
-						L'usage du numérique renforce la communication indirecte en raison des limitations imposées par
-						l'absence de signaux non verbaux et par la nature asynchrone des échanges.
-					<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
-						puisque le message est explicite.</p>
-					<p style="font-size: 0.5em;">
-						Cela fait de la pragmatique une dimension essentielle de la communication numérique, car elle
-						aide à décoder l’intention derrière les messages textuels et à gérer les échanges dans des
-						environnements où les interactions indirectes sont la norme.
+					<h2 style="font-size: 0.8em;">Les divers thèmes abordés</h2>
+					<ul style="font-size: 0.5em;">
+						<li><a href="#/2">Le triangle sémiotique en contexte</a></li>
+						<li><a href="#/3">Catégorisation et classification</a></li>
+						<li><a href="#/4">Sémantique, Information et Connaissance</a></li>
+						<li><a href="#/5">Connotation, dénotation et perception contextuelle</a></li>
+						<li><a href="#/6">Intégrer philosophie de l'action, praxis et le pragmatisme</a></li>
+						<li><a href="#/7">Sémantique et Informatique</a></li>
+						<li><a href="#/8">Capture de la sémantique et Intéropérabilité Sémantique</a></li>
+						<li><a href="#/9">La communication dans les entreprises digitales</a></li>
+						<li><a href="#/10">A propos des ontologies</a></li>
+						<li><a href="#/11">Les ontologies dans le contexte du triange sémantique</a></li>
+						<li><a href="#/12">Illustration des langages formels standardisés avec ArchiMate et des
+								protocoles
+								métiers</a></li>
+						<li><a href="#/13">Le rôle de la normalisation</a></li>
+						<li><a href="#/14">Lien avec la babélisation</a></li>
+						<li><a href="#/15">Urbaniser et modéliser l'entreprise</a></li>
+						<li><a href="#/16">Freins à l'urbanisation</a></li>
+						<li><a href="#/17">Incommunicabilité entre les acteurs</a></li>
+					</ul>
 				</section>
 				<section>
-					<h3 style="font-size: 0.6em;">Le lien entre le triangle sémiotique et la sémantique est donc
-						fondamental.</h3>
-					<p style="font-size: 0.5em;">
-					<ul style="font-size: 0.5em;">
-						<li>Le triangle sémiotique illustre comment le langage représente la réalité à travers une
-							structure symbolique.</li>
-						<li>La sémantique est l’étude de cette structure, en analysant comment les mots (symboles) sont
-							associés à des concepts (sens) et comment ils réfèrent à des objets réels ou imaginaires
-							(référents) en fonction du contexte et de l’usage.</li>
-						<li>Pragmatique et rhétorique fournissent des éléments de contextes souvent implicites qui
-							contribuent à choisir le sens des symboles (désambiguïsation) dans un contexte autre que
-							lexical/sémantique (place d’un mot dans une phrase ou d’un symbole dans un diagramme)</li>
-						<li>Cela fait de la pragmatique une dimension essentielle de la communication numérique, car
+					<section>
+						<h2 style="font-size: 0.8em;">Le triangle sémiotique en contexte</h2>
+						<img src="./img/TriangleSemiotiqueContexte.png" alt="Catégorisation et Classification"
+							style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.6em;"> Motivation: définir plus en détail ce qu’est la sémantique afin de
+							la
+							lier aux problématique de
+							l’interopérabilité et des standards informatiques </p>
+						<aside class="notes">
+							Ceci est une note privée que seul le présentateur peut voir.
+							Vous pouvez ajouter des commentaires, des rappels ou des instructions pour vous-même ici.
+						</aside>
+					</section>
+					<section>
+						<p>Le triangle sémiotique</p>
+						<img src="./img/triangleSemantique.png" alt="Image locale"
+							style="max-width: 50%; height: auto;" />
+
+						<aside class="notes">
+							<p>Le triangle sémiotique (aussi appelé triangle sémantique ou triangle de la signification)
+								est
+								un modèle théorique utilisé en linguistique pour illustrer la relation entre un symbole
+								(ou
+								signe), un concept (ou référent) et l'objet réel auquel ce concept renvoie.
+								<br>Ce modèle aide à comprendre comment le langage fonctionne pour représenter la
+								réalité.
+								<br>Les trois éléments du triangle sémiotique sont:
+							<ul>
+								<li>Le Symbole (ou signe) : Il s'agit de la forme linguistique, comme un mot, un signe
+									écrit, un son, etc. Par exemple, le mot "chien" est un symbole. </li>
+								<li>Le Concept (ou référent mental): c'est l'idée ou la notion dans l'esprit de
+									l'individu
+									qui est associée au symbole. Pour le mot "chien", le concept pourrait être l'image
+									mentale que vous avez d'un chien. </li>
+								<li>Le Référent (ou objet réel) : c'est l'objet réel ou l'entité dans le monde que le
+									concept mental représente. Pour "chien", il s'agit de l'animal réel que l'on peut
+									voir,
+									toucher, etc.</li>
+							</ul>
+							<br>Les Relations entre ces éléments sont les suivantes.
+							Le Symbole est lié au Concept par une relation d'association. Par exemple, le mot "chien"
+							évoque
+							(active) l'idée d'un chien dans l'esprit de l'auditeur.
+							Le Concept est lié au Référent par une relation de référence. L'idée de "chien" renvoie à un
+							véritable chien dans le monde réel.
+							<br>Le Symbole et le Référent ne sont pas directement liés ; leur relation est indirecte et
+							passe toujours par le Concept. Le mot "chien" ne renvoie pas directement au chien réel, mais
+							au
+							concept de chien que nous avons dans notre esprit.
+							</p>
+						</aside>
+
+					</section>
+					<section>
+						<p>Triangle sémiotique et sémantique</p>
+						<p>Etude du sens dans le language</p>
+						<img src="./img/TriangleSemantiqueSens.png" alt="Triangle Sémiotique et sémantique"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p>Triangle sémiotique et sémantique</p>
+						<p>Les mots renvoient à des objets réels dans le monde</p>
+						<img src="./img/triangleSemantiqueHomonyme.png" alt="Triangle Sémiotique et homonymes"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p>Triangle sémiotique et syntaxe</p>
+						<p style="font-size: 0.7em;">La syntactique (ou syntaxe) est l’étude des relations formelles
+							entre
+							les signes dans un système symbolique, sans se préoccuper de leur signification.</p>
+						<img src="./img/triangleSemantiqueSyntaxe.png" alt="Triangle Sémiotique et syntaxe"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p>Le même terme (symbole) mais pas le même concept?</p>
+						<img src="./img/homonymie.png" alt="Homonymie" style="max-width: 100%; height: auto;" />
+					</section>
+					<section>
+						<p>Triangle Sémiotique et pragmatique</p>
+						<img src="./img/triangleSemantiquePragmatique.png" alt="Triangle Sémiotique et pragmatique"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p>Triangle Sémiotique et Rhétorique</p>
+						<img src="./img/triangleSemantiqueRhetorique.png" alt="Triangle Sémiotique et pragmatique"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Triangle Sémiotique, rhétorique et communication directe</p>
+						<img src="./img/TriangleSemantiqueCommucationDirecte.png"
+							alt="Triangle Sémiotique, rhétorique et communication directe"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Triangle Sémiotique, rhétorique et communication indirecte</p>
+						<img src="./img/triangleSemantiquecommunicationIndirecte.png"
+							alt="Triangle Sémiotique, rhétorique et communication indirecte"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Importance distinction communication directe et indirecte<br>pour
+							pragmatique</p>
+						<p style="font-size: 0.5em;">La pragmatique s'intéresse à la manière dont les énoncés sont
+							interprété <br>en fonction du contexte et des intentions sous-jacentes. </p>
+						<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
+							puisque le message est explicite.</p>
+						<p style="font-size: 0.5em;">En revanche, la communication indirecte introduit une couche
+							supplémentaire de complexité:<br>le récepteur doit inférer l'intention à partir des éléments
+							contextuels, des relations entre les interlocuteurs, et des conventions sociales</p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Exemple en milieu professionnel</p>
+						<p style="font-size: 0.5em;">
+							Dans un cadre professionnel, la communication directe peut être utilisée pour donner des
+							instructions précises, tandis que la communication indirecte peut servir à éviter les
+							conflits
+							ou à naviguer dans des relations hiérarchiques complexes.
+						<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
+							puisque le message est explicite.</p>
+						<p style="font-size: 0.5em;">
+							Par exemple, un supérieur pourrait dire « Je me demande si ce projet avance comme prévu » au
+							lieu de dire directement « Vous êtes en retard sur ce projet »,
+							<br> laissant ainsi au subordonné l'interprétation de la demande d'action.
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Impact de l’usage du numérique</p>
+						<p style="font-size: 0.5em;">
+							L'usage du numérique renforce la communication indirecte en raison des limitations imposées
+							par
+							l'absence de signaux non verbaux et par la nature asynchrone des échanges.
+						<p style="font-size: 0.5em;">En communication directe, la compréhension est relativement simple
+							puisque le message est explicite.</p>
+						<p style="font-size: 0.5em;">
+							Cela fait de la pragmatique une dimension essentielle de la communication numérique, car
 							elle
 							aide à décoder l’intention derrière les messages textuels et à gérer les échanges dans des
-							environnements où les interactions indirectes sont la norme.</li>
-					</ul>
-					<p style="font-size: 0.5em;">Nous allons maintenant explorer les notions de catégorisation et de
-						classification.</p>
-					</p>
+							environnements où les interactions indirectes sont la norme.
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Le lien entre le triangle sémiotique et la sémantique est donc
+							fondamental.</p>
+						<p style="font-size: 0.5em;">
+						<ul style="font-size: 0.5em;">
+							<li>Le triangle sémiotique illustre comment le langage représente la réalité à travers une
+								structure symbolique.</li>
+							<li>La sémantique est l’étude de cette structure, en analysant comment les mots (symboles)
+								sont
+								associés à des concepts (sens) et comment ils réfèrent à des objets réels ou imaginaires
+								(référents) en fonction du contexte et de l’usage.</li>
+							<li>Pragmatique et rhétorique fournissent des éléments de contextes souvent implicites qui
+								contribuent à choisir le sens des symboles (désambiguïsation) dans un contexte autre que
+								lexical/sémantique (place d’un mot dans une phrase ou d’un symbole dans un diagramme)
+							</li>
+							<li>Cela fait de la pragmatique une dimension essentielle de la communication numérique, car
+								elle
+								aide à décoder l’intention derrière les messages textuels et à gérer les échanges dans
+								des
+								environnements où les interactions indirectes sont la norme.</li>
+						</ul>
+						<p style="font-size: 0.5em;">Nous allons maintenant explorer les notions de catégorisation et de
+							classification.</p>
+						</p>
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Catégorisation et classification</h2>
-					<img src="./img/CategorisationClassfication.png" alt="Catégorisation et Classification"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<p style="font-size: 0.4em;">Les termes "catégorisation" et "classification" sont souvent utilisés
-						de manière interchangeable,
-						mais ils ont des significations distinctes, notamment dans des contextes spécifiques tels que la
-						linguistique, la philosophie et la science de l'information.</p>
-					<img src="./img/CategorisationClassification2.png" alt="Catégorisation et Classification"
-						style="max-width: 40%; height: auto;" />
-					<p style="font-size: 0.4em;">Catégorisation: Processus de regroupement d'entités en fonction de
-						caractéristiques partagées ou de similitudes conceptuelles.</p>
-					<p style="font-size: 0.4em;">Classification: Organisation systématique d'éléments en groupes
-						hiérarchiques prédéfinis basés sur des critères.</p>
+					<section>
+						<h2 style="font-size: 0.8em;">Catégorisation et classification</h2>
+						<img src="./img/CategorisationClassfication.png" alt="Catégorisation et Classification"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.4em;">Les termes "catégorisation" et "classification" sont souvent
+							utilisés
+							de manière interchangeable,
+							mais ils ont des significations distinctes, notamment dans des contextes spécifiques tels
+							que la
+							linguistique, la philosophie et la science de l'information.</p>
+						<img src="./img/CategorisationClassification2.png" alt="Catégorisation et Classification"
+							style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.4em;">Catégorisation: Processus de regroupement d'entités en fonction de
+							caractéristiques partagées ou de similitudes conceptuelles.</p>
+						<p style="font-size: 0.4em;">Classification: Organisation systématique d'éléments en groupes
+							hiérarchiques prédéfinis basés sur des critères.</p>
 
-				</section>
-				<section>
-					<p style="font-size: 0.5em;">Lien catégorisation et triangle sémantique.</p>
-					<img src="./img/CategorisationTriangle.png" alt="Catégorisation et triangle sémantique"
-						style="max-width: 40%; height: auto;" />
-					<p style="font-size: 0.4em;">La catégorisation opère principalement entre concepts et
-						référents.<br><br>Elle nous aide à organiser le monde en catégories mentales compréhensibles
-						basées sur nos expériences avec des objets réels.<br><br> Par exemple, en rencontrant un chien,
-						nous le catégorisons mentalement en fonction des traits qu'il partage avec d'autres chiens.</p>
-				</section>
-				<section>
-					<p style="font-size: 0.5em;">Lien classification et triangle sémantique.</p>
-					<img src="./img/triangleClassification.png" alt="Classification et triangle sémantique"
-						style="max-width: 40%; height: auto;" />
-					<p style="font-size: 0.4em;">La classification est donc un processus plus rigide et structuré que la
-						catégorisation.<br><br> Elle formalise la façon dont les objets (référents) sont regroupés en
-						concepts et garantit que ces regroupements suivent des critères spécifiques, souvent basés sur
-						une base scientifique ou logique. <br><br>Cela est particulièrement important dans des domaines
-						comme la biologie, où le système de classification est bien défini et globalement compris.</p>
-				</section>
-				<section>
-					<p style="font-size: 0.5em;">Interaction avec le Monde Ouvert et les Contextes Interdisciplinaires
-					</p>
-					<img src="./img/CategorisationClassificationDisciplines.png"
-						alt="Monde ouvert et contextes interdisciplinaires" style="max-width: 40%; height: auto;" />
-					<p style="font-size: 0.4em;">Lorsqu'on considère des scénarios de monde ouvert (comme la combinaison
-						de plusieurs disciplines ou systèmes de connaissances),<br>le triangle sémantique devient un
-						outil utile pour comprendre comment la classification et la catégorisation pourraient différer
-						ou s'aligner en fonction des domaines ou des disciplines.</p>
-				</section>
-				<section>
-					<p style="font-size: 0.5em;">Interaction avec le Monde Ouvert et les Contextes
-						Interdisciplinaires<br>Exemple</p>
-					<img src="./img/CategorisationClassificationDisciplineExemple.png"
-						alt="Un chien vu par un biologiste ou un professionel de la santé"
-						style="max-width: 40%; height: auto;" />
-					<p style="font-size: 0.4em;">Un chien est il vu de la même manière par un biologiste et par un
-						professionel de la santé le considérant comme animal de compagnie?</p>
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">Conclusion: une perspective combinée</p>
-					<p style="font-size: 0.5em;">Le triangle sémantique aide à illustrer comment la classification et la
-						catégorisation fonctionnent en reliant des symboles, des concepts et des référents. </p>
-					<ul style="font-size: 0.5em;">
-						<li>Classification: relation entre concepts et référents formalisée et structurée, symboles
-							représentant des concepts standardisés et bien définis.</li>
-						<li>Catégorisation: relation plus flexible et basée sur des caractéristiques partagées qui
-							peuvent varier à travers les contextes.</li>
-					</ul>
-					<p style="font-size: 0.5em;">Dans un monde ouvert où plusieurs classifications doivent être
-						combinées, le processus implique de créer des correspondances et des alignements entre
-						différents concepts et référents, garantissant la communication interdisciplinaire tout en
-						maintenant l'intégrité de chaque système de classification. Cela pourrait impliquer des efforts
-						de méta-classification ou d'interopérabilité sémantique.</p>
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">Monde ouvert avec multiples classifications</p>
-					<img src="./img/MondeOuvertMultiplesClassifications.png"
-						alt="Monde Ouvert avec de multiples classifications" style="max-width: 40%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.5em;">Lien catégorisation et triangle sémantique.</p>
+						<img src="./img/CategorisationTriangle.png" alt="Catégorisation et triangle sémantique"
+							style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.4em;">La catégorisation opère principalement entre concepts et
+							référents.<br><br>Elle nous aide à organiser le monde en catégories mentales compréhensibles
+							basées sur nos expériences avec des objets réels.<br><br> Par exemple, en rencontrant un
+							chien,
+							nous le catégorisons mentalement en fonction des traits qu'il partage avec d'autres chiens.
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.5em;">Lien classification et triangle sémantique.</p>
+						<img src="./img/triangleClassification.png" alt="Classification et triangle sémantique"
+							style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.4em;">La classification est donc un processus plus rigide et structuré
+							que la
+							catégorisation.<br><br> Elle formalise la façon dont les objets (référents) sont regroupés
+							en
+							concepts et garantit que ces regroupements suivent des critères spécifiques, souvent basés
+							sur
+							une base scientifique ou logique. <br><br>Cela est particulièrement important dans des
+							domaines
+							comme la biologie, où le système de classification est bien défini et globalement compris.
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.5em;">Interaction avec le Monde Ouvert et les Contextes
+							Interdisciplinaires
+						</p>
+						<img src="./img/CategorisationClassificationDisciplines.png"
+							alt="Monde ouvert et contextes interdisciplinaires" style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.4em;">Lorsqu'on considère des scénarios de monde ouvert (comme la
+							combinaison
+							de plusieurs disciplines ou systèmes de connaissances),<br>le triangle sémantique devient un
+							outil utile pour comprendre comment la classification et la catégorisation pourraient
+							différer
+							ou s'aligner en fonction des domaines ou des disciplines.</p>
+					</section>
+					<section>
+						<p style="font-size: 0.5em;">Interaction avec le Monde Ouvert et les Contextes
+							Interdisciplinaires<br>Exemple</p>
+						<img src="./img/CategorisationClassificationDisciplineExemple.png"
+							alt="Un chien vu par un biologiste ou un professionel de la santé"
+							style="max-width: 40%; height: auto;" />
+						<p style="font-size: 0.4em;">Un chien est il vu de la même manière par un biologiste et par un
+							professionel de la santé le considérant comme animal de compagnie?</p>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Conclusion: une perspective combinée</p>
+						<p style="font-size: 0.5em;">Le triangle sémantique aide à illustrer comment la classification
+							et la
+							catégorisation fonctionnent en reliant des symboles, des concepts et des référents. </p>
+						<ul style="font-size: 0.5em;">
+							<li>Classification: relation entre concepts et référents formalisée et structurée, symboles
+								représentant des concepts standardisés et bien définis.</li>
+							<li>Catégorisation: relation plus flexible et basée sur des caractéristiques partagées qui
+								peuvent varier à travers les contextes.</li>
+						</ul>
+						<p style="font-size: 0.5em;">Dans un monde ouvert où plusieurs classifications doivent être
+							combinées, le processus implique de créer des correspondances et des alignements entre
+							différents concepts et référents, garantissant la communication interdisciplinaire tout en
+							maintenant l'intégrité de chaque système de classification. Cela pourrait impliquer des
+							efforts
+							de méta-classification ou d'interopérabilité sémantique.</p>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Monde ouvert avec multiples classifications</p>
+						<img src="./img/MondeOuvertMultiplesClassifications.png"
+							alt="Monde Ouvert avec de multiples classifications"
+							style="max-width: 40%; height: auto;" />
 
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">Cartographie et alignement</p>
-					<img src="./img/CartographieAlignement.png" alt="Cartographie et alignement"
-						style="max-width: 40%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Cartographie ontologique: identifications des liens</li>
-						<li>Alignement ontologique: formalisation des équivalences et subsomptions </li>
-						<li>Intégration ontologique: plusieurs ontologies dans un cadre cohérent </li>
-					</ul>
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">S'agit il toujours de classification ou de catégorisation?</p>
-					<img src="./img/EncoreCategorisationHarmonisation.png" alt="Cartographie et alignement"
-						style="max-width: 40%; height: auto;" />
-					<ul style="font-size: 0.4em;">
-						<li>Communication interdisciplinaire: compréhension entre domaines et disciplines</li>
-						<li>Cartographe des classes ou catégories: formalisation des liens logiques/sémantiques entres
-							domaines et disciplines</li>
-						<li>Harmonisation: combinaisons harmonieuses</li>
-					</ul>
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">Ou bien s'agit il encore d'autre chose?</p>
-					<img src="./img/AutreChose.png" alt="Cartographie et alignement"
-						style="max-width: 40%; height: auto;" />
-					<ul style="font-size: 0.4em;">
-						<li>Fédération ontologique: cadre pour harmoniser sans intégrer</li>
-						<li>Interopérability sémantique: capacité à échanger et comprendre malgré différecences de
-							structure ou de sémantique</li>
-						<li>Meta classification: cadre de niveau supérieure</li>
-					</ul>
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">Un monde ouvert avec de multiples classifications</p>
-					<img src="./img/MondeOuvertClassificationsMultiples.png" alt="Cartographie et alignement"
-						style="max-width: 40%; height: auto;" />
-					<br>
-					<ul style="font-size: 0.4em;">
-						<li>Conception ontologique: créer les mises en correspondance</li>
-						<li>Raisonneur ontologique: pouvoir utiliser des raisonneurs sémantique</li>
-						<li>Cader de méta-ontologie: developer des cadres</li>
-					</ul>
-				</section>
-				<section>
-					<p style="font-size: 0.9em;">En conclusion</p>
-					<br>
-					<ul style="font-size: 0.7em;">
-						<li>Dans un scénario de monde ouvert, la combinaison de multiples classifications pour la
-							communication interdisciplinaire va au-delà de la simple classification ou catégorisation.
-						</li>
-						<li>Cela nécessite une approche qui intègre la cartographie ontologique, l'alignement et
-							l'interopérabilité sémantique. </li>
-						<li>Ce processus peut être considéré comme une forme de méta-classification ou de fédération
-							ontologique, qui fournit une manière structurée de permettre une compréhension
-							interdisciplinaire tout en maintenant l'intégrité des systèmes de classification
-							individuels.</li>
-					</ul>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h2 style="font-size: 0.8em;">Sémantique, Information et Connaissance</h2>
-					<img src="./img/SemantiqueInformationConnaissance.png" alt="SemantiqueInformationConnaissance"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Qu'est ce que la connaissance</h2>
-					<img src="./img/ArbreConnaissance.png" alt="ArbreConnaissance"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>La capacité mentale permettant à l'esprit d'assimiler un contenu objectif, c'est-à-dire une
-							réalité indépendante de l'observateur, préalablement traduit en signes et en idées.</li>
-						<li>C'est également le résultat de cette assimilation</li>
-						<li>Elle représente une possession symbolique des choses et s'étend sur une infinité de niveaux.
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Qu'est ce que l'information</h2>
-					<img src="./img/Information.png" alt="Information" style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Une partie de la connaissance</li>
-						<li>Mais avoir une information sur un sujet ne signifie pas "connaître" ce sujet</li>
-						<li>Plus on accumule d'informations sur un sujet, plus on le "connaît".</li>
-						<li>La connaissance complète consiste à avoir le plus de facettes possible sur un sujet</li>
-					</ul>
-				</section>
-				<section>
-					<img src="./img/QuestionsInformation.png" alt="QuestionsInformation"
-						style="max-width: 100%; height: auto;" />
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Qu’est ce que la donnée dans la perspective des Systèmes d’Information
-					</h2>
-					<img src="./img/autodaffe.png" alt="autodaffe" style="max-width: 50%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Aujourd’hui, dans toutes les organisations, les idées circulent en permanence.</li>
-						<li>Seules celles qui sont formalisées et qui ont une existence physique sont manipulables,
-							exploitables et réutilisables.</li>
-						<li>Cela concerne le stade initial de ce que l’on appelle l’information.</li>
-						<li>La donnée représente l’existence physique même d’une information.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Qu’est ce que la donnée dans la perspective des Systèmes d’Information
-					</h2>
-					<img src="./img/kpi.png" alt="kpi" style="max-width: 50%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>À ce stade, il ne s'agit pas encore de sens, mais simplement d’existence physique, de
-							stockage et d’adressage.</li>
-						<li>Cela concerne le stade initial de ce que l’on appelle l’information.</li>
-						<li>La donnée devient information lorsqu'elle véhicule un sens, en particulier lorsqu’elle est
-							interprétée dans un contexte métier.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Qu’est ce que la donnée dans la perspective philosophique de la
-						connaissance</h2>
-					<ul style="font-size: 0.5em;">
-						<li>Dans la conception philosophique de la connaissance, les données sont des éléments bruts,
-							des faits ou observations sans interprétation, qui constituent la matière première pour
-							l'acquisition du savoir.</li>
-						<li>Historiquement, dans le contexte des entreprises, la donnée était davantage liée à des
-							notions de fichiers, bases de données ou enregistrements, sans nécessairement s’intéresser à
-							son sens ou à son interprétation.
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">A propos de la pyramide DIKW</h2>
-					<img src="./img/DIKW.png" alt="DIKW" style="max-width: 50%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Données : Ce sont des faits bruts et non interprétés, comme des chiffres ou des
-							observations, qui manquent de contexte</li>
-						<li>Information : Elle résulte de l'organisation et du traitement des données, donnant un sens à
-							ces dernières grâce à leur contextualisation.</li>
-						<li>Connaissance : Elle se forme lorsque l'information est comprise et intégrée, permettant d'en
-							tirer des conclusions et d'appliquer des compétences.</li>
-						<li>Sagesse : C'est l'utilisation éclairée de la connaissance pour prendre des décisions
-							judicieuses, souvent basée sur l'expérience et le discernement.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Practicité de la pyramide DIKW</h2>
-					<img src="./img/DIKWPracticité.png" alt="DIKWPracticité" style="max-width: 50%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Dans la pyramide Data Information Knowledge Wisdom, les données sont des faits bruts qui,
-							lorsqu organisés, deviennent information, puis connaissance, et enfin sagesse.</li>
-						<li>Ici, l'aspect physique des données n'est pas considéré, car l'accent est mis sur leur
-							transformation conceptuelle.</li>
-					</ul>
-				</section>
-				<section>
-					<p style="font-size: 0.8em;">Cette approche crée souvent des difficultés de dialogue entre
-					<ul style="font-size: 0.7em;">
-						<li>Les informaticiens, qui se concentrent
-							sur le stockage et la gestion des données physiques </li>
-						<li>Les gestionnaires de la connaissance,
-							qui se préoccupent de leur interprétation et de leur utilisation.</li>
-					</ul>
-					</p>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h2 style="font-size: 0.8em;">Connotation dénotation et perception contextuelle</h2>
-					<img src="./img/ConnotationDenotationPerceptionContextuelle.png"
-						alt="ConnotationDenotationPerceptionContextuelle" style="max-width: 110%; height: auto;" />
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Connotation, Dénotation et sémiotique</h2>
-					<img src="./img/ConnotationDenotationSemiotique.png" alt="ConnotationDenotationSemiotique"
-						style="max-width: 50%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li><b>Dénotation</b>: Le sens littéral ou premier d'un signe.</li>
-						<li><b>Connotation</b>: Les significations secondaires ou culturelles qui se superposent au sens
-							littéral.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Prise en compte de la perception contextuelle</h2>
-					<img src="./img/PriseEnComptePerceptionContextuelle.png" alt="PriseEnComptePerceptionContextuelle"
-						style="max-width: 50%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Un même objet du monde réel soit vu de manière différente en fonction de qui l'observe</li>
-						<li>Cela implique une compréhension plus large qui touche à la perception contextuelle,
-							l'interprétation subjective, et les cadres de référence personnels.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Perception Contextuelle</h2>
-					<img src="./img/PerceptionConceptuelle.png" alt="PerceptionConceptuelle"
-						style="max-width: 40%; height: auto;" />
-					<br>
-					<ul style="font-size: 0.5em;">
-						<li>Cadre de référence personnel</li>
-						<li>Contexte Personnel</li>
-						<li>Contexte Immediat de l'observation</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Perception Sémantique et Sémantique Sociale</h2>
-					<img src="./img/PerceptionSemantiqueSemantiqueSociale.png"
-						alt="PerceptionSemantiqueSemantiqueSociale" style="max-width: 40%; height: auto;" />
-					<br>
-					<ul style="font-size: 0.5em;">
-						<li>De l'individu au groupe</li>
-						<li>Perception communautaire et sémantique sociale</li>
-						<li>Conventions et normes</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Perception Collective et Communautés de Connaissance</h2>
-					<img src="./img/SemantiqueCollective.png" alt="SemantiqueCollective"
-						style="max-width: 40%; height: auto;" />
-					<br>
-					<ul style="font-size: 0.5em;">
-						<li>Conventions, des normes, et des pratiques spécifiques</li>
-						<li>Sémantique collective</li>
-						<li>Vocabulaires métier spécialisés</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Triangle Sémiotique et Communautés de Pratique</h2>
-					<img src="./img/TriangleSémiotiqueCommunautePratique.png"
-						alt="TriangleSémiotiqueCommunautePratique" style="max-width: 40%; height: auto;" />
-					<br>
-					<ul style="font-size: 0.5em;">
-						<li>Concepts partagés au sein d'un groupe</li>
-						<li>Objets Réels perçu différemment</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Communautés de Connaissance et de Pratiques</h2>
-
-					<ul style="font-size: 0.5em;">
-						Les communautés de pratique et les communautés de connaissances jouent un rôle crucial dans
-						la définition des significations collectives.
-						<li>Les communautés de Pratique développent des conventions et des pratiques spécifiques qui
-							influencent la manière dont les signes et les objets sont interprétés. Les membres partagent
-							un vocabulaire spécialisé et des normes qui façonnent leur perception.</li>
-						<li>Les communautés de Connaissance peuvent définir des normes de connaissance et des
-							significations qui sont reconnues et acceptées au sein du groupe. Les conventions et les
-							pratiques du groupe influencent la manière dont les informations et les objets sont perçus
-							et utilisés.</li>
-					</ul>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h2 style="font-size: 0.8em;">Intégrer philosophie de l'action, praxis et pragmatisme</h2>
-					<img src="./img/ActionPraxisPragmatisme.png" alt="ActionPraxisPragmatisme"
-						style="max-width: 30%; height: auto;" />
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Intégrer philosophie de l'action, praxis et pragmatisme</h2>
-					<img src="./img/ActionPraxisPragmatisme2.png" alt="ActionPraxisPragmatisme2"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>La praxis, le pragmatisme et la philosophie de l'action sont trois concepts qui, bien
-							qu'ayant des similitudes, se distinguent par leur approche de l'action humaine, de la
-							réflexion et de la réalité.</li>
-						<li>Ils sont complémentaires et amène à considérer et à utiliser chacun à leur manière la
-							sémantique (signification des mots), la sémiotique (étude des signes) et la pragmatique en
-							lien avec les activités de l'entreprise, l’informatique et la connaissance</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2 style="font-size: 0.8em;">Praxis et sémantique</h2>
-					<img src="./img/PraxisSemantique.png" alt="PraxisSemantique"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>La praxis est l'idée d'action consciente et réfléchie, où l'acteur ajuste ses actions à
-							travers une réflexion continue sur leur impact et leur efficacité. Il ne s'agit pas
-							seulement d'agir, mais de penser l'action dans un processus d'amélioration continue. C'est
-							une action qui se réévalue constamment en fonction des résultats obtenus.</li>
-						<li>une réflexion critique constante sur l'action en cours, avec une attention particulière aux
-							implications sociales ou éthiques.</li>
-						<li>la praxis dans l’entreprise ne vise pas seulement à livrer un produit ou un service, mais à
-							transformer les processus internes pour atteindre des objectifs de qualité élevée, tout en
-							améliorant en permanence les compétences des acteurs, les processus, et les résultats à long
-							terme.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Pragmatisme</h2>
-					<img src="./img/Pragmatisme.png" alt="pragmatisme" style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Philosophie: vérité d'une idée ou d'une croyance dépend de son efficacité pratique et de ses conséquences dans le monde réel.</li>
-						<li>Utilité des idées pour résoudre des problèmes et naviguer dans des situations concrètes.</li>
-						<li>Centré sur les résultats immédiats, solutions pratiques dans l'instant, et non pas impacts à long terme ou  questions de
-							transformation profonde.</li>
-							<li>Valorise praticité et l'efficacité directe.</li>
-						<li>Pragmatisme: axé sur action efficace à court terme et  satisfaction des objectifs
-							immédiats-> approche différente pour sémantique et sémiotique dans
-							l'entreprise.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Pragmatisme et sémantique</h2>
-					<img src="./img/PragmatismeSemantique.png" alt="PragmatismeSemantique"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Moindre importance de la précision sémantique et de la réflexion sur le sens profond des concepts.</li>
-						<li>Fonctionnalité et atteinte des résultats mesurables.</li>
-						<li>Action guidée par efficacité immédiate plutôt que recherche d’un sens plus
-							profond</li>
-                        <li> -> manque possible profondeur sémantique -> possibles incohérences ou 
-							malentendus sur le long terme.
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Pragmatisme et sémiotique</h2>
-					<img src="./img/PragmatismeSemiotique.png" alt="PragmatismeSemiotique"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Sémiotique (action guidée par des signaux immédiats)</li>
-						<li>En pragmatisme, l’interprétation des signes se fait de manière plus superficielle et rapide.</li>
-					</ul>
-				</section>				
-				<section>
-					<h2 style="font-size: 0.8em;">Pragmatisme versus Praxis</h2>
-					<img src="./img/PragmatismeVsPraxis.png" alt="PragmatismeVsPraxis"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Contrairement à la praxis, où l’on cherche à aligner les actions sur une réflexion sémantique globale, le pragmatisme se focalise sur les résultats (chiffres, deadlines) sans s'attarder sur la profondeur des concepts ou des signes.</li>
-						<li>Par exemple, l’important n’est pas de savoir ce que signifie précisément un KPIs ou comment il pourrait être interprété dans un contexte plus large, mais de s’assurer qu’il est atteint dans les délais impartis.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Pragmatisme versus Praxis</h2>
-					<img src="./img/PraxisEtPragmatisme.png" alt="PraxisEtPragmatisme"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Praxis -> liée à amélioration continue, transformation organisationnelle et méthodes qualité totale</li>
-						<li> -> Elever standards avec réflexion critique et adaptation constante</li>
-						<li> -> parfois au détriment de la simplicité et de l’efficacité.</li>
-					    <li>Pragmatisme -> livraison rapide et efficace de projets - un accent sur  résultats immédiats avec respect  délais et coûts, pas améliorations à long terme</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">La philosophie de l’action</h2>
-					<img src="./img/PhilosophieAction.png" alt="PhilosophieAction"
-						style="max-width: 30%; height: auto;" />
-					<ul style="font-size: 0.5em;">
-						<li>Quels Fondements philosophiques de l'agir humain.</li>
-						<li>Compréhension des actions, motivations, responsabilités, influences.</li>
-						<li>Motivations derrière les actions, la notion de liberté et la responsabilité morale des agents.</li>
-					    <li>Relie praxis et pragmatisme - riche compréhension des dynamiques des contextes organisationnels.</li>
-						<li>Innovation et la responsabilité dans environnements complexes et interconnectés.</li>
-					</ul>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Conclusion</h2>
-					<ul style="font-size: 0.5em;">
-						<li>Intégration philosophie de l'action et pragmatisme dans le triangle sémiotique étendu <br>-> dimension pratique et orientée résultats pour compréhension  interactions symboles/concepts/référents</li>
-						<li>Représentations numériques et données <br>->influencent/facilitent  actions concrètes + représentations  utiles et pertinentes dans contextes pratiques.</li>
-					</ul>
-				</section>													
-			</section>
-			<section>
-				<section>
-					<h2 style="font-size: 0.8em;">Sémantique et informatique</h2>
-					<img src="./img/SemantiqueInformatique.jpg" alt="SemantiqueInformatique"
-						style="max-width: 50%; height: auto;" />
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Introduction sur l'informatique</h2>
-					<img src="./img/Informatique.png" alt="informatique"
-						style="max-width: 50%; height: auto;" />
-						<p style="font-size: 0.7em;">
-						L'informatique englobe tout ce qui concerne l'utilisation et le développement des technologies numériques pour traiter l'information
-						</p>		
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Impact de l’informatique sur la sémantique
-					</h2>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Cartographie et alignement</p>
+						<img src="./img/CartographieAlignement.png" alt="Cartographie et alignement"
+							style="max-width: 40%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Cartographie ontologique: identifications des liens</li>
+							<li>Alignement ontologique: formalisation des équivalences et subsomptions </li>
+							<li>Intégration ontologique: plusieurs ontologies dans un cadre cohérent </li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">S'agit il toujours de classification ou de catégorisation?</p>
+						<img src="./img/EncoreCategorisationHarmonisation.png" alt="Cartographie et alignement"
+							style="max-width: 40%; height: auto;" />
+						<ul style="font-size: 0.4em;">
+							<li>Communication interdisciplinaire: compréhension entre domaines et disciplines</li>
+							<li>Cartographe des classes ou catégories: formalisation des liens logiques/sémantiques
+								entres
+								domaines et disciplines</li>
+							<li>Harmonisation: combinaisons harmonieuses</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Ou bien s'agit il encore d'autre chose?</p>
+						<img src="./img/AutreChose.png" alt="Cartographie et alignement"
+							style="max-width: 40%; height: auto;" />
+						<ul style="font-size: 0.4em;">
+							<li>Fédération ontologique: cadre pour harmoniser sans intégrer</li>
+							<li>Interopérability sémantique: capacité à échanger et comprendre malgré différecences de
+								structure ou de sémantique</li>
+							<li>Meta classification: cadre de niveau supérieure</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Un monde ouvert avec de multiples classifications</p>
+						<img src="./img/MondeOuvertClassificationsMultiples.png" alt="Cartographie et alignement"
+							style="max-width: 40%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.4em;">
+							<li>Conception ontologique: créer les mises en correspondance</li>
+							<li>Raisonneur ontologique: pouvoir utiliser des raisonneurs sémantique</li>
+							<li>Cader de méta-ontologie: developer des cadres</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.9em;">En conclusion</p>
+						<br>
 						<ul style="font-size: 0.7em;">
-							<li>L'informatique redéfinit communication et aspects sémiotique, sémantique et pragmatique du langage humain en automatisant traitement/interprétation des signes/significations</li>
-							<li>Les SIs manipulent symboles/concepts/relations -> formalisation du langage humain.</li>
-			                <li>Les SIs doivent interpréter signes (textes, images, codes) de manière cohérente avec leur contexte ->sémiotique essentielle</li>
-						</ul>		
+							<li>Dans un scénario de monde ouvert, la combinaison de multiples classifications pour la
+								communication interdisciplinaire va au-delà de la simple classification ou
+								catégorisation.
+							</li>
+							<li>Cela nécessite une approche qui intègre la cartographie ontologique, l'alignement et
+								l'interopérabilité sémantique. </li>
+							<li>Ce processus peut être considéré comme une forme de méta-classification ou de fédération
+								ontologique, qui fournit une manière structurée de permettre une compréhension
+								interdisciplinaire tout en maintenant l'intégrité des systèmes de classification
+								individuels.</li>
+						</ul>
+					</section>
 				</section>
 				<section>
-					<h2 style="font-size: 0.8em;">Impact de l’informatique sur la sémantique
-					</h2>
-					<img src="./img/InformatiqueSemantique.png" alt="InformatiqueSemantique"
-					style="max-width: 40%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Sémantique, Information et Connaissance</h2>
+						<img src="./img/SemantiqueInformationConnaissance.png" alt="SemantiqueInformationConnaissance"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Qu'est ce que la connaissance</p>
+						<img src="./img/ArbreConnaissance.png" alt="ArbreConnaissance"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>La capacité mentale permettant à l'esprit d'assimiler un contenu objectif, c'est-à-dire
+								une
+								réalité indépendante de l'observateur, préalablement traduit en signes et en idées.</li>
+							<li>C'est également le résultat de cette assimilation</li>
+							<li>Elle représente une possession symbolique des choses et s'étend sur une infinité de
+								niveaux.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Qu'est ce que l'information</p>
+						<img src="./img/Information.png" alt="Information" style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Une partie de la connaissance</li>
+							<li>Mais avoir une information sur un sujet ne signifie pas "connaître" ce sujet</li>
+							<li>Plus on accumule d'informations sur un sujet, plus on le "connaît".</li>
+							<li>La connaissance complète consiste à avoir le plus de facettes possible sur un sujet</li>
+						</ul>
+					</section>
+					<section>
+						<img src="./img/QuestionsInformation.png" alt="QuestionsInformation"
+							style="max-width: 100%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Qu’est ce que la donnée dans la perspective des Systèmes
+							d’Information
+						</p>
+						<img src="./img/autodaffe.png" alt="autodaffe" style="max-width: 50%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Aujourd’hui, dans toutes les organisations, les idées circulent en permanence.</li>
+							<li>Seules celles qui sont formalisées et qui ont une existence physique sont manipulables,
+								exploitables et réutilisables.</li>
+							<li>Cela concerne le stade initial de ce que l’on appelle l’information.</li>
+							<li>La donnée représente l’existence physique même d’une information.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Qu’est ce que la donnée dans la perspective des Systèmes
+							d’Information
+						</p>
+						<img src="./img/kpi.png" alt="kpi" style="max-width: 50%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>À ce stade, il ne s'agit pas encore de sens, mais simplement d’existence physique, de
+								stockage et d’adressage.</li>
+							<li>Cela concerne le stade initial de ce que l’on appelle l’information.</li>
+							<li>La donnée devient information lorsqu'elle véhicule un sens, en particulier lorsqu’elle
+								est
+								interprétée dans un contexte métier.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Qu’est ce que la donnée dans la perspective philosophique de la
+							connaissance</p>
+						<ul style="font-size: 0.5em;">
+							<li>Dans la conception philosophique de la connaissance, les données sont des éléments
+								bruts,
+								des faits ou observations sans interprétation, qui constituent la matière première pour
+								l'acquisition du savoir.</li>
+							<li>Historiquement, dans le contexte des entreprises, la donnée était davantage liée à des
+								notions de fichiers, bases de données ou enregistrements, sans nécessairement
+								s’intéresser à
+								son sens ou à son interprétation.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">A propos de la pyramide DIKW</p>
+						<img src="./img/DIKW.png" alt="DIKW" style="max-width: 50%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Données : Ce sont des faits bruts et non interprétés, comme des chiffres ou des
+								observations, qui manquent de contexte</li>
+							<li>Information : Elle résulte de l'organisation et du traitement des données, donnant un
+								sens à
+								ces dernières grâce à leur contextualisation.</li>
+							<li>Connaissance : Elle se forme lorsque l'information est comprise et intégrée, permettant
+								d'en
+								tirer des conclusions et d'appliquer des compétences.</li>
+							<li>Sagesse : C'est l'utilisation éclairée de la connaissance pour prendre des décisions
+								judicieuses, souvent basée sur l'expérience et le discernement.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Practicité de la pyramide DIKW</p>
+						<img src="./img/DIKWPracticité.png" alt="DIKWPracticité"
+							style="max-width: 50%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Dans la pyramide Data Information Knowledge Wisdom, les données sont des faits bruts
+								qui,
+								lorsqu organisés, deviennent information, puis connaissance, et enfin sagesse.</li>
+							<li>Ici, l'aspect physique des données n'est pas considéré, car l'accent est mis sur leur
+								transformation conceptuelle.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Cette approche crée souvent des difficultés de dialogue entre
+						<ul style="font-size: 0.7em;">
+							<li>Les informaticiens, qui se concentrent
+								sur le stockage et la gestion des données physiques </li>
+							<li>Les gestionnaires de la connaissance,
+								qui se préoccupent de leur interprétation et de leur utilisation.</li>
+						</ul>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 style="font-size: 0.8em;">Connotation dénotation et perception contextuelle</h2>
+						<img src="./img/ConnotationDenotationPerceptionContextuelle.png"
+							alt="ConnotationDenotationPerceptionContextuelle" style="max-width: 110%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Connotation, Dénotation et sémiotique</p>
+						<img src="./img/ConnotationDenotationSemiotique.png" alt="ConnotationDenotationSemiotique"
+							style="max-width: 50%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li><b>Dénotation</b>: Le sens littéral ou premier d'un signe.</li>
+							<li><b>Connotation</b>: Les significations secondaires ou culturelles qui se superposent au
+								sens
+								littéral.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Prise en compte de la perception contextuelle</p>
+						<img src="./img/PriseEnComptePerceptionContextuelle.png"
+							alt="PriseEnComptePerceptionContextuelle" style="max-width: 50%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Un même objet du monde réel soit vu de manière différente en fonction de qui l'observe
+							</li>
+							<li>Cela implique une compréhension plus large qui touche à la perception contextuelle,
+								l'interprétation subjective, et les cadres de référence personnels.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Perception Contextuelle</p>
+						<img src="./img/PerceptionConceptuelle.png" alt="PerceptionConceptuelle"
+							style="max-width: 40%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.5em;">
+							<li>Cadre de référence personnel</li>
+							<li>Contexte Personnel</li>
+							<li>Contexte Immediat de l'observation</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Perception Sémantique et Sémantique Sociale</p>
+						<img src="./img/PerceptionSemantiqueSemantiqueSociale.png"
+							alt="PerceptionSemantiqueSemantiqueSociale" style="max-width: 40%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.5em;">
+							<li>De l'individu au groupe</li>
+							<li>Perception communautaire et sémantique sociale</li>
+							<li>Conventions et normes</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Perception Collective et Communautés de Connaissance</p>
+						<img src="./img/SemantiqueCollective.png" alt="SemantiqueCollective"
+							style="max-width: 40%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.5em;">
+							<li>Conventions, des normes, et des pratiques spécifiques</li>
+							<li>Sémantique collective</li>
+							<li>Vocabulaires métier spécialisés</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Triangle Sémiotique et Communautés de Pratique</p>
+						<img src="./img/TriangleSémiotiqueCommunautePratique.png"
+							alt="TriangleSémiotiqueCommunautePratique" style="max-width: 40%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.5em;">
+							<li>Concepts partagés au sein d'un groupe</li>
+							<li>Objets Réels perçu différemment</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Communautés de Connaissance et de Pratiques</p>
+
+						<ul style="font-size: 0.5em;">
+							Les communautés de pratique et les communautés de connaissances jouent un rôle crucial dans
+							la définition des significations collectives.
+							<li>Les communautés de Pratique développent des conventions et des pratiques spécifiques qui
+								influencent la manière dont les signes et les objets sont interprétés. Les membres
+								partagent
+								un vocabulaire spécialisé et des normes qui façonnent leur perception.</li>
+							<li>Les communautés de Connaissance peuvent définir des normes de connaissance et des
+								significations qui sont reconnues et acceptées au sein du groupe. Les conventions et les
+								pratiques du groupe influencent la manière dont les informations et les objets sont
+								perçus
+								et utilisés.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 style="font-size: 0.8em;">Intégrer philosophie de l'action, praxis et pragmatisme</h2>
+						<img src="./img/ActionPraxisPragmatisme.png" alt="ActionPraxisPragmatisme"
+							style="max-width: 30%; height: auto;" />
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Intégrer philosophie de l'action, praxis et pragmatisme</p>
+						<img src="./img/ActionPraxisPragmatisme2.png" alt="ActionPraxisPragmatisme2"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>La praxis, le pragmatisme et la philosophie de l'action sont trois concepts qui, bien
+								qu'ayant des similitudes, se distinguent par leur approche de l'action humaine, de la
+								réflexion et de la réalité.</li>
+							<li>Ils sont complémentaires et amène à considérer et à utiliser chacun à leur manière la
+								sémantique (signification des mots), la sémiotique (étude des signes) et la pragmatique
+								en
+								lien avec les activités de l'entreprise, l’informatique et la connaissance</li>
+						</ul>
+					</section>
+
+					<section>
+						<p style="font-size: 0.8em;">Praxis et sémantique</p>
+						<img src="./img/PraxisSemantique.png" alt="PraxisSemantique"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>La praxis est l'idée d'action consciente et réfléchie, où l'acteur ajuste ses actions à
+								travers une réflexion continue sur leur impact et leur efficacité. Il ne s'agit pas
+								seulement d'agir, mais de penser l'action dans un processus d'amélioration continue.
+								C'est
+								une action qui se réévalue constamment en fonction des résultats obtenus.</li>
+							<li>une réflexion critique constante sur l'action en cours, avec une attention particulière
+								aux
+								implications sociales ou éthiques.</li>
+							<li>la praxis dans l’entreprise ne vise pas seulement à livrer un produit ou un service,
+								mais à
+								transformer les processus internes pour atteindre des objectifs de qualité élevée, tout
+								en
+								améliorant en permanence les compétences des acteurs, les processus, et les résultats à
+								long
+								terme.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Pragmatisme</p>
+						<img src="./img/Pragmatisme.png" alt="pragmatisme" style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Philosophie: vérité d'une idée ou d'une croyance dépend de son efficacité pratique et de
+								ses
+								conséquences dans le monde réel.</li>
+							<li>Utilité des idées pour résoudre des problèmes et naviguer dans des situations concrètes.
+							</li>
+							<li>Centré sur les résultats immédiats, solutions pratiques dans l'instant, et non pas
+								impacts à
+								long terme ou questions de
+								transformation profonde.</li>
+							<li>Valorise praticité et l'efficacité directe.</li>
+							<li>Pragmatisme: axé sur action efficace à court terme et satisfaction des objectifs
+								immédiats-> approche différente pour sémantique et sémiotique dans
+								l'entreprise.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Pragmatisme et sémantique</p>
+						<img src="./img/PragmatismeSemantique.png" alt="PragmatismeSemantique"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Moindre importance de la précision sémantique et de la réflexion sur le sens profond des
+								concepts.</li>
+							<li>Fonctionnalité et atteinte des résultats mesurables.</li>
+							<li>Action guidée par efficacité immédiate plutôt que recherche d’un sens plus
+								profond</li>
+							<li> -> manque possible profondeur sémantique -> possibles incohérences ou
+								malentendus sur le long terme.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Pragmatisme et sémiotique</p>
+						<img src="./img/PragmatismeSemiotique.png" alt="PragmatismeSemiotique"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Sémiotique (action guidée par des signaux immédiats)</li>
+							<li>En pragmatisme, l’interprétation des signes se fait de manière plus superficielle et
+								rapide.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Pragmatisme versus Praxis</p>
+						<img src="./img/PragmatismeVsPraxis.png" alt="PragmatismeVsPraxis"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Contrairement à la praxis, où l’on cherche à aligner les actions sur une réflexion
+								sémantique globale, le pragmatisme se focalise sur les résultats (chiffres, deadlines)
+								sans
+								s'attarder sur la profondeur des concepts ou des signes.</li>
+							<li>Par exemple, l’important n’est pas de savoir ce que signifie précisément un KPIs ou
+								comment
+								il pourrait être interprété dans un contexte plus large, mais de s’assurer qu’il est
+								atteint
+								dans les délais impartis.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Pragmatisme versus Praxis</p>
+						<img src="./img/PraxisEtPragmatisme.png" alt="PraxisEtPragmatisme"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Praxis -> liée à amélioration continue, transformation organisationnelle et méthodes
+								qualité
+								totale</li>
+							<li> -> Elever standards avec réflexion critique et adaptation constante</li>
+							<li> -> parfois au détriment de la simplicité et de l’efficacité.</li>
+							<li>Pragmatisme -> livraison rapide et efficace de projets - un accent sur résultats
+								immédiats
+								avec respect délais et coûts, pas améliorations à long terme</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">La philosophie de l’action</p>
+						<img src="./img/PhilosophieAction.png" alt="PhilosophieAction"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Quels Fondements philosophiques de l'agir humain.</li>
+							<li>Compréhension des actions, motivations, responsabilités, influences.</li>
+							<li>Motivations derrière les actions, la notion de liberté et la responsabilité morale des
+								agents.</li>
+							<li>Relie praxis et pragmatisme - riche compréhension des dynamiques des contextes
+								organisationnels.</li>
+							<li>Innovation et la responsabilité dans environnements complexes et interconnectés.</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Conclusion</p>
+						<ul style="font-size: 0.5em;">
+							<li>Intégration philosophie de l'action et pragmatisme dans le triangle sémiotique étendu
+								<br>->
+								dimension pratique et orientée résultats pour compréhension interactions
+								symboles/concepts/référents
+							</li>
+							<li>Représentations numériques et données <br>->influencent/facilitent actions concrètes +
+								représentations utiles et pertinentes dans contextes pratiques.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 style="font-size: 0.8em;">Sémantique et informatique</h2>
+						<img src="./img/SemantiqueInformatique.jpg" alt="SemantiqueInformatique"
+							style="max-width: 50%; height: auto;" />
+					</section>
+					<section>
+						<h3 style="font-size: 0.8em;">Introduction sur l'informatique</h3>
+						<img src="./img/Informatique.png" alt="informatique" style="max-width: 50%; height: auto;" />
+						<p style="font-size: 0.7em;">
+							L'informatique englobe tout ce qui concerne l'utilisation et le développement des
+							technologies
+							numériques pour traiter l'information
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Impact de l’informatique sur la sémantique
+						</p>
+						<ul style="font-size: 0.7em;">
+							<li>L'informatique redéfinit communication et aspects sémiotique, sémantique et pragmatique
+								du
+								langage humain en automatisant traitement/interprétation des signes/significations</li>
+							<li>Les SIs manipulent symboles/concepts/relations -> formalisation du langage humain.</li>
+							<li>Les SIs doivent interpréter signes (textes, images, codes) de manière cohérente avec
+								leur
+								contexte ->sémiotique essentielle</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Impact de l’informatique sur la sémantique
+						</p>
+						<img src="./img/InformatiqueSemantique.png" alt="InformatiqueSemantique"
+							style="max-width: 40%; height: auto;" />
 						<ul style="font-size: 0.7em;">
 							<li>L'informatique oblige à une précision du sens</li>
 							<li>Désambiguïsation complète langage et protocoles</li>
-			                <li>Représentation explicite et normalisée</li>
+							<li>Représentation explicite et normalisée</li>
 							<li>Formats intelligibles par l'homme</li>
 							<li>Les ordinateurs sont plûtot idiots mais très rapide</li>
-						</ul>		
-				</section>									
-				<section>
-					<h2 style="font-size: 0.8em;">Des langages machines aux langages des métiers</h2>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Concept vs. Terme vs. Code <br> Retour au triangle sémantique</h2>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">Catégorisation et Classification dans le monde informatique</h2>
-				</section>
-				<section>
-					<h2 style="font-size: 0.8em;">A propos systèmes des bases de données</h2>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h2 style="font-size: 0.8em;">Capture de la sémantique et<br> Interopérabilité Sémantique</h2>
-					<img src="./img/Interoperability.webp" alt="Interoperability"
-						style="max-width: 50%; height: auto;" />
-				</section>
-			</section>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Impact de l’informatique sur la pragmatique
+						</p>
+						<img src="./img/ImpactInformatiquePragmatic.png" alt="ImpactInformatiquePragmatic"
+							style="max-width: 40%; height: auto;" />
+						<ul style="font-size: 0.5em;">
+							<li>Les SICs tiennent compte du contexte d'utilisation et des intentions des utilisateurs
+							</li>
+							<li>Présentation facilitant la compréhension et l'action dans des situations réelles</li>
+							<li>Représentation explicite et normalisée</li>
+							<li>Formalisation stricte repensant les relations entre les signes, les significations et
+								l'action.</li>
+							<li>Interopérabilité entre langages et contextes humains.</li>
+						</ul>
+					</section>
+					<section>
+						<h3 style="font-size: 0.8em;">Des langages machines aux langages des métiers</h3>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Du langage machine binaire aux langages humains
+						</p>
+						<img src="./img/LangagesMachineVersHumain.png" alt="LangagesMachineVersHumain"
+							style="max-width: 30%; height: auto;" />
+						<ol style="font-size: 0.4em;">
+							<li>Unités de stockage pour les données (bits, octets)</li>
+							<li>Nécessité d'avoir des mots de la même taille pour les instruction des processeurs (16,
+								32,
+								64 bits) - langages machines</li>
+							<li>Codification des caractères ou formats numériques dérivés des octets (ex UtF8)</li>
+							<li>Langages informatique (programmation, définition et interrogation de données) avec la
+								définition d’une syntaxe</li>
+							<li>Enrichissement sémantique à partir de concepts métiers</li>
+							<li>Restitution compréhensible et utile au niveau de l’interface utilisateur</li>
+						</ol>
+					</section>
+					<section>
+						<p style="font-size: 0.8em;">Langages de programmation et de spécifications
+						</p>
+						<img src="./img/LangagesProgrammationSpecification.png" alt="LangagesProgrammationSpecification"
+							style="max-width: 30%; height: auto;" />
+						<ul style="font-size: 0.4em;">
+							<li>Langages de programmation et recherche syntaxique avec BNF...</li>
+							<li>Nécessité d'avoir des mots de la même taille pour les instruction des processeurs (16,
+								32,
+								64 bits) - langages machines</li>
+							<li>Langages de spécification et sémantique (UML, BPMN...)</li>
+							<li>Langages de modélisation d'ontologies</li>
+							<li>Interfaces Utilisateurs et outils de visualisation</li>
 
-			<section>
-				<section>
-					<h2 style="font-size: 0.8em;">La communication dans les entreprises digitales</h2>
-					<img src="./img/CommunicationEnteprisesDigitales.png" alt="CommunicationEntrepriseDigitales"
-						style="max-width: 50%; height: auto;" />
+						</ul>
+					</section>
+					<section>
+						<h3 style="font-size: 0.6em;">Cas formatages particuliers
+						</h3>
+						<img src="./img/ChiffresImagesEtc.png" alt="ChiffresImagesEtc"
+							style="max-width: 60%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.8em;">
+							Chiffres,Images, Dates, Sons, Videos...
+
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Cas particulier des chiffres
+						</p>
+						<img src="./img/Chiffres.png" alt="Chiffres" style="max-width: 40%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.6em;">
+							<li>Nombres entiers</li>
+							<li>Nombres à virgule flottante (IEEE 754)</li>
+							<li>Nombres en notation scientifique</li>
+							<li>Nombres hexadécimaux</li>
+							<li>Nombres codés en BCD (Binary-Coded Decimal) </li>
+						</ol>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Cas particulier des dates et du temps
+						</p>
+						<img src="./img/DatesEtTemps.png" alt="DatesEtTemps" style="max-width: 60%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.6em;">
+							<li>Format ISO 8601</li>
+							<li>Formats régionaux</li>
+							<li>Timestamps</li>
+						</ol>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Cas particulier des images
+						</p>
+						<img src="./img/VectorBitmap.png" alt="VectorBitmap" style="max-width: 40%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.6em;">
+							<li>bitmap: des matrices de pixels avec valeurs de couleur(JPEG, PNG...)</li>
+							<li>vectoriel: formes géométriques par équations mathématiques ->redimensionnement sans
+								perte de
+								qualité</li>
+						</ol>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Cas particulier des vidéos
+						</p>
+						<img src="./img/Videos.png" alt="Videos" style="max-width: 20%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.5em;">
+							<li>Formats: MP4 (MPEG-4 Part 14), AVI (Audio Video Interleave), MKV (Matroska Video), MOV
+								(QuickTime Movie), WMV (Windows Media Video)...</li>
+							<li>CODECs H.264, H.265 (HEVC), VP9, AV1...</li>
+							<li>Support des codecs, Métadonnées, Plateformes et systèmes d'exploitation, Normes et
+								régulations </li>
+						</ol>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Cas particulier des codes barre et QRCode
+						</p>
+						<img src="./img/QRCodes.png" alt="QRCodes" style="max-width: 40%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.5em;">
+							<li>Code 39 et Code 128, les codes-barres standards des produits.</li>
+							<li>UPC, le code-barres américain des produits de consommation</li>
+							<li>EAN, le code-barres européen des articles en tous genres</li>
+							<li>Datamatrix, le code-barres polyvalent et efficace</li>
+							<li>PDF417, le code barres des documents officiels</li>
+							<li>QR code, la nouvelle référence de l’impression de code barre …</li>
+						</ol>
+						<ul style="font-size: 0.5em;">
+							<li>Format graphique: bitmap ou vectoriel?</li>
+							<li>Format, syntaxe et sémantique associées aux Data et metadata?</li>
+							<li>Codification des informations temporelles et numériques?</li>
+						</ul>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Types de données simples ou complexes
+						</p>
+						<img src="./img/DonneesSimplesComplexes.png" alt="DonneesSimplesComplexes"
+							style="max-width: 50%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.6em;">
+							<li>Types de données simples: Int, Float, Char, Date...</li>
+							<li>Types de données complexes: array, list, set, bag, matrices...</li>
+						</ol>
+						<br>
+						<p style="font-size: 0.6em;"><b>Interopérabilité structurelle - Interchangeabilité</b></p>
+					</section>
+					<section>
+						<h3 style="font-size: 0.6em;">Eléments à considérer pour l’alignement sémantique
+							<br>menant à l’interopérabilité digitale
+						</h3>
+						<br>
+						<ol style="font-size: 0.7em;">
+							<li>Vocabulaire Technique</li>
+							<li>Sémantique des Données</li>
+							<li>Concepts de Programmation</li>
+						</ol>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Impact de l’informatique sur la sémantique
+							<br>menant à l’interopérabilité digitale
+						</p>
+						<br>
+						<ol style="font-size: 0.7em;" start="4">
+							<li>Niveaux de Décomposition Logique</li>
+							<li>Interopérabilité Digitale</li>
+							<li>Évolutivité et Flexibilité</li>
+						</ol>
+					</section>
+					<section>
+						<h2 style="font-size: 0.8em;">Concept vs. Terme vs. Code <br> Retour au triangle sémantique</h2>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Langage compréhensible par les humains vs exécutable par les
+							machines
+							<br> illustration avec l’exemple de l'obfuscation
+						</p>
+						<img src="./img/Obfuscation.png" alt="obfuscation" style="max-width: 40%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.5em;">
+							<li>Renommage des Classes et Méthodes</li>
+							<li>Utilisation des Variables</li>
+							<li>Fonctionnement de l'Automate</li>
+						</ol>
+						<br>
+						<p style="font-size: 0.5em;"><b>Cela met en évidence la distinction entre la syntaxe<br>
+								compréhensible par les humains et le code exécutable par la machine</b></p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Langage compréhensible par les humains vs exécutable par les
+							machines
+							<br> recherche sur un navigateur Web
+						</p>
+						<img src="./img/OWLSyntacticWeb.png" alt="OWLSyntacticWeb"
+							style="max-width: 50%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.5em;">
+							<li>Saisie de la Requête:OWL</li>
+							<li>Conversion en Codes:"O", "W" et "L" => 79, 87 et 76</li>
+							<li>Traitement de la Requête</li>
+							<li>Résultats de la Recherche: sur l'écran</li>
+						</ol>
+						<br>
+						<p style="font-size: 0.7em;"><b>Motivation du Web sémantique en opposition au web syntaxique</b>
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Le triangle sémiotique étendu au le Monde de l'Information et des
+							Données
+						</p>
+						<img src="./img/SemiotiqueEtendueData.png" alt="SemiotiqueEtendueData"
+							style="max-width: 40%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.5em;">
+							<li>Ressource Identifiée (RI) en lieu de Référent</li>
+							<li>Code en lieu de Symbole</li>
+							<li>Modèle en lieu de concept</li>
+							<li>Organisations de plus haut niveau</li>
+						</ol>
+						<br>
+						<p style="font-size: 0.5em;"><b>Pour la forme, on a des représentations duales,<br> pour la
+								communication des humains d’une part, pour le traitement des machines d’autre part</b>
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Triangle Sémiotique: Processus de Création de Connaissance
+						</p>
+						<img src="./img/SemiotiqueCreationConnaissance.png" alt="SemiotiqueCreationConnaissance"
+							style="max-width: 40%; height: auto;" />
+						<br>
+						<ol style="font-size: 0.5em;">
+							<li>Acquisition des données</li>
+							<li>Abstraction et modélisation</li>
+							<li>Application et réalité</li>
+						</ol>
+						<br>
+						<p style="font-size: 0.5em;"><b>Retranscription/Formalisation dans le cyberspace pour traitement
+								par les automates</b>
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Triangle Sémiotique: la connaissance entre le monde informatique et
+							le monde réel
+						</p>
+						<img src="./img/Les3Mondes.png" alt="Les3Mondes"
+							style="max-width: 50%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.5em;">
+							<li>Triangle du Monde Réel (concret/abstrait et soumis au temps)</li>
+							<li>Triangle du Monde Informatique (cyberspace)</li>
+							<li>Le Triangle du Monde de l'Information et des Connaissances</li>
+						</ul>
+						<br>
+						<p style="font-size: 0.5em;"><b>3 mondes à réconcilier</b>
+						</p>
+					</section>
+					<section>
+						<p style="font-size: 0.6em;">Triangle Sémiotique et triangle physique
+						</p>
+						<img src="./img/TrianglesSemiotiquePhysique.png" alt="TrianglesSemiotiquePhysique"
+							style="max-width: 50%; height: auto;" />
+						<br>
+						<ul style="font-size: 0.5em;">
+							<li>Triangle monde réel: référents abstrait/concret neq référent/concrete</li>
+							<li>Toute idée abstraite doit être exprimée au moins une fois pour exister</li>
+							<li>Gestion des donnnées disciplines indépendante de la sémantique</li>
+						</ul>
+						<br>
+						<p style="font-size: 0.5em;"><b>3 mondes (difficiles) à réconcilier</b>
+						</p>
+					</section>
+					<section>
+						<h3 style="font-size: 0.8em;">Catégorisation et Classification dans le monde informatique</h3>
+					</section>
+					<section>
+						<h3 style="font-size: 0.8em;">A propos systèmes des bases de données</h3>
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">A propos des ontologies</h2>
-					<img src="./img/AProposDesOntologies.png" alt="AProposDesOntologies"
-						style="max-width: 50%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Capture de la sémantique et<br> Interopérabilité Sémantique</h2>
+						<img src="./img/Interoperability.webp" alt="Interoperability"
+							style="max-width: 50%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
+
 				<section>
-					<h2 style="font-size: 0.8em;">Les ontologies dans le contexte du triangle sémantique</h2>
-					<img src="./img/OntologiesContexteTriangleSemantique.png" alt="AProposDesOntologies"
-						style="max-width: 50%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">La communication dans les entreprises digitales</h2>
+						<img src="./img/CommunicationEnteprisesDigitales.png" alt="CommunicationEntrepriseDigitales"
+							style="max-width: 50%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Illustration des langages formels standardisés avec ArchiMate et
-						des
-						protocoles métiers</h2>
-					<img src="./img/archimate.webp" alt="archimate" style="max-width: 50%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">A propos des ontologies</h2>
+						<img src="./img/AProposDesOntologies.png" alt="AProposDesOntologies"
+							style="max-width: 50%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Le rôle de la normalisation</h2>
-					<img src="./img/RoleDesStandards.webp" alt="RoleDesStandards"
-						style="max-width: 30%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Les ontologies dans le contexte du triangle sémantique</h2>
+						<img src="./img/OntologiesContexteTriangleSemantique.png" alt="AProposDesOntologies"
+							style="max-width: 50%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Lien avec la babélisation</h2>
-					<img src="./img/LiensBabelisation.png" alt="LiensBabelisation"
-						style="max-width: 50%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Illustration des langages formels standardisés avec ArchiMate et
+							des
+							protocoles métiers</h2>
+						<img src="./img/archimate.webp" alt="archimate" style="max-width: 50%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Urbaniser et modéliser l'entreprise</h2>
-					<img src="./img/UrbaniserModeliserEntreprises.png" alt="UrbaniserModeliserEntreprises"
-						style="max-width: 80%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Le rôle de la normalisation</h2>
+						<img src="./img/RoleDesStandards.webp" alt="RoleDesStandards"
+							style="max-width: 30%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Freins à l'urbanisation</h2>
-					<img src="./img/FreinsUrbanisation.png" alt="FreinsUrbanisation"
-						style="max-width: 50%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Lien avec la babélisation</h2>
+						<img src="./img/LiensBabelisation.png" alt="LiensBabelisation"
+							style="max-width: 50%; height: auto;" />
+					</section>
 				</section>
-			</section>
-			<section>
 				<section>
-					<h2 style="font-size: 0.8em;">Incommunicabilité entre les acteurs</h2>
-					<img src="./img/IncommunicabiliteActeurs.png" alt="IncommunicabiliteActeurs"
-						style="max-width: 50%; height: auto;" />
+					<section>
+						<h2 style="font-size: 0.8em;">Urbaniser et modéliser l'entreprise</h2>
+						<img src="./img/UrbaniserModeliserEntreprises.png" alt="UrbaniserModeliserEntreprises"
+							style="max-width: 80%; height: auto;" />
+					</section>
 				</section>
-			</section>
+				<section>
+					<section>
+						<h2 style="font-size: 0.8em;">Freins à l'urbanisation</h2>
+						<img src="./img/FreinsUrbanisation.png" alt="FreinsUrbanisation"
+							style="max-width: 50%; height: auto;" />
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 style="font-size: 0.8em;">Incommunicabilité entre les acteurs</h2>
+						<img src="./img/IncommunicabiliteActeurs.png" alt="IncommunicabiliteActeurs"
+							style="max-width: 50%; height: auto;" />
+					</section>
+				</section>
+			</div>
 		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/menu/menu.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				history: true,
+				slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
+				notes: true,
+				menu: {
+
+					titleSelector: 'h1, h2, h3',
+					hideMissingTitles: true,
+					transitions: true,
+
+					// Adds a menu button to the slides to open the menu panel.
+					// Set to 'false' to hide the button.
+					openButton: true,
+					sticky: true,
+				},
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
+			});
+
+		</script>
 	</div>
-
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/zoom/zoom.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/search/search.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
-	<script>
-
-		// Also available as an ES module, see:
-		// https://revealjs.com/initialization/
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			center: true,
-			hash: true,
-			history: true,
-			slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
-			notes: true,
-
-
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight],
-		});
-
-	</script>
-
 </body>
 
 </html>

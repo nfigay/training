@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reveal.js in W2UI Central Panel</title>
+    <!-- Include W2UI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/w2ui@1.5/dist/w2ui.min.css">
+    <!-- Include Reveal.js CSS -->
+    <link rel="stylesheet" href="css/reveal.scss">
+    <link rel="stylesheet" href="css/theme/source/white.scss">
+    <style>
+        /* Restrict the Reveal.js container size */
+        #presentation-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="layout" style="width: 100%; height: 100vh;"></div>
+
+    <!-- Include W2UI JS -->
+    <script <script src="https://cdn.jsdelivr.net/npm/w2ui/dist/w2ui.min.js"></script>
+    <!-- Include Reveal.js -->
+    <script src="dist/reveal.js"></script>
+    <script>
+        // Step 1: Define the W2UI layout
+        const layoutConfig = {
+            name: 'layout',
+            panels: [
+                { type: 'top', size: 0, hidden: true },
+                { type: 'left', size: 0, hidden: true },
+                { type: 'right', size: 0, hidden: true },
+                { type: 'bottom', size: 0, hidden: true },
+                {
+                    type: 'main', 
+                    content: '<div id="presentation-container"><div class="reveal"><div class="slides">' +
+                             '<section><h2>Slide 1</h2><p>This is the first slide.</p></section>' +
+                             '<section><h2>Slide 2</h2><p>This is the second slide.</p></section>' +
+                             '</div></div></div>'
+                }
+            ]
+        };
+
+        // Step 2: Initialize W2UI layout
+        $('#layout').w2layout(layoutConfig);
+      
+       
+
+        // Step 3: Initialize Reveal.js inside the main panel
+        Reveal.initialize({
+            embedded: true, // Restrict to the container
+            width: "100%",
+            height: "100%",
+            controls: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            center: true
+        });
+    </script>
+</body>
+</html>
