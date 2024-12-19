@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>MasterClass Interopérabilité Sémantique pour GS1</title>
+
+    <meta name="description"
+        content="De la sémiotique à l'interopérabilité sémantiques des entreprises dans le monde numérique">
+    <meta name="author" content="Nicolas Figay">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        /* Restrict the presentation area */
+        #presentation-container {
+            width: 1400px;
+            height: 800px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .left-aligned {
+            text-align: left;
+            font-family: monospace;
+            font-size: 16px;
+            white-space: pre-wrap;
+            margin: 1px;
+        }
+
+        /* Uniformiser la taille des polices pour les titres et le texte */
+        h1,
+        h2,
+        h3,
+        p,
+        ul {
+            font-size: 1.5rem;
+            /* Taille de la police uniforme, ajustable */
+            line-height: 1.6;
+            /* Espacement entre les lignes */
+            margin: 0.5em 0;
+            /* Marges autour des éléments */
+            font-family: Arial, sans-serif;
+            /* Police générique */
+        }
+
+        /* Ajuster la taille des titres pour une hiérarchie visible */
+        h1 {
+            font-size: 2rem;
+            /* Taille plus grande pour h1 */
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            /* Taille plus petite pour h2 */
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            /* Taille encore plus petite pour h3 */
+        }
+
+        /* Uniformiser les éléments de liste */
+        ul {
+            list-style-type: disc;
+            /* Point pour les listes */
+            padding-left: 20px;
+            /* Décalage pour les éléments de liste */
+        }
+
+        /* Styles supplémentaires pour une présentation claire */
+        body {
+            font-family: 'Arial', sans-serif;
+            /* Police globale de la présentation */
+            line-height: 1.5;
+            /* Interligne pour améliorer la lisibilité */
+        }
+
+        /* Style pour l'ensemble de la slide */
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            /* Organiser en colonne pour le titre et le contenu */
+            padding: 20px;
+        }
+
+        /* Zone de titre */
+        .title-zone {
+            text-align: center;
+            margin-bottom: 20px;
+            /* Espacement sous le titre */
+        }
+
+        .title-zone h1 {
+            font-size: 2rem;
+            /* Taille du titre principal */
+            font-family: Arial, sans-serif;
+            /* Police pour le titre */
+            color: #333;
+            /* Couleur du texte */
+        }
+
+        /* Zone de contenu avec texte à gauche et image à droite */
+        .content-zone {
+            display: flex;
+            justify-content: space-between;
+            /* Espace entre le texte et l'image */
+            align-items: center;
+            /* Centrer verticalement les éléments */
+        }
+
+        /* Zone de texte */
+        .text-zone {
+            flex: 1;
+            /* Prend tout l'espace disponible à gauche */
+            padding-right: 20px;
+            /* Espacement à droite de la zone de texte */
+        }
+
+        /* Zone d'image */
+        .image-zone {
+            flex: 1;
+            /* Prend tout l'espace disponible à droite */
+            text-align: center;
+            /* Centrer l'image */
+        }
+
+        .image-zone img {
+            max-width: 100%;
+            /* Rendre l'image responsive */
+            height: auto;
+            /* Maintenir le ratio de l'image */
+        }
+
+        /* Responsive pour les petits écrans */
+        @media (max-width: 768px) {
+            .content-zone {
+                flex-direction: column;
+                /* Empiler le texte et l'image */
+                text-align: center;
+                /* Centrer le texte sur petits écrans */
+            }
+
+            .text-zone {
+                padding-right: 0;
+                /* Enlever l'espacement à droite sur petits écrans */
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="presentation-container">
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!DOCTYPE html>
+                <html lang="en">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Masterclass : Sémantique et Interopérabilité</title>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+                </head>
+
+                <body>
+                    <div class="reveal">
+                        <div class="slides">
+                            <!-- Introduction -->
+                            <section>
+                                <section>
+                                    <h1>Sémantique et Interopérabilité</h1>
+                                    <p>Masterclass pour débutants</p>
+                                </section>
+                                <section>
+                                    <h2>Objectifs de la session</h2>
+                                    <ul>
+                                        <li>Comprendre les bases de la sémantique</li>
+                                        <li>Explorer les concepts d’interopérabilité</li>
+                                        <li>Découvrir l’usage d’OWL et des ontologies</li>
+                                        <li>Appréhender les ontologies de haut niveau et leur rôle</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h2>Plan de la masterclass</h2>
+                                    <ul>
+                                        <li>Introduction à la sémantique</li>
+                                        <li>Concepts d’interopérabilité</li>
+                                        <li>OWL et ontologies</li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <!-- Partie 1 : Introduction à la sémantique -->
+                            <section>
+                                <section>
+                                    <h2>Introduction à la Sémantique</h2>
+                                    <p>Qu’est-ce que la sémantique ?</p>
+                                    <ul>
+                                        <li>Étude du sens des mots et des phrases</li>
+                                        <li>Relation entre signes, concepts et réalité</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3>La Sémiotique</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p>Science générale des signes</p>
+                                            <ul>
+                                                <li><b>Signe :</b> Élément porteur de sens</li>
+                                                <li><b>Signifiant :</b> Forme du signe</li>
+                                                <li><b>Signifié :</b> Concept associé</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/triangleSemantique.png" alt="Image locale"
+                                                style="max-width: 80%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3>Sémantique et Pragmatique</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul>
+                                                <li><b>Sémantique :</b> Signification littérale</li>
+                                                <li><b>Pragmatique :</b> Signification en contexte</li>
+                                            </ul>
+                                            <p>Exemple : Une même phrase peut avoir des sens différents selon la
+                                                situation.</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/triangleSemantiquePragmatique.png"
+                                                alt="triangleSemantiquePragmatique"
+                                                style="max-width: 80%; height: auto;" />
+                                        </div>
+
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                    <h3>Contexte, Dénotation et Connotation</h3>
+                                </div>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                    <ul>
+                                        <li><b>Contexte :</b> Influence sur le sens</li>
+                                        <li><b>Dénotation :</b> Sens objectif</li>
+                                        <li><b>Connotation :</b> Sens subjectif</li>
+                                    </ul>
+                                    <p>Illustration : Le mot "rose" peut désigner une fleur (dénotation) ou évoquer la
+                                        romance (connotation).</p>
+                                    </div>
+                                    <div class="image-zone">
+                                        <img src="./img/ConnotationDenotationSemiotique.png"
+                                            alt="ConnotationDenotationSemiotique"
+                                            style="max-width: 80%; height: auto;" />
+                                    </div>
+                                    </div>
+                                </section>
+                            </section>
+
+                            <!-- Partie 2 : Concepts d'interopérabilité -->
+                            <section>
+                                <section>
+                                    <h2>Concepts d’Interopérabilité</h2>
+                                    <p>Définition et enjeux</p>
+                                </section>
+                                <section>
+                                    <h3>Pourquoi l’Interopérabilité ?</h3>
+                                    <ul>
+                                        <li>Connecter systèmes et données</li>
+                                        <li>Faciliter la collaboration</li>
+                                        <li>Réduire les silos d’information</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h2>Types d’Interopérabilité</h2>
+                                    <p>Exploration détaillée des différents types avec exemples</p>
+                                </section>
+                                <section>
+                                    <h3>Interopérabilité Structurale : Exemple GS1</h3>
+                                    <p>GS1 est un standard mondial utilisé pour identifier les produits, les lieux, et
+                                        les partenaires commerciaux.</p>
+                                    <ul>
+                                        <li>Code-barres et GTIN (Global Trade Item Number)</li>
+                                        <li>Échange de données via standards EDI</li>
+                                        <li>Interconnexion des systèmes grâce à un format standardisé</li>
+                                    </ul>
+                                    <p><b>Illustration :</b> Un supermarché utilisant les codes GS1 pour suivre les
+                                        stocks et les ventes.</p>
+                                </section>
+                                <section>
+                                    <h3>Interopérabilité Sémantique : Exemple GS1</h3>
+                                    <p>Les standards de GS1 incluent une sémantique commune pour les données
+                                        commerciales.</p>
+                                    <ul>
+                                        <li>Vocabulaire partagé : Signification des champs de données (ex. : "Produit",
+                                            "Quantité")</li>
+                                        <li>Utilisation d’ontologies pour formaliser les relations entre les concepts
+                                        </li>
+                                        <li>Facilite l’intégration des données de différents systèmes</li>
+                                    </ul>
+                                    <p><b>Exemple :</b> Une chaîne logistique où les partenaires interprètent les
+                                        données de manière cohérente.</p>
+                                </section>
+                                <section>
+                                    <h3>Étude de Cas : Formaliser une Ontologie</h3>
+                                    <p style="font-size: 0.6em;">Création d’une ontologie pour modéliser les échanges
+                                        dans une chaîne logistique.</p>
+                                    <ul style="font-size: 0.5em;">
+                                        <li>Classes principales : Produit, Fournisseur, Client</li>
+                                        <li>Propriétés : Produit aUnFournisseur, Produit aUneQuantité</li>
+                                        <li>Exemple d’alignement : "Article" (ERP) équivaut à "Produit" (GS1)</li>
+                                    </ul>
+                                    <p style="font-size: 0.6em;">Représentation dans OWL :</p>
+                                    <pre><code class="left-aligned">
+&lt;owl:Class rdf:ID="Produit"/&gt;<br>
+&lt;owl:ObjectProperty rdf:ID="aUnFournisseur"/&gt;<br>
+&lt;owl:Class rdf:ID="Fournisseur"/&gt;
+                                    </code>
+                                </section>
+                                <section>
+                                    <h3>Interopérabilité Organisationnelle</h3>
+                                    <p>Focus sur les processus et les politiques.</p>
+                                    <ul>
+                                        <li>Exemples : GS1 facilite la collaboration inter-entreprises</li>
+                                        <li>Exigences contractuelles et flux de travail alignés</li>
+                                    </ul>
+                                    <p><b>Étude de cas :</b> Intégration des systèmes de gestion de stock entre un
+                                        fabricant et un distributeur.</p>
+                                </section>
+                            </section>
+
+                            <!-- Partie 3 : OWL et ontologies -->
+                            <section>
+                                <section>
+                                    <h2>OWL pour l’intégration de données</h2>
+                                </section>
+                                <section>
+                                    <h3>Qu’est-ce que OWL ?</h3>
+                                    <ul>
+                                        <li>Langage standard du W3C</li>
+                                        <li>Basé sur la logique de description</li>
+                                        <li>Utilisé pour modéliser des connaissances complexes</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Structure d’une Ontologie OWL</h3>
+                                    <ul>
+                                        <li>Classes : Concepts ou catégories</li>
+                                        <li>Propriétés : Relations ou attributs</li>
+                                        <li>Individus : Instances des classes</li>
+                                        <li>Restrictions : Règles sur les relations</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Exemple d'OWL</h3>
+                                    <p>Aligner "Client" et "Utilisateur"</p>
+                                    <ul>
+                                        <li>Définir des équivalences</li>
+                                        <li>Inférence automatique</li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <section>
+                                <section>
+                                    <h2>Ontologies de Haut Niveau</h2>
+                                    <p>Leur rôle dans l’interopérabilité</p>
+                                </section>
+                                <section>
+                                    <h3>Définition et Exemples</h3>
+                                    <ul>
+                                        <li><b>DOLCE :</b> Concepts cognitifs et linguistiques</li>
+                                        <li><b>BFO :</b> Structure fondamentale des objets et événements</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Avantages des Ontologies de Haut Niveau</h3>
+                                    <ul>
+                                        <li>Standardisation</li>
+                                        <li>Réutilisabilité</li>
+                                        <li>Cohérence</li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <!-- Conclusion -->
+                            <section>
+                                <section>
+                                    <h2>Conclusion</h2>
+                                    <p>Résumé des points clés</p>
+                                    <ul>
+                                        <li>Importance de la sémantique</li>
+                                        <li>OWL pour l’intégration</li>
+                                        <li>Rôle des ontologies de haut niveau</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Questions et Réponses</h3>
+                                    <p>Posez vos questions pour clarifier les concepts.</p>
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+                    <script>
+                        Reveal.initialize();
+                    </script>
+                </body>
+
+                </html>
+
+            </div>
+        </div>
+
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/menu/menu.js"></script>
+        <script>
+
+            // Also available as an ES module, see:
+            // https://revealjs.com/initialization/
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                center: true,
+                hash: true,
+                history: true,
+                slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
+                notes: true,
+                menu: {
+
+                    titleSelector: 'h1, h2, h3',
+                    hideMissingTitles: true,
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+                    sticky: true,
+                },
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
+            });
+
+        </script>
+    </div>
+</body>
+
+</html>
