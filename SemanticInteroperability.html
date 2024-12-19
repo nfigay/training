@@ -32,11 +32,16 @@
 
         /* Restrict the presentation area */
         #presentation-container {
-            width: 90%;
-            height: 90%;
+            width: 95%;
+            height: 95%;
             border: 1px solid #ccc;
             overflow: hidden;
             margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            /* Centers horizontally */
+            align-items: center;
+            /* Centers vertically */
         }
 
         .left-aligned {
@@ -207,11 +212,15 @@
                                 </section>
                                 <section>
                                     <h2>Plan de la masterclass</h2>
-                                    <ul>
+                                    <ol>
                                         <li>Introduction à la sémantique</li>
-                                        <li>Concepts d’interopérabilité</li>
+                                        <li>OWL pour l’intégration de données</li>
                                         <li>OWL et ontologies</li>
-                                    </ul>
+                                        <li>Ontologies de Haut Niveau</li>
+                                        <li>Concepts d’interopérabilité</li>
+                                        <li>OWL et interoperabilité</li>
+
+                                        </ul>
                                 </section>
                             </section>
 
@@ -289,7 +298,104 @@
                                 </section>
                             </section>
 
-                            <!-- Partie 2 : Concepts d'interopérabilité -->
+
+                            <!-- Partie 2 : OWL et ontologies -->
+                            <section>
+                                <section>
+                                    <h2>OWL pour l’intégration de données</h2>
+                                </section>
+                                <section>
+                                    <h3>Qu’est-ce que OWL ?</h3>
+                                    <ul>
+                                        <li>Langage standard du W3C</li>
+                                        <li>Basé sur la logique de description</li>
+                                        <li>Utilisé pour modéliser des connaissances complexes</li>
+                                        <li>Fait parti des standards pour le Web Sémantique et les Données Liées</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3>Les standards du Semantic Web et des Données Liées</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p>Les diverses couches (2012)</p>
+                                            <ul>
+                                                <li>Confiance, sécurité et preuve</li>
+                                                <li>Sémantique et règles</li>
+                                                <li>La structuration de la connaissance</li>
+                                                <li>Les Syntaxes</li>
+                                                <li>La plateforme Internet avec les IRIs</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/sw_layercake.png" alt="sw_layercake"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3>La situation en 2024</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p>Les technologies orientées graphes</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li>Emergence des technologies orientées graphes</li>
+                                                <li>Evolutions centrées sur RDF plus que sur OWL<br>RDF1.2, RDF*, raisonneurs RDF</li>
+                                                <li>Nouvelles syntaxes intégrant JSON</li>
+                                                <li>Systèmes informatiques distribués ou sémantique?</li>
+                                                <li>Relance avec IA explicable?</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/InfamousCake.jpeg" alt="InfamousCake"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>                                
+                                <section>
+                                    <h3>Structure d’une Ontologie OWL</h3>
+                                    <ul>
+                                        <li>Classes : Concepts ou catégories</li>
+                                        <li>Propriétés : Relations ou attributs</li>
+                                        <li>Individus : Instances des classes</li>
+                                        <li>Restrictions : Règles sur les relations</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Exemple d'OWL</h3>
+                                    <p>Aligner "Client" et "Utilisateur"</p>
+                                    <ul>
+                                        <li>Définir des équivalences</li>
+                                        <li>Inférence automatique</li>
+                                    </ul>
+                                </section>
+                            </section>
+                            <!-- Partie 3 : Ontologies de Haut Niveau -->
+                            <section>
+                                <section>
+                                    <h2>Ontologies de Haut Niveau</h2>
+
+                                </section>
+                                <section>
+                                    <h3>Définition et Exemples</h3>
+                                    <ul>
+                                        <li><b>DOLCE :</b> Concepts cognitifs et linguistiques</li>
+                                        <li><b>BFO :</b> Structure fondamentale des objets et événements</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Avantages des Ontologies de Haut Niveau</h3>
+                                    <ul>
+                                        <li>Standardisation</li>
+                                        <li>Réutilisabilité</li>
+                                        <li>Cohérence</li>
+                                    </ul>
+                                </section>
+                            </section>
+                            <!-- Partie 4 : Concepts d'interopérabilité -->
                             <section>
                                 <section>
                                     <h2>Concepts d’Interopérabilité</h2>
@@ -344,78 +450,32 @@
                                     </ul>
                                     <p style="font-size: 0.6em;">Représentation dans OWL :</p>
                                     <pre><code class="left-aligned">
-&lt;owl:Class rdf:ID="Produit"/&gt;<br>
-&lt;owl:ObjectProperty rdf:ID="aUnFournisseur"/&gt;<br>
-&lt;owl:Class rdf:ID="Fournisseur"/&gt;
-                                    </code>
-                                </section>
-                                <section>
-                                    <h3>Interopérabilité Organisationnelle</h3>
-                                    <p>Focus sur les processus et les politiques.</p>
-                                    <ul>
-                                        <li>Exemples : GS1 facilite la collaboration inter-entreprises</li>
-                                        <li>Exigences contractuelles et flux de travail alignés</li>
-                                    </ul>
-                                    <p><b>Étude de cas :</b> Intégration des systèmes de gestion de stock entre un
-                                        fabricant et un distributeur.</p>
-                                </section>
-                            </section>
+                        &lt;owl:Class rdf:ID="Produit"/&gt;<br>
+                        &lt;owl:ObjectProperty rdf:ID="aUnFournisseur"/&gt;<br>
+                        &lt;owl:Class rdf:ID="Fournisseur"/&gt;
+                                                            </code>
+                                                        </section>
+                                                        <section>
+                                                            <h3>Interopérabilité Organisationnelle</h3>
+                                                            <p>Focus sur les processus et les politiques.</p>
+                                                            <ul>
+                                                                <li>Exemples : GS1 facilite la collaboration inter-entreprises</li>
+                                                                <li>Exigences contractuelles et flux de travail alignés</li>
+                                                            </ul>
+                                                            <p><b>Étude de cas :</b> Intégration des systèmes de gestion de stock entre un
+                                                                fabricant et un distributeur.</p>
+                                                        </section>
+                                                    </section>
+                        
 
-                            <!-- Partie 3 : OWL et ontologies -->
-                            <section>
-                                <section>
-                                    <h2>OWL pour l’intégration de données</h2>
-                                </section>
-                                <section>
-                                    <h3>Qu’est-ce que OWL ?</h3>
-                                    <ul>
-                                        <li>Langage standard du W3C</li>
-                                        <li>Basé sur la logique de description</li>
-                                        <li>Utilisé pour modéliser des connaissances complexes</li>
-                                    </ul>
-                                </section>
-                                <section>
-                                    <h3>Structure d’une Ontologie OWL</h3>
-                                    <ul>
-                                        <li>Classes : Concepts ou catégories</li>
-                                        <li>Propriétés : Relations ou attributs</li>
-                                        <li>Individus : Instances des classes</li>
-                                        <li>Restrictions : Règles sur les relations</li>
-                                    </ul>
-                                </section>
-                                <section>
-                                    <h3>Exemple d'OWL</h3>
-                                    <p>Aligner "Client" et "Utilisateur"</p>
-                                    <ul>
-                                        <li>Définir des équivalences</li>
-                                        <li>Inférence automatique</li>
-                                    </ul>
-                                </section>
-                            </section>
+ <!-- Partie 5 -->
+ <section>
+    <section>
+        <h2>Ontologies et Intéropérabilité</h2>
+    </section>
 
-                            <section>
-                                <section>
-                                    <h2>Ontologies de Haut Niveau</h2>
-                                    <p>Leur rôle dans l’interopérabilité</p>
-                                </section>
-                                <section>
-                                    <h3>Définition et Exemples</h3>
-                                    <ul>
-                                        <li><b>DOLCE :</b> Concepts cognitifs et linguistiques</li>
-                                        <li><b>BFO :</b> Structure fondamentale des objets et événements</li>
-                                    </ul>
-                                </section>
-                                <section>
-                                    <h3>Avantages des Ontologies de Haut Niveau</h3>
-                                    <ul>
-                                        <li>Standardisation</li>
-                                        <li>Réutilisabilité</li>
-                                        <li>Cohérence</li>
-                                    </ul>
-                                </section>
-                            </section>
-
-                            <!-- Conclusion -->
+</section>
+                                                    <!-- Conclusion -->
                             <section>
                                 <section>
                                     <h2>Conclusion</h2>
