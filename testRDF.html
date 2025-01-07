@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import OWL into Cytoscape</title>
+    <script src="https://cdn.jsdelivr.net/npm/rdflib/dist/rdflib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape/dist/cytoscape.min.js"></script>
+    <style>
+        #cy {
+            width: 100%;
+            height: 600px;
+            border: 1px solid black;
+        }
+        #infoPanel {
+            border: 1px solid black;
+            padding: 10px;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #f9f9f9;
+            overflow: auto; /* Permet d'ajouter des barres de défilement */
+        }
+        #infoPanel h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<input type="file" id="fileInput" />
+<div id="cy"></div>
+<div id="infoPanel">
+    <h3>Informations</h3>
+    <p><strong>ID:</strong> <span id="nodeId">N/A</span></p>
+    <p><strong>Label:</strong> <span id="nodeLabel">N/A</span></p>
+    <p><strong>IRI:</strong> <span id="nodeIRI">N/A</span></p>
+    <p><strong>Type:</strong> <span id="nodeType">N/A</span></p>
+    <p><strong>Super Types:</strong> <span id="nodeSuperTypes">N/A</span></p>
+    <p><strong>Source/Target:</strong> <span id="nodeSourceTarget">N/A</span></p>
+</div>
+
+<script>
+    let store; // Déclare le store comme variable globale
+
+    function getLabelFromIRI(iri) {
+        const parts = iri.split('/');
+        return parts[parts.length - 1];
+    }
+
+    function generateNodeId(iri) {
+        return iri.replace(/[^a-zA-Z0-9]/g, '_');
+    }
+
+    async function importOntologyFromFile(file, cyInstance) {
+        const $rdf = window.$rdf;
+        store = $rdf.graph();  // Initialise le store global
+        const parser = $rdf.parse;
+
+        try {
+            const fileContent = await file.text();
+            parser(fileContent, store, "http://example.org/base#", "application/rdf+xml");
+
+            const nodes = [];
+            const edges = [];
+
+            const nodeIcons = {
+                class: { shape: 'ellipse', color: '#FFA500' },
+                individual: { shape: 'diamond', color: '#8A2BE2' },
+                property: { shape: 'rectangle', color: '#1E90FF' }
+            };
+
+            const uniqueNodeIds = new Set();
+
+            const classType = $rdf.sym("http://www.w3.org/2002/07/owl#Class");
+            store.each(null, $rdf.sym("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), classType)
+                .forEach(cls => {
+                    const label = getLabelFromIRI(cls.value);
+                    const nodeId = generateNodeId(cls.value);
+                    if (!uniqueNodeIds.has(nodeId)) {
+                        uniqueNodeIds.add(nodeId);
+                        nodes.push({
+                            data: { id: nodeId, label: label, shape: nodeIcons.class.shape, color: nodeIcons.class.color, iri: cls.value, type: 'class' }
+                        });
+                    }
+                });
+
+            const instanceOf = $rdf.sym("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+            store.each(null, instanceOf, null).forEach(individual => {
+                const type = store.any(individual, instanceOf);
+                if (type && type.uri !== classType.uri) {
+                    const label = getLabelFromIRI(individual.value);
+                    const nodeId = generateNodeId(individual.value);
+                    if (!uniqueNodeIds.has(nodeId)) {
+                        uniqueNodeIds.add(nodeId);
+                        nodes.push({
+                            data: { id: nodeId, label: label, shape: nodeIcons.individual.shape, color: nodeIcons.individual.color, iri: individual.value, type: 'individual' }
+                        });
+                    }
+                }
+            });
+
+            const objectPropertyType = $rdf.sym("http://www.w3.org/2002/07/owl#ObjectProperty");
+            store.each(null, null, objectPropertyType).forEach(property => {
+                const propertyIRI = property.value;
+                const label = getLabelFromIRI(propertyIRI);
+                const propertyId = generateNodeId("OP_" + propertyIRI);
+                if (!uniqueNodeIds.has(propertyId)) {
+                    uniqueNodeIds.add(propertyId);
+                    nodes.push({
+                        data: { id: propertyId, label: label, shape: nodeIcons.property.shape, color: nodeIcons.property.color, iri: propertyIRI, type: 'property' }
+                    });
+                }
+
+                store.each(null, property, null).forEach(subject => {
+                    const subjectId = generateNodeId(subject.value);
+                    store.each(subject, property, null).forEach(object => {
+                        const objectId = generateNodeId(object.value);
+                        const edgeId = subjectId + '-' + propertyId + '-' + objectId;
+
+                        edges.push({
+                            data: { 
+                                id: edgeId,
+                                source: subjectId, 
+                                target: objectId, 
+                                label: label,
+                                iri: propertyIRI
+                            }
+                        });
+                    });
+                });
+            });
+
+            cyInstance.elements().remove();
+            cyInstance.add(nodes);
+            cyInstance.add(edges);
+            cyInstance.layout({ name: 'cose' }).run();
+
+            console.log("Ontology successfully imported into Cytoscape!");
+        } catch (error) {
+            console.error("Failed to parse RDF/XML data: ", error);
+            alert("Error parsing the OWL file. Please ensure it's in valid RDF/XML format.");
+        }
+    }
+
+    const cy = cytoscape({
+        container: document.getElementById('cy'),
+        elements: [],
+        style: [
+            {
+                selector: 'node',
+                style: {
+                    'background-color': 'data(color)',
+                    'label': 'data(label)',
+                    'shape': 'data(shape)',
+                    'width': 40,
+                    'height': 40
+                }
+            },
+            {
+                selector: 'edge',
+                style: {
+                    'width': 2,
+                    'line-color': '#ccc',
+                    'target-arrow-color': '#ccc',
+                    'target-arrow-shape': 'triangle',
+                    'label': 'data(label)'
+                }
+            }
+        ],
+        layout: {
+            name: 'grid',
+            rows: 1
+        }
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            importOntologyFromFile(file, cy);
+        }
+    });
+
+    // Gestion du double-clic ou du tap
+    cy.on('tap', 'node, edge', function(event) {
+        const target = event.target;
+
+        // Récupérer les informations détaillées de l'élément
+        const id = target.data('id');
+        const label = target.data('label');
+        const iri = target.data('iri');
+        const type = target.data('type');
+        const superTypes = [];
+        const sourceTarget = target.data('source') ? `Source: ${target.data('source')}, Target: ${target.data('target')}` : 'N/A';
+
+        // Récupérer les super types pour les classes ou les propriétés
+        if (type === 'class' || type === 'property') {
+            const superClasses = store.each($rdf.sym(iri), $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subClassOf'), null);
+            const superProperties = store.each($rdf.sym(iri), $rdf.sym('http://www.w3.org/2002/07/owl#subPropertyOf'), null);
+            superTypes.push(...superClasses.map(s => getLabelFromIRI(s.value)));
+            superTypes.push(...superProperties.map(s => getLabelFromIRI(s.value)));
+        }
+
+        // Mettre à jour le panneau d'informations
+        document.getElementById('nodeId').textContent = id;
+        document.getElementById('nodeLabel').textContent = label;
+        document.getElementById('nodeIRI').textContent = iri;
+        document.getElementById('nodeType').textContent = type;
+        document.getElementById('nodeSuperTypes').textContent = superTypes.join(', ') || 'N/A';
+        document.getElementById('nodeSourceTarget').textContent = sourceTarget;
+    });
+</script>
+
+</body>
+</html>
