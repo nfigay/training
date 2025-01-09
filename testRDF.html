@@ -109,24 +109,54 @@
 
                 const classType = $rdf.sym("http://www.w3.org/2002/07/owl#Class");
                 const rdfsSubClassOf = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#subClassOf");
+                const rdfsDomain = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#domain");
+                const rdfsRange = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#range");
+                const rdfsSubPropertyOf = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#subPropertyOf");
 
+                // Iterate over all classes
                 store.each(null, $rdf.sym("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), classType)
                     .forEach(cls => {
-                        const label = getLabelFromIRI(cls.value);
-                        const nodeId = generateNodeId(cls.value);
-                        if (!uniqueNodeIds.has(nodeId)) {
-                            uniqueNodeIds.add(nodeId);
-                            nodes.push({
-                                data: { id: nodeId, label: label, shape: nodeIcons.class.shape, color: nodeIcons.class.color, iri: cls.value, type: 'class', parent: 'OWLClass' }
+                        if (cls && cls.value) { // Ensure cls is valid
+                            const label = getLabelFromIRI(cls.value);
+                            const nodeId = generateNodeId(cls.value);
+
+                            // Add class as a node if not already added
+                            if (!uniqueNodeIds.has(nodeId)) {
+                                uniqueNodeIds.add(nodeId);
+                                nodes.push({
+                                    data: { id: nodeId, label: label, shape: nodeIcons.class.shape, color: nodeIcons.class.color, iri: cls.value, type: 'class', parent: 'OWLClass' }
+                                });
+                            }
+
+                            // Find subclass relationships
+                            store.each(cls, rdfsSubClassOf, null).forEach(subClassTarget => {
+                                if (subClassTarget && subClassTarget.value) { // Ensure target is valid
+                                    const subjectId = nodeId; // Current class is the subject
+                                    const objectId = generateNodeId(subClassTarget.value); // Subclass target is the object
+
+                                    const edgeId = `${subjectId}-subclassof-${objectId}`;
+                                    if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
+                                        edges.push({
+                                            data: {
+                                                id: edgeId,
+                                                source: subjectId,
+                                                target: objectId,
+                                                label: 'subclassof',
+                                                iri: rdfsSubClassOf.value,
+                                                type: "subclassof"
+                                            }
+                                        });
+                                    }
+                                }
                             });
                         }
                     });
-
-
+                const namedIndividualType = $rdf.sym("http://www.w3.org/2002/07/owl#NamedIndividual");
                 const instanceOf = $rdf.sym("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
                 store.each(null, instanceOf, null).forEach(individual => {
                     const type = store.any(individual, instanceOf);
-                    if (type && type.uri !== classType.uri) {
+                    // Vérifier si l'individu est bien un NamedIndividual
+                    if (type && type.uri === namedIndividualType.uri) {
                         const label = getLabelFromIRI(individual.value);
                         const nodeId = generateNodeId(individual.value);
                         if (!uniqueNodeIds.has(nodeId)) {
@@ -139,6 +169,7 @@
                 });
 
                 const objectPropertyType = $rdf.sym("http://www.w3.org/2002/07/owl#ObjectProperty");
+
                 store.each(null, null, objectPropertyType).forEach(property => {
                     const propertyIRI = property.value;
                     const label = getLabelFromIRI(propertyIRI);
@@ -164,8 +195,138 @@
                                 id: 'toDomain' + propertyId, target: propertyId, source: 'domain' + propertyId, label: "", type: "OPRD"
                             }
                         });
-
                     }
+
+
+                    // Gérer les relations subPropertyOf
+                    store.each(property, rdfsSubPropertyOf, null).forEach(parentProperty => {
+                        const parentPropertyIRI = parentProperty.value;
+                        const parentPropertyId = generateNodeId("OP_" + parentPropertyIRI);
+
+                        // Ajouter un nœud pour la propriété parent si elle n'existe pas encore
+                        if (!uniqueNodeIds.has(parentPropertyId)) {
+                            uniqueNodeIds.add(parentPropertyId);
+                            nodes.push({
+                                data: {
+                                    id: parentPropertyId,
+                                    label: getLabelFromIRI(parentPropertyIRI),
+                                    shape: nodeIcons.property.shape,
+                                    color: nodeIcons.property.color,
+                                    iri: parentPropertyIRI,
+                                    type: 'property',
+                                    parent: 'OWLProperty'
+                                }
+                            });
+                        }
+
+                        // Ajouter une arête pour la relation subPropertyOf
+                        const edgeId = `${propertyId}-subpropertyof-${parentPropertyId}`;
+                        if (!edges.some(edge => edge.data.id === edgeId)) {
+                            edges.push({
+                                data: {
+                                    id: edgeId,
+                                    source: propertyId,
+                                    target: parentPropertyId,
+                                    label: 'subPropertyOf',
+                                    iri: rdfsSubPropertyOf.value,
+                                    type: 'subpropertyof'
+                                }
+                            });
+                        }
+
+                    });
+                    // Gérer les relations avec les classes de domaine et de range
+                    store.each(property, rdfsDomain, null).forEach(domainClass => {
+                        const domainClassIRI = domainClass.value;
+                        const domainClassId =  generateNodeId(domainClassIRI);
+
+                        // Ajouter un nœud pour la classe de domaine si elle n'existe pas encore
+                        if (!uniqueNodeIds.has(domainClassId)) {
+                            uniqueNodeIds.add(domainClassId);
+                            nodes.push({
+                                data: {
+                                    id: domainClassId,
+                                    label: getLabelFromIRI(domainClassIRI),
+                                    shape: nodeIcons.class.shape,
+                                    color: nodeIcons.class.color,
+                                    iri: domainClassIRI,
+                                    type: 'class',
+                                    parent: 'OWLClass'
+                                }
+                            });
+                        }
+
+                        // Ajouter une arête entre la propriété et la classe de domaine
+                        const edgeId = `${propertyId}-domain-${domainClassId}`;
+                        if (!edges.some(edge => edge.data.id === edgeId)) {
+                            edges.push({
+                                data: {
+                                    id: edgeId,
+                                    source: 'domain'+propertyId,
+                                    target: domainClassId,
+                                //    label: 'rdfs:domain',
+                                    iri: rdfsDomain.value,
+                                    type: 'domain'
+                                }
+                            });
+                        }
+                    });
+
+                    store.each(property, rdfsRange, null).forEach(rangeClass => {
+                        const rangeClassIRI = rangeClass.value;
+                        const rangeClassId = generateNodeId(rangeClassIRI);
+
+                        // Ajouter un nœud pour la classe de range si elle n'existe pas encore
+                        if (!uniqueNodeIds.has(rangeClassId)) {
+                            uniqueNodeIds.add(rangeClassId);
+                            nodes.push({
+                                data: {
+                                    id: rangeClassId,
+                                    label: getLabelFromIRI(rangeClassIRI),
+                                    shape: nodeIcons.class.shape,
+                                    color: nodeIcons.class.color,
+                                    iri: rangeClassIRI,
+                                    type: 'class',
+                                    parent: 'OWLClass'
+                                }
+                            });
+                        }
+
+                        // Ajouter une arête entre la propriété et la classe de range
+                        const edgeId = `${propertyId}-range-${rangeClassId}`;
+                        if (!edges.some(edge => edge.data.id === edgeId)) {
+                            edges.push({
+                                data: {
+                                    id: edgeId,
+                                    source: 'range'+propertyId,
+                                    target: rangeClassId,
+                                   // label: 'rdfs:range',
+                                    iri: rdfsRange.value,
+                                    type: 'range'
+                                }
+                            });
+                        }
+                    });
+
+                    store.each(null, property, null).forEach(subject => {
+                        const subjectId = generateNodeId(subject.value);
+                        store.each(subject, property, null).forEach(object => {
+                            const objectId = generateNodeId(object.value);
+                            const edgeId = subjectId + '-' + propertyId + '-' + objectId;
+
+                            edges.push({
+                                data: {
+                                    id: edgeId,
+                                    source: subjectId,
+                                    target: objectId,
+                                    label: label,
+                                    iri: propertyIRI
+                                }
+                            });
+                        });
+                    });
+
+
 
                     store.each(null, property, null).forEach(subject => {
 
@@ -367,7 +528,7 @@
                         'target-arrow-shape': 'none',
                     }
                 },
-      
+
 
                 {
                     selector: 'edge.cy-expand-collapse-collapsed-edge',
