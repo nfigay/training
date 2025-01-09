@@ -25,6 +25,28 @@
     <rdfs:comment>Un utilisateur du système de gestion de connaissance.</rdfs:comment>
   </owl:Class>
 
+  <!-- Sous-classes (rdfs:subClassOf) -->
+  <rdf:Description rdf:about="http://example.org/ontology#ResearchPaper">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology#Document"/>
+    <rdfs:label>Research Paper</rdfs:label>
+    <rdfs:comment>Un document de type article de recherche.</rdfs:comment>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://example.org/ontology#Thesis">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology#Document"/>
+    <rdfs:label>Thesis</rdfs:label>
+    <rdfs:comment>Une thèse académique.</rdfs:comment>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://example.org/ontology#AcademicUser">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology#User"/>
+    <rdfs:label>Academic User</rdfs:label>
+    <rdfs:comment>Un utilisateur académique, par exemple, un étudiant ou un professeur.</rdfs:comment>
+  </rdf:Description>
+
   <!-- Définition des Propriétés OWL -->
   <owl:ObjectProperty rdf:about="http://example.org/ontology#hasDocument">
     <rdfs:domain rdf:resource="http://example.org/ontology#KnowledgeDomain"/>
