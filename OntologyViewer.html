@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL Validation</title>
+    <script src="https://unpkg.com/rdflib/dist/rdflib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pure-uuid@latest/uuid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="lib/cytoscape-expand-collapse.js"></script>
+
+    <style>
+        select {
+            width: 100%;
+            height: 200px;
+            margin: 10px 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            font-family: Arial, sans-serif;
+            overflow: auto;
+        }
+
+        #cy {
+            width: 100%;
+            height: 600px;
+            border: 1px solid black;
+        }
+
+        #infoPanel {
+            border: 1px solid black;
+            padding: 10px;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #f9f9f9;
+            overflow: auto;
+            /* Permet d'ajouter des barres de défilement */
+        }
+
+        #infoPanel h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Viewer Fichier OWL</h1>
+    <input type="file" id="fileInput" />
+    <button id="validateButton">Visualisation Fichier OWL</button>
+    <div id="cy"></div>
+    <div id="infoPanel">
+        <h3>Informations</h3>
+        <p><strong>ID:</strong> <span id="nodeId">N/A</span></p>
+        <p><strong>Label:</strong> <span id="nodeLabel">N/A</span></p>
+        <p><strong>IRI:</strong> <span id="nodeIRI">N/A</span></p>
+        <p><strong>Statement:</strong> <span id="nodeStatement">N/A</span></p>
+        <p><strong>Source:</strong> <span id="nodeSource">N/A</span></p>
+        <p><strong>Target:</strong> <span id="nodeTarget">N/A</span></p>
+        <p><strong>Node Type:</strong> <span id="nodeType">N/A</span></p>
+        <p><strong>Super Types:</strong> <span id="nodeSuperTypes">N/A</span></p>
+
+    </div>
+
+
+    <div id="output">
+        <label for="classesSelect">Classes OWL trouvées :</label>
+        <select id="classesSelect" size="10"></select>
+
+        <label for="objectPropertiesSelect">Propriétés objets OWL trouvées :</label>
+        <select id="objectPropertiesSelect" size="10"></select>
+
+        <label for="namedIndividualsSelect">Individus nommés OWL trouvés :</label>
+        <select id="namedIndividualsSelect" size="10"></select>
+
+        <label for="classSubsumptionSelect">Relations de subsomption entre classes :</label>
+        <select id="classSubsumptionSelect" size="10"></select>
+
+        <label for="propertySubsumptionSelect">Relations de subsomption entre propriétés :</label>
+        <select id="propertySubsumptionSelect" size="10"></select>
+
+        <label for="individualRelationsSelect">Relations entre individus :</label>
+        <select id="individualRelationsSelect" size="10"></select>
+
+        <label for="domainsSelect">Déclarations de domaines :</label>
+        <select id="domainsSelect" size="10"></select>
+
+        <label for="rangesSelect">Déclarations de portées :</label>
+        <select id="rangesSelect" size="10"></select>
+
+    </div>
+
+    <script>
+
+        let store; // Déclare le store comme variable globale
+
+        // Fonction pour détecter le format du fichier RDF
+        function detectFormat(data) {
+            if (data.trim().startsWith('<?xml')) {
+                return 'application/rdf+xml'; // RDF/XML
+            } else if (data.trim().startsWith('{') || data.trim().startsWith('[')) {
+                return 'application/ld+json'; // JSON-LD
+            } else if (data.includes('@prefix') || data.includes('@base')) {
+                return 'text/turtle'; // Turtle
+            } else {
+                throw new Error("Format RDF non détecté ou non supporté.");
+            }
+        }
+
+        function generateNodeId(iri) {
+            return iri.replace(/[^a-zA-Z0-9]/g, '_');
+        }
+
+        function getLabelFromIRI(iri) {
+            const hashIndex = iri.lastIndexOf('#');
+            if (hashIndex !== -1 && hashIndex < iri.length - 1) {
+                // Si un # est trouvé et qu'il n'est pas à la fin, renvoyer ce qui est après
+                return iri.substring(hashIndex + 1);
+            }
+
+            const slashIndex = iri.lastIndexOf('/');
+            if (slashIndex !== -1 && slashIndex < iri.length - 1) {
+                // Si aucun # ou si le # est à la fin, renvoyer ce qui est après le dernier /
+                return iri.substring(slashIndex + 1);
+            }
+            // Si aucun / ou # significatif n'est trouvé, retourner l'IRI complet
+            return iri;
+        }
+
+        // Fonction de validation OWL
+        function validateOWL(store) {
+            const nodes = [];
+            const edges = [];
+
+
+            const nodeIcons = {
+                class: { shape: 'ellipse', color: '#FFA500' },
+                domain: { shape: 'ellipse', color: 'rgba(255, 255, 255, 0.5)' },
+                range: { shape: 'ellipse', color: 'rgba(255, 255, 255, 0.5)' },
+                individual: { shape: 'diamond', color: '#8A2BE2' },
+                property: { shape: 'rectangle', color: '#1E90FF' }
+            };
+            nodes.push({
+                data: { id: "OWLClass", label: "OWLClasses", shape: nodeIcons.class.shape, color: nodeIcons.class.color, iri: "http://www.w3.org/2002/07/owl#Class", type: 'class' }
+            });
+            nodes.push({
+                data: { id: "OWLProperty", label: "OWLProperties", shape: nodeIcons.property.shape, color: nodeIcons.property.color, iri: "http://www.w3.org/2002/07/owl#ObjectProperty", type: 'property' }
+            });
+            nodes.push({
+                data: { id: "OWLIndividual", label: "OWLIndividuals", shape: nodeIcons.individual.shape, color: nodeIcons.individual.color, iri: "http://www.w3.org/2002/07/owl#Individual", type: 'individual' }
+            });
+
+            const uniqueNodeIds = new Set();
+
+            const rdfType = $rdf.sym('http://www.w3.org/1999/02/22-rdf-syntax-ns#type');
+            const namedIndividual = $rdf.sym('http://www.w3.org/2002/07/owl#NamedIndividual');
+            const objectProperty = $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty');
+            const rdfsSubClassOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subClassOf');
+            const rdfsSubPropertyOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subPropertyOf');
+            const rdfsDomain = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#domain");
+            const rdfsRange = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#range");
+
+            const allProperties = store.statementsMatching(null, null, null); // Toutes les relations de triplets
+
+            // Clear previous content in dropdowns
+            document.getElementById('classesSelect').innerHTML = '';
+            document.getElementById('objectPropertiesSelect').innerHTML = '';
+            document.getElementById('namedIndividualsSelect').innerHTML = '';
+            document.getElementById('classSubsumptionSelect').innerHTML = '';
+            document.getElementById('propertySubsumptionSelect').innerHTML = '';
+            document.getElementById('individualRelationsSelect').innerHTML = '';
+            document.getElementById('domainsSelect').innerHTML = '';
+            document.getElementById('rangesSelect').innerHTML = '';
+
+            // Vérifier qu'au moins une classe OWL est définie
+            const classes = store.each(null, rdfType, $rdf.sym('http://www.w3.org/2002/07/owl#Class'));
+            const classesSelect = document.getElementById('classesSelect');
+            if (classes.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucune classe OWL trouvée !";
+                classesSelect.appendChild(option);
+            } else {
+                classes.forEach(cls => {
+                    const option = document.createElement('option');
+                    option.textContent = cls.value;
+                    classesSelect.appendChild(option);
+
+                    const label = getLabelFromIRI(cls.value);
+                    const nodeId = generateNodeId(cls.value);
+                    uniqueNodeIds.add(nodeId);
+                    nodes.push({
+                        data: { id: nodeId, label: label, shape: nodeIcons.class.shape, color: nodeIcons.class.color, iri: cls.value, type: 'class', parent: 'OWLClass' }
+                    });
+                });
+            }
+
+            // Vérifier qu'au moins une propriété objet est définie
+            const objectProperties = store.each(null, rdfType, $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty'));
+            const objectPropertiesSelect = document.getElementById('objectPropertiesSelect');
+            if (objectProperties.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucune propriété objet OWL trouvée !";
+                objectPropertiesSelect.appendChild(option);
+            } else {
+                objectProperties.forEach(prop => {
+                    const option = document.createElement('option');
+                    option.textContent = prop.value;
+                    objectPropertiesSelect.appendChild(option);
+
+                    const propertyIRI = prop.value;
+                    const label = getLabelFromIRI(propertyIRI);
+                    const propertyId = generateNodeId(propertyIRI);
+
+                    uniqueNodeIds.add(propertyId);
+                    nodes.push({
+                        data: { id: propertyId, label: label, shape: nodeIcons.property.shape, color: nodeIcons.property.color, iri: propertyIRI, type: 'property', parent: 'OWLProperty' }
+                    });
+                    nodes.push({
+                        data: { id: 'domain' + propertyId, label: "domain", shape: nodeIcons.domain.shape, color: nodeIcons.domain.color, type: 'domain', parent: 'OWLProperty' }
+                    });
+                    nodes.push({
+                        data: { id: 'range' + propertyId, label: "range", shape: nodeIcons.range.shape, color: nodeIcons.range.color, type: 'range', parent: 'OWLProperty' }
+                    });
+                    edges.push({
+                        data: {
+                            id: 'toRange' + propertyId, source: propertyId, target: 'range' + propertyId, label: "", type: "OPRD"
+                        }
+                    });
+                    edges.push({
+                        data: {
+                            id: 'toDomain' + propertyId, target: propertyId, source: 'domain' + propertyId, label: "", type: "OPRD"
+                        }
+                    });
+                })
+
+            }
+
+            // Vérifier qu'au moins un individu nommé OWL est défini
+            const namedIndividuals = store.each(null, rdfType, namedIndividual);
+            const namedIndividualsSelect = document.getElementById('namedIndividualsSelect');
+            if (namedIndividuals.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucun individu nommé OWL trouvé !";
+                namedIndividualsSelect.appendChild(option);
+            } else {
+                namedIndividuals.forEach(individual => {
+                    const option = document.createElement('option');
+                    option.textContent = individual.value;
+                    namedIndividualsSelect.appendChild(option);
+
+                    const label = getLabelFromIRI(individual.value);
+                    const nodeId = generateNodeId(individual.value);
+                    if (!uniqueNodeIds.has(nodeId)) {
+                        uniqueNodeIds.add(nodeId);
+                        nodes.push({
+                            data: { id: nodeId, label: label, shape: nodeIcons.individual.shape, color: nodeIcons.individual.color, iri: individual.value, type: 'individual', parent: 'OWLIndividual' }
+                        });
+                    }
+                });
+            }
+
+            // Relations de subsomption entre classes
+            const classSubsumption = store.statementsMatching(null, rdfsSubClassOf, null);
+            const classSubsumptionSelect = document.getElementById('classSubsumptionSelect');
+            if (classSubsumption.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucune relation de subsomption entre classes trouvée !";
+                classSubsumptionSelect.appendChild(option);
+            } else {
+                classSubsumption.forEach(subsumption => {
+                    const option = document.createElement('option');
+                    option.textContent = `${subsumption.subject.value} ⊆ ${subsumption.object.value}`;
+                    classSubsumptionSelect.appendChild(option);
+
+                    const subjectId = generateNodeId(subsumption.subject.value);
+                    const objectId = generateNodeId(subsumption.object.value); // Subclass target is the object
+                    const edgeId = `${subjectId}-subclassof-${objectId}`;
+                    if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
+                        edges.push({
+                            data: {
+                                id: edgeId,
+                                source: subjectId,
+                                target: objectId,
+                                label: 'subclassof',
+                                statement: classSubsumption,
+                                type: "subclassof"
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Relations de subsomption entre propriétés
+            const propertySubsumption = store.statementsMatching(null, rdfsSubPropertyOf, null);
+            const propertySubsumptionSelect = document.getElementById('propertySubsumptionSelect');
+            if (propertySubsumption.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucune relation de subsomption entre propriétés trouvée !";
+                propertySubsumptionSelect.appendChild(option);
+            } else {
+                propertySubsumption.forEach(subsumption => {
+                    const option = document.createElement('option');
+                    option.textContent = `${subsumption.subject.value} ⊆ ${subsumption.object.value}`;
+                    propertySubsumptionSelect.appendChild(option);
+
+                    const subjectId = generateNodeId(subsumption.subject.value)
+                    const objectId = generateNodeId(subsumption.object.value);
+                    const edgeId = `${subjectId}-subclassof-${objectId}`;
+                    edges.push({
+                        data: {
+                            id: edgeId,
+                            source: subjectId,
+                            target: objectId,
+                            label: 'subPropertyOf',
+                            statement: subsumption,
+                            type: 'subpropertyof'
+                        }
+                    });
+                });
+            }
+            // Gérer les relations avec les classes de domaine et de range
+
+            const domainsSelect = document.getElementById('domainsSelect');
+            const domains = [];
+            const domainStatements = store.statementsMatching(null, rdfsDomain, null);
+            domainStatements.forEach(domainClass => {
+                if (domainStatements.length === 0) {
+                    const option = document.createElement('option');
+                    option.textContent = "Aucune définition de domaine trouvée !";
+                    domainsSelect.appendChild(option);
+                } else {
+                    const option = document.createElement('option');
+                    const subject = domainClass.subject.value;
+                    const predicate = domainClass.predicate.value;
+                    const object = domainClass.object.value;
+                    option.textContent = `${subject} -- ${predicate} --> ${object}`;
+                    domainsSelect.appendChild(option);
+
+                    // Ajouter une arête entre la propriété et la classe de domaine
+                    const subjectId = generateNodeId(domainClass.subject.value);
+                    const objectId = generateNodeId(domainClass.object.value);
+                    const edgeId = `${subjectId}-domain-${objectId}`;
+
+                    edges.push({
+                        data: {
+                            id: edgeId,
+                            source: 'domain' + subjectId,
+                            target: objectId,
+                            statement: domainClass,
+                            type: 'domainStatement'
+                        }
+                    });
+
+                }
+            });
+
+            const rangesSelect = document.getElementById('rangesSelect');
+            const ranges = [];
+            const rangeStatements = store.statementsMatching(null, rdfsRange, null);
+            rangeStatements.forEach(rangeClass => {
+
+                if (rangeStatements.length === 0) {
+                    const option = document.createElement('option');
+                    option.textContent = "Aucune définition de portée trouvée !";
+                    rangesSelect.appendChild(option);
+                } else {
+                    const option = document.createElement('option');
+                    const subject = rangeClass.subject.value;
+                    const predicate = rangeClass.predicate.value;
+                    const object = rangeClass.object.value;
+                    option.textContent = `${subject} -- ${predicate} --> ${object}`;
+                    rangesSelect.appendChild(option);
+
+                    // Ajouter une arête entre la propriété et la classe de domaine
+                    const subjectId = generateNodeId(rangeClass.subject.value);
+                    const objectId = generateNodeId(rangeClass.object.value);
+                    const edgeId = `${subjectId}-range-${objectId}`;
+
+                    edges.push({
+                        data: {
+                            id: edgeId,
+                            source: 'range' + subjectId,
+                            target: objectId,
+                            statement: rangeClass,
+                            type: 'rangeStatement'
+                        }
+                    });
+                }
+            });
+
+            // Filtrer tous les triplets où l'objet est une ressource (qu'elle soit NamedNode ou BlankNode)
+            const objectPropertiesUsed = store.statementsMatching(null, null, null);
+
+            // Extraire les prédicats qui sont des ObjectProperties et dont l'objet est une ressource
+            const objectPropertiesSet = new Set();
+            objectPropertiesUsed.forEach(triplet => {
+                const predicate = triplet.predicate;
+                const object = triplet.object;
+
+                // Vérifier si le prédicat est un ObjectProperty
+                if (store.statementsMatching(predicate, rdfType, objectProperty).length > 0) {
+                    // Vérifier si l'objet est une ressource (NamedNode ou BlankNode)
+                    if (object.termType === 'NamedNode' || object.termType === 'BlankNode') {
+                        objectPropertiesSet.add(predicate.value); // Ajouter le prédicat à la liste des ObjectProperties utilisées
+                    }
+                }
+            });
+            const individualRelationsSelect = document.getElementById('individualRelationsSelect');
+            const individualRelations = [];
+            // Afficher toutes les ObjectProperties utilisées dans les relations entre individus
+            objectPropertiesSet.forEach(pred => {
+                // Relations entre individus : Extraction simple des triplets
+                const myProperty = $rdf.sym(pred);
+                const myPropertyInstances = store.statementsMatching(null, myProperty, null);
+                if (myPropertyInstances.length === 0) {
+                    const option = document.createElement('option');
+                    option.textContent = "Aucune relation de type " + pred + " entre individus trouvée !";
+                    individualRelationsSelect.appendChild(option);
+                } else {
+                    myPropertyInstances.forEach(relation => {
+                        const option = document.createElement('option');
+                        const subject = relation.subject.value;
+                        const predicate = relation.predicate.value;
+                        const object = relation.object.value;
+                        option.textContent = `${subject} -- ${predicate} --> ${object}`;
+                        individualRelationsSelect.appendChild(option);
+
+                        const objectId = generateNodeId(object);
+                        const subjectId = generateNodeId(subject);
+                        const predicateId = generateNodeId(predicate);
+
+                        const edgeId = `${subjectId}-${predicateId}-${objectId}`
+
+
+                        edges.push({
+                            data: {
+                                id: edgeId,
+                                source: subjectId,
+                                target: objectId,
+                                label: getLabelFromIRI(predicate),
+                                statement: relation
+                            }
+                        });
+
+
+                    });
+                }
+            });
+            cy.elements().remove();
+            cy.add(nodes);
+            cy.add(edges);
+            cy.layout({
+                name: 'fcose',
+                fit: true, // Fit to viewport
+                padding: 10, // Padding around the layout
+                nodeDimensionsIncludeLabels: true, // Avoid overlap due to labels
+                randomize: true, // Use pre-defined positions as the initial state
+
+                // Compactness and overlap minimization
+                idealEdgeLength: 50, // Ideal length of edges
+                edgeElasticity: 0.2, // Elasticity of edges
+                gravity: 1, // Overall gravity force
+                gravityRange: 1.5, // Range for gravity
+                gravityCompound: 2, // Gravity for compound/nested nodes
+                gravityRangeCompound: 1.5, // Range for compound gravity
+                nodeSeparation: 20, // Minimum separation between nodes
+                packingMode: 'all', // Compactly pack nodes in compound nodes
+
+                // Fine-tuning energy model
+                numIter: 2500, // Number of iterations
+                tile: true, // Arrange disconnected components in a tiled manner
+                tilingPaddingVertical: 20, // Vertical padding for tiled components
+                tilingPaddingHorizontal: 20, // Horizontal padding for tiled components
+                step: 'all', // Run all steps of the algorithm
+            }).run();
+
+            console.log("Ontology successfully imported into Cytoscape!");
+
+        }
+
+        // Gestionnaire d'événements pour valider le fichier OWL
+        document.getElementById('validateButton').addEventListener('click', () => {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Veuillez sélectionner un fichier OWL.");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const data = event.target.result;
+
+                let format;
+                try {
+                    format = detectFormat(data);
+                    alert(`Format RDF détecté : ${format}`);
+                } catch (error) {
+                    alert(`Erreur de détection du format RDF : ${error.message}`);
+                    return;
+                }
+
+                // Base IRI par défaut
+                const baseIRI = 'http://example.org/ontology#';
+
+                // Créer un store RDF
+                const store = $rdf.graph();
+
+                // Parsing RDF
+                $rdf.parse(data, store, baseIRI, format, (error) => {
+                    if (error) {
+                        alert(`Erreur lors du parsing RDF : ${error}`);
+                        return;
+                    }
+                    alert(`Parsing réussi. Nombre de triplets chargés : ${store.statements.length}`);
+                    // Validation OWL
+                    validateOWL(store);
+                });
+            };
+
+            reader.readAsText(file);
+        });
+        const cy = cytoscape({
+            container: document.getElementById('cy'),
+            layout: { name: 'fcose' },
+            ready: function () {
+                this.layout({
+                    name: 'fcose',
+                    randomize: true,
+                    fit: true,
+                    animate: false,
+                    fit: true, // Fit to viewport
+                    padding: 10, // Padding around the layout
+                    nodeDimensionsIncludeLabels: true, // Avoid overlap due to labels
+                    randomize: false, // Use pre-defined positions as the initial state
+
+                    // Compactness and overlap minimization
+                    idealEdgeLength: 50, // Ideal length of edges
+                    edgeElasticity: 0.2, // Elasticity of edges
+                    gravity: 1, // Overall gravity force
+                    gravityRange: 1.5, // Range for gravity
+                    gravityCompound: 2, // Gravity for compound/nested nodes
+                    gravityRangeCompound: 1.5, // Range for compound gravity
+                    nodeSeparation: 20, // Minimum separation between nodes
+                    packingMode: 'all', // Compactly pack nodes in compound nodes
+
+                    // Fine-tuning energy model
+                    numIter: 2500, // Number of iterations
+                    tile: true, // Arrange disconnected components in a tiled manner
+                    tilingPaddingVertical: 20, // Vertical padding for tiled components
+                    tilingPaddingHorizontal: 20, // Horizontal padding for tiled components
+                    step: 'all', // Run all steps of the algorithm
+                }).run();
+                var api = this.expandCollapse({
+                    layoutBy: {
+                        name: "fcose",
+                        animate: true,
+                        randomize: true,
+                        fit: true,
+                        fit: true, // Fit to viewport
+                        padding: 10, // Padding around the layout
+                        nodeDimensionsIncludeLabels: true, // Avoid overlap due to labels
+                        randomize: false, // Use pre-defined positions as the initial state
+
+                        // Compactness and overlap minimization
+                        idealEdgeLength: 50, // Ideal length of edges
+                        edgeElasticity: 0.2, // Elasticity of edges
+                        gravity: 1, // Overall gravity force
+                        gravityRange: 1.5, // Range for gravity
+                        gravityCompound: 2, // Gravity for compound/nested nodes
+                        gravityRangeCompound: 1.5, // Range for compound gravity
+                        nodeSeparation: 20, // Minimum separation between nodes
+                        packingMode: 'all', // Compactly pack nodes in compound nodes
+
+                        // Fine-tuning energy model
+                        numIter: 2500, // Number of iterations
+                        tile: true, // Arrange disconnected components in a tiled manner
+                        tilingPaddingVertical: 20, // Vertical padding for tiled components
+                        tilingPaddingHorizontal: 20, // Horizontal padding for tiled components
+                        step: 'all', // Run all steps of the algorithm
+                    },
+                    fisheye: true,
+                    animate: true,
+                    undoable: false
+                });
+                api.collapseAll();
+            },
+            elements: [],
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': 'data(color)',
+                        'label': 'data(label)',
+                        'shape': 'data(shape)',
+                        'width': 40,
+                        'height': 40
+                    }
+                },
+                {
+                    selector: ':parent',
+                    style: {
+                        'background-opacity': 0.333
+                    }
+                },
+                {
+                    selector: "node.cy-expand-collapse-collapsed-node",
+                    style: {
+                        "background-color": "darkblue",
+                        "shape": "rectangle"
+                    }
+                },
+                {
+                    selector: ':selected',
+                    style: {
+                        'overlay-color': "#6c757d",
+                        'overlay-opacity': 0.3,
+                        'background-color': "#999999"
+                    }
+                },
+
+                {
+                    selector: 'domain',
+                    style: {
+                        'background-color': 'data(color)',
+                        'label': 'data(label)',
+                        'shape': 'data(shape)',
+                        'width': 40,
+                        'height': 40,
+                        'line-style': 'dashed'
+                    }
+                },
+                {
+                    selector: 'range',
+                    style: {
+                        'background-color': 'data(color)',
+                        'label': 'data(label)',
+                        'shape': 'data(shape)',
+                        'width': 40,
+                        'height': 40,
+                        'line-style': 'dashed'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 3,
+                        'line-color': 'black',
+                        'target-arrow-color': 'black',
+                        'target-arrow-shape': 'triangle',
+                        'label': 'data(label)',
+                        'curve-style': 'bezier', // Makes the edge easier to distinguish
+                        'line-style': 'solid'
+                    }
+                },
+                {
+                    // Style for edges of type "OPRD"
+                    selector: 'edge[type = "OPRD"]',
+                    style: {
+                        'line-color': 'blue',
+                        'width': 4,
+                        'label': 'data(label)',
+                        'curve-style': 'bezier',
+                        'target-arrow-shape': 'none',
+                    }
+                },
+
+
+                {
+                    selector: 'edge.cy-expand-collapse-collapsed-edge',
+                    style:
+                    {
+                        "text-outline-color": "#ffffff",
+                        "text-outline-width": "2px",
+                        'label': (e) => {
+                            return '(' + e.data('collapsedEdges').length + ')';
+                        },
+                        'width': function (edge) {
+                            const n = edge.data('collapsedEdges').length;
+                            return (3 + Math.log2(n)) + 'px';
+                        },
+                        'line-style': 'dashed',
+
+                    }
+                }
+            ],
+
+        });
+
+
+
+        // Gestion du double-clic ou du tap
+        cy.on('tap', 'node, edge', function (event) {
+            const target = event.target;
+
+            // Récupérer les informations détaillées de l'élément
+            const id = target.data('id');
+            const label = target.data('label');
+            const iri = target.data('iri');
+            const type = target.data('type');
+            const superTypes = [];
+            const sourceTarget = target.data('source') ? `Source: ${target.data('source')}, Target: ${target.data('target')}` : 'N/A';
+            const Target = target.data('target') ? `${target.data('target')}` : 'N/A';
+            const Source = target.data('source') ? `${target.data('source')}` : 'N/A';
+            const Statement = target.data('statement') ? `${target.data('statement')}` : 'N/A';
+
+
+            // Mettre à jour le panneau d'informations
+            document.getElementById('nodeId').textContent = id;
+            document.getElementById('nodeLabel').textContent = label;
+            document.getElementById('nodeIRI').textContent = iri;
+            document.getElementById('nodeType').textContent = type;
+            document.getElementById('nodeSuperTypes').textContent = superTypes.join(', ') || 'N/A';
+            document.getElementById('nodeTarget').textContent = Target;
+            document.getElementById('nodeSource').textContent = Source;
+            document.getElementById('nodeStatement').textContent = Statement;
+        });
+    </script>
+</body>
+
+</html>
