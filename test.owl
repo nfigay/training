@@ -12,6 +12,8 @@
   <!-- Définition des Classes OWL -->
   <owl:Class rdf:about="http://example.org/ontology#KnowledgeDomain">
     <rdfs:label>Knowledge Domain</rdfs:label>
+    <rdfs:label>Domaine de la connaissance</rdfs:label>
+   <rdfs:label>xldldldl</rdfs:label>   
     <rdfs:comment>Un domaine de connaissance, par exemple, informatique, biologie, etc.</rdfs:comment>
   </owl:Class>
 
