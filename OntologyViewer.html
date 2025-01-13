@@ -205,7 +205,7 @@
                     'http://www.w3.org/2004/02/skos/core#altLabel',
                 ];
 
-                const labels = [];
+                var labels = [];
                 // Iterate over predicates to fetch all labels
                 labelPredicates.forEach(predicate => {
                     const foundLabels = store.each(resource, $rdf.sym(predicate), null);
