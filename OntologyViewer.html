@@ -55,6 +55,7 @@
     <input type="file" id="fileInput" />
     <button id="validateButton">Visualisation Fichier OWL</button>
     <div id="cy"></div>
+    <div id="labelContainer">Double-cliquez ici pour voir les détails des labels.</div>
     <div id="infoPanel">
         <h3>Informations</h3>
         <p><strong>ID:</strong> <span id="nodeId">N/A</span></p>
@@ -132,38 +133,144 @@
             // Si aucun / ou # significatif n'est trouvé, retourner l'IRI complet
             return iri;
         }
+        function displayLabelsOnDoubleClick(resource, store, containerId) {
+            // Add event listener for double click
+            document.getElementById(containerId).addEventListener('dblclick', function () {
+                // Get all possible label types (rdfs:label, skos:prefLabel, etc.)
+                const labelPredicates = [
+                    'http://www.w3.org/2000/01/rdf-schema#label',
+                    'http://www.w3.org/2004/02/skos/core#prefLabel',
+                    'http://www.w3.org/2004/02/skos/core#altLabel',
+                ];
 
-        // Function to extract any label from a resource (no language filter)
-        function getLabelFromResource(resource, store) {
-            // Get all labels for the resource, regardless of language
-            const labels = store.each(resource, $rdf.sym('http://www.w3.org/2000/01/rdf-schema#label'), null);
-alert("ok")
-            // Check if labels exist
-            if (labels.length === 0) {
-                alert("null")
-                console.log('No labels found');
-                return 'No Label'; // Return default text if no labels found
-            }
-alert("pas null")
-            // Extract the labels and log them
-            const allLabels = labels.map(label => label.value).join(', '); // Combine all labels into a string, separated by commas
-            alert(allLabels);
-            return allLabels; // Return a string of labels
+                const labels = [];
+
+                // Iterate over predicates to fetch all labels
+                labelPredicates.forEach(predicate => {
+                    const foundLabels = store.each(resource, $rdf.sym(predicate), null);
+                    foundLabels.forEach(label => {
+                        labels.push({
+                            type: predicate.split('#')[1], // Extract 'label', 'prefLabel', etc.
+                            lang: label.lang || 'none',   // Language of the label
+                            text: label.value             // Text of the label
+                        });
+                    });
+                });
+
+                // Check if labels are found
+                if (labels.length === 0) {
+                    alert('No labels found for this resource.');
+                    return;
+                }
+
+                // Generate HTML list of labels
+                let html = '<ul>';
+                labels.forEach(label => {
+                    html += `
+                <li>
+                    <strong>Type:</strong> ${label.type}<br>
+                    <strong>Language:</strong> ${label.lang}<br>
+                    <strong>Text:</strong> ${label.text}
+                </li>
+            `;
+                });
+                html += '</ul>';
+
+                // Display the HTML in a container
+                const container = document.getElementById(containerId);
+                container.innerHTML = html;
+            });
         }
 
+
+        const rdfType = $rdf.sym('http://www.w3.org/1999/02/22-rdf-syntax-ns#type');
+        const namedIndividual = $rdf.sym('http://www.w3.org/2002/07/owl#NamedIndividual');
+        const objectProperty = $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty');
+        const rdfsSubClassOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subClassOf');
+        const rdfsSubPropertyOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subPropertyOf');
+        const rdfsDomain = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#domain");
+        const rdfsRange = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#range");
+        const owlClass = $rdf.sym('http://www.w3.org/2002/07/owl#Class');
+        const label = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#label')
+
+        // Function to extract any label from a resource (no language filter)
+        function getLabelFromResource(resourceURI, store) {
+            try {
+
+                // Create a RDF resource symbol
+                const resource = $rdf.sym(resourceURI);
+                // Get all possible label types (rdfs:label, skos:prefLabel, etc.)
+                const labelPredicates = [
+                    'http://www.w3.org/2000/01/rdf-schema#label',
+                    'http://www.w3.org/2004/02/skos/core#prefLabel',
+                    'http://www.w3.org/2004/02/skos/core#altLabel',
+                ];
+
+                const labels = [];
+                // Iterate over predicates to fetch all labels
+                labelPredicates.forEach(predicate => {
+                    const foundLabels = store.each(resource, $rdf.sym(predicate), null);
+                    foundLabels.forEach(label => {
+                        labels.push({
+                            type: predicate.split('#')[1], // Extract 'label', 'prefLabel', etc.
+                            lang: label.lang || 'none',   // Language of the label
+                            text: label.value             // Text of the label
+                        });
+                    });
+                });
+                // Check if labels are found
+                if (labels.length === 0) {
+                    alert('No labels found for this resource.');
+                    return;
+                }
+
+                // Generate HTML list of labels
+                let html = '<ul>';
+                labels.forEach(label => {
+                    html += `
+                <li>
+                    <strong>Type:</strong> ${label.type}<br>
+                    <strong>Language:</strong> ${label.lang}<br>
+                    <strong>Text:</strong> ${label.text}
+                </li>`;
+                });
+                html += '</ul>';
+
+                // Display the HTML in a container
+                alert(html)
+
+                // Query the RDF store for rdfs:label values
+                labels = store.each(resource, $rdf.sym('http://www.w3.org/2000/01/rdf-schema#label'), null);
+
+                // Check if labels exist
+                if (labels.length === 0) {
+                    console.log(`No labels found for resource: ${resourceURI}`);
+                    return 'No Label'; // Default label if none found
+                }
+
+                // Extract and return labels as a string
+                const allLabels = labels.map(label => label.value).join(', ');
+                console.log(`Labels found: ${allLabels}`);
+                return allLabels;
+            } catch (error) {
+                console.error(`Error retrieving label for resource ${resourceURI}:`, error);
+                return 'Error'; // Return a default error label
+            }
+        }
         // Fonction de validation OWL
         function validateOWL(store) {
             const nodes = [];
             const edges = [];
 
             // Create Node Function
-            function createNode(id, label, type, parent = null) {
+            function createNode(id, label, type, IRI, parent = null) {
 
                 // Prepare the node data
                 const nodeData = {
                     id,
                     label,
-                    type
+                    type,
+                    IRI
                 };
 
                 // Add the parent only if it is defined
@@ -177,6 +284,7 @@ alert("pas null")
                     data: nodeData,
                     classes: type
                 });
+                console.log(nodeData)
             }
             const edgeTypeStyles = {
                 relation: {
@@ -235,20 +343,11 @@ alert("pas null")
                 });
             }
 
-            createNode("OWLClass", "OWLClasses", "class");
-            createNode("OWLProperty", "OWLProperties", "property");
-            createNode("OWLIndividual", "OWLIndividuals", "individual");
-
-
             const uniqueNodeIds = new Set();
-
-            const rdfType = $rdf.sym('http://www.w3.org/1999/02/22-rdf-syntax-ns#type');
-            const namedIndividual = $rdf.sym('http://www.w3.org/2002/07/owl#NamedIndividual');
-            const objectProperty = $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty');
-            const rdfsSubClassOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subClassOf');
-            const rdfsSubPropertyOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subPropertyOf');
-            const rdfsDomain = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#domain");
-            const rdfsRange = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#range");
+            const classes = store.each(null, rdfType, owlClass);
+            createNode("OWLClass", "OWLClasses", "class", owlClass.value, "");
+            createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, "");
+            createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, "");
 
             const allProperties = store.statementsMatching(null, null, null); // Toutes les relations de triplets
 
@@ -263,7 +362,6 @@ alert("pas null")
             document.getElementById('rangesSelect').innerHTML = '';
 
             // Vérifier qu'au moins une classe OWL est définie
-            const classes = store.each(null, rdfType, $rdf.sym('http://www.w3.org/2002/07/owl#Class'));
             const classesSelect = document.getElementById('classesSelect');
             if (classes.length === 0) {
                 const option = document.createElement('option');
@@ -276,10 +374,10 @@ alert("pas null")
                     classesSelect.appendChild(option);
 
                     const label = getLabelFromIRI(cls.value);
-                    const nodeId = generateNodeId(cls.value);
+                    const nodeId = cls.value;
                     uniqueNodeIds.add(nodeId);
-                    createNode(nodeId, label, 'class', 'OWLClass');
-                
+                    createNode(nodeId, label, 'class', owlClass.value, 'OWLClass');
+
 
                 });
             }
@@ -299,14 +397,14 @@ alert("pas null")
 
                     const propertyIRI = prop.value;
                     const label = getLabelFromIRI(propertyIRI);
-                    const propertyId = generateNodeId(propertyIRI);
+                    const propertyId = propertyIRI;
 
                     uniqueNodeIds.add(propertyId);
-                    createNode(propertyId, label, 'property', 'OWLProperty');
-                    createNode('domain' + propertyId, 'domain', 'oprd', 'OWLProperty');
-                    createNode('range' + propertyId, 'range', 'oprd', 'OWLProperty');
-                    createEdge('toRange' + propertyId, "", propertyId, 'range' + propertyId, "range");
-                    createEdge('toDomain' + propertyId, "", propertyId, 'domain' + propertyId, "domain");
+                    createNode(propertyId, label, 'property', objectProperty.value, 'OWLProperty');
+                    createNode(propertyId + "_domain", 'domain', 'oprd', objectProperty.value, 'OWLProperty');
+                    createNode(propertyId + "_range", 'range', 'oprd', objectProperty.value, 'OWLProperty');
+                    createEdge(propertyId + '_toRange', "", propertyId, propertyId + "_range", "range");
+                    createEdge(propertyId + '_toDomain', "", propertyId, propertyId + "_domain", "domain");
                 })
 
             }
@@ -325,10 +423,10 @@ alert("pas null")
                     namedIndividualsSelect.appendChild(option);
 
                     const label = getLabelFromIRI(individual.value);
-                    const nodeId = generateNodeId(individual.value);
+                    const nodeId = individual.value;
                     if (!uniqueNodeIds.has(nodeId)) {
                         uniqueNodeIds.add(nodeId);
-                        createNode(nodeId, label, 'individual', 'OWLIndividual');
+                        createNode(nodeId, label, 'individual', namedIndividual.value, 'OWLIndividual');
                     }
                 });
             }
@@ -346,9 +444,9 @@ alert("pas null")
                     option.textContent = `${subsumption.subject.value} ⊆ ${subsumption.object.value}`;
                     classSubsumptionSelect.appendChild(option);
 
-                    const subjectId = generateNodeId(subsumption.subject.value);
-                    const objectId = generateNodeId(subsumption.object.value); // Subclass target is the object
-                    const edgeId = `${subjectId}-subclassof-${objectId}`;
+                    const subjectId = subsumption.subject.value;
+                    const objectId = subsumption.object.value; // Subclass target is the object
+                    const edgeId = `${subjectId}-subclassof->${objectId}`;
                     if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
                         createEdge(edgeId, "", subjectId, objectId, 'subClass');
                     }
@@ -368,8 +466,8 @@ alert("pas null")
                     option.textContent = `${subsumption.subject.value} ⊆ ${subsumption.object.value}`;
                     propertySubsumptionSelect.appendChild(option);
 
-                    const subjectId = generateNodeId(subsumption.subject.value)
-                    const objectId = generateNodeId(subsumption.object.value);
+                    const subjectId = subsumption.subject.value
+                    const objectId = subsumption.object.value;
                     const edgeId = `${subjectId}-subclassof-${objectId}`;
                     createEdge(edgeId, "", subjectId, objectId, 'subProperty');
 
@@ -394,10 +492,10 @@ alert("pas null")
                     domainsSelect.appendChild(option);
 
                     // Ajouter une arête entre la propriété et la classe de domaine
-                    const subjectId = generateNodeId(domainClass.subject.value);
-                    const objectId = generateNodeId(domainClass.object.value);
+                    const subjectId = domainClass.subject.value;
+                    const objectId = domainClass.object.value;
                     const edgeId = `${subjectId}-domain-${objectId}`;
-                    createEdge(edgeId, "", 'domain' + subjectId, objectId, 'domain');
+                    createEdge(edgeId, "", subjectId + "_domain", objectId, 'domain');
 
                 }
             });
@@ -420,10 +518,10 @@ alert("pas null")
                     rangesSelect.appendChild(option);
 
                     // Ajouter une arête entre la propriété et la classe de domaine
-                    const subjectId = generateNodeId(rangeClass.subject.value);
-                    const objectId = generateNodeId(rangeClass.object.value);
+                    const subjectId = rangeClass.subject.value;
+                    const objectId = rangeClass.object.value;
                     const edgeId = `${subjectId}-range-${objectId}`;
-                    createEdge(edgeId, "", 'range' + subjectId, objectId, 'range');
+                    createEdge(edgeId, "", subjectId + "_range", objectId, 'range');
                 }
             });
 
@@ -464,11 +562,11 @@ alert("pas null")
                         option.textContent = `${subject} -- ${predicate} --> ${object}`;
                         individualRelationsSelect.appendChild(option);
 
-                        const objectId = generateNodeId(object);
-                        const subjectId = generateNodeId(subject);
-                        const predicateId = generateNodeId(predicate);
+                        const objectId = object;
+                        const subjectId = subject;
+                        const predicateId = predicate;
 
-                        const edgeId = `${subjectId}-${predicateId}-${objectId}`
+                        const edgeId = `${subjectId}-${predicateId}->${objectId}`
                         createEdge(edgeId, predicate, subjectId, objectId, 'relation');
                     });
                 }
@@ -546,7 +644,7 @@ alert("pas null")
                 const baseIRI = 'http://example.org/ontology#';
 
                 // Créer un store RDF
-                const store = $rdf.graph();
+                store = $rdf.graph();
 
                 // Parsing RDF
                 $rdf.parse(data, store, baseIRI, format, (error) => {
@@ -555,10 +653,7 @@ alert("pas null")
                         return;
                     }
                     alert(`Parsing réussi. Nombre de triplets chargés : ${store.statements.length}`);
-                    // Validation OWL
-                    const resource = $rdf.sym('http://example.org/ontology#KnowledgeDomain'); // Exemple de ressource
-    const labels = getLabelFromResource(resource, store);
-    console.log(labels);
+
                     validateOWL(store);
                 });
             };
@@ -787,18 +882,20 @@ alert("pas null")
             const elementClasses = element.classes();  // Get the classes of the clicked element
 
             // Retrieve the data attributes from the clicked element
+            const elementID = element.id();  // Get the classes of the clicked element
+
             const elementType = element.data('type') || 'No type';  // Get the type from data, or default if not present
             const elementLabel = element.data('label') || 'No label';  // Get the label, or default if not present
+            const elementIRIType = element.data('IRI') || 'No IRI';  // Get the label, or default if not present
+
             const elementDescription = element.data('description') || 'No description';  // Get the description, or default if not present
 
             // Display information in an alert
-            alert(`Type: ${elementType}\nClasses: ${elementClasses.join(', ')}\nIRI: ${elementLabel}\nDescription: ${elementDescription}`);
-
-            // Log the details to the console
-            console.log('Element Type:', elementType);
-            console.log('Element Classes:', elementClasses);
-            console.log('IRI:', elementLabel);
-            console.log('Description:', elementDescription);
+            alert(`IDShort: ${elementLabel}\nID: ${elementID}\nType: ${elementType}\nClasses: ${elementClasses.join(', ')}\nIRIType: ${elementIRIType}\nDescription: ${elementDescription}`);
+            const labelContainerId = 'labelContainer';
+            try {
+                getLabelFromResource(element.id(), store)
+            } catch { console.log("Error when capturing label") }
         });
 
 
