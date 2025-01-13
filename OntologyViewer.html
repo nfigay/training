@@ -34,8 +34,8 @@
         #infoPanel {
             border: 1px solid black;
             padding: 10px;
-            width: 300px;
-            height: 300px;
+            width: 20%;
+            height: 80%;
             position: absolute;
             top: 50px;
             right: 20px;
@@ -57,14 +57,12 @@
     <div id="cy"></div>
     <div id="infoPanel">
         <h3>Informations</h3>
-        <p><strong>ID:</strong> <span id="nodeId">N/A</span></p>
-        <p><strong>Label:</strong> <span id="nodeLabel">N/A</span></p>
-        <p><strong>IRI:</strong> <span id="nodeIRI">N/A</span></p>
-        <p><strong>Statement:</strong> <span id="nodeStatement">N/A</span></p>
-        <p><strong>Source:</strong> <span id="nodeSource">N/A</span></p>
-        <p><strong>Target:</strong> <span id="nodeTarget">N/A</span></p>
-        <p><strong>Node Type:</strong> <span id="nodeType">N/A</span></p>
-        <p><strong>Super Types:</strong> <span id="nodeSuperTypes">N/A</span></p>
+        <p><strong>ID:</strong> <span id="Id">N/A</span><br/>
+        <strong>Label:</strong> <span id="Label">N/A</span></p>
+        <p><strong>IRI:</strong> <span id="IRI">N/A</span><br/>
+        <strong>Statement:</strong> <span id="Statement">N/A</span><br/>
+        <strong>Type:</strong> <span id="Type">N/A</span><br>
+
 
     </div>
 
@@ -344,9 +342,9 @@
 
             const uniqueNodeIds = new Set();
             const classes = store.each(null, rdfType, owlClass);
-            createNode("OWLClass", "OWLClasses", "class", owlClass.value, "");
-            createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, "");
-            createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, "");
+            createNode("OWLClass", "OWLClasses", "metaclass", owlClass.value, "");
+            createNode("OWLProperty", "OWLProperties", "metaclass", objectProperty.value, "");
+            createNode("OWLIndividual", "OWLIndividuals", "metaclass", namedIndividual.value, "");
 
             const allProperties = store.statementsMatching(null, null, null); // Toutes les relations de triplets
 
@@ -375,7 +373,7 @@
                     const label = getLabelFromIRI(cls.value);
                     const nodeId = cls.value;
                     uniqueNodeIds.add(nodeId);
-                    createNode(nodeId, label, 'class', owlClass.value, 'OWLClass');
+                    createNode(nodeId, label, 'class', cls.value, 'OWLClass');
 
 
                 });
@@ -399,9 +397,9 @@
                     const propertyId = propertyIRI;
 
                     uniqueNodeIds.add(propertyId);
-                    createNode(propertyId, label, 'property', objectProperty.value, 'OWLProperty');
-                    createNode(propertyId + "_domain", 'domain', 'oprd', objectProperty.value, 'OWLProperty');
-                    createNode(propertyId + "_range", 'range', 'oprd', objectProperty.value, 'OWLProperty');
+                    createNode(propertyId, label, 'property', prop.value, 'OWLProperty');
+                    createNode(propertyId + "_domain", 'domain', 'oprd', prop.value, 'OWLProperty');
+                    createNode(propertyId + "_range", 'range', 'oprd', prop.value, 'OWLProperty');
                     createEdge(propertyId + '_toRange', "", propertyId, propertyId + "_range", "range");
                     createEdge(propertyId + '_toDomain', "", propertyId, propertyId + "_domain", "domain");
                 })
@@ -425,7 +423,7 @@
                     const nodeId = individual.value;
                     if (!uniqueNodeIds.has(nodeId)) {
                         uniqueNodeIds.add(nodeId);
-                        createNode(nodeId, label, 'individual', namedIndividual.value, 'OWLIndividual');
+                        createNode(nodeId, label, 'individual', individual.value, 'OWLIndividual');
                     }
                 });
             }
@@ -445,7 +443,7 @@
 
                     const subjectId = subsumption.subject.value;
                     const objectId = subsumption.object.value; // Subclass target is the object
-                    const edgeId = `${subjectId}-subclassof->${objectId}`;
+                    const edgeId = `${subjectId} -subclassof-> ${objectId}`;
                     if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
                         createEdge(edgeId, "", subjectId, objectId, 'subClass');
                     }
@@ -467,7 +465,7 @@
 
                     const subjectId = subsumption.subject.value
                     const objectId = subsumption.object.value;
-                    const edgeId = `${subjectId}-subclassof-${objectId}`;
+                    const edgeId = `${subjectId}-subpropertyof-${objectId}`;
                     createEdge(edgeId, "", subjectId, objectId, 'subProperty');
 
                 });
@@ -905,7 +903,7 @@
             // Récupérer les informations détaillées de l'élément
             const id = target.data('id');
             const label = target.data('label');
-            const iri = target.data('iri');
+            const iri = target.data('IRI');
             const type = target.data('type');
             const superTypes = [];
             const sourceTarget = target.data('source') ? `Source: ${target.data('source')}, Target: ${target.data('target')}` : 'N/A';
@@ -915,14 +913,11 @@
 
 
             // Mettre à jour le panneau d'informations
-            document.getElementById('nodeId').textContent = id;
-            document.getElementById('nodeLabel').textContent = label;
-            document.getElementById('nodeIRI').textContent = iri;
-            document.getElementById('nodeType').textContent = type;
-            document.getElementById('nodeSuperTypes').textContent = superTypes.join(', ') || 'N/A';
-            document.getElementById('nodeTarget').textContent = Target;
-            document.getElementById('nodeSource').textContent = Source;
-            document.getElementById('nodeStatement').textContent = Statement;
+            document.getElementById('Id').textContent = id;
+            document.getElementById('Label').textContent = label;
+            document.getElementById('IRI').textContent = iri;
+            document.getElementById('Type').textContent = type;
+            document.getElementById('Statement').textContent = Statement;
         });
     </script>
 </body>
