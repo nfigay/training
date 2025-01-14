@@ -57,11 +57,12 @@
     <div id="cy"></div>
     <div id="infoPanel">
         <h3>Informations</h3>
-        <p><strong>ID:</strong> <span id="Id">N/A</span><br/>
-        <strong>Label:</strong> <span id="Label">N/A</span></p>
-        <p><strong>IRI:</strong> <span id="IRI">N/A</span><br/>
-        <strong>Statement:</strong> <span id="Statement">N/A</span><br/>
-        <strong>Type:</strong> <span id="Type">N/A</span><br>
+        <p><strong>ID:</strong> <span id="Id">N/A</span><br />
+            <strong>Label:</strong> <span id="Label">N/A</span>
+        </p>
+        <p><strong>IRI:</strong> <span id="IRI">N/A</span><br />
+            <strong>Statement:</strong> <span id="Statement">N/A</span><br />
+            <strong>Type:</strong> <span id="Type">N/A</span><br>
 
 
     </div>
@@ -257,61 +258,61 @@
 
 
 
-        
+
         // Function to create property chain graph from RDF data
-function createPropertyChainGraph(store) {
-    const graphElements = [];
+        function createPropertyChainGraph(store) {
+            const graphElements = [];
 
-    // 1. Get the named property (property chain)
-    const namedProperty = store.any($rdf.sym(':isUncleOf'), $rdf.sym('rdf:type'), $rdf.sym('owl:ObjectProperty'));
-    
-    // 2. Create the central node for the property chain (e.g., isUncleOf)
-    const parentNodeId = generateCytoscapeId(':isUncleOf');
-    graphElements.push({ data: { id: parentNodeId, label: 'isUncleOf' } });
+            // 1. Get the named property (property chain)
+            const namedProperty = store.any($rdf.sym(':isUncleOf'), $rdf.sym('rdf:type'), $rdf.sym('owl:ObjectProperty'));
 
-    // 3. Identify the property chain
-    const chain = store.statementsMatching($rdf.sym(':isUncleOf'), $rdf.sym('owl:propertyChainAxiom'));
-    const chainProperties = chain.length > 0 ? chain[0].object.elements.map(e => e.value) : [];
-    
-    // 4. Loop through the properties in the chain and create edges or use existing nodes
-    chainProperties.forEach(property => {
-        const propertyId = generateCytoscapeId(property);
-        
-        // Check if the property already exists in the graph
-        let propertyNode = graphElements.find(node => node.data.id === propertyId);
+            // 2. Create the central node for the property chain (e.g., isUncleOf)
+            const parentNodeId = generateCytoscapeId(':isUncleOf');
+            graphElements.push({ data: { id: parentNodeId, label: 'isUncleOf' } });
 
-        if (!propertyNode) {
-            // If the property node doesn't exist, create it
-            propertyNode = {
-                data: {
-                    id: propertyId,
-                    label: property
+            // 3. Identify the property chain
+            const chain = store.statementsMatching($rdf.sym(':isUncleOf'), $rdf.sym('owl:propertyChainAxiom'));
+            const chainProperties = chain.length > 0 ? chain[0].object.elements.map(e => e.value) : [];
+
+            // 4. Loop through the properties in the chain and create edges or use existing nodes
+            chainProperties.forEach(property => {
+                const propertyId = generateCytoscapeId(property);
+
+                // Check if the property already exists in the graph
+                let propertyNode = graphElements.find(node => node.data.id === propertyId);
+
+                if (!propertyNode) {
+                    // If the property node doesn't exist, create it
+                    propertyNode = {
+                        data: {
+                            id: propertyId,
+                            label: property
+                        }
+                    };
+                    graphElements.push(propertyNode);
                 }
-            };
-            graphElements.push(propertyNode);
-        }
 
-        // 5. Create edges for RDF triples that match the chain properties
-        const subjectNodes = store.each(null, $rdf.sym(property), null);
-        subjectNodes.forEach(subject => {
-            const subjectId = generateCytoscapeId(subject.value);
-            const objectNodes = store.each(subject, $rdf.sym(property), null);
-            objectNodes.forEach(object => {
-                const objectId = generateCytoscapeId(object.value);
-                graphElements.push({
-                    data: {
-                        id: `${subjectId}_${property}_${objectId}`,
-                        source: subjectId,
-                        target: objectId,
-                        label: property
-                    }
+                // 5. Create edges for RDF triples that match the chain properties
+                const subjectNodes = store.each(null, $rdf.sym(property), null);
+                subjectNodes.forEach(subject => {
+                    const subjectId = generateCytoscapeId(subject.value);
+                    const objectNodes = store.each(subject, $rdf.sym(property), null);
+                    objectNodes.forEach(object => {
+                        const objectId = generateCytoscapeId(object.value);
+                        graphElements.push({
+                            data: {
+                                id: `${subjectId}_${property}_${objectId}`,
+                                source: subjectId,
+                                target: objectId,
+                                label: property
+                            }
+                        });
+                    });
                 });
             });
-        });
-    });
 
-    return graphElements;
-}
+            return graphElements;
+        }
         // Fonction de validation OWL
         function validateOWL(store) {
             const nodes = [];
@@ -403,7 +404,7 @@ function createPropertyChainGraph(store) {
             createNode("OWLClass", "OWLClasses", "class", owlClass.value, "");
             createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, "");
             createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, "");
-            createNode("http://www.w3.org/2002/07/owl#topObjectProperty", "topObjectProperty","property", objectProperty.value,"OWLProperty");
+            createNode("http://www.w3.org/2002/07/owl#topObjectProperty", "topObjectProperty", "property", objectProperty.value, "OWLProperty");
 
             const allProperties = store.statementsMatching(null, null, null); // Toutes les relations de triplets
 
@@ -459,8 +460,8 @@ function createPropertyChainGraph(store) {
                     createNode(propertyId, label, 'property', prop.value, 'OWLProperty');
                     createNode(propertyId + "_domain", 'domain', 'oprd', prop.value, propertyId);
                     createNode(propertyId + "_range", 'range', 'oprd', prop.value, propertyId);
-                 //   createEdge(propertyId + '_toRange', "", propertyId, propertyId + "_range", "range");
-                 //   createEdge(propertyId + '_toDomain', "", propertyId, propertyId + "_domain", "domain");
+                    //   createEdge(propertyId + '_toRange', "", propertyId, propertyId + "_range", "range");
+                    //   createEdge(propertyId + '_toDomain', "", propertyId, propertyId + "_domain", "domain");
                 })
 
             }
@@ -969,7 +970,6 @@ function createPropertyChainGraph(store) {
             const Target = target.data('target') ? `${target.data('target')}` : 'N/A';
             const Source = target.data('source') ? `${target.data('source')}` : 'N/A';
             const Statement = target.data('statement') ? `${target.data('statement')}` : 'N/A';
-
 
             // Mettre à jour le panneau d'informations
             document.getElementById('Id').textContent = id;
