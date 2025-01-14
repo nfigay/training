@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL Validation</title>
+    <script src="https://unpkg.com/rdflib/dist/rdflib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pure-uuid@latest/uuid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="lib/cytoscape-expand-collapse.js"></script>
+</head>
+
+<body>
+    <div id="graph-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        // Example RDF (insert your actual RDF here)
+        const rdfXml = `<?xml version="1.0" encoding="UTF-8"?>
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                 xmlns:owl="http://www.w3.org/2002/07/owl#"
+                 xmlns:ex="http://example.org/ontology#">
+            
+                <owl:ObjectProperty rdf:about="http://example.org/ontology#userCitingDocumentInKnowledgeDomain">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
+            <rdf:Description rdf:about="http://example.org/ontology#hasUser"/>
+            <rdf:Description rdf:about="http://example.org/ontology#isCitedBy"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
+            <rdf:Description rdf:about="http://example.org/ontology#isRelatedTo"/>
+            <rdf:Description rdf:about="http://example.org/ontology#isCitedBy"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+        </rdf:RDF>`;
+
+        // Create an RDF store
+        const store = $rdf.graph();
+
+        // Parse the RDF with rdflib.js (using parse() without XMLParser)
+        const content = $rdf.parse(rdfXml, store, 'http://example.org/ontology', 'application/rdf+xml');
+
+        // Function to extract property chains from the store
+        function extractPropertyChains(store) {
+            const propertyChains = [];
+           
+
+            // Find all owl:propertyChainAxiom axioms
+            store.statementsMatching(undefined, $rdf.sym("http://www.w3.org/2002/07/owl#propertyChainAxiom")).forEach(statement => {
+                // If the statement contains a propertyChainAxiom
+                if (statement.object && statement.object.elements && Array.isArray(statement.object.elements)) {
+                    // Extract the elements of the property chain
+                    const chain = statement.object.elements.map(el => el.value);
+                    propertyChains.push({
+                        chain: chain,
+                        property: statement.subject.value // Property associated with the chain
+                    });
+                }
+            });
+
+            return propertyChains;
+        }
+
+        // Extract property chains from RDF
+        const propertyChains = extractPropertyChains(store);
+
+        // Function to generate a graph with Cytoscape.js from the property chains
+        function generateGraphFromPropertyChains(chains) {
+            const elements = [];
+            const propertyMap = new Map();
+            chains.forEach((chain, chainIndex) => {
+                // Add a node for the property chain itself
+                const chainNodeId = `chain-${chainIndex}`;
+                elements.push({
+                    data: { id: chainNodeId, label: `PropertyChain ${chainIndex + 1}`, type: 'chain' }
+                });
+
+                let previousNodeId = null;
+
+                // Add nodes for each property in the chain and its elements
+                chain.chain.forEach((property, propertyIndex) => {
+                    const propertyNodeId = `property-${propertyIndex}-${chainIndex}`;
+                    const blankNodeId = `blank-${propertyIndex}-${chainIndex}`;
+                    console.log(`Property value:${property}`)
+
+                    // Add the property node
+                    elements.push({
+                        data: { id: propertyNodeId, label: property.split('/').pop(), type: 'property' }
+                    });
+
+                    // Add a blank node for the element of the chain
+                    elements.push({
+                        data: { id: blankNodeId, label: `${propertyIndex + 1}`, parent: chainNodeId, type: 'chainMember' }
+                    });
+
+                    // If it's not the first element, create an edge between the previous and the next
+                    if (previousNodeId) {
+                        elements.push({
+                            data: {
+                                source: previousNodeId,
+                                target: blankNodeId,
+                                label: `Next`
+                            }
+                        });
+                    }
+
+                    // Create an edge between the "Blank" node and the property node
+                    elements.push({
+                        data: {
+                            source: blankNodeId,
+                            target: propertyNodeId,
+                            label: `Invokes`
+                        }
+                    });
+
+                    // Update previousNodeId
+                    previousNodeId = blankNodeId;
+                });
+
+                // Create an edge between the chain node and the first property in the chain
+                elements.push({
+                    data: {
+                        source: chainNodeId,
+                        target: `property-0-${chainIndex}`,
+                        label: `Starts`
+                    }
+                });
+            });
+
+            // Initialize Cytoscape with the elements
+            const cy = cytoscape({
+                container: document.getElementById('graph-container'),
+                elements: elements,
+                ready: function () {
+                    this.layout({
+                        name: 'fcose',
+                        randomize: true,
+                        animate: false,
+                        fit: true, // Fit to viewport
+                        padding: 10, // Padding around the layout
+                        nodeDimensionsIncludeLabels: true, // Avoid overlap due to labels
+                        randomize: true, // Use pre-defined positions as the initial state
+
+                        // Compactness and overlap minimization
+                        idealEdgeLength: 50, // Ideal length of edges
+                        edgeElasticity: 0.2, // Elasticity of edges
+                        gravity: 1, // Overall gravity force
+                        gravityRange: 1.5, // Range for gravity
+                        gravityCompound: 2, // Gravity for compound/nested nodes
+                        gravityRangeCompound: 1.5, // Range for compound gravity
+                        nodeSeparation: 20, // Minimum separation between nodes
+                        packingMode: 'all', // Compactly pack nodes in compound nodes
+
+                        // Fine-tuning energy model
+                        numIter: 2500, // Number of iterations
+                        tile: true, // Arrange disconnected components in a tiled manner
+                        tilingPaddingVertical: 20, // Vertical padding for tiled components
+                        tilingPaddingHorizontal: 20, // Horizontal padding for tiled components
+                        step: 'all', // Run all steps of the algorithm
+                    }).run();
+                    var api = this.expandCollapse({
+                        layoutBy: {
+                            name: "fcose",
+                            animate: true,
+                            randomize: true,
+                            fit: true, // Fit to viewport
+                            padding: 10, // Padding around the layout
+                            nodeDimensionsIncludeLabels: true, // Avoid overlap due to labels
+
+                            // Compactness and overlap minimization
+                            idealEdgeLength: 50, // Ideal length of edges
+                            edgeElasticity: 0.2, // Elasticity of edges
+                            gravity: 1, // Overall gravity force
+                            gravityRange: 1.5, // Range for gravity
+                            gravityCompound: 2, // Gravity for compound/nested nodes
+                            gravityRangeCompound: 1.5, // Range for compound gravity
+                            nodeSeparation: 20, // Minimum separation between nodes
+                            packingMode: 'all', // Compactly pack nodes in compound nodes
+
+                            // Fine-tuning energy model
+                            numIter: 2500, // Number of iterations
+                            tile: true, // Arrange disconnected components in a tiled manner
+                            tilingPaddingVertical: 20, // Vertical padding for tiled components
+                            tilingPaddingHorizontal: 20, // Horizontal padding for tiled components
+                            step: 'all', // Run all steps of the algorithm
+                        },
+                        fisheye: true,
+                        animate: true,
+                        undoable: false
+                    });
+                    api.collapseAll();
+                },
+                style: [
+                    // Edge styling
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'line-color': '#9e9e9e',
+                            'target-arrow-color': '#9e9e9e',
+                            'target-arrow-shape': 'triangle',
+                            'edge-distances': 'intersection',
+                            'curve-style': 'bezier',
+                            'haystack-radius': 0.5,
+                            'source-distance-from-node': 1,
+                            'target-distance-from-node': 1
+                        }
+                    },
+                    // Style for property nodes (blue rectangle)
+                    {
+                        selector: ':parent',
+                        style: {
+                            'background-opacity': 0.333,
+                            'background-fill': 'solid',
+                        }
+                    },
+                    // Collapsed node styling
+                    {
+                        selector: "node.cy-expand-collapse-collapsed-node",
+                        style: {
+                            'background-fill': 'solid',
+                            "shape": "rectangle"
+                        }
+                    },
+                    {
+                        selector: 'node[type="property"]',
+                        style: {
+                            'background-color': 'blue',
+                            'shape': 'rectangle',
+                            'label': 'data(label)',
+                            'text-valign': 'top',
+                            'text-halign': 'center',
+                            'width': 80,
+                            'height': 40
+                        }
+                    },
+                    // Style for chain nodes (white rectangle)
+                    {
+                        selector: 'node[type="chain"]',
+                        style: {
+                            'background-color': 'green',
+                            'shape': 'rectangle',
+                            'label': 'data(label)',
+                            'text-valign': 'top',
+                            'text-halign': 'center',
+                            'width': 80,
+                            'height': 40,
+                            'background-fill': 'solid'
+                        }
+                    },
+                    // Style for chain member nodes (yellow ellipse)
+                    {
+                        selector: 'node[type="chainMember"]',
+                        style: {
+                            'background-color': 'yellow',
+                            'shape': 'rectangle',
+                            'label': 'data(label)',
+                            'text-valign': 'top',
+                            'text-halign': 'center',
+                            'width': 60,
+                            'height': 60
+                        }
+                    },
+
+                ],
+                layout: {
+                    name: 'fcose',
+                    rows: 3,
+                    edgeToNodeDistance: 10, // Adjust distance as needed
+                    compoundSizing: 'include-padding',
+                    padding: 10
+                }
+            });
+
+            return cy;
+        }
+
+        // Generate the graph from the extracted property chains
+        generateGraphFromPropertyChains(propertyChains);
+    </script>
+</body>
+
+</html>
