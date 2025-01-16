@@ -7,6 +7,7 @@
     <title>OWL Validation</title>
     <script src="https://unpkg.com/rdflib/dist/rdflib.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pure-uuid@latest/uuid.min.js"></script>
+    <script src="https://unpkg.com/ulid@2.3.0/dist/index.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape/dist/cytoscape.min.js"></script>
     <script src="https://unpkg.com/layout-base/layout-base.js"></script>
     <script src="https://unpkg.com/cose-base/cose-base.js"></script>
@@ -72,6 +73,9 @@
         <label for="classesSelect">Classes OWL trouvées :</label>
         <select id="classesSelect" size="10"></select>
 
+        <label for="classEquivalenceSelect">Classes d'équivalence entre propriétés :</label>
+        <select id="classEquivalenceSelect" size="10"></select>
+
         <label for="objectPropertiesSelect">Propriétés objets OWL trouvées :</label>
         <select id="objectPropertiesSelect" size="10"></select>
 
@@ -83,6 +87,14 @@
 
         <label for="propertySubsumptionSelect">Relations de subsomption entre propriétés :</label>
         <select id="propertySubsumptionSelect" size="10"></select>
+
+        <label for="propertyEquivalenceSelect">Relations d'équivalence entre propriétés :</label>
+        <select id="propertyEquivalenceSelect" size="10"></select>
+
+
+        <label for="propertyInverseSelect">Relations inverse entre propriétés :</label>
+        <select id="propertyInverseSelect" size="10"></select>
+
 
         <label for="individualRelationsSelect">Relations entre individus :</label>
         <select id="individualRelationsSelect" size="10"></select>
@@ -98,6 +110,117 @@
     <script>
 
         let store; // Déclare le store comme variable globale
+        // Stocke les groupes d'équivalence avec leurs UUID
+        var nodes = [];
+        var edges = [];
+        var equivalenceGroups = new Map();
+
+
+        // Create Node Function
+        function createNode(id, label, type, IRI, parent = null) {
+
+            // Prepare the node data
+            const nodeData = {
+                id,
+                label,
+                type,
+                IRI
+            };
+
+            // Add the parent only if it is defined
+            if (parent) {
+                nodeData.parent = parent;
+            }
+
+            // Push the node data to the array
+            nodes.push({
+                group: 'nodes',
+                data: nodeData,
+                classes: type
+            });
+            //console.log(nodeData)
+        }
+
+
+
+        function createEdge(id, label, source, target, type) {
+            // Retrieve the style for the given type
+
+
+            // Prepare the edge data
+            const edgeData = {
+                id,
+                label,
+                source,
+                target
+            };
+
+            // Push the edge data to the edges array
+            edges.push({
+                group: 'edges',
+                data: edgeData,
+                classes: type // Optional: Keep the class for additional styling
+            });
+        }
+
+        /**
+          * Met à jour ou crée un nœud avec l'attribut 'parent'.
+          *
+          * @param {string} iri - Identifiant unique de l'IRI.
+          * @param {string} groupID - Identifiant du groupe d'équivalence.
+          */
+        function updateOrCreateNode(iri, groupID, type) {
+            // Recherche un nœud existant avec cet IRI
+            const existingNode = nodes.find(node => node.data.id === iri);
+            const existingGroupIDNode = nodes.find(node => node.data.id === groupID);
+            //   alert(JSON.stringify(existingNode))
+
+            if (existingNode) {
+                // Met à jour l'attribut 'parent' du nœud existant
+                existingNode.data.parent = groupID;
+            } else {
+                // Crée un nouveau nœud si aucun nœud existant n'est trouvé
+                if (type === "OWLProperty") {
+                    createNode(iri, node.data.label, 'property', iri, groupID);
+                }
+                else { createNode(iri, node.data.label, 'class', iri, groupID); }
+            }
+            if (!existingGroupIDNode) {
+                // Crée un nouveau nœud si aucun nœud existant n'est trouvé
+                if (type === "OWLProperty") {
+                    createNode(groupID, "≡", 'property', "", type);
+                } else {
+                    createNode(groupID, "≡", 'class', "", type);
+                }
+            }
+        }
+
+
+
+        // Fonction pour traiter une équivalence de propriété
+        function processEquivalence(iriA, iriB, type) {
+            console.log(iriA + " equivalent to" + iriB)
+            let groupID;
+            // Vérifie si un groupe d'équivalence existe déjà pour l'un des IRI
+            for (let [id, set] of equivalenceGroups) {
+                if (set.has(iriA) || set.has(iriB)) {
+                    groupID = id;
+                    set.add(iriA);
+                    set.add(iriB);
+                    break;
+                }
+            }
+            // Si aucune correspondance n'a été trouvée, crée un nouveau groupe d'équivalence
+            if (!groupID) {
+                groupID = ULID.ulid();
+                equivalenceGroups.set(groupID, new Set([iriA, iriB]));
+            }
+            // Mise à jour ou création des nœuds
+            updateOrCreateNode(iriA, groupID, type);
+            updateOrCreateNode(iriB, groupID, type);
+
+            return groupID;
+        }
 
         // Fonction pour détecter le format du fichier RDF
         function detectFormat(data) {
@@ -131,6 +254,7 @@
             // Si aucun / ou # significatif n'est trouvé, retourner l'IRI complet
             return iri;
         }
+
         function displayLabelsOnDoubleClick(resource, store, containerId) {
             // Add event listener for double click
             document.getElementById(containerId).addEventListener('dblclick', function () {
@@ -180,16 +304,21 @@
             });
         }
 
-
         const rdfType = $rdf.sym('http://www.w3.org/1999/02/22-rdf-syntax-ns#type');
         const namedIndividual = $rdf.sym('http://www.w3.org/2002/07/owl#NamedIndividual');
         const objectProperty = $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty');
         const rdfsSubClassOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subClassOf');
         const rdfsSubPropertyOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subPropertyOf');
+        const owlEquivalentProperty = $rdf.sym('http://www.w3.org/2002/07/owl#equivalentProperty');
+        const owlEquivalentClass = $rdf.sym('http://www.w3.org/2002/07/owl#equivalentClass');
+        const owlInverseProperty = $rdf.sym('http://www.w3.org/2002/07/owl#inverseOf');
         const rdfsDomain = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#domain");
         const rdfsRange = $rdf.sym("http://www.w3.org/2000/01/rdf-schema#range");
         const owlClass = $rdf.sym('http://www.w3.org/2002/07/owl#Class');
         const label = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#label')
+        const propertyChainAxiom = $rdf.sym("http://www.w3.org/2002/07/owl#propertyChainAxiom")
+        const owlOntology = $rdf.sym('http://www.w3.org/2002/07/owl#Ontology');
+        const owlImports = $rdf.sym('http://www.w3.org/2002/07/owl#imports');
 
         // Function to extract any label from a resource (no language filter)
         function getLabelFromResource(resourceURI, store) {
@@ -256,9 +385,6 @@
             }
         }
 
-
-
-
         // Function to create property chain graph from RDF data
         function createPropertyChainGraph(store) {
             const graphElements = [];
@@ -313,98 +439,35 @@
 
             return graphElements;
         }
+
         // Fonction de validation OWL
         function validateOWL(store) {
-            const nodes = [];
-            const edges = [];
-
-            // Create Node Function
-            function createNode(id, label, type, IRI, parent = null) {
-
-                // Prepare the node data
-                const nodeData = {
-                    id,
-                    label,
-                    type,
-                    IRI
-                };
-
-                // Add the parent only if it is defined
-                if (parent) {
-                    nodeData.parent = parent;
-                }
-
-                // Push the node data to the array
-                nodes.push({
-                    group: 'nodes',
-                    data: nodeData,
-                    classes: type
-                });
-                console.log(nodeData)
-            }
-            const edgeTypeStyles = {
-                relation: {
-                    lineColor: 'black',
-                    lineStyle: 'solid',
-                    sourceArrowShape: 'triangle',
-                    targetArrowShape: 'triangle',
-                    arrowScale: 1.5,
-                },
-                domainE: {
-                    lineColor: 'blue',
-                    lineStyle: 'solid',
-                    sourceArrowShape: 'none',
-                    targetArrowShape: 'vee',
-                    arrowScale: 1.2,
-                },
-                rangeE: {
-                    lineColor: 'blue',
-                    lineStyle: 'solid',
-                    sourceArrowShape: 'none',
-                    targetArrowShape: 'vee',
-                    arrowScale: 1.2,
-                },
-                subProperty: {
-                    lineColor: 'black',
-                    lineStyle: 'solid',
-                    sourceArrowShape: 'none',
-                    targetArrowShape: 'triangle',
-                    arrowScale: 1.2,
-                },
-                // Add other edge types as needed
-            };
-
-            function createEdge(id, label, source, target, type) {
-                // Retrieve the style for the given type
-                const style = edgeTypeStyles[type] || {};
-
-                // Prepare the edge data
-                const edgeData = {
-                    id,
-                    label,
-                    source,
-                    target,
-                    lineColor: 'red', // Default to gray if not defined
-                    lineStyle: 'dashed', // Default to solid if not defined
-                    sourceArrowShape: style.sourceArrowShape || 'vee', // Default to none
-                    targetArrowShape: style.targetArrowShape || 'vee', // Default to none
-                    arrowScale: style.arrowScale || 1, // Default to scale of 1
-                };
-
-                // Push the edge data to the edges array
-                edges.push({
-                    group: 'edges',
-                    data: edgeData,
-                    classes: type // Optional: Keep the class for additional styling
-                });
-            }
-
+            nodes = [];
+            edges = [];
             const uniqueNodeIds = new Set();
+
+            // Query for the ontology IRI searching for the firt occurence of owlOntoloyg with store.any
+            const ontologyIRI = store.any(undefined, rdfType, owlOntology);
+            // Log the extracted ontology IRI
+            createNode(ontologyIRI.value, getLabelFromIRI(ontologyIRI.value), "ontology", ontologyIRI.value, "");
+
+            // Imports          
+            const imports = store.each(ontologyIRI, owlImports);
+            if (imports.length > 0) {
+                imports.forEach((importedOntology) => {
+                    console.log(`Imported Ontology: ${importedOntology.value}`);
+                    createNode(importedOntology.value, importedOntology.value, "ontology", importedOntology.value, "");
+                    createEdge(ULID.ulid(), "import", ontologyIRI.value, importedOntology.value, "import")
+                });
+            } else {
+                console.log('No imports found');
+            }
+
             const classes = store.each(null, rdfType, owlClass);
-            createNode("OWLClass", "OWLClasses", "class", owlClass.value, "");
-            createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, "");
-            createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, "");
-            createNode("http://www.w3.org/2002/07/owl#topObjectProperty", "topObjectProperty", "property", objectProperty.value, "OWLProperty");
+            createNode("OWLClass", "OWLClasses", "class", owlClass.value, ontologyIRI.value);
+            createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, ontologyIRI.value);
+            createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, ontologyIRI.value);
+            // createNode("http://www.w3.org/2002/07/owl#topObjectProperty", "topObjectProperty", "property", objectProperty.value, "OWLProperty");
 
             const allProperties = store.statementsMatching(null, null, null); // Toutes les relations de triplets
 
@@ -414,12 +477,15 @@
             document.getElementById('namedIndividualsSelect').innerHTML = '';
             document.getElementById('classSubsumptionSelect').innerHTML = '';
             document.getElementById('propertySubsumptionSelect').innerHTML = '';
+            document.getElementById('propertyEquivalenceSelect').innerHTML = '';
+            document.getElementById('classEquivalenceSelect').innerHTML = '';
             document.getElementById('individualRelationsSelect').innerHTML = '';
             document.getElementById('domainsSelect').innerHTML = '';
             document.getElementById('rangesSelect').innerHTML = '';
 
-            // Vérifier qu'au moins une classe OWL est définie
+            // Classes OWL
             const classesSelect = document.getElementById('classesSelect');
+            // Vérifier qu'au moins une classe OWL est définie            
             if (classes.length === 0) {
                 const option = document.createElement('option');
                 option.textContent = "Aucune classe OWL trouvée !";
@@ -435,13 +501,13 @@
                     uniqueNodeIds.add(nodeId);
                     createNode(nodeId, label, 'class', cls.value, 'OWLClass');
 
-
                 });
             }
 
-            // Vérifier qu'au moins une propriété objet est définie
+            // ObjectProperties OWL
             const objectProperties = store.each(null, rdfType, $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty'));
             const objectPropertiesSelect = document.getElementById('objectPropertiesSelect');
+            // Vérifier qu'au moins une propriété objet (ObjectProperty) est définie
             if (objectProperties.length === 0) {
                 const option = document.createElement('option');
                 option.textContent = "Aucune propriété objet OWL trouvée !";
@@ -466,12 +532,13 @@
 
             }
 
-            // Vérifier qu'au moins un individu nommé OWL est défini
+            //NamedIndividuals OWL
             const namedIndividuals = store.each(null, rdfType, namedIndividual);
             const namedIndividualsSelect = document.getElementById('namedIndividualsSelect');
+            // Vérifier qu'au moins un individu nommé (NamedIndividual) est défini
             if (namedIndividuals.length === 0) {
                 const option = document.createElement('option');
-                option.textContent = "Aucun individu nommé OWL trouvé !";
+                option.textContent = "Aucun individu nommé trouvé !";
                 namedIndividualsSelect.appendChild(option);
             } else {
                 namedIndividuals.forEach(individual => {
@@ -488,49 +555,108 @@
                 });
             }
 
-            // Relations de subsomption entre classes
-            const classSubsumption = store.statementsMatching(null, rdfsSubClassOf, null);
-            const classSubsumptionSelect = document.getElementById('classSubsumptionSelect');
-            if (classSubsumption.length === 0) {
-                const option = document.createElement('option');
-                option.textContent = "Aucune relation de subsomption entre classes trouvée !";
-                classSubsumptionSelect.appendChild(option);
-            } else {
-                classSubsumption.forEach(subsumption => {
-                    const option = document.createElement('option');
-                    option.textContent = `${subsumption.subject.value} ⊆ ${subsumption.object.value}`;
-                    classSubsumptionSelect.appendChild(option);
+            // Sous classes
+            var classSubsumption
+            classes.forEach(classe => {
 
-                    const subjectId = subsumption.subject.value;
-                    const objectId = subsumption.object.value; // Subclass target is the object
-                    const edgeId = `${subjectId} -subclassof-> ${objectId}`;
-                    if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
-                        createEdge(edgeId, "", subjectId, objectId, 'subClass');
-                    }
+                //const classSubsumption = store.statementsMatching(null, rdfsSubClassOf, null);
+                const classSubsumptionSelect = document.getElementById('classSubsumptionSelect');
+                // Recherchez les définitions de sous classes spécifiques à cette classe
+                const subclasses = store.statementsMatching(classe, rdfsSubClassOf, null);
+                if (subclasses.length === 0) {
+                } else {
+                    subclasses.forEach(subclass => {
+                        const option = document.createElement('option');
+                        option.textContent = `${classe.value} ⊆ ${subclass.object.value}`;
+                        classSubsumptionSelect.appendChild(option);
+
+                        const subjectId = classe.value;
+                        const objectId = subclass.object.value; // Subclass target is the object
+                        const edgeId = `${subjectId} -subclassof-> ${objectId}`;
+                        if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
+                            createEdge(edgeId, "", subjectId, objectId, 'subClass');
+                        }
+                    });
+                }
+                // Equivalences de classes
+                const equivalentClasses = store.statementsMatching(classe, owlEquivalentClass, null);
+
+                // Traitez les propriétés équivalentes trouvées
+                equivalentClasses.forEach(equivalentclass => {
+                    const option = document.createElement('option');
+                    option.textContent = `${classe.value} ≡ ${equivalentclass.object.value}`;
+                    classEquivalenceSelect.appendChild(option);
+
+                    const subjectId = classe.value
+                    const objectId = equivalentclass.object.value;
+                    const edgeId = `${subjectId}-equivalentclass-${objectId}`;
+                    createEdge(edgeId, "", subjectId, objectId, 'equivalentClass');
+                    processEquivalence(subjectId, objectId, "OWLClass")
                 });
-            }
 
-            // Relations de subsomption entre propriétés
-            const propertySubsumption = store.statementsMatching(null, rdfsSubPropertyOf, null);
-            const propertySubsumptionSelect = document.getElementById('propertySubsumptionSelect');
-            if (propertySubsumption.length === 0) {
-                const option = document.createElement('option');
-                option.textContent = "Aucune relation de subsomption entre propriétés trouvée !";
-                propertySubsumptionSelect.appendChild(option);
-            } else {
-                propertySubsumption.forEach(subsumption => {
+
+            });
+
+            const propertyEquivalenceSelect = document.getElementById('propertyEquivalenceSelect');
+            objectProperties.forEach(property => {
+
+                // Equivalences de propriété
+                const equivalentProperties = store.statementsMatching(property, owlEquivalentProperty, null);
+
+                // Traitez les propriétés équivalentes trouvées
+                equivalentProperties.forEach(equivalentproperty => {
+                    // Skip owl:topObjectProperty
                     const option = document.createElement('option');
-                    option.textContent = `${subsumption.subject.value} ⊆ ${subsumption.object.value}`;
+                    option.textContent = `${property.value} ≡ ${equivalentproperty.object.value}`;
+                    propertyEquivalenceSelect.appendChild(option);
+
+                    const subjectId = property.value
+                    const objectId = equivalentproperty.object.value;
+                    const edgeId = `${subjectId}-equivalentproperty-${objectId}`;
+                    createEdge(edgeId, "", subjectId, objectId, 'equivalentProperty');
+                    processEquivalence(subjectId, objectId, "OWLProperty")
+                });
+
+                // Sous Propriétés
+                const owlTopProperty = 'http://www.w3.org/2002/07/owl#topObjectProperty';
+                const propertySubsumptionSelect = document.getElementById('propertySubsumptionSelect');
+
+                const subproperties = store.statementsMatching(property, rdfsSubPropertyOf, null);
+
+                subproperties.forEach(subproperty => {
+                    // Skip owl:topObjectProperty
+                    if (subproperty.object.value === owlTopProperty) {
+                        return;
+                    }
+                    const option = document.createElement('option');
+                    option.textContent = `${property.value} ⊑ ${subproperty.object.value}`;
                     propertySubsumptionSelect.appendChild(option);
 
-                    const subjectId = subsumption.subject.value
-                    const objectId = subsumption.object.value;
+                    const subjectId = property.value
+                    const objectId = subproperty.object.value;
                     const edgeId = `${subjectId}-subpropertyof-${objectId}`;
                     createEdge(edgeId, "", subjectId, objectId, 'subProperty');
-
                 });
-            }
-            // Gérer les relations avec les classes de domaine et de range
+
+
+                // Relations d'inverse entre propriétés
+                const propertyInverseSelect = document.getElementById('propertyInverseSelect');
+                const inverseProperties = store.statementsMatching(property, owlInverseProperty, null);
+
+                inverseProperties.forEach(inverseProperty => {
+                    // Créez une option dans le sélecteur
+                    const option = document.createElement('option');
+                    option.textContent = `${property.value} ⟲ ${inverseProperty.object.value}`;
+                    propertyInverseSelect.appendChild(option);
+
+                    // Créez une arête pour représenter la relation inverse dans un graphe
+                    const subjectId = property.value;
+                    const objectId = inverseProperty.object.value;
+                    const edgeId = `${subjectId}-inverseproperty-${objectId}`;
+                    createEdge(edgeId, "", subjectId, objectId, 'inverseProperty');
+                });
+
+            });
 
             const domainsSelect = document.getElementById('domainsSelect');
             const domains = [];
@@ -557,6 +683,9 @@
                 }
             });
 
+
+
+            //range
             const rangesSelect = document.getElementById('rangesSelect');
             const ranges = [];
             const rangeStatements = store.statementsMatching(null, rdfsRange, null);
@@ -582,6 +711,8 @@
                 }
             });
 
+
+            //relations
             // Filtrer tous les triplets où l'objet est une ressource (qu'elle soit NamedNode ou BlankNode)
             const objectPropertiesUsed = store.statementsMatching(null, null, null);
 
@@ -599,6 +730,7 @@
                     }
                 }
             });
+
             const individualRelationsSelect = document.getElementById('individualRelationsSelect');
             const individualRelations = [];
             // Afficher toutes les ObjectProperties utilisées dans les relations entre individus
@@ -628,6 +760,8 @@
                     });
                 }
             });
+
+            //initialisation du graphe
             cy.elements().remove();
             cy.add(nodes);
             edges.forEach(edge => {
@@ -845,6 +979,19 @@
                         'shape': 'ellipse',
                     }
                 },
+                // Node style: equivalence
+                {
+                    selector: 'node.equivalence',
+                    style: {
+                        'background-color': '#0074D9', // Blue for property nodes
+                        'shape': 'square',
+                        'label': '≡',              // Equivalence symbol as label
+                        'text-background-color': '#fff', // Background for the label
+                        'text-background-opacity': 1,    // Make the background fully visible
+                        'text-background-padding': 2,    // Add padding around the label
+                        'text-background-shape': 'roundrectangle', // Shape of the background
+                    }
+                },
 
 
 
@@ -878,6 +1025,7 @@
                 {
                     selector: 'edge.domain',
                     style: {
+                        'label': 'D',
                         'line-color': 'blue',
                         'source-arrow-shape': 'none',
                         'target-arrow-shape': 'none',
@@ -889,6 +1037,7 @@
                 {
                     selector: 'edge.range',
                     style: {
+                        'label': 'R',
                         'line-color': 'blue',
                         'source-arrow-shape': 'none',
                         'target-arrow-shape': 'none',
@@ -909,6 +1058,36 @@
                         'label': '',              // No label on the specialization edge
                         'arrow-scale': 1.5,       // Scale the arrow size for better visibility
                         'target-arrow-fill': 'hollow'  // Hollow rectangle (border only)
+
+                    }
+                },
+                // Edge style: equivalentProperty
+                {
+                    selector: 'edge.equivalentProperty',
+                    style: {
+                        'line-color': '#000000',  // Black line color for the edge
+                        'line-style': 'solid',    // Solid line style
+                        'width': 1,               // Edge width for visibility
+                        'label': '≡',              // Equivalence symbol as label
+                        'text-background-color': '#fff', // Background for the label
+                        'text-background-opacity': 1,    // Make the background fully visible
+                        'text-background-padding': 2,    // Add padding around the label
+                        'text-background-shape': 'roundrectangle', // Shape of the background
+
+                    }
+                },
+                // Edge style: inverseProperty
+                {
+                    selector: 'edge.inverseProperty',
+                    style: {
+                        'line-color': '#000000',  // Black line color for the edge
+                        'line-style': 'solid',    // Solid line style
+                        'width': 1,               // Edge width for visibility
+                        'label': '⟲',              // Inverse symbol as label
+                        'text-background-color': '#fff', // Background for the label
+                        'text-background-opacity': 1,    // Make the background fully visible
+                        'text-background-padding': 2,    // Add padding around the label
+                        'text-background-shape': 'roundrectangle', // Shape of the background
 
                     }
                 },
@@ -948,7 +1127,7 @@
             const elementDescription = element.data('description') || 'No description';  // Get the description, or default if not present
 
             // Display information in an alert
-            alert(`IDShort: ${elementLabel}\nID: ${elementID}\nType: ${elementType}\nClasses: ${elementClasses.join(', ')}\nIRIType: ${elementIRIType}\nDescription: ${elementDescription}`);
+            //   alert(`IDShort: ${elementLabel}\nID: ${elementID}\nType: ${elementType}\nClasses: ${elementClasses.join(', ')}\nIRIType: ${elementIRIType}\nDescription: ${elementDescription}`);
             const labelContainerId = 'labelContainer';
             try {
                 getLabelFromResource(element.id(), store)

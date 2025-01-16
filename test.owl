@@ -1,284 +1,257 @@
-<?xml version="1.0"?>
-<rdf:RDF xmlns="http://example.org/ontology#"
-     xml:base="http://example.org/ontology"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:ontology="http://example.org/ontology#">
-    <owl:Ontology rdf:about="http://example.org/ontology">
-        <rdfs:comment>Une ontologie d&apos;exemple pour la gestion des connaissances.</rdfs:comment>
-    </owl:Ontology>
-    
+@prefix : <http://www.plminterop.org/myOntology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.plminterop.org/myOntology> .
 
+<http://www.plminterop.org/myOntology> rdf:type owl:Ontology ;
+                                        rdfs:comment "Une ontologie d'exemple pour la gestion des connaissances." .
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
+#################################################################
+#    Object Properties
+#################################################################
 
+###  http://www.plminterop.org/myOntology#disjointProperty
+:disjointProperty rdf:type owl:ObjectProperty .
 
-    <!-- http://example.org/ontology#hasAcademicUser -->
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#hasAcademicUser">
-        <rdfs:subPropertyOf rdf:resource="http://example.org/ontology#hasUser"/>
-        <rdfs:domain rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:range rdf:resource="http://example.org/ontology#AcademicUser"/>
-        <rdfs:comment>Indique qu&apos;un document est associé à un utilisateur académique.</rdfs:comment>
-        <rdfs:label>has Academic User</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://example.org/ontology#hasDocument -->
-
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#hasDocument">
-        <rdfs:domain rdf:resource="http://example.org/ontology#KnowledgeDomain"/>
-        <rdfs:range rdf:resource="http://example.org/ontology#Document"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
-            <rdf:Description rdf:about="http://example.org/ontology#hasUser"/>
-            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
-        </owl:propertyChainAxiom>
-        <rdfs:comment>Indique qu&apos;un domaine de connaissance contient un document.</rdfs:comment>
-        <rdfs:label>has Document</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://example.org/ontology#hasKnowledgeDomain -->
-
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#hasKnowledgeDomain"/>
-    
-
-
-    <!-- http://example.org/ontology#hasResearchPaper -->
-
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#hasResearchPaper">
-        <rdfs:subPropertyOf rdf:resource="http://example.org/ontology#hasDocument"/>
-        <rdfs:domain rdf:resource="http://example.org/ontology#KnowledgeDomain"/>
-        <rdfs:range rdf:resource="http://example.org/ontology#ResearchPaper"/>
-        <rdfs:comment>Indique qu&apos;un domaine de connaissance contient un article de recherche.</rdfs:comment>
-        <rdfs:label>has Research Paper</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://example.org/ontology#hasUser -->
-
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#hasUser">
-        <rdfs:domain rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:range rdf:resource="http://example.org/ontology#User"/>
-        <rdfs:comment>Indique qu&apos;un document est associé à un utilisateur.</rdfs:comment>
-        <rdfs:label>has User</rdfs:label>
-    </owl:ObjectProperty>
-    
-
+###  http://www.plminterop.org/myOntology#disjointProperty2
+:disjointProperty2 rdf:type owl:ObjectProperty .
 
-    <!-- http://example.org/ontology#isCitedBy -->
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#isCitedBy">
-        <rdfs:subPropertyOf rdf:resource="http://example.org/ontology#isRelatedTo"/>
-        <rdfs:domain rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:range rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:comment>Indique qu&apos;un document est cité par un autre document.</rdfs:comment>
-        <rdfs:label>is Cited By</rdfs:label>
-    </owl:ObjectProperty>
-    
+###  http://www.plminterop.org/myOntology#disjointProperty3
+:disjointProperty3 rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty .
 
 
-    <!-- http://example.org/ontology#isRelatedTo -->
+###  http://www.plminterop.org/myOntology#equivalentObjectProperty
+:equivalentObjectProperty rdf:type owl:ObjectProperty ;
+                          owl:equivalentProperty :equivalentObjectProperty2 ,
+                                                 :equivalentObjectProperty3 .
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#isRelatedTo">
-        <rdfs:domain rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:range rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:comment>Indique qu&apos;un document est lié à un autre document.</rdfs:comment>
-        <rdfs:label>is Related To</rdfs:label>
-    </owl:ObjectProperty>
-    
 
+###  http://www.plminterop.org/myOntology#equivalentObjectProperty2
+:equivalentObjectProperty2 rdf:type owl:ObjectProperty .
 
-    <!-- http://example.org/ontology#userAssociatedWithDocumentInKnowledgeDomain -->
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#userAssociatedWithDocumentInKnowledgeDomain"/>
-    
+###  http://www.plminterop.org/myOntology#equivalentObjectProperty3
+:equivalentObjectProperty3 rdf:type owl:ObjectProperty ;
+                           rdfs:domain :Thesis ;
+                           rdfs:range :AcademicUser .
 
 
-    <!-- http://example.org/ontology#userBelongsToKnowledgeDomainThroughDocument -->
+###  http://www.plminterop.org/myOntology#hasAcademicUser
+:hasAcademicUser rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasUser ;
+                 rdfs:domain :Document ;
+                 rdfs:range :AcademicUser ;
+                 rdfs:comment "Indique qu'un document est associé à un utilisateur académique." ;
+                 rdfs:label "has Academic User" .
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#userBelongsToKnowledgeDomainThroughDocument">
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://example.org/ontology#hasUser"/>
-            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
-            <rdf:Description rdf:about="http://example.org/ontology#hasKnowledgeDomain"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
 
+###  http://www.plminterop.org/myOntology#hasDocument
+:hasDocument rdf:type owl:ObjectProperty ;
+             rdfs:domain :KnowledgeDomain ;
+             rdfs:range :Document ;
+             owl:propertyChainAxiom ( :hasDocument
+                                      :hasUser
+                                      :disjointProperty
+                                    ) ;
+             rdfs:comment "Indique qu'un domaine de connaissance contient un document." ;
+             rdfs:label "has Document" .
 
-    <!-- http://example.org/ontology#userCitingDocumentInKnowledgeDomain -->
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#userCitingDocumentInKnowledgeDomain">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
-            <rdf:Description rdf:about="http://example.org/ontology#hasUser"/>
-            <rdf:Description rdf:about="http://example.org/ontology#isCitedBy"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
-            <rdf:Description rdf:about="http://example.org/ontology#isRelatedTo"/>
-            <rdf:Description rdf:about="http://example.org/ontology#isCitedBy"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
+###  http://www.plminterop.org/myOntology#hasKnowledgeDomain
+:hasKnowledgeDomain rdf:type owl:ObjectProperty .
 
 
-    <!-- http://example.org/ontology#userInvolvedInKnowledgeDomainThroughDocument -->
+###  http://www.plminterop.org/myOntology#hasResearchPaper
+:hasResearchPaper rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasDocument ;
+                  rdfs:domain :KnowledgeDomain ;
+                  rdfs:range :ResearchPaper ;
+                  rdfs:comment "Indique qu'un domaine de connaissance contient un article de recherche." ;
+                  rdfs:label "has Research Paper" .
 
-    <owl:ObjectProperty rdf:about="http://example.org/ontology#userInvolvedInKnowledgeDomainThroughDocument">
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://example.org/ontology#hasUser"/>
-            <rdf:Description rdf:about="http://example.org/ontology#hasDocument"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
 
+###  http://www.plminterop.org/myOntology#hasUser
+:hasUser rdf:type owl:ObjectProperty ;
+         rdfs:domain :Document ;
+         rdfs:range :User ;
+         rdfs:comment "Indique qu'un document est associé à un utilisateur." ;
+         rdfs:label "has User" .
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
 
-    
+###  http://www.plminterop.org/myOntology#inverseProperty
+:inverseProperty rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :inverseProperty2 .
 
 
-    <!-- http://example.org/ontology#AcademicUser -->
+###  http://www.plminterop.org/myOntology#inverseProperty2
+:inverseProperty2 rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty .
 
-    <owl:Class rdf:about="http://example.org/ontology#AcademicUser">
-        <rdfs:subClassOf rdf:resource="http://example.org/ontology#User"/>
-        <rdfs:comment>Un utilisateur académique, par exemple, un étudiant ou un professeur.</rdfs:comment>
-        <rdfs:label>Academic User</rdfs:label>
-    </owl:Class>
-    
 
+###  http://www.plminterop.org/myOntology#isCitedBy
+:isCitedBy rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :isRelatedTo ;
+           rdfs:domain :Document ;
+           rdfs:range :Document ;
+           rdfs:comment "Indique qu'un document est cité par un autre document." ;
+           rdfs:label "is Cited By" .
+
 
-    <!-- http://example.org/ontology#Document -->
+###  http://www.plminterop.org/myOntology#isRelatedTo
+:isRelatedTo rdf:type owl:ObjectProperty ;
+             rdfs:domain :Document ;
+             rdfs:range :Document ;
+             rdfs:comment "Indique qu'un document est lié à un autre document." ;
+             rdfs:label "is Related To" .
 
-    <owl:Class rdf:about="http://example.org/ontology#Document">
-        <rdfs:comment>Un document contenant des informations, comme un article ou un rapport.</rdfs:comment>
-        <rdfs:label>Document</rdfs:label>
-    </owl:Class>
-    
 
+###  http://www.plminterop.org/myOntology#propertyWithManyClassesInDomainAndRange
+:propertyWithManyClassesInDomainAndRange rdf:type owl:ObjectProperty ;
+                                         rdfs:domain :AcademicUser ,
+                                                     :Document ,
+                                                     :KnowledgeDomain ,
+                                                     :ResearchPaper ,
+                                                     :Thesis ,
+                                                     :User ;
+                                         rdfs:range :AcademicUser ,
+                                                    :Document ,
+                                                    :KnowledgeDomain ,
+                                                    :ResearchPaper ,
+                                                    :Thesis ,
+                                                    :User .
 
-    <!-- http://example.org/ontology#KnowledgeDomain -->
 
-    <owl:Class rdf:about="http://example.org/ontology#KnowledgeDomain">
-        <rdfs:comment>Un domaine de connaissance, par exemple, informatique, biologie, etc.</rdfs:comment>
-        <rdfs:label>Domaine de la connaissance</rdfs:label>
-        <rdfs:label>Gestion des connaissances</rdfs:label>
-        <rdfs:label>Knowledge Domain</rdfs:label>
-    </owl:Class>
-    
+###  http://www.plminterop.org/myOntology#propertyWithNoClassesinDomainAndRanges
+:propertyWithNoClassesinDomainAndRanges rdf:type owl:ObjectProperty .
 
 
-    <!-- http://example.org/ontology#ResearchPaper -->
+###  http://www.plminterop.org/myOntology#userAssociatedWithDocumentInKnowledgeDomain
+:userAssociatedWithDocumentInKnowledgeDomain rdf:type owl:ObjectProperty .
 
-    <owl:Class rdf:about="http://example.org/ontology#ResearchPaper">
-        <rdfs:subClassOf rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:comment>Un document de type article de recherche.</rdfs:comment>
-        <rdfs:label>Research Paper</rdfs:label>
-    </owl:Class>
-    
 
+###  http://www.plminterop.org/myOntology#userBelongsToKnowledgeDomainThroughDocument
+:userBelongsToKnowledgeDomainThroughDocument rdf:type owl:ObjectProperty ;
+                                             owl:propertyChainAxiom ( :hasUser
+                                                                      :hasDocument
+                                                                      :hasKnowledgeDomain
+                                                                    ) .
 
-    <!-- http://example.org/ontology#Thesis -->
 
-    <owl:Class rdf:about="http://example.org/ontology#Thesis">
-        <rdfs:subClassOf rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:comment>Une thèse académique.</rdfs:comment>
-        <rdfs:label>Thesis</rdfs:label>
-    </owl:Class>
-    
+###  http://www.plminterop.org/myOntology#userCitingDocumentInKnowledgeDomain
+:userCitingDocumentInKnowledgeDomain rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf owl:topObjectProperty ;
+                                     owl:propertyChainAxiom ( :hasDocument
+                                                              :hasUser
+                                                              :isCitedBy
+                                                            ) ,
+                                                            ( :hasDocument
+                                                              :isRelatedTo
+                                                              :isCitedBy
+                                                            ) .
 
 
-    <!-- http://example.org/ontology#User -->
+###  http://www.plminterop.org/myOntology#userInvolvedInKnowledgeDomainThroughDocument
+:userInvolvedInKnowledgeDomainThroughDocument rdf:type owl:ObjectProperty ;
+                                              owl:propertyChainAxiom ( :hasUser
+                                                                       :hasDocument
+                                                                     ) .
 
-    <owl:Class rdf:about="http://example.org/ontology#User">
-        <rdfs:comment>Un utilisateur du système de gestion de connaissance.</rdfs:comment>
-        <rdfs:label>User</rdfs:label>
-    </owl:Class>
-    
 
+#################################################################
+#    Classes
+#################################################################
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+###  http://www.plminterop.org/myOntology#AcademicUser
+:AcademicUser rdf:type owl:Class ;
+              rdfs:subClassOf :User ;
+              rdfs:comment "Un utilisateur académique, par exemple, un étudiant ou un professeur." ;
+              rdfs:label "Academic User" .
 
-    
 
+###  http://www.plminterop.org/myOntology#Document
+:Document rdf:type owl:Class ;
+          owl:equivalentClass :documentEquivalentClass2 ;
+          rdfs:comment "Un document contenant des informations, comme un article ou un rapport." ;
+          rdfs:label "Document" .
 
-    <!-- http://example.org/ontology#AIResearch -->
 
-    <owl:NamedIndividual rdf:about="http://example.org/ontology#AIResearch">
-        <rdf:type rdf:resource="http://example.org/ontology#Document"/>
-        <hasAcademicUser rdf:resource="http://example.org/ontology#JohnDoe"/>
-        <isCitedBy rdf:resource="http://example.org/ontology#Philosophy101"/>
-        <rdfs:label>AI Research Paper</rdfs:label>
-    </owl:NamedIndividual>
-    
+###  http://www.plminterop.org/myOntology#KnowledgeDomain
+:KnowledgeDomain rdf:type owl:Class ;
+                 rdfs:comment "Un domaine de connaissance, par exemple, informatique, biologie, etc." ;
+                 rdfs:label "Domaine de la connaissance" ,
+                            "Gestion des connaissances" ,
+                            "Knowledge Domain" .
 
 
-    <!-- http://example.org/ontology#ComputerScience -->
+###  http://www.plminterop.org/myOntology#ResearchPaper
+:ResearchPaper rdf:type owl:Class ;
+               rdfs:subClassOf :Document ;
+               rdfs:comment "Un document de type article de recherche." ;
+               rdfs:label "Research Paper" .
 
-    <owl:NamedIndividual rdf:about="http://example.org/ontology#ComputerScience">
-        <rdf:type rdf:resource="http://example.org/ontology#KnowledgeDomain"/>
-        <rdfs:label>Computer Science</rdfs:label>
-    </owl:NamedIndividual>
-    
 
+###  http://www.plminterop.org/myOntology#Thesis
+:Thesis rdf:type owl:Class ;
+        rdfs:subClassOf :Document ;
+        rdfs:comment "Une thèse académique." ;
+        rdfs:label "Thesis" .
 
-    <!-- http://example.org/ontology#JohnDoe -->
 
-    <owl:NamedIndividual rdf:about="http://example.org/ontology#JohnDoe">
-        <rdf:type rdf:resource="http://example.org/ontology#AcademicUser"/>
-        <rdfs:label>John Doe</rdfs:label>
-    </owl:NamedIndividual>
-    
+###  http://www.plminterop.org/myOntology#User
+:User rdf:type owl:Class ;
+      rdfs:comment "Un utilisateur du système de gestion de connaissance." ;
+      rdfs:label "User" .
 
 
-    <!-- http://example.org/ontology#Mathematics -->
+###  http://www.plminterop.org/myOntology#documentEquivalentClass1
+:documentEquivalentClass1 rdf:type owl:Class ;
+                          owl:equivalentClass :documentEquivalentClass2 .
 
-    <owl:NamedIndividual rdf:about="http://example.org/ontology#Mathematics">
-        <rdf:type rdf:resource="http://example.org/ontology#KnowledgeDomain"/>
-        <rdfs:label>Mathematics</rdfs:label>
-    </owl:NamedIndividual>
-    
 
+###  http://www.plminterop.org/myOntology#documentEquivalentClass2
+:documentEquivalentClass2 rdf:type owl:Class .
 
-    <!-- http://example.org/ontology#Philosophy101 -->
 
-    <owl:NamedIndividual rdf:about="http://example.org/ontology#Philosophy101">
-        <rdf:type rdf:resource="http://example.org/ontology#Document"/>
-        <rdfs:label>Philosophy 101</rdfs:label>
-    </owl:NamedIndividual>
-</rdf:RDF>
+#################################################################
+#    Individuals
+#################################################################
 
+###  http://www.plminterop.org/myOntology#AIResearch
+:AIResearch rdf:type owl:NamedIndividual ,
+                     :Document ;
+            :hasAcademicUser :JohnDoe ;
+            :isCitedBy :Philosophy101 ;
+            rdfs:label "AI Research Paper" .
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+###  http://www.plminterop.org/myOntology#ComputerScience
+:ComputerScience rdf:type owl:NamedIndividual ,
+                          :KnowledgeDomain ;
+                 rdfs:label "Computer Science" .
 
+
+###  http://www.plminterop.org/myOntology#JohnDoe
+:JohnDoe rdf:type owl:NamedIndividual ,
+                  :AcademicUser ;
+         rdfs:label "John Doe" .
+
+
+###  http://www.plminterop.org/myOntology#Mathematics
+:Mathematics rdf:type owl:NamedIndividual ,
+                      :KnowledgeDomain ;
+             rdfs:label "Mathematics" .
+
+
+###  http://www.plminterop.org/myOntology#Philosophy101
+:Philosophy101 rdf:type owl:NamedIndividual ,
+                        :Document ;
+               rdfs:label "Philosophy 101" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

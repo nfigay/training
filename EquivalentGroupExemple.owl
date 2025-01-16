@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/ontology#"
+     xml:base="http://example.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ontology="http://example.org/ontology#">
+ 
+
+  <!-- Ontology Metadata -->
+  <owl:Ontology rdf:about="http://www.example.com/ontologies/ecommerce"/>
+
+  <!-- Equivalent Object Properties -->
+  <owl:ObjectProperty rdf:about="http://www.example.com/ontologies#hasCustomer">
+    <owl:equivalentProperty rdf:resource="http://www.example.com/ontologies#hasBuyer"/>
+    <owl:equivalentProperty rdf:resource="http://www.example.com/ontologies#linkedToUser"/>
+    <rdfs:domain rdf:resource="http://www.example.com/ontologies#Purchase"/>
+    <rdfs:range rdf:resource="http://www.example.com/ontologies#User"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.example.com/ontologies#hasBuyer">
+    <rdfs:domain rdf:resource="http://www.example.com/ontologies#Purchase"/>
+    <rdfs:range rdf:resource="http://www.example.com/ontologies#User"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.example.com/ontologies#linkedToUser">
+    <rdfs:domain rdf:resource="http://www.example.com/ontologies#Purchase"/>
+    <rdfs:range rdf:resource="http://www.example.com/ontologies#User"/>
+  </owl:ObjectProperty>
+
+  <!-- Equivalent Classes -->
+  <owl:Class rdf:about="http://www.example.com/ontologies#PremiumCustomer">
+    <owl:equivalentClass rdf:resource="http://www.example.com/ontologies#VIPClient"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/ontologies#VIPClient"/>
+
+  <owl:Class rdf:about="http://www.example.com/ontologies#Purchase"/>
+  <owl:Class rdf:about="http://www.example.com/ontologies#User"/>
+
+</rdf:RDF>
