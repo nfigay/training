@@ -81,6 +81,8 @@
 
         <label for="namedIndividualsSelect">Individus nommés OWL trouvés :</label>
         <select id="namedIndividualsSelect" size="10"></select>
+        <label for="isaRelationsSelect">Relations de typage d'individus :</label>
+        <select id="isaRelationsSelect" size="10"></select>
 
         <label for="classSubsumptionSelect">Relations de subsomption entre classes :</label>
         <select id="classSubsumptionSelect" size="10"></select>
@@ -475,6 +477,7 @@
             document.getElementById('classesSelect').innerHTML = '';
             document.getElementById('objectPropertiesSelect').innerHTML = '';
             document.getElementById('namedIndividualsSelect').innerHTML = '';
+            document.getElementById('isaRelationsSelect').innerHTML = '';
             document.getElementById('classSubsumptionSelect').innerHTML = '';
             document.getElementById('propertySubsumptionSelect').innerHTML = '';
             document.getElementById('propertyEquivalenceSelect').innerHTML = '';
@@ -552,6 +555,34 @@
                         uniqueNodeIds.add(nodeId);
                         createNode(nodeId, label, 'individual', individual.value, 'OWLIndividual');
                     }
+                });
+            }
+
+            // Gestion de l'affichage des relations `isa` entre individus et classes
+            const isaSelect = document.getElementById('isaRelationsSelect');
+            if (namedIndividuals.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucun individu typé trouvé !";
+                isaSelect.appendChild(option);
+            } else {
+                namedIndividuals.forEach(individual => {
+                    // Trouver toutes les classes associées à cet individu via rdf:type
+                    const relatedClasses = store.each(individual, rdfType, null);
+                    relatedClasses.forEach(cls => {
+                        // Vérifier si la classe est une vraie classe OWL
+                        if (store.holds(cls, rdfType, owlClass)) {
+                            // Ajouter la relation dans l'interface
+                            const option = document.createElement('option');
+                            option.textContent = `${individual.value} -> ${cls.value}`;
+                            isaSelect.appendChild(option);
+
+                            // Créer des noeuds ou connexions dans votre graphe
+                            const individualLabel = getLabelFromIRI(individual.value);
+                            const classLabel = getLabelFromIRI(cls.value);
+                            createEdge(ULID.ulid(),"isa", individual.value, cls.value, 'isa');
+                            
+                        }
+                    });
                 });
             }
 
@@ -1004,6 +1035,15 @@
                         'target-arrow-color': 'black',
                         'line-color': '#999',
                         'label': 'data(label)',
+                    }
+                },
+                // Edge style: isa
+                {
+                    selector: 'edge.isa',
+                    style: {
+                        'line-color': 'blue',
+                        'width': 1,
+                        'label': "isa"
                     }
                 },
                 // Edge style: relation
