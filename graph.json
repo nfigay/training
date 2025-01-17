@@ -1,0 +1,116 @@
+{
+  "elements": [
+    {
+      "data": {
+        "id": "a",
+        "name": "Node A",
+        "type": "Type1",
+        "category": "Category1"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "data": {
+        "id": "b",
+        "name": "Node B",
+        "type": "Type2",
+        "category": "Category1"
+      },
+      "position": {
+        "x": 200,
+        "y": 200
+      }
+    },
+    {
+      "data": {
+        "id": "c",
+        "name": "Node C",
+        "type": "Type1",
+        "category": "Category2"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "data": {
+        "id": "d",
+        "name": "Node D",
+        "type": "Type2",
+        "category": "Category2"
+      },
+      "position": {
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "data": {
+        "id": "e",
+        "name": "Node E",
+        "type": "Type1",
+        "category": "Category1"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "data": {
+        "id": "f",
+        "name": "Node F",
+        "type": "Type2",
+        "category": "Category3"
+      },
+      "position": {
+        "x": 600,
+        "y": 200
+      }
+    },
+    {
+      "data": {
+        "source": "a",
+        "target": "b",
+        "relationship": "connects",
+        "weight": 3
+      }
+    },
+    {
+      "data": {
+        "source": "b",
+        "target": "c",
+        "relationship": "connects",
+        "weight": 5
+      }
+    },
+    {
+      "data": {
+        "source": "c",
+        "target": "d",
+        "relationship": "connects",
+        "weight": 2
+      }
+    },
+    {
+      "data": {
+        "source": "d",
+        "target": "e",
+        "relationship": "connects",
+        "weight": 4
+      }
+    },
+    {
+      "data": {
+        "source": "e",
+        "target": "f",
+        "relationship": "connects",
+        "weight": 6
+      }
+    }
+  ]
+}
