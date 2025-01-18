@@ -387,59 +387,70 @@
             }
         }
 
-        // Function to create property chain graph from RDF data
-        function createPropertyChainGraph(store) {
-            const graphElements = [];
+        // Function to generate a graph with Cytoscape.js from the property chains
+        function generateGraphFromPropertyChains(chains) {
+            const elements = [];
+            const propertyMap = new Map();
+            chains.forEach((chain, chainIndex) => {
+                // Add a node for the property chain itself
+               
+                const chainNodeId = ULID.ulid();
+                var  propertyChainDerivedProperty=chains.property
+                createNode(chainNodeId, `PropertyChain ${chainIndex + 1}`, "propertychain", "", chain.property);
+                
+                let previousNodeId = null;
+                
 
-            // 1. Get the named property (property chain)
-            const namedProperty = store.any($rdf.sym(':isUncleOf'), $rdf.sym('rdf:type'), $rdf.sym('owl:ObjectProperty'));
+                // Add nodes for each property in the chain and its elements
+                chain.chain.forEach((property, propertyIndex) => {
+                    const propertyNodeId = `property-${propertyIndex}-${chainIndex}`;
+                    
+                    const blankNodeId = `blank-${propertyIndex}-${chainIndex}`;
+                    console.log(`Property value:${property}`)
 
-            // 2. Create the central node for the property chain (e.g., isUncleOf)
-            const parentNodeId = generateCytoscapeId(':isUncleOf');
-            graphElements.push({ data: { id: parentNodeId, label: 'isUncleOf' } });
+                    //createNode(id, label, type, IRI, parent = null)
+                     createNode(blankNodeId, `${propertyIndex + 1}`, "chainmember", "", chainNodeId);
+        
 
-            // 3. Identify the property chain
-            const chain = store.statementsMatching($rdf.sym(':isUncleOf'), $rdf.sym('owl:propertyChainAxiom'));
-            const chainProperties = chain.length > 0 ? chain[0].object.elements.map(e => e.value) : [];
+                    // If it's not the first element, create an edge between the previous and the next
+                    if (previousNodeId) {
+                    //    function createEdge(id, label, source, target, type)
+                    createEdge(ULID.ulid(),'', previousNodeId, blankNodeId, 'nextchainmember')
+                    }
 
-            // 4. Loop through the properties in the chain and create edges or use existing nodes
-            chainProperties.forEach(property => {
-                const propertyId = generateCytoscapeId(property);
+                    // Create an edge between the "Blank" node and the property node
+                    createEdge(ULID.ulid(), `${propertyIndex + 1}`, blankNodeId,property, 'nextchaintype')
+                    
 
-                // Check if the property already exists in the graph
-                let propertyNode = graphElements.find(node => node.data.id === propertyId);
-
-                if (!propertyNode) {
-                    // If the property node doesn't exist, create it
-                    propertyNode = {
-                        data: {
-                            id: propertyId,
-                            label: property
-                        }
-                    };
-                    graphElements.push(propertyNode);
-                }
-
-                // 5. Create edges for RDF triples that match the chain properties
-                const subjectNodes = store.each(null, $rdf.sym(property), null);
-                subjectNodes.forEach(subject => {
-                    const subjectId = generateCytoscapeId(subject.value);
-                    const objectNodes = store.each(subject, $rdf.sym(property), null);
-                    objectNodes.forEach(object => {
-                        const objectId = generateCytoscapeId(object.value);
-                        graphElements.push({
-                            data: {
-                                id: `${subjectId}_${property}_${objectId}`,
-                                source: subjectId,
-                                target: objectId,
-                                label: property
-                            }
-                        });
-                    });
+                    // Update previousNodeId
+                    previousNodeId = blankNodeId;
                 });
+
+                // Create an edge between the chain node and the first property in the chain
+                //createEdge(ULID.ulid(), 'Starts', chainNodeId, `property-0-${chainIndex}`, 'nextchainmember')
+               
+            });
+        }
+
+        // Function to extract property chains from the store
+        function extractPropertyChains(store) {
+            const propertyChains = [];
+
+
+            // Find all owl:propertyChainAxiom axioms
+            store.statementsMatching(undefined, $rdf.sym("http://www.w3.org/2002/07/owl#propertyChainAxiom")).forEach(statement => {
+                // If the statement contains a propertyChainAxiom
+                if (statement.object && statement.object.elements && Array.isArray(statement.object.elements)) {
+                    // Extract the elements of the property chain
+                    const chain = statement.object.elements.map(el => el.value);
+                    propertyChains.push({
+                        chain: chain,
+                        property: statement.subject.value // Property associated with the chain
+                    });
+                }
             });
 
-            return graphElements;
+            return propertyChains;
         }
 
         // Fonction de validation OWL
@@ -579,8 +590,8 @@
                             // Créer des noeuds ou connexions dans votre graphe
                             const individualLabel = getLabelFromIRI(individual.value);
                             const classLabel = getLabelFromIRI(cls.value);
-                            createEdge(ULID.ulid(),"isa", individual.value, cls.value, 'isa');
-                            
+                            createEdge(ULID.ulid(), "isa", individual.value, cls.value, 'isa');
+
                         }
                     });
                 });
@@ -689,6 +700,7 @@
 
             });
 
+            //domaines
             const domainsSelect = document.getElementById('domainsSelect');
             const domains = [];
             const domainStatements = store.statementsMatching(null, rdfsDomain, null);
@@ -713,8 +725,6 @@
 
                 }
             });
-
-
 
             //range
             const rangesSelect = document.getElementById('rangesSelect');
@@ -762,6 +772,15 @@
                 }
             });
 
+
+            //Chaines de propriétés
+            // Extract property chains from RDF
+            const propertyChains = extractPropertyChains(store);
+            generateGraphFromPropertyChains(propertyChains);
+
+
+
+            //typed links between individual
             const individualRelationsSelect = document.getElementById('individualRelationsSelect');
             const individualRelations = [];
             // Afficher toutes les ObjectProperties utilisées dans les relations entre individus
@@ -1010,6 +1029,20 @@
                         'shape': 'ellipse',
                     }
                 },
+                {
+                    selector: 'node.propertychain',
+                    style: {
+                        'background-color': 'green', // green for PropertyChainNode
+                        'shape': 'rectangle',
+                    }
+                },
+                {
+                    selector: 'node.chainmember',
+                    style: {
+                        'background-color': 'yellow', // Yellow for PropertyChainMemberNode
+                        'shape': 'rectangle',
+                    }
+                },
                 // Node style: equivalence
                 {
                     selector: 'node.equivalence',
@@ -1129,6 +1162,30 @@
                         'text-background-padding': 2,    // Add padding around the label
                         'text-background-shape': 'roundrectangle', // Shape of the background
 
+                    }
+                },
+                // Edge chain property next chain member
+                {
+                    selector: 'edge.nextchainmember',
+                    style: {
+                        'line-color': '#000000',  // Black line color for the edge
+                        'line-style': 'solid',    // Solid line style
+                        'width': 1,               // Edge width for visibility
+                        'label': '',              // Inverse symbol as label
+                        'target-arrow-shape': 'vee', // Use a square shape for the arrow
+                        'target-arrow-color': '#000000',  // Matching color for the arrow
+                        'source-arrow-shape': 'none', // No source arrow                      
+                    }
+                },
+                // Edge chain property next chain member type
+                {
+                    selector: 'edge.nextchaintype',
+                    style: {
+                        'line-color': 'green',  // Black line color for the edge
+                        'line-style': 'solid',    // Solid line style
+                        'width': 1,               // Edge width for visibility
+                        'target-arrow-shape': 'none', // Use a square shape for the arrow
+                        'source-arrow-shape': 'none', // No source arrow                      
                     }
                 },
                 // Edge style: subClass

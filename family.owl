@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.plm-interop.org/family#"
+     xml:base="http://www.plm-interop.org/family"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:family="file:/Users/nicolasfigay/git/training/family.owl#">
+    <owl:Ontology rdf:about="http://www.plm-interop.org/family"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasBrother -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasBrother">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasCousin -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasCousin">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasGrandparent -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasGrandparent">
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasHusband -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasHusband">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasSibling -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSibling">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasSister -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSister">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasWife -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasWife">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#isCousinOf -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#isCousinOf">
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#isSiblingOf -->
+
+    <owl:AnnotationProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#isSiblingOf">
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasBrother -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasBrother">
+        <rdfs:subPropertyOf rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#hasSibling"/>
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasCousin -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasCousin">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasParent"/>
+            <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSibling"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasChild"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasHusband -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasHusband">
+        <owl:inverseOf rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#hasWife"/>
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasSibling -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSibling">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasSister -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSister">
+        <rdfs:subPropertyOf rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#hasSibling"/>
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#hasWife -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasWife">
+        <rdfs:domain rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasAunt -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasAunt">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Female"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Male"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasParent"/>
+            <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSister"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasChild">
+        <owl:inverseOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hasParent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasGrandFather -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasGrandFather">
+        <rdfs:subPropertyOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hasGrandParent"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Male"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasGrandMother -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasGrandMother">
+        <rdfs:subPropertyOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hasGrandParent"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Female"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasGrandParent -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasGrandParent">
+        <owl:inverseOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hasLittleChild"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Male"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasLittleChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasLittleChild">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasChild"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasChild"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasParent -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasParent"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasUncle -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasUncle">
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Male"/>
+        <rdfs:range rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Person"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasParent"/>
+            <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasBrother"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#Female -->
+
+    <owl:Class rdf:about="file:/Users/nicolasfigay/git/training/family.owl#Female">
+        <rdfs:subClassOf rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Gender"/>
+        <rdfs:label>Female</rdfs:label>
+        <rdfs:label>Gender</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#Gender -->
+
+    <owl:Class rdf:about="file:/Users/nicolasfigay/git/training/family.owl#Gender">
+        <rdfs:label>Gender</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#Male -->
+
+    <owl:Class rdf:about="file:/Users/nicolasfigay/git/training/family.owl#Male">
+        <rdfs:subClassOf rdf:resource="file:/Users/nicolasfigay/git/training/family.owl#Gender"/>
+        <rdfs:label>Gender</rdfs:label>
+        <rdfs:label>Male</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/nicolasfigay/git/training/family.owl#Person -->
+
+    <owl:Class rdf:about="file:/Users/nicolasfigay/git/training/family.owl#Person">
+        <rdfs:label>Person</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#Family">
+        <rdfs:label>Family</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasBrother">
+        <rdfs:label>hasBrother</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasCousin">
+        <rdfs:label>hasCousin</rdfs:label>
+        <rdfs:label>isCousinOf</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasHusband">
+        <rdfs:label>hasHusband</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSibling">
+        <rdfs:label>isSiblingOf</rdfs:label>
+        <rdfs:label>hasSibling</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasSister">
+        <rdfs:label>hasSister</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="file:/Users/nicolasfigay/git/training/family.owl#hasWife">
+        <rdfs:label>hasWife</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
