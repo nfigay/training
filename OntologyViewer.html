@@ -76,11 +76,18 @@
         <label for="classEquivalenceSelect">Classes d'équivalence entre propriétés :</label>
         <select id="classEquivalenceSelect" size="10"></select>
 
-        <label for="objectPropertiesSelect">Propriétés objets OWL trouvées :</label>
+        <label for="objectPropertiesSelect">Propriétés de type objet trouvées :</label>
         <select id="objectPropertiesSelect" size="10"></select>
+
+        <label for="dataPropertiesSelect">Propriétés de type données trouvées :</label>
+        <select id="dataPropertiesSelect" size="10"></select>
+
+        <label for="dataPropertiesSelect">Propriétés objets OWL trouvées :</label>
+        <select id="dataPropertiesSelect" size="10"></select>
 
         <label for="namedIndividualsSelect">Individus nommés OWL trouvés :</label>
         <select id="namedIndividualsSelect" size="10"></select>
+
         <label for="isaRelationsSelect">Relations de typage d'individus :</label>
         <select id="isaRelationsSelect" size="10"></select>
 
@@ -116,6 +123,8 @@
         var nodes = [];
         var edges = [];
         var equivalenceGroups = new Map();
+        var actualBaseIRI;
+        var defaultBaseIRI
 
 
         // Create Node Function
@@ -140,14 +149,51 @@
                 data: nodeData,
                 classes: type
             });
-            //console.log(nodeData)
+            console.log(`I'm creating a node with id=${nodeData.id}`)
         }
 
+        function updateNode(id, characteristics = {}) {
+            // Find the node by id
+            //alert ("updateNode:(" +id+")")
+            const node = nodes.find(n => n.data.id === id);
 
+            // If the node exists, update its characteristics
+            if (node) {
+                // Check if the object contains specific characteristics and update accordingly
+                if (characteristics.functional) {
+                    node.data.functional = true;
+                    node.data.label = '→' + node.data.label;
+                }
+                if (characteristics.transitive) {
+                    node.data.transitive = true;
+                    node.data.label = '△' + node.data.label;
+                }
+                if (characteristics.inverseFunctional) {
+                    node.data.inverseFunctional = true;
+                    node.data.label = '←' + node.data.label;
+                }
+                if (characteristics.irreflexive) {
+                    node.data.irreflexive = true;
+                    node.data.label = '𐌗◯' + node.data.label;
+                }
+                if (characteristics.reflexive) {
+                    node.data.reflexive = true;
+                    node.data.label = '◯' + node.data.label;
+                }
+                if (characteristics.symmetric) {
+                    node.data.symmetric = true;
+                    node.data.label = '↔' + node.data.label;
+                }
+                if (characteristics.asymmetric) {
+                    node.data.asymmetric = true;
+                    node.data.label = '𐌗↔' + node.data.label;
+                }
+                //alert (JSON.stringify(node))
+            }
+        }
 
         function createEdge(id, label, source, target, type) {
             // Retrieve the style for the given type
-
 
             // Prepare the edge data
             const edgeData = {
@@ -190,9 +236,9 @@
             if (!existingGroupIDNode) {
                 // Crée un nouveau nœud si aucun nœud existant n'est trouvé
                 if (type === "OWLProperty") {
-                    createNode(groupID, "≡", 'property', "", type);
+                    createNode(groupID, "≡", 'equivalence', "", type);
                 } else {
-                    createNode(groupID, "≡", 'class', "", type);
+                    createNode(groupID, "≡", 'equivalence', "", type);
                 }
             }
         }
@@ -309,6 +355,7 @@
         const rdfType = $rdf.sym('http://www.w3.org/1999/02/22-rdf-syntax-ns#type');
         const namedIndividual = $rdf.sym('http://www.w3.org/2002/07/owl#NamedIndividual');
         const objectProperty = $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty');
+        const owlDatatypeProperty = $rdf.sym('http://www.w3.org/2002/07/owl#DatatypeProperty');
         const rdfsSubClassOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subClassOf');
         const rdfsSubPropertyOf = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#subPropertyOf');
         const owlEquivalentProperty = $rdf.sym('http://www.w3.org/2002/07/owl#equivalentProperty');
@@ -321,13 +368,60 @@
         const propertyChainAxiom = $rdf.sym("http://www.w3.org/2002/07/owl#propertyChainAxiom")
         const owlOntology = $rdf.sym('http://www.w3.org/2002/07/owl#Ontology');
         const owlImports = $rdf.sym('http://www.w3.org/2002/07/owl#imports');
+        const owlFunctional = $rdf.sym('http://www.w3.org/2002/07/owl#FunctionalProperty');
+        const owlInverseFunctional = $rdf.sym('http://www.w3.org/2002/07/owl#InverseFunctionalProperty');
+        const owlTransitive = $rdf.sym('http://www.w3.org/2002/07/owl#TransitiveProperty');
+        const owlSymmetric = $rdf.sym('http://www.w3.org/2002/07/owl#SymmetricProperty');
+        const owlAsymmetric = $rdf.sym('http://www.w3.org/2002/07/owl#AsymmetricProperty');
+        const owlReflexive = $rdf.sym('http://www.w3.org/2002/07/owl#ReflexiveProperty');
+        const owlIrreflexive = $rdf.sym('http://www.w3.org/2002/07/owl#IrreflexiveProperty');
+
+        function getCharacteristicsFromOPNoceId(nodeId) {
+            try {
+                // Get the node using Cytoscape
+                const node = cy.nodes().filter(node => node.data('id') === nodeId)[0];
+
+                //cy.getElementById(nodeId);
+                console.log(nodeId)
+
+
+                // Define the list of attributes you're interested in
+                const attributes = ['functional', 'reflexive', 'transitive', 'symmetric', 'inversefunctional', 'asymmetric', 'irreflexive'];
+
+                // Create an object to store which attributes are true
+                let trueAttributes = [];
+
+                // Iterate over each attribute and check if it exists
+                attributes.forEach(attribute => {
+
+                    // Check if the attribute exists and is true, then set it to true
+
+                    if (node.data(attribute) === true) {
+                        trueAttributes.push(attribute);
+                    }
+
+                });
+
+                // If any attributes were found, display them in an alert
+                if (trueAttributes.length > 0) {
+                    alert('Characteristics set to true: ' + trueAttributes.join(', '));
+                } else {
+                    alert('No Characteristics found');
+                }
+            } catch (error) { console.log("getcharacterics error:" + error) }
+
+        }
 
         // Function to extract any label from a resource (no language filter)
         function getLabelFromResource(resourceURI, store) {
+            // alert(`getLabelFromRessource(${resourceURI}`);
             try {
+                const absoluteIRI = /^(https?|file):\/\//.test(resourceURI)
+                    ? resourceURI
+                    : defaultBaseIRI + resourceURI;
 
                 // Create a RDF resource symbol
-                const resource = $rdf.sym(resourceURI);
+                const resource = $rdf.sym(absoluteIRI);
                 // Get all possible label types (rdfs:label, skos:prefLabel, etc.)
                 const labelPredicates = [
                     'http://www.w3.org/2000/01/rdf-schema#label',
@@ -354,28 +448,18 @@
                 }
 
                 // Generate HTML list of labels
-                let html = '<ul>';
+                let html = '';
                 labels.forEach(label => {
                     html += `
-                <li>
-                    <strong>Type:</strong> ${label.type}<br>
-                    <strong>Language:</strong> ${label.lang}<br>
-                    <strong>Text:</strong> ${label.text}
-                </li>`;
+Type: ${label.type}
+Language: ${label.lang}
+Text:${label.text}
+                `;
                 });
-                html += '</ul>';
+                html += '';
 
                 // Display the HTML in a container
                 alert(html)
-
-                // Query the RDF store for rdfs:label values
-                labels = store.each(resource, $rdf.sym('http://www.w3.org/2000/01/rdf-schema#label'), null);
-
-                // Check if labels exist
-                if (labels.length === 0) {
-                    console.log(`No labels found for resource: ${resourceURI}`);
-                    return 'No Label'; // Default label if none found
-                }
 
                 // Extract and return labels as a string
                 const allLabels = labels.map(label => label.value).join(', ');
@@ -393,34 +477,35 @@
             const propertyMap = new Map();
             chains.forEach((chain, chainIndex) => {
                 // Add a node for the property chain itself
-               
+
                 const chainNodeId = ULID.ulid();
-                var  propertyChainDerivedProperty=chains.property
+                var propertyChainDerivedProperty = chains.property
                 createNode(chainNodeId, `PropertyChain ${chainIndex + 1}`, "propertychain", "", chain.property);
-                
+
                 let previousNodeId = null;
-                
+
 
                 // Add nodes for each property in the chain and its elements
                 chain.chain.forEach((property, propertyIndex) => {
                     const propertyNodeId = `property-${propertyIndex}-${chainIndex}`;
-                    
+
                     const blankNodeId = `blank-${propertyIndex}-${chainIndex}`;
                     console.log(`Property value:${property}`)
 
                     //createNode(id, label, type, IRI, parent = null)
-                     createNode(blankNodeId, `${propertyIndex + 1}`, "chainmember", "", chainNodeId);
-        
+                    createNode(blankNodeId, `${propertyIndex + 1}`, "chainmember", "", chainNodeId);
+
 
                     // If it's not the first element, create an edge between the previous and the next
                     if (previousNodeId) {
-                    //    function createEdge(id, label, source, target, type)
-                    createEdge(ULID.ulid(),'', previousNodeId, blankNodeId, 'nextchainmember')
+                        //    function createEdge(id, label, source, target, type)
+                        createEdge(ULID.ulid(), '', previousNodeId, blankNodeId, 'nextchainmember')
                     }
 
-                    // Create an edge between the "Blank" node and the property node
-                    createEdge(ULID.ulid(), `${propertyIndex + 1}`, blankNodeId,property, 'nextchaintype')
-                    
+                    // Create an edge between the "Blank" node and the property node                   
+                    //  createEdge(ULID.ulid(), `${propertyIndex + 1}`, blankNodeId,property, 'nextchaintype')
+                    createEdge(ULID.ulid(), `${propertyIndex + 1}`, chainNodeId, property, 'nextchaintype')
+
 
                     // Update previousNodeId
                     previousNodeId = blankNodeId;
@@ -428,7 +513,7 @@
 
                 // Create an edge between the chain node and the first property in the chain
                 //createEdge(ULID.ulid(), 'Starts', chainNodeId, `property-0-${chainIndex}`, 'nextchainmember')
-               
+
             });
         }
 
@@ -476,10 +561,63 @@
                 console.log('No imports found');
             }
 
+            // Define an exhaustive list of common RDF, XSD, and OWL datatypes
+            const datatypeIRIs = [
+                // XSD Datatypes
+                'http://www.w3.org/2001/XMLSchema#string',
+                'http://www.w3.org/2001/XMLSchema#boolean',
+                'http://www.w3.org/2001/XMLSchema#decimal',
+                'http://www.w3.org/2001/XMLSchema#integer',
+                'http://www.w3.org/2001/XMLSchema#int',
+                'http://www.w3.org/2001/XMLSchema#long',
+                'http://www.w3.org/2001/XMLSchema#short',
+                'http://www.w3.org/2001/XMLSchema#byte',
+                'http://www.w3.org/2001/XMLSchema#nonPositiveInteger',
+                'http://www.w3.org/2001/XMLSchema#nonNegativeInteger',
+                'http://www.w3.org/2001/XMLSchema#positiveInteger',
+                'http://www.w3.org/2001/XMLSchema#unsignedLong',
+                'http://www.w3.org/2001/XMLSchema#unsignedInt',
+                'http://www.w3.org/2001/XMLSchema#unsignedShort',
+                'http://www.w3.org/2001/XMLSchema#unsignedByte',
+                'http://www.w3.org/2001/XMLSchema#float',
+                'http://www.w3.org/2001/XMLSchema#double',
+                'http://www.w3.org/2001/XMLSchema#dateTime',
+                'http://www.w3.org/2001/XMLSchema#date',
+                'http://www.w3.org/2001/XMLSchema#time',
+                'http://www.w3.org/2001/XMLSchema#duration',
+                'http://www.w3.org/2001/XMLSchema#QName',
+                'http://www.w3.org/2001/XMLSchema#anyURI',
+                'http://www.w3.org/2001/XMLSchema#base64Binary',
+                'http://www.w3.org/2001/XMLSchema#hexBinary',
+                'http://www.w3.org/2001/XMLSchema#normalizedString',
+                'http://www.w3.org/2001/XMLSchema#token',
+                'http://www.w3.org/2001/XMLSchema#language',
+                'http://www.w3.org/2001/XMLSchema#NMTOKEN',
+                'http://www.w3.org/2001/XMLSchema#ID',
+                'http://www.w3.org/2001/XMLSchema#IDREF',
+                'http://www.w3.org/2001/XMLSchema#ENTITY',
+                'http://www.w3.org/2001/XMLSchema#anySimpleType',
+
+                // RDF Datatypes
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral',
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString',
+
+                // OWL Datatypes (subset of XSD types)
+                'http://www.w3.org/2002/07/owl#rational',
+                'http://www.w3.org/2002/07/owl#real'
+            ];
+
             const classes = store.each(null, rdfType, owlClass);
+            // function createNode(id, label, type, IRI, parent = null) {
             createNode("OWLClass", "OWLClasses", "class", owlClass.value, ontologyIRI.value);
+            createNode("Datatype", "DataTypes", "datatype", "");
+            createNode("http://www.w3.org/2001/XMLSchema", "XMLS", "datatype", "http://www.w3.org/2001/XMLSchema", "Datatype");
+            createNode("http://www.w3.org/1999/02/22-rdf-syntax-ns", "RDFS", "http://www.w3.org/2001/XMLSchema", "datatype", "Datatype");
+            createNode("http://www.w3.org/2002/07/owl", "OWL", "datatype", "http://www.w3.org/2001/XMLSchema", "Datatype");
             createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, ontologyIRI.value);
             createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, ontologyIRI.value);
+            createNode("OWLDatatypeProperty", "OWLDatatypeProperty", "datatypeproperty", owlDatatypeProperty.value, ontologyIRI.value);
+
             // createNode("http://www.w3.org/2002/07/owl#topObjectProperty", "topObjectProperty", "property", objectProperty.value, "OWLProperty");
 
             const allProperties = store.statementsMatching(null, null, null); // Toutes les relations de triplets
@@ -488,6 +626,7 @@
             document.getElementById('classesSelect').innerHTML = '';
             document.getElementById('objectPropertiesSelect').innerHTML = '';
             document.getElementById('namedIndividualsSelect').innerHTML = '';
+            document.getElementById('dataPropertiesSelect').innerHTML = '';
             document.getElementById('isaRelationsSelect').innerHTML = '';
             document.getElementById('classSubsumptionSelect').innerHTML = '';
             document.getElementById('propertySubsumptionSelect').innerHTML = '';
@@ -519,7 +658,7 @@
             }
 
             // ObjectProperties OWL
-            const objectProperties = store.each(null, rdfType, $rdf.sym('http://www.w3.org/2002/07/owl#ObjectProperty'));
+            const objectProperties = store.each(null, rdfType, objectProperty);
             const objectPropertiesSelect = document.getElementById('objectPropertiesSelect');
             // Vérifier qu'au moins une propriété objet (ObjectProperty) est définie
             if (objectProperties.length === 0) {
@@ -538,13 +677,108 @@
 
                     uniqueNodeIds.add(propertyId);
                     createNode(propertyId, label, 'property', prop.value, 'OWLProperty');
-                    createNode(propertyId + "_domain", 'domain', 'oprd', prop.value, propertyId);
-                    createNode(propertyId + "_range", 'range', 'oprd', prop.value, propertyId);
+                    //   createNode(propertyId + "_domain", 'domain', 'oprd', prop.value, propertyId);
+                    //   createNode(propertyId + "_range", 'range', 'oprd', prop.value, propertyId);
                     //   createEdge(propertyId + '_toRange', "", propertyId, propertyId + "_range", "range");
                     //   createEdge(propertyId + '_toDomain', "", propertyId, propertyId + "_domain", "domain");
+
+                    // Check if the property is functional
+
+                    const functionalProperty = store.each(prop, rdfType, owlFunctional);
+                    if (functionalProperty.length > 0) {
+                        //  alert('Functional: ' + propertyIRI);
+                        updateNode(propertyId, { functional: true });
+                    }
+
+
+                    // Check if the property is transitive
+                    const transitiveProperty = store.each(prop, rdfType, owlTransitive);
+                    if (transitiveProperty.length > 0) {
+                        //  alert('Transitive: ' + propertyIRI);
+                        updateNode(propertyId, { transitive: true });
+                    }
+                    // Check if the property is inverse functional
+
+                    const inverseFunctionalProperty = store.each(prop, rdfType, owlInverseFunctional);
+                    if (inverseFunctionalProperty.length > 0) {
+                        //   alert('Inverse Functional: ' + propertyIRI);
+                        updateNode(propertyId, { inverseFunctional: true });
+                    }
+
+                    const symmetricProperty = store.each(prop, rdfType, owlSymmetric);
+                    if (symmetricProperty.length > 0) {
+                        //alert('Symmetric: ' + propertyIRI);
+                        updateNode(propertyId, { symmetric: true });
+                    }
+
+                    const asymmetricProperty = store.each(prop, rdfType, owlAsymmetric);
+                    if (asymmetricProperty.length > 0) {
+                        //alert('Asymmetric: ' + propertyIRI);
+                        updateNode(propertyId, { asymmetric: true });
+                    }
+
+                    const reflexiveProperty = store.each(prop, rdfType, owlReflexive);
+                    if (reflexiveProperty.length > 0) {
+                        //alert('Reflexive: ' + propertyIRI);
+                        updateNode(propertyId, { reflexive: true });
+                    }
+
+                    const irreflexiveProperty = store.each(prop, rdfType, owlIrreflexive);
+                    if (irreflexiveProperty.length > 0) {
+                        //alert('Irreflexive: ' + propertyIRI);
+                        updateNode(propertyId, { irreflexive: true });
+                    }
+
                 })
 
             }
+
+            // Create nodes for each datatype with their IRI and label
+            const datatypeNodes = datatypeIRIs.map(iri => ({
+                id: iri,
+                label: iri.split('#').pop(),  // Use the fragment of the IRI (e.g., "string" from xsd:string)
+                type: 'Datatype',
+                parent: iri.split('#')[0]
+            }));
+
+            // Loop through each datatype and call createNode
+            datatypeNodes.forEach(node => {
+                const label = node.label; // Extract the label from the IRI
+                const type = node.type; // All nodes are of type "Datatype"
+                const id = node.id;
+                const parent = node.parent
+                createNode(node.id, node.label, 'datatype', node.id, node.parent);
+
+            });
+
+            const datatypeProperties = store.each(null, rdfType, owlDatatypeProperty);
+            alert(datatypeProperties.length)
+            const dataPropertiesSelect = document.getElementById('dataPropertiesSelect');
+            if (datatypeProperties.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = "Aucun dataTypeProperty  trouvé !";
+                dataPropertiesSelect.appendChild(option);
+            } else {
+                datatypeProperties.forEach(datatypeProperty => { 
+                    const option = document.createElement('option');
+                    option.textContent = datatypeProperty.value;
+                    dataPropertiesSelect.appendChild(option);
+
+                    const label = getLabelFromIRI(datatypeProperty.value);
+                    const nodeId = datatypeProperty.value;
+                    if (!uniqueNodeIds.has(nodeId)) {
+                        uniqueNodeIds.add(nodeId);
+                        createNode(nodeId, label, 'datatypeproperty', datatypeProperty.value, 'OWLDatatypeProperty');
+                    }
+                    const functionalProperty = store.each(datatypeProperty, rdfType, owlFunctional);
+                    if (functionalProperty.length > 0) {
+                        //  alert('Functional: ' + propertyIRI);
+                        updateNode(nodeId, { functional: true });
+                    }
+
+                })
+            }
+
 
             //NamedIndividuals OWL
             const namedIndividuals = store.each(null, rdfType, namedIndividual);
@@ -584,7 +818,7 @@
                         if (store.holds(cls, rdfType, owlClass)) {
                             // Ajouter la relation dans l'interface
                             const option = document.createElement('option');
-                            option.textContent = `${individual.value} -> ${cls.value}`;
+                            option.textContent = `${individual.value}->${cls.value}`;
                             isaSelect.appendChild(option);
 
                             // Créer des noeuds ou connexions dans votre graphe
@@ -614,7 +848,7 @@
 
                         const subjectId = classe.value;
                         const objectId = subclass.object.value; // Subclass target is the object
-                        const edgeId = `${subjectId} -subclassof-> ${objectId}`;
+                        const edgeId = `${subjectId}-subclassof->${objectId}`;
                         if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
                             createEdge(edgeId, "", subjectId, objectId, 'subClass');
                         }
@@ -632,7 +866,8 @@
                     const subjectId = classe.value
                     const objectId = equivalentclass.object.value;
                     const edgeId = `${subjectId}-equivalentclass-${objectId}`;
-                    createEdge(edgeId, "", subjectId, objectId, 'equivalentClass');
+                    createEdge(edgeId, "≡", subjectId, objectId, 'equivalentProperty');
+                    //createEdge(id, label, source, target, type)
                     processEquivalence(subjectId, objectId, "OWLClass")
                 });
 
@@ -655,7 +890,7 @@
                     const subjectId = property.value
                     const objectId = equivalentproperty.object.value;
                     const edgeId = `${subjectId}-equivalentproperty-${objectId}`;
-                    createEdge(edgeId, "", subjectId, objectId, 'equivalentProperty');
+                    createEdge(edgeId, '≡', subjectId, objectId, 'equivalentProperty');
                     processEquivalence(subjectId, objectId, "OWLProperty")
                 });
 
@@ -714,14 +949,16 @@
                     const subject = domainClass.subject.value;
                     const predicate = domainClass.predicate.value;
                     const object = domainClass.object.value;
-                    option.textContent = `${subject} -- ${predicate} --> ${object}`;
+                    option.textContent = `${subject}--${predicate}-->${object}`;
                     domainsSelect.appendChild(option);
 
                     // Ajouter une arête entre la propriété et la classe de domaine
                     const subjectId = domainClass.subject.value;
                     const objectId = domainClass.object.value;
                     const edgeId = `${subjectId}-domain-${objectId}`;
-                    createEdge(edgeId, "", subjectId + "_domain", objectId, 'domain');
+                    console.log(`I'm creating an edge with ${subjectId} as source and ${objectId} as edge`)
+                    createEdge(edgeId, "", subjectId, objectId, 'domain');
+                    //   createEdge(edgeId, "", subjectId + "_domain", objectId, 'domain');
 
                 }
             });
@@ -741,14 +978,15 @@
                     const subject = rangeClass.subject.value;
                     const predicate = rangeClass.predicate.value;
                     const object = rangeClass.object.value;
-                    option.textContent = `${subject} -- ${predicate} --> ${object}`;
+                    option.textContent = `${subject}--${predicate}--> ${object}`;
                     rangesSelect.appendChild(option);
 
                     // Ajouter une arête entre la propriété et la classe de domaine
                     const subjectId = rangeClass.subject.value;
                     const objectId = rangeClass.object.value;
                     const edgeId = `${subjectId}-range-${objectId}`;
-                    createEdge(edgeId, "", subjectId + "_range", objectId, 'range');
+                    createEdge(edgeId, "", subjectId, objectId, 'range');
+                    //    createEdge(edgeId, "", subjectId + "_range", objectId, 'range');
                 }
             });
 
@@ -798,7 +1036,7 @@
                         const subject = relation.subject.value;
                         const predicate = relation.predicate.value;
                         const object = relation.object.value;
-                        option.textContent = `${subject} -- ${predicate} --> ${object}`;
+                        option.textContent = `${subject}--${predicate}-->${object}`;
                         individualRelationsSelect.appendChild(option);
 
                         const objectId = object;
@@ -882,18 +1120,44 @@
                 }
 
                 // Base IRI par défaut
-                const baseIRI = 'http://example.org/ontology#';
+                defaultBaseIRI = 'http://example.org/ontology#';
 
                 // Créer un store RDF
                 store = $rdf.graph();
 
                 // Parsing RDF
-                $rdf.parse(data, store, baseIRI, format, (error) => {
+                $rdf.parse(data, store, defaultBaseIRI, format, (error) => {
                     if (error) {
-                        alert(`Erreur lors du parsing RDF : ${error}`);
+                        alert(`Error when parsing RDF : ${error}`);
                         return;
                     }
-                    alert(`Parsing réussi. Nombre de triplets chargés : ${store.statements.length}`);
+                    alert(`Parsing successful. Number of loaded triples: ${store.statements.length}`);
+
+                    // Step 2: Extract the actual base IRI
+                    const basePredicate = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#base');
+                    actualBaseIRI = store.any(null, basePredicate, null);
+
+
+                    console.log('Default Base IRI:', defaultBaseIRI);
+                    console.log('Extracted Base IRI:', actualBaseIRI || 'Not defined in RDF file');
+
+                    // Step 3: Normalize URIs if the base differs
+                    if (actualBaseIRI && actualBaseIRI !== defaultBaseIRI) {
+                        store.statements.forEach(statement => {
+                            ['subject', 'predicate', 'object'].forEach(term => {
+                                const value = statement[term].value;
+                                if (value.startsWith(defaultBaseIRI)) {
+                                    // Replace the default base with the actual base
+                                    statement[term].value = value.replace(defaultBaseIRI, actualBaseIRI);
+                                }
+                            });
+                        });
+                        defaultBaseIRI = actualBaseIRI
+                        console.log('URIs normalized to the actual base IRI.');
+                    }
+
+                    // Do something with the updated store
+                    console.log('Final RDF Store:', store);
 
                     validateOWL(store);
                 });
@@ -1030,10 +1294,25 @@
                     }
                 },
                 {
+                    selector: 'node.datatypeproperty',
+                    style: {
+                        'background-color': 'green', // red for datatypeproperty nodes
+                        'shape': 'rectangle',
+                    }
+                },
+                {
+                    selector: 'node.datatype',
+                    style: {
+                        'background-color': 'red', // red for datatype nodes
+                        'shape': 'ellipse',
+                    }
+                },
+                {
                     selector: 'node.propertychain',
                     style: {
-                        'background-color': 'green', // green for PropertyChainNode
+                        'background-color': 'white', // white for PropertyChainNode
                         'shape': 'rectangle',
+                        'background-opacity': 1
                     }
                 },
                 {
@@ -1047,13 +1326,14 @@
                 {
                     selector: 'node.equivalence',
                     style: {
-                        'background-color': '#0074D9', // Blue for property nodes
+                        'background-color': '#FFA500', // color for class nodes
                         'shape': 'square',
                         'label': '≡',              // Equivalence symbol as label
-                        'text-background-color': '#fff', // Background for the label
+                        'text-background-color': 'white', // Background for the label
                         'text-background-opacity': 1,    // Make the background fully visible
                         'text-background-padding': 2,    // Add padding around the label
                         'text-background-shape': 'roundrectangle', // Shape of the background
+                        'background-opacity': 0.5
                     }
                 },
 
@@ -1142,7 +1422,7 @@
                         'line-style': 'solid',    // Solid line style
                         'width': 1,               // Edge width for visibility
                         'label': '≡',              // Equivalence symbol as label
-                        'text-background-color': '#fff', // Background for the label
+                        'text-background-color': 'white', // Background for the label
                         'text-background-opacity': 1,    // Make the background fully visible
                         'text-background-padding': 2,    // Add padding around the label
                         'text-background-shape': 'roundrectangle', // Shape of the background
@@ -1211,11 +1491,12 @@
 
         // Event listener for double-click
         cy.on('dblclick', 'node, edge', function (evt) {
+
             const element = evt.target;  // The clicked element
             const elementClasses = element.classes();  // Get the classes of the clicked element
 
             // Retrieve the data attributes from the clicked element
-            const elementID = element.id();  // Get the classes of the clicked element
+            const elementID = element.data('id');  // Get the classes of the clicked element
 
             const elementType = element.data('type') || 'No type';  // Get the type from data, or default if not present
             const elementLabel = element.data('label') || 'No label';  // Get the label, or default if not present
@@ -1225,10 +1506,12 @@
 
             // Display information in an alert
             //   alert(`IDShort: ${elementLabel}\nID: ${elementID}\nType: ${elementType}\nClasses: ${elementClasses.join(', ')}\nIRIType: ${elementIRIType}\nDescription: ${elementDescription}`);
-            const labelContainerId = 'labelContainer';
+            // alert(element.id())
+            //const labelContainerId = 'labelContainer';
             try {
-                getLabelFromResource(element.id(), store)
-            } catch { console.log("Error when capturing label") }
+                getLabelFromResource(elementID, store)
+                getCharacteristicsFromOPNoceId(elementID)
+            } catch (error) { console.log("Error when capturing label" + error) }
         });
 
 
