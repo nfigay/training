@@ -15,6 +15,28 @@
     <script src="lib/cytoscape-expand-collapse.js"></script>
 
     <style>
+
+        /* Hide the native file input */
+        #fileInput, #fileInput2 {
+            display: none;
+        }
+
+        /* Style the custom button */
+        .custom-file-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .custom-file-button:hover {
+            background-color: #0056b3;
+        }
         select {
             width: 100%;
             height: 200px;
@@ -48,13 +70,24 @@
         #infoPanel h3 {
             margin-top: 0;
         }
+
+        
     </style>
 </head>
 
 <body>
-    <h1>Viewer Fichier OWL</h1>
+    <h1>OWL File Viewer</h1>
+    <label for="fileInput" class="custom-file-button">Select an OWL File</label>
     <input type="file" id="fileInput" />
-    <button id="validateButton">Visualisation Fichier OWL</button>
+    
+    <button id="validateButton" class="custom-file-button">Visualization OWL File</button>
+
+    <label for="fileInput2" class="custom-file-button">Select File with Inferred </label>
+    <input type="file" id="fileInput2" />
+
+    <button id="importInferredButton" class="custom-file-button">Add Inferred to the graph</button>
+
+
     <div id="cy"></div>
     <div id="infoPanel">
         <h3>Informations</h3>
@@ -612,7 +645,7 @@ Text:${label.text}
             createNode("OWLClass", "OWLClasses", "class", owlClass.value, ontologyIRI.value);
             createNode("Datatype", "DataTypes", "datatype", "");
             createNode("http://www.w3.org/2001/XMLSchema", "XMLS", "datatype", "http://www.w3.org/2001/XMLSchema", "Datatype");
-            createNode("http://www.w3.org/1999/02/22-rdf-syntax-ns", "RDFS", "http://www.w3.org/2001/XMLSchema", "datatype", "Datatype");
+            createNode("http://www.w3.org/1999/02/22-rdf-syntax-ns", "RDFS","datatype", "http://www.w3.org/2001/XMLSchema",  "Datatype");
             createNode("http://www.w3.org/2002/07/owl", "OWL", "datatype", "http://www.w3.org/2001/XMLSchema", "Datatype");
             createNode("OWLProperty", "OWLProperties", "property", objectProperty.value, ontologyIRI.value);
             createNode("OWLIndividual", "OWLIndividuals", "individual", namedIndividual.value, ontologyIRI.value);
@@ -759,7 +792,7 @@ Text:${label.text}
                 option.textContent = "Aucun dataTypeProperty  trouvé !";
                 dataPropertiesSelect.appendChild(option);
             } else {
-                datatypeProperties.forEach(datatypeProperty => { 
+                datatypeProperties.forEach(datatypeProperty => {
                     const option = document.createElement('option');
                     option.textContent = datatypeProperty.value;
                     dataPropertiesSelect.appendChild(option);
@@ -1016,8 +1049,6 @@ Text:${label.text}
             const propertyChains = extractPropertyChains(store);
             generateGraphFromPropertyChains(propertyChains);
 
-
-
             //typed links between individual
             const individualRelationsSelect = document.getElementById('individualRelationsSelect');
             const individualRelations = [];
@@ -1095,7 +1126,78 @@ Text:${label.text}
 
         }
 
-        // Gestionnaire d'événements pour valider le fichier OWL
+        // Import of the File with inferred data when clicking on Import Inferred button
+        document.getElementById('importInferredButton').addEventListener('click', () => {
+
+            const fileInput2 = document.getElementById('fileInput2');
+            const file2 = fileInput2.files[0];
+            if (!file2) {
+                alert("Let's select the OWL file with inferred statement generated with Protégé.");
+                return;
+            }
+
+            const reader2 = new FileReader();
+
+            reader2.onload = (event) => {
+                const data = event.target.result;
+
+                let format;
+                try {
+                    format = detectFormat(data);
+                    alert(`Format RDF détecté : ${format}`);
+                } catch (error) {
+                    alert(`Erreur de détection du format RDF : ${error.message}`);
+                    return;
+                }
+
+                // Base IRI par défaut
+                defaultBaseIRI = 'http://example.org/ontology#';
+                // Créer un store RDF
+                inferredStore = $rdf.graph();
+                // Parsing RDF
+                $rdf.parse(data, inferredStore, defaultBaseIRI, format, (error) => {
+                    if (error) {
+                        alert(`Error when parsing RDF : ${error}`);
+                        return;
+                    }
+                    alert(`Parsing successful. Number of loaded triples: ${inferredStore.statements.length}`);
+
+                    // Step 2: Extract the actual base IRI
+                    const basePredicate = $rdf.sym('http://www.w3.org/2000/01/rdf-schema#base');
+                    actualBaseIRI = inferredStore.any(null, basePredicate, null);
+
+
+                    console.log('Default Base IRI:', defaultBaseIRI);
+                    console.log('Extracted Base IRI:', actualBaseIRI || 'Not defined in RDF file');
+
+                    // Step 3: Normalize URIs if the base differs
+                    if (actualBaseIRI && actualBaseIRI !== defaultBaseIRI) {
+                        inferredStore.statements.forEach(statement => {
+                            ['subject', 'predicate', 'object'].forEach(term => {
+                                const value = statement[term].value;
+                                if (value.startsWith(defaultBaseIRI)) {
+                                    // Replace the default base with the actual base
+                                    statement[term].value = value.replace(defaultBaseIRI, actualBaseIRI);
+                                }
+                            });
+                        });
+                        defaultBaseIRI = actualBaseIRI
+                        console.log('URIs normalized to the actual base IRI.');
+                    }
+
+                    // Do something with the updated store
+                    console.log('Final RDF Store:', inferredStore);
+
+                    alert("now the import of inferred element in the graph is to be done")
+                });
+            };
+
+            reader2.readAsText(file2);
+
+        });
+
+
+        // Import of the OWL File when clicking on Validation button
         document.getElementById('validateButton').addEventListener('click', () => {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];

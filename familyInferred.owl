@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.plm-interop.org/family#"
+     xml:base="http://www.plm-interop.org/family"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.plm-interop.org/family"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasAuncle -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasAuncle"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasAunt -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasAunt">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasAuncle"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasBrother -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasBrother">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasSibling"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasChild"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasDaughter -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasDaughter">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasChild"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasParent"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasFather -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasFather">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasParent"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasChild"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasGrandChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasGrandChild"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasGrandDaughter -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasGrandDaughter">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasGrandChild"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasGrandParent"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasGrandFather -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasGrandFather">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasGrandParent"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasGrandChild"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasGrandMother -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasGrandMother">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasGrandParent"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasGrandChild"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasGrandParent -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasGrandParent"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasGrandSon -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasGrandSon">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasGrandChild"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasGrandParent"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasHusband -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasHusband">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasSpouse"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasSpouse"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasMother -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasMother">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasParent"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasChild"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasParent -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasParent"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasSibling -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasSibling"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasSister -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasSister">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasSibling"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasSon -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasSon">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasChild"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasParent"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasSpouse -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasSpouse"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasUncle -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasUncle">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasAuncle"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#hasWife -->
+
+    <owl:ObjectProperty rdf:about="http://www.plm-interop.org/family#hasWife">
+        <rdfs:subPropertyOf rdf:resource="http://www.plm-interop.org/family#hasSpouse"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://www.plm-interop.org/family#hasSpouse"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family#Auncle -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Auncle">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Aunt -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Aunt">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Auncle"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Female"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Daughter -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Daughter">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Female"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Family -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Family">
+        <owl:equivalentClass rdf:resource="http://www.plm-interop.org/family#lineage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Father -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Father">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Male"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Parent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Female -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Female">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Gender -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Gender"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#GrandFather -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#GrandFather">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Male"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#grandParent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#GrandMother -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#GrandMother">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Female"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#grandParent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Husband -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Husband">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Male"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Spouse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Male -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Male">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Mother -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Mother">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Female"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Parent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Parent -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Parent">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Person -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Person">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Gender"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Son -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Son">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Male"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Spouse -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Spouse">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Uncle -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Uncle">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Auncle"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Male"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#Wife -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#Wife">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Female"/>
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Spouse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#grandParent -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#grandParent">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#lineage -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#lineage"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
