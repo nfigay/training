@@ -262,8 +262,9 @@
                                     <ul>
                                         <li>Comprendre les bases de la sémantique et des ontologies</li>
                                         <li>Modéliser en OWL une logique de description</li>
-                                        <li>Voir en quoi cela contribue à l'établissement de l'interopérabilité sémantique</li>
-                                       
+                                        <li>Voir en quoi cela contribue à l'établissement de l'interopérabilité
+                                            sémantique</li>
+
                                     </ul>
                                 </section>
                                 <section>
@@ -1042,6 +1043,13 @@
                                                 <li>Redondance minimale: pas de synonymes non intentionnels</li>
                                                 <li>Axiomatisation riche: descriptions (suffisamment) détaillées</li>
                                             </ul>
+                                            <p style="font-size: 0.8em;text-align: left;">On souhaite du raisonnement
+                                                automatique</p>
+                                            <ul style="font-size: 0.6em;">
+                                                <li>Appui sur des formalisations mathématiques</li>
+                                                <li>Combinaison de logique(s) et de la théorie des ensembles
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </section>
@@ -1158,21 +1166,45 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;">La théorie des ensembles
-                                                modélise des collections d'éléments :</p>
+                                            <p style="font-size: 0.8em; text-align: left;">
+                                                La théorie des ensembles modélise des collections d'éléments, des
+                                                relations et des opérations, qui
+                                                sont fondamentales pour comprendre les concepts ontologiques :
+                                            </p>
                                             <ul style="font-size: 0.7em;">
-                                                <li><strong>Ensemble :</strong> Une collection d'objets
-                                                    (<code>A = {1, 2, 3}</code>).</li>
-                                                <li><strong>Appartenance :</strong> <code>x ∈ A</code> signifie que
+                                                <li>
+                                                    <strong>Ensemble :</strong> Une collection d'objets
+                                                    (<code>A = {1, 2, 3}</code>).
+                                                </li>
+                                                <li>
+                                                    <strong>Appartenance :</strong> <code>x ∈ A</code> signifie que
                                                     <code>x</code> appartient à l'ensemble <code>A</code>.
                                                 </li>
-                                                <li><strong>Opérations :</strong> Union (<code>A ∪ B</code>),
+                                                <li>
+                                                    <strong>Opérations :</strong> Union (<code>A ∪ B</code>),
                                                     intersection (<code>A ∩ B</code>), différence (<code>A - B</code>).
+                                                </li>
+                                                <li>
+                                                    <strong>Ensembles disjoints :</strong> Deux ensembles <code>A</code>
+                                                    et <code>B</code> sont disjoints
+                                                    si leur intersection est vide (<code>A ∩ B = ∅</code>).
+                                                </li>
+                                                <li>
+                                                    <strong>Union disjointe :</strong> Une union de plusieurs ensembles
+                                                    disjoints. Chaque élément appartient
+                                                    à un seul des ensembles constituant l'union (<code>A ∪ B</code>, où
+                                                    <code>A ∩ B = ∅</code>).
                                                 </li>
                                             </ul>
                                         </div>
+                                        <div class="image-zone">
+                                            <img src="./img/theorie_ensembles.png"
+                                                alt="Concepts de la théorie des ensembles"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
                                     </div>
                                 </section>
+
                                 <section>
                                     <div class="title-zone">
                                         <h3 style="font-size: 0.6em;">Ontologies</h3>
@@ -1679,7 +1711,8 @@
                                                             personnes ont un parent qui est une personne.")</td>
                                                     </tr>
                                                     <tr style="border-bottom: 1px solid #ccc; height: 20px;">
-                                                        <td style="padding: 4px; border-right: 1px solid #ccc;"> NOT (¬)</td>
+                                                        <td style="padding: 4px; border-right: 1px solid #ccc;"> NOT (¬)
+                                                        </td>
                                                         <td style="padding: 4px; border-right: 1px solid #ccc;">
                                                             Complément</td>
                                                         <td style="padding: 4px; border-right: 1px solid #ccc;">
@@ -1698,6 +1731,169 @@
 
                                         </div>
                                 </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.6em;">Structure fondamentale d'une ontologie OWL</h3>
+                                        <h4>Individus, Propriétés et Classes</h4>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone" style="font-size: 0.6em;">
+                                            <p style="font-size: 0.7em;text-align: left;">Les 3 concepts de bases en OWL
+                                                sont:</p>
+                                            <ul style="font-size: 0.7em;">
+                                                <li><b>Individus :</b> Représentent des instances concrètes ou
+                                                    spécifiques, c'est-à-dire des entités réelles ou imaginées.
+                                                    <br><i>Exemple :</i> <code>John</code> (individu de
+                                                    <code>Person</code>),
+                                                    <code>BMW_X5</code> (individu de <code>Vehicle</code>).
+                                                </li>
+                                                <li><b>Propriétés :</b> Décrivent les relations entre les individus ou
+                                                    leurs caractéristiques. Elles permettent de structurer les
+                                                    interactions :
+                                                    <ul style="font-size: 0.7em;">
+                                                        <li><b>Propriétés d'objet :</b> Relient des individus entre eux.
+                                                            <br><i>Exemple :</i> <code>John</code>
+                                                            <code>hasChild</code> <code>Mary</code>.
+                                                        </li>
+                                                        <li><b>Propriétés de données :</b> Relient des individus à des
+                                                            valeurs littérales. <br><i>Exemple :</i>
+                                                            <code>John</code> <code>age</code> <code>35</code>.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li><b>Classes :</b> Catégorisent les individus en concepts abstraits,
+                                                    permettant d'organiser les connaissances.
+                                                    <br><i>Exemple :</i> <code>Person</code>, <code>Vehicle</code>,
+                                                    <code>Animal</code>.
+                                                </li>
+                                            </ul>
+                                            <p style="font-size: 0.7em;text-align: left;">Cette organisation, de
+                                                l'individu au concept abstrait, est essentielle pour construire des
+                                                ontologies capables de modéliser des domaines complexes.</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/owl_structure_inverse.png" alt="Structure OWL"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.6em;">Structure des Propriétés en OWL</h3>
+                                        <h4 style="font-size: 0.7em;">Domaines, Ensembles d'arrivée et Autonomie des
+                                            Propriétés</h4>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone" style="font-size: 0.6em;">
+                                            <ul style="font-size: 0.6em;">
+                                                <li>
+                                                    <b>Les propriétés comme concepts indépendants :</b>
+                                                    En OWL, les propriétés sont des entités de première classe, définies
+                                                    indépendamment des classes. Contrairement aux attributs, elles ne
+                                                    sont pas restreintes au contexte d'une entité ou classe spécifique.
+                                                    <br><i>Exemple :</i> Une propriété comme <code>hasChild</code> peut
+                                                    relier des individus de différentes classes (par exemple,
+                                                    <code>Person</code>, <code>Animal</code>).
+                                                </li>
+                                                <li>
+                                                    <b>Propriétés d’objet (<i>Object Properties</i>) :</b> Relient des
+                                                    individus entre eux.
+                                                    <br><i>Exemple :</i> <code>John</code> <code>hasChild</code>
+                                                    <code>Mary</code>.
+                                                </li>
+                                                <li>
+                                                    <b>Propriétés de données (<i>Data Properties</i>) :</b> Relient un
+                                                    individu à une valeur littérale.
+                                                    <br><i>Exemple :</i> <code>John</code> <code>age</code>
+                                                    <code>35</code>.
+                                                </li>
+                                                <li>
+                                                    <b>Domaine (<i>Domain</i>) :</b> Définit les classes dont les
+                                                    individus peuvent être sujets de la propriété.
+                                                    <br><i>Exemple :</i> Le domaine de <code>hasChild</code> peut être
+                                                    <code>Person</code>.
+                                                </li>
+                                                <li>
+                                                    <b>Ensemble d'arrivée (<i>Range</i>) :</b> Définit les classes ou
+                                                    types dont les individus ou valeurs peuvent être objets de la
+                                                    propriété.
+                                                    <br><i>Exemple :</i> Le codomaine de <code>hasChild</code> peut être
+                                                    <code>Person</code>, tandis que celui de <code>age</code> peut être
+                                                    <code>Integer</code>.
+                                                </li>
+                                            </ul>
+                                            <p style="font-size: 0.7em;text-align: left;">
+                                                En résumé, les propriétés OWL permettent de structurer des relations
+                                                complexes entre individus et valeurs, en restant génériques et
+                                                réutilisables grâce à leur indépendance vis-à-vis des classes.
+                                            </p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/owl_properties.png"
+                                                alt="Propriétés en OWL : Domain et Range"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.6em;">Notions d'Équivalence et de Subsomption</h3>
+                                        <h4 style="font-size: 0.8em;">Équivalence et Subsomption dans OWL</h4>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="font-size: 0.4em; text-align: left;">
+                                                En OWL, les notions d'équivalence et de subsomption permettent de
+                                                décrire et de raisonner sur les
+                                                relations entre les concepts (classes et propriétés). Ces notions
+                                                reposent sur la théorie des ensembles
+                                                et facilitent la modélisation ontologique.
+                                            </p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li>
+                                                    <b>Équivalence (égalité) :</b> Deux classes ou propriétés sont dites
+                                                    équivalentes si elles décrivent
+                                                    exactement le même ensemble d'éléments ou les mêmes relations.
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li><b>Exemple (classes) :</b> La classe
+                                                            <i>"PersonneCélibataire"</i> est équivalente à la classe
+                                                            des personnes ayant un "ÉtatCivil" égal à "Célibataire".
+                                                        </li>
+                                                        <li><b>Exemple (propriétés) :</b> La propriété
+                                                            <i>"estParentDe"</i> peut être déclarée équivalente à
+                                                            <i>"aEnfant".</i>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <b>Subsomption (inclusion) :</b> Une classe ou propriété A subsume
+                                                    une autre classe ou propriété B si
+                                                    tout élément de B est aussi un élément de A. Cette relation
+                                                    correspond à une inclusion d'ensemble.
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li><b>Exemple (classes) :</b> La classe <i>"Mammifère"</i>
+                                                            subsume la classe <i>"Chien"</i>, car tout
+                                                            chien est un mammifère.</li>
+                                                        <li><b>Exemple (propriétés) :</b> La propriété
+                                                            <i>"estAncêtreDe"</i> subsume la propriété
+                                                            <i>"estParentDe"</i>, car un parent est aussi un ancêtre.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <p style="font-size: 0.4em;text-align: left;">Ces relations sont
+                                                essentielles pour raisonner sur les modèles et déduire des faits à
+                                                partir des définitions.</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/equivalence_subsumption.png"
+                                                alt="Représentation d'équivalence et de subsomption"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+
+
 
                                 <section>
                                     <div class="title-zone">
@@ -1727,178 +1923,298 @@
                                         </div>
                                     </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>some</code></h3>
+                                        <h3 style="font-size: 0.8em;">Individus : Typage, Équivalence et Propriétés</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p>Tout individu appartenant à une classe doit être relié à au moins un
-                                                individu d'une autre classe via une propriété donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>ProduitCommercial SousClasseDe : aCodeGS1 some CodeGTIN</code>
+                                            <p style="font-size: 0.5em;text-align: left;">Les individus représentent des
+                                                entités spécifiques dans un domaine et permettent de relier des concepts
+                                                abstraits à des éléments concrets.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b><code>isa</code> :</b> Définit qu'un individu est une instance
+                                                    d'une classe, ou que la classe type l'indiviu
+                                                    <em>Exemple :</em> <code>Jean isa Person</code>, où
+                                                    <code>Person</code> est une classe.
                                                 </li>
-                                                <li><b>Signification :</b> Chaque produit commercial possède au
-                                                    moins un
-                                                    code GS1, tel qu'un GTIN.</li>
+                                                <li><b><code>sameAs</code> :</b> Indique que deux individus représentent
+                                                    la même entité dans le monde réel.
+                                                    <em>Exemple :</em>
+                                                    <code>ParisInFrance sameAs ParisInIleDeFrance</code>.
+                                                </li>
+                                                <li><b>Attribution de propriétés :</b> Connecte les individus entre eux
+                                                    ou à des données via des relations.
+                                                    <em>Exemple :</em> <code>Jean hasAge 30</code> ou
+                                                    <code>Jean knows Marie</code>.
+                                                </li>
                                             </ul>
+                                            <p style="font-size: 0.4em;">
+                                                <b>=> Les individus constituent la base des ontologies, permettant
+                                                    d'exprimer des relations concrètes dans le cadre d'un modèle
+                                                    formel.</b>
+                                            </p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/some_example.png" alt="Exemple de propriété 'some'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/IndividusRelations.png" alt="Individus et Relations"
+                                                style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>only</code></h3>
+                                        <h3 style="font-size: 0.8em;">Usage des Quantificateurs en OWL</h3>
                                     </div>
                                     <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p>Tout individu d'une classe ne peut être relié qu'à des individus
-                                                d'une
-                                                autre classe via une propriété donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>EntrepriseCertifiee SousClasseDe : utiliseStandard only StandardGS1</code>
+                                        <div class="text-zone" style="font-size: 0.7em;">
+                                            <p style="font-size: 0.6em;text-align: left;">Les quantificateurs en OWL
+                                                permettent d'exprimer des restrictions sur les propriétés entre
+                                                individus. Ils sont essentiels pour modéliser précisément les relations
+                                                et les contraintes dans une ontologie.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b>Quantificateur existentiel (<code>some</code>):</b> Spécifie
+                                                    qu'il existe au moins un lien correspondant à une propriété.
+                                                    <br><code>Person hasChild some Person</code><br>
+                                                    Signifie qu'une personne a au moins un enfant.
                                                 </li>
-                                                <li><b>Signification :</b> Une entreprise certifiée n'utilise que
-                                                    des
-                                                    standards GS1.</li>
+                                                <li><b>Quantificateur universel (<code>only</code>):</b> Spécifie que
+                                                    tous les liens d'une propriété concernent une classe donnée.
+                                                    <br><code>Person hasChild only Person</code><br>
+                                                    Signifie que tous les enfants d'une personne sont des personnes.
+                                                </li>
+                                                <li><b>Quantificateur exact (<code>exactly</code>):</b> Spécifie un
+                                                    nombre précis de liens pour une propriété.
+                                                    <br><code>Person hasChild exactly 2</code><br>
+                                                    Signifie qu'une personne a exactement deux enfants.
+                                                </li>
+                                                <li><b>Quantificateur minimum (<code>min</code>) et maximum
+                                                        (<code>max</code>):</b> Permettent de définir des contraintes
+                                                    numériques sur le nombre de liens.
+                                                    <br><code>Person hasChild min 1</code><br>
+                                                    Signifie qu'une personne a au moins un enfant.<br>
+                                                    <code>Person hasChild max 3</code><br>
+                                                    Signifie qu'une personne peut avoir au maximum trois enfants.
+                                                </li>
                                             </ul>
+                                            <p style="font-size: 0.6em;text-align: left;">Ces restrictions s’appliquent
+                                                aux propriétés objet (<i>Object Properties</i>) et permettent de
+                                                raisonner automatiquement sur les modèles.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/only_example.png" alt="Exemple de propriété 'only'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/quantifiersExample.png" alt="Quantificateurs OWL"
+                                                style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>min</code></h3>
+                                        <h3 style="font-size: 0.8em;">Self, Value et Key en OWL</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p>Un individu d'une classe doit être relié à un nombre minimal
-                                                d'individus
-                                                d'une autre classe via une propriété donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>Palette SousClasseDe : contientProduit min 10 ProduitCommercial</code>
+                                            <p style="font-size: 0.5em;text-align: left;">En OWL, <b>Self</b>,
+                                                <b>Value</b>, et <b>Key</b> sont des mécanismes permettant de modéliser
+                                                des relations spécifiques ou des identifications uniques entre les
+                                                individus et leurs propriétés.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b>Self :</b> Permet de spécifier qu'un individu est relié à
+                                                    lui-même via une propriété donnée.
+                                                    <br><code>Person knows Self</code><br>
+                                                    Signifie qu'une personne se connaît elle-même.
                                                 </li>
-                                                <li><b>Signification :</b> Une palette contient au moins 10 produits
-                                                    commerciaux identifiés par un GTIN.</li>
+                                                <li><b>Value :</b> Permet de restreindre une propriété à une valeur
+                                                    spécifique pour un individu.
+                                                    <br><code>Person hasAge value 30</code><br>
+                                                    Signifie que l'âge d'une personne est exactement 30.
+                                                </li>
+                                                <li><b>Key :</b> Définit un ou plusieurs identifiants uniques
+                                                    (<i>keys</i>) pour différencier les individus.
+                                                    <br><code>Key: (hasID)</code><br>
+                                                    Signifie que la propriété <code>hasID</code> est utilisée pour
+                                                    identifier de manière unique les individus dans une ontologie.
+                                                </li>
                                             </ul>
+                                            <p style="font-size: 0.5em;text-align: left">Ces mécanismes sont utiles pour
+                                                définir des contraintes spécifiques, assurer l'unicité ou modéliser des
+                                                relations particulières dans une ontologie.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/min_example.png" alt="Exemple de propriété 'min'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/SelfValueKey.png" alt="Self, Value et Key en OWL"
+                                                style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>max</code></h3>
+                                        <h3 style="font-size: 0.8em;">Donnée, Information et Comportements Automatiques
+                                            avec Protégé</h3>
                                     </div>
                                     <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p>Un individu d'une classe ne peut être relié qu'à un nombre maximal
-                                                d'individus d'une autre classe via une propriété donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>Colis SousClasseDe : contientProduit max 1 ProduitLourd</code>
+                                        <div class="text-zone" style="font-size: 0.6em;">
+                                            <p  style="font-size: 0.6em;text-align: left;">En OWL, la gestion des données et des informations repose sur des
+                                                mécanismes logiques. Protégé, en tant qu'éditeur d'ontologies, offre des
+                                                comportements automatiques notables qui facilitent le travail avec des
+                                                ontologies, mais peuvent surprendre les débutants.</p>
+                                            <ul style="font-size: 0.5em;">
+                                                <li><b>Réduction des assertions redondantes :</b> Si une même assertion
+                                                    est capturée plusieurs fois (par exemple
+                                                    <code>Person1 hasAge 30</code>), Protégé l'unifie automatiquement,
+                                                    ne conservant qu'une seule occurrence dans l'ontologie.</li>
+                                                <li><b>Création automatique de classes manquantes :</b> Lorsqu'un
+                                                    domaine ou un ensemble d'arrivée (<i>range</i>) est déclaré pour une
+                                                    propriété, Protégé génère automatiquement une classe correspondante
+                                                    si elle n'existe pas déjà.
+                                                    <br>Exemple : Déclarer
+                                                    <code>hasChild domain: Person range: Child</code> entraînera la
+                                                    création des classes <code>Person</code> et <code>Child</code> si
+                                                    elles sont absentes.
                                                 </li>
-                                                <li><b>Signification :</b> Un colis peut contenir au maximum un
-                                                    produit
-                                                    lourd.</li>
+                                                <li><b>Importation de fichiers RDF :</b> Contrairement aux fichiers OWL,
+                                                    les fichiers RDF manquent souvent d'une structure explicite pour les
+                                                    classes et les propriétés. Protégé génère alors des classes et
+                                                    propriétés pour structurer l'ontologie, à partir des triplets
+                                                    rencontrés.
+                                                    <br>Exemple : Un triplet RDF
+                                                    <code>&lt;John&gt; &lt;hasFriend&gt; &lt;Mary&gt;</code> produira la
+                                                    propriété <code>hasFriend</code> et les individus <code>John</code>
+                                                    et <code>Mary</code>, même si ces entités n'étaient pas définies
+                                                    explicitement.
+                                                </li>
                                             </ul>
+                                            <p  style="font-size: 0.6em; text-align: left;">Ces comportements montrent comment Protégé combine flexibilité et rigueur
+                                                pour transformer des données brutes en informations structurées, tout en
+                                                aidant à construire une ontologie cohérente.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/max_example.png" alt="Exemple de propriété 'max'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/BehaviorWithProtege.png" alt="Comportements de Protégé"
+                                                style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>exactly</code></h3>
+                                        <h3 style="font-size: 0.8em;">Validation des Ontologies</h3>
+                                        <h4 style="font-size: 0.7em;">Cohérence et Utilité</h4>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p>Un individu d'une classe doit être relié à un nombre exact
-                                                d'individus
-                                                d'une autre classe via une propriété donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>ProduitUnitaire SousClasseDe : aCodeGS1 exactly 1 CodeGTIN</code>
+                                            <p style="font-size: 0.4em;text-align: left;" >Lors de la création d'une ontologie, il est essentiel de valider la logique capturée pour garantir sa cohérence interne et son utilité pratique dans le domaine visé.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b>Validation de la cohérence :</b> 
+                                                    <ul style="font-size: 0.7em;">
+                                                        <li>Vérifier qu'aucune contradiction logique n'existe dans l'ontologie (ex. : une classe ne peut être à la fois disjointe et sous-classe d'une autre).</li>
+                                                        <li>Utiliser des moteurs d'inférence pour détecter les incohérences dans les définitions des classes, des propriétés et des relations.</li>
+                                                        <li><b>Exemple :</b> Si une classe "Voiture" est déclarée disjointe avec "Vélo", il serait incohérent qu'un individu appartienne aux deux.</li>
+                                                    </ul>
                                                 </li>
-                                                <li><b>Signification :</b> Chaque produit unitaire possède un unique
-                                                    GTIN.</li>
+                                                <li><b>Validation de l'utilité :</b> 
+                                                    <ul style="font-size: 0.7em;">
+                                                        <li>S'assurer que l'ontologie permet de répondre aux cas d'usage identifiés (ex. : requêtes, intégration de données, inférences utiles).</li>
+                                                        <li>Tester l’ontologie avec des scénarios concrets ou des exemples réalistes du domaine d'application.</li>
+                                                        <li><b>Exemple :</b> Dans une ontologie médicale, vérifier qu'il est possible de poser des questions comme "Quels médicaments sont prescrits pour une maladie donnée ?".</li>
+                                                    </ul>
+                                                </li>
                                             </ul>
+                                            <p style="font-size: 0.4em;text-align: left;">La validation garantit que l'ontologie est non seulement logique, mais également capable de remplir son rôle dans son contexte d'application.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/exactly_example.png" alt="Exemple de propriété 'exactly'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/validationOntology.png" alt="Validation d'Ontologie"
+                                                 style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
-
+                                
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>value</code></h3>
+                                        <h3 style="font-size: 0.8em;">Interopérabilité Sémantique</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p>Un individu d'une classe est directement relié à une valeur
-                                                spécifique
-                                                via une propriété donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>ProduitExemple SousClasseDe : aCodeGS1 value "1234567890123"</code>
-                                                </li>
-                                                <li><b>Signification :</b> Ce produit possède un GTIN spécifique :
-                                                    "1234567890123".</li>
+                                            <p style="font-size: 0.5em;text-align: left;">L'interopérabilité sémantique garantit que des systèmes, applications ou organisations différents peuvent échanger et interpréter des données de manière cohérente, tout en préservant le sens des informations.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b>Compréhension partagée des concepts :</b> Utilisation d'ontologies ou de vocabulaires communs pour définir clairement les termes et leurs relations.</li>
+                                                <li><b>Intégration des données :</b> Alignement des modèles et structures via des mappings de classes, propriétés et concepts.</li>
+                                                <li><b>Automatisation des échanges :</b> Recours à des outils capables d'inférer et valider les informations grâce aux règles définies.</li>
                                             </ul>
+                                            <p style="font-size: 0.5em;text-align: left;"><b>Exemple :</b> Dans le domaine de la santé, un hôpital utilisant "PatientID" et un autre utilisant "IdentifierPatient" peuvent partager des données si un mapping sémantique établit leur équivalence.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/value_example.png" alt="Exemple de propriété 'value'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/interopSemantique.png" alt="Interopérabilité Sémantique"
+                                                 style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
-                                        <h3>Concept OWL : <code>self</code></h3>
+                                        <h3 style="font-size: 0.6em;">Interopérabilité Sémantique à l'Aide des Ontologies</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p>Un individu d'une classe est en relation avec lui-même via une
-                                                propriété
-                                                donnée.</p>
-                                            <ul>
-                                                <li><b>Exemple :</b>
-                                                    <code>ProduitAutoIdentifiable SousClasseDe : aIdentifiantGS1 self</code>
+                                            <p style="font-size: 0.4em;text-align: left;">L'interopérabilité sémantique repose sur des mécanismes permettant de relier des systèmes, applications et données ayant des vocabulaires ou modèles différents. Les ontologies offrent deux approches complémentaires :</p>
+                                            <ul style="font-size: 0.4em;" >
+                                                <li>
+                                                    <b>Alignement avec des ontologies préexistantes :</b>
+                                                    Lors de la conceptualisation d'une application, il est possible de s'appuyer sur des ontologies produites par des communautés de connaissances et de pratiques pour construire une base commune. 
+   
                                                 </li>
-                                                <li><b>Signification :</b> Un produit auto-identifiable peut se
-                                                    désigner
-                                                    lui-même grâce à son identifiant GS1.</li>
+                                                <li>
+                                                    <b>Intégration a posteriori des données :</b>
+                                                    Lorsque des systèmes ou applications existants doivent être interconnectés, l'intégration passe par des mappings entre classes et propriétés. Ces mappings peuvent utiliser ou non une ontologie pivot.
+
+                                                </li>
                                             </ul>
+                                            <p style="font-size: 0.4em;text-align: left;"><b>En conclusion :</b> Ces deux approches ne s'excluent pas mutuellement et peuvent être combinées pour répondre à des besoins spécifiques d'interopérabilité, en fonction du contexte et des ressources disponibles.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/self_example.png" alt="Exemple de propriété 'self'"
-                                                style="max-width: 80%; height: auto;" />
+                                            <img src="./img/InteropSemantique.png" alt="Interopérabilité Sémantique" style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
-
-
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">Interopérabilité Sémantique</h3>
+                                        <h4 style="font-size: 0.8em;">Alignement lors de la conceptualisation</h4>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="font-size: 0.5em;text-align: left;">L'alignement lors de la conceptualisation consiste à intégrer, dès la conception d’une application, des ontologies ou vocabulaires partagés produits par des communautés de connaissance et de pratique.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b>Utilisation d'ontologies reconnues :</b> Intégration de standards existants pour définir des concepts et propriétés (ex. : Dublin Core, FOAF).</li>
+                                                <li><b>Uniformisation des modèles :</b> Adoption de schémas et terminologies communes pour assurer la compatibilité avec d'autres systèmes.</li>
+                                                <li><b>Avantage :</b> Réduction des conflits sémantiques grâce à une conceptualisation partagée dès le départ.</li>
+                                            </ul>
+                                            <p style="font-size: 0.5em;text-align: left;"><b>Exemple :</b> Lors du développement d'une application e-commerce, l'utilisation d'une ontologie comme GoodRelations permet de structurer les concepts tels que les produits, prix ou transactions.</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/conceptualisationAlignement.png" alt="Alignement Conceptualisation"
+                                                 style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">Interopérabilité Sémantique</h3>
+                                        <h4 style="font-size: 0.8em;">Intégration à posteriori</h4>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="font-size: 0.5em;text-align: left;">Dans cette approche, l'interopérabilité est construite après coup pour intégrer des données provenant de systèmes existants, souvent incompatibles entre eux.</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li><b>Mapping entre ontologies :</b> Création de correspondances entre les classes et propriétés des différents systèmes.</li>
+                                                <li><b>Utilisation d’ontologies pivots :</b> Conversion des données vers un format intermédiaire basé sur une ontologie centrale pour faciliter l’intégration.</li>
+                                                <li><b>Avantage :</b> Adaptation aux systèmes existants sans nécessiter leur refonte complète.</li>
+                                            </ul>
+                                            <p style="font-size: 0.5em;text-align: left;"><b>Exemple :</b> Pour interconnecter deux bases de données médicales, un mapping est établi entre les concepts "PatientID" dans l’une et "IdentifierPatient" dans l’autre, en utilisant une ontologie pivot comme SNOMED-CT.</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/integrationPosteriori.png" alt="Intégration à posteriori"
+                                                 style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                                                
+                                
                             </section>
                             <!-- Conclusion -->
                             <section>
@@ -1915,6 +2231,8 @@
                                     <h3>Questions et Réponses</h3>
                                     <p>Posez vos questions pour clarifier les concepts.</p>
                                 </section>
+                                
+                                
                                 <section>
 
                                     <h3 style="font-size: 0.8em;">Construire l'interopérabilité sémantique avec OWL
