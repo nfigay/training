@@ -233,11 +233,10 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
 
     <!-- http://www.plm-interop.org/family#Auncle -->
 
+ 
     <owl:Class rdf:about="http://www.plm-interop.org/family#Auncle">
         <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family#Person"/>
     </owl:Class>
