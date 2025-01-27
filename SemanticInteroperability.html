@@ -218,19 +218,19 @@
             /* Hauteur maximale avec scroll */
             overflow-y: auto;
             /* Défilement vertical */
-            border: 0px solid #ccc;
+            border: 1px solid black;
             margin: 0 auto black;
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
-            border: 0px solid black;
+            border: 1px solid black;
         }
 
         th,
         td {
-            border: 1px solid #ccc;
+            border: 1px solid black;
             padding: 0px;
             text-align: left;
         }
@@ -240,18 +240,18 @@
             /* Bleu clair pour l'en-tête */
             position: sticky;
             top: 0;
-            border: 0px solid black;
+            border: 1px solid black;
             z-index: 10;
             /* Assure que l'en-tête reste au-dessus du contenu */
         }
 
         tbody tr:nth-child(odd) {
-            background-color: black;
+            background-color: white;
 
         }
 
         tbody tr:nth-child(even) {
-            background-color: black;
+            background-color: white;
 
         }
 
@@ -599,7 +599,6 @@
                                         </div>
                                     </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
                                         <h3 style="font-size: 0.8em;">Communautés, Domaines et concepts multiples</h3>
@@ -2018,8 +2017,8 @@
                                                     </td>
                                                     <td style="padding: 8px; border-right: 1px solid #ccc;">Il
                                                         existe au moins un élément dans la relation spécifiée.</td>
-                                                    <td style="padding: 8px;">∃ hasChild.Person (ex. : "Une personne
-                                                        a un enfant qui est une personne.")</td>
+                                                    <td style="padding: 8px;">∃ hasChild.Person (ex. : "un individu
+                                                        pour qui il existe un enfant qui soit une personne.")</td>
                                                 </tr>
                                                 <tr style="border-bottom: 1px solid #ccc;">
                                                     <td style="padding: 8px; border-right: 1px solid #ccc;">
@@ -2027,12 +2026,11 @@
                                                     <td style="padding: 8px; border-right: 1px solid #ccc;">Tous les
                                                         éléments</td>
                                                     <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                        <code>hasParent only Person</code>
+                                                        hasParent only Person
                                                     </td>
                                                     <td style="padding: 8px; border-right: 1px solid #ccc;">Tous les
                                                         éléments satisfont la relation spécifiée.</td>
-                                                    <td style="padding: 8px;">∀ hasParent.Person (ex. : "Toutes les
-                                                        personnes ont un parent qui est une personne.")</td>
+                                                    <td style="padding: 8px;">∀ hasParent.Person (ex. : "tout individu ayant un parent qui soit une personne.")</td>
                                                 </tr>
                                                 <tr style="border-bottom: 1px solid #ccc; height: 20px;">
                                                     <td style="padding: 4px; border-right: 1px solid #ccc;"> NOT (¬)
