@@ -25,6 +25,54 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
     <style>
+        .hidden {
+            display: none;
+        }
+
+        /* Liste principale avec numérotation en lettres majuscules */
+        ol {
+            counter-reset: main;
+            /* Reset du compteur pour la première liste */
+            list-style-type: none;
+            /* Désactive la numérotation automatique */
+        }
+
+        ol li {
+            counter-increment: main;
+            /* Incrémentation du compteur pour chaque élément */
+            list-style-type: none;
+
+        }
+
+        ol li::before {
+            content: counter(main, upper-alpha) ". ";
+            /* Affiche la numérotation en lettres majuscules (A, B, C) */
+        }
+
+        /* Liste imbriquée, numérotation en lettres minuscules */
+        ol ol {
+            counter-reset: sub;
+            /* Réinitialisation du compteur pour sous-liste */
+            list-style-type: none;
+            /* Désactive la numérotation automatique des sous-listes */
+            margin-left: 20px;
+
+        }
+
+        ol ol li {
+            counter-increment: sub;
+            /* Incrémentation du compteur pour les sous-listes */
+            list-style-type: none;
+            font-size: 0.7em;
+
+        }
+
+        ol ol li::before {
+            content: counter(main, upper-alpha) "." counter(sub, decimal) " ";
+            /* Affiche la numérotation en lettres minuscules pour les sous-listes */
+            list-style-type: none;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -245,7 +293,7 @@
                     <title>Masterclass : Sémantique et Interopérabilité</title>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
                     <link rel="stylesheet"
-                        href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+                        href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
                 </head>
 
                 <body>
@@ -254,55 +302,104 @@
                             <!-- Introduction -->
                             <section>
                                 <section>
-                                    <h1>Sémantique et Interopérabilité</h1>
-                                    <p>Masterclass pour débutants</p>
-                                </section>
-                                <section>
-                                    <h2>Objectifs de la session</h2>
+                                    <h1 style="font-size: 1.8em;text-transform: none;">Masterclass<br>Interopérabilité
+                                        sémantique</h1>
+                                    <p style="text-align: left;">A l'issue de cette masterclass introduisant
+                                        l'interopérabilité sémantique, les participants sont censés pouvoir:</p>
                                     <ul>
-                                        <li>Comprendre les bases de la sémantique et des ontologies</li>
-                                        <li>Produire une représentation en OWL d'une ontologie applicative de domaine</li>
-                                        <li>Voir en quoi cela contribue à l'établissement de l'interopérabilité
-                                            sémantique</li>
-
+                                        <li>comprendre les bases de la sémantique et des ontologies</li>
+                                        <li>représenter en OWL une ontologie applicative de domaine
+                                        </li>
+                                        <li>contribueer à l'établissement de l'interopérabilité sémantique</li>
                                     </ul>
+                                    <p style="text-align: left;">L'ingénierie informatique de l'interopérabilité et des
+                                        ontologies n'est pas adressée.</p>
                                 </section>
+                            </section>
+                            <section>
                                 <section>
-                                    <h2>Plan de la masterclass</h2>
-                                    <ol>
-                                        <li>Introduction à la sémantique</li>
+                                    <h2>Contenu</h2>
+
+                                    <p style="text-align: left;">L'interopérabilité sémantique concerne le partage de
+                                        sens pour les
+                                        systèmes de gestion de la connaissance et les systèmes d'information.
+                                        <br><br> Il faut donc introduire la notion de sens (A) et définir ce que sont
+                                        connaissance, information et données (B).
+                                        <br><br>Tant que les langages naturels que les données posent des problèmes de
+                                        partage de sens (C), que visent à adresser les ontologies (D).
+                                        <br><br>La modélisation sémantique s'appuyant sur un langage de modélisation
+                                        d'ontologie, OWL (Ontology Web Language), est ensuite étudiée (E).
+                                    </p>
+
+                                </section>
+                            </section>
+                            <section>
+                                <section>
+                                    <h2>Plan</h2>
+                                    <ol style="list-style-type:none">
+                                        <li>Introduction à la notion de sens</li>
+                                        <li>Connaissance, information et données</li>
+                                        <li>Problèmes de communication</li>
+                                        <li>Les ontologies</li>
+                                        <li>Logique et théorie des ensembles</li>
                                         <li>Modélisation sémantique avec OWL</li>
                                         <li>Conclusion</li>
-
-                                        </ul>
+                                    </ol>
                                 </section>
                             </section>
 
-                            <!-- Partie 1 : Introduction à la sémantique -->
+                            <!-- Partie 1 : Introduction à la notion de sens -->
                             <section>
                                 <section>
-                                    <h1 style="font-size: 0.8em;">Introduction à la Sémantique</h1>
-                                    <ul>
-                                        <li>De la sémiotique à la rhétorique</li>
-                                        <li>Problèmes courants dans le langage naturel</li>
-                                        <li>Connaissance, Information et données</li>
-                                        <li>Problèmes courants concernant les données</li>
-                                        <li>Ontologies</li>
-                                    </ul>
-                                </section>
-                                <section>
-                                    <h2 style="font-size: 0.8em;">De la sémiotique à la rhétorique</h2>
-                                    <img src="./img/SemantiqueInformationConnaissance.png"
-                                        alt="SemantiqueInformationConnaissance" style="max-width: 50%; height: auto;" />
+
+                                    <ol style="list-style-type:none; ">
+                                        <li>Introduction à la notion de sens
+                                            <p>Pour comprendre l'interopérabilité sémantique, il faut définir le sens,
+                                                explorer les théories du sens et comprendre
+                                                l'importance du contexte pour l'interprétation des données V</p>
+                                            <ol>
+                                                <li>Le sens dans un contexte technologique</li>
+                                                <li>Sémiotique : L'étude des signes</li>
+                                                <li>Sémantique et Pragmatique</li>
+                                                <li>Dénotation et Connotation</li>
+                                                <li>Rhétorique et Structuration du Sens</li>
+                                                <li>Application à l'Interopérabilité</li>
+                                                <li>Conclusion de la Section</li>
+                                            </ol>
+                                            <p>Il faut également comprendre ce que sont la connaissance, l'information
+                                                et les données ></p>
+                                    </ol>
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">Le triangle Sémiotique</h3>
+                                        <h3 style="font-size: 0.8em;text-transform: none;">A.2 Le sens dans un contexte
+                                            technologique</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="text-align: left;">Science générale des signes</p>
+                                            <ul>
+                                                <li>Dans l'interopérabilité, le sens des données doit être partagé entre
+                                                    les systèmes pour assurer leur échange efficace.</li>
+                                                <li>La sémantique est clé pour éviter les ambiguïtés dans
+                                                    l'interprétation des données échangées.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/SemantiqueInformationConnaissance.png"
+                                                alt="SemantiqueInformationConnaissance"
+                                                style="max-width: 50%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;text-transform: none;">A.3 Sémiotique : L'étude des
+                                            signes</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="text-align: left;">La sémiotique est l'étude des signes et de leur
+                                                signification dans la communication.</p>
                                             <ul>
                                                 <li><b>Signe :</b> Élément porteur de sens</li>
                                                 <li><b>Signifiant :</b> Forme du signe</li>
@@ -317,8 +414,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">La sémantique</h3>
+                                        <h3 style="font-size: 0.8em;text-transform: none;">A.4 La sémantique</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -326,9 +422,11 @@
                                                 signification des mots,
                                                 des phrases, des symboles ou des signes dans un contexte donné.</p>
                                             <ul>
-                                                <li><b>Signe :</b> Élément porteur de sens</li>
-                                                <li><b>Signifiant :</b> Forme du signe</li>
-                                                <li><b>Signifié :</b> Concept associé</li>
+                                                <li>Elle traite des significations des mots, phrases et symboles.</li>
+                                                <li>Elle examine comment ces significations sont comprises par les
+                                                    utilisateurs dans différents contextes.</li>
+                                                <li>Elle se divise en plusieurs sous-domaines : sémantique linguistique,
+                                                    sémantique logique, etc.</li>
                                             </ul>
                                         </div>
                                         <div class="image-zone">
@@ -341,41 +439,23 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">La sémantique(2)</h3>
+                                        <h3 style="font-size: 0.8em;">A.5 La Syntaxe</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.6em;text-align: left;">Par exemple pour le langage
-                                                naturel:</p>
+                                            <p style="text-align: left;">La syntaxe est l'étude des règles de
+                                                construction des phrases et de
+                                                l'organisation des éléments linguistiques dans une structure cohérente.
+                                            </p>
                                             <ul style="font-size: 0.5em;">
-                                                <li>Les mots renvoient à des objets réels dans le
-                                                    monde</li>
-                                                <li>Attention aux homonymes</li>
+                                                <li>Elle détermine comment les mots et les expressions peuvent être
+                                                    combinés pour former des énoncés corrects.</li>
+                                                <li>Elle ne se préoccupe pas de la signification des mots, mais de leur
+                                                    agencement grammatical.</li>
+                                                <li>En informatique, la syntaxe décrit la structure d'un langage de
+                                                    programmation ou d'un format de données (par exemple, JSON, XML).
+                                                </li>
                                             </ul>
-                                        </div>
-                                        <div class="image-zone">
-
-                                            <img src="./img/triangleSemantiqueHomonyme.png"
-                                                alt="Triangle Sémiotique et homonymes"
-                                                style="max-width: 90%; height: auto;" />
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">La Syntactique</h3>
-                                    </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p style="font-size: 0.6em; text-align: left;">La syntactique (ou syntaxe)
-                                                est l’étude des
-                                                relations formelles
-                                                entre
-                                                les signes dans un système symbolique, sans se préoccuper de leur
-                                                signification.</p>
                                         </div>
                                         <div class="image-zone">
                                             <img src="./img/triangleSemantiqueSyntaxe.png"
@@ -385,19 +465,19 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">La Pragmatique</h3>
+                                        <h3 style="font-size: 0.8em;transform: none;">A.6 Sémantique et Pragmatique</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.7em;text-align: left;">Définitions:</p>
+                                            <p style="font-size: 0.7em;text-align: left;">Définitions</p>
                                             <ul>
-                                                <li><b>Sémantique :</b> Étudie le sens littéral et abstrait des mots ou
+                                                <li><b>Sémantique:</b> étudie le sens littéral et abstrait des mots ou
                                                     des phrases, indépendamment du contexte.</li>
-                                                <li><b>Pragmatique :</b>Analyse comment le contexte et les intentions
-                                                    façonnent la communication et le sens.</li>
+                                                <li><b>Pragmatique:</b> s'intéresse à l'usage du signe dans un contexte
+                                                    particulier, comme l’intention de communication.</li>
                                             </ul>
-                                            <p>Exemple : Une même phrase peut avoir des sens différents selon la
+                                            <p style="text-align:left;">Exemple : Une même phrase peut avoir des sens
+                                                différents selon la
                                                 situation.</p>
                                         </div>
                                         <div class="image-zone">
@@ -410,16 +490,14 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">Contexte, Dénotation et Connotation</h3>
+                                        <h3 style="font-size: 0.8em;transform: none;">A.7 Dénotation et connotation</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
                                             <p style="font-size: 0.7em;text-align: left;">Définitions:</p>
                                             <ul>
-                                                <li><b>Contexte :</b> Influence sur le sens</li>
-                                                <li><b>Dénotation :</b> Sens objectif</li>
-                                                <li><b>Connotation :</b> Sens subjectif</li>
+                                                <li>Dénotation : Sens primaire, explicite, objectif.</li>
+                                                <li>Connotation : Sens secondaire, subjectif, culturel.</li>
                                             </ul>
                                             <p style="text-align: left;">Illustration : Le mot "rose" peut désigner une
                                                 fleur (dénotation) ou
@@ -435,24 +513,22 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">La Rhétorique</h3>
+                                        <h3 style="font-size: 0.8em;;transform: none;">A.8 Rhétorique et Structuration
+                                            du Sens</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
                                             <p style="text-align: left;">Qu'est-ce que la rhétorique ?</p>
                                             <p style="font-size: 0.5em;text-align: left;">La rhétorique est l'art de
-                                                bien parler et de
-                                                convaincre un auditoire.
-                                                Elle repose sur l'organisation et la force des arguments.</p>
-                                            <p>Les trois piliers de la persuasion</p>
-                                            <ul style="font-size: 0.5em;">
+                                                structurer l'information pour influencer l'interprétation du signe.</p>
+                                            <p style="text-align: left;"">Les trois piliers de la persuasion</p>
+                                            <ul style=" font-size: 0.5em;">
                                                 <li><strong>Ethos :</strong> La crédibilité et l'autorité de
                                                     l'orateur.</li>
                                                 <li><strong>Logos :</strong> La logique et la rationalité des
                                                     arguments.</li>
                                                 <li><strong>Pathos :</strong> L'appel aux émotions du public.</li>
-                                            </ul>
+                                                </ul>
                                         </div>
                                         <div class="image-zone">
                                             <img src="./img/triangleSemantiqueRhetorique.png"
@@ -463,8 +539,34 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
-                                        <h3 style="font-size: 0.8em;">Extension au Monde Informatique</h3>
+                                        <h3 style="font-size: 0.8em;">A.9 Du concept au graphe de concepts</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="font-size: 0.5em;text-align: left;">Dans les exemples classiques
+                                                du triangle sémantique, on parle souvent d'un concept et de son
+                                                référent. Cependant, il est fondamental de considérer l'ensemble des
+                                                relations dans un graphe conceptuel pour appréhender pleinement le sens.
+                                            </p>
+                                            <ul style="font-size: 0.5em;">
+                                                <li>Un concept pris isolément n'a que peu de valeur ; c'est son
+                                                    interconnexion avec d'autres concepts qui lui donne du sens.</li>
+                                                <li>Les graphes conceptuels offrent une modélisation essentielle du sens
+                                                    et de ses dépendances.</li>
+                                                <li>Cette approche garantit une compréhension partagée et réduit les
+                                                    risques d'ambiguïté.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/grapheDeConcepts.png" alt="GrapheConcepts"
+                                                style="max-width: 100%; height: 300px;" />
+
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">A.8 Extension au Monde Informatique</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -491,25 +593,7 @@
                                         </div>
                                     </div>
                                 </section>
-                                <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</^>
-                                        <h3 style="font-size: 0.8em;">Concept vs. Graphe de concept</h3>
-                                    </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <ul style="font-size: 0.5em;">
-                                                <li>Un concept n'est pas défini seul</li>
-                                                <li>Graphe sémantique pour définir l'ensemble d'un domaine</li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone">
-                                            <img src="./img/grapheDeConcepts.png" alt="GrapheConcepts"
-                                                style="max-width: 100%; height: 300px;" />
 
-                                        </div>
-                                    </div>
-                                </section>
                                 <section>
                                     <div class="title-zone">
                                         <p style="font-size: 0.6em;">De la sémiotique à la rhétorique</p>
@@ -530,45 +614,227 @@
                                 </section>
 
                                 <section>
-                                    <h2 style="font-size: 0.8em;">Problèmes courants dans le langage naturel</h2>
-                                    <div class="content-zone">
-
-                                        <div class="image-zone">
-                                            <img src="./img/ProblemesCommunication.png" alt="TankHumour"
-                                                style="max-width: 50%; height: auto;" />
-                                        </div>
-
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">Application à l'Interopérabilité</h3>
                                     </div>
+
+                                    <p style="font-size: 0.7em;text-align: left;">L'interopérabilité sémantique repose
+                                        sur une compréhension partagée du sens des données.</p>
+                                    <ul>
+                                        <li>Le sens est essentiel pour l'interprétation, la communication et le
+                                            développement de la connaissance, nécessaires à la collaboration.</li>
+                                        <li>Les données, l'information et la connaissance sont des éléments clés pour
+                                            structurer la compréhension.</li>
+                                        <li>L'tilisation des ontologies et des métadonnées pour formaliser le sens
+                                            garanti une interprétation cohérente et sans ambiguïté des données
+                                            échangées.</li>
+                                    </ul>
+                                </section>
+                            </section>
+                            <section>
+                                <section>
+                                    <ol style="list-style-type:none; ">
+                                        <li style="counter-reset: main 1;">Connaissance, information et
+                                            données
+
+                                            <ol>
+                                                <li>Qu'est ce que la connaissance</li>
+                                                <li>Qu'est ce que l'information</li>
+                                                <li>Qu'est ce que la donnée</li>
+                                                <li>La donnée dans la perspective de la gestion de la connaissance</li>
+                                                <li>La donnée dans la perspective des systèmes d'information</li>
+                                            </ol>
+                                        </li>
+                                        <p style="text-align: left;">Pour le partage du sens, tant les langages
+                                            naturelle que les données posent des problèmes >
+                                        </p>
+                                    </ol>
+                                </section>
+                                <section>
+                                    <h2 style="font-size: 0.8em;">Connaissance, Information et données</h2>
+                                    <img src="./img/SemantiqueInformationConnaissance.png"
+                                        alt="SemantiqueInformationConnaissance" style="max-width: 50%; height: auto;" />
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Problèmes courants dans le langage naturel</p>
-                                        <h3 style="font-size: 0.8em;">Le cas courant de l'homonymie</h3>
+                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
+                                        <h3 style="font-size: 0.9em;">Qu'est ce que la connaissance</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="text-align: left;font-size: 0.5em;">Du fait des Homonymie, ne
-                                                confondez pas le terme et le concept qui,
-                                                lui,
-                                                est lié au référent
-                                                dans le monde réel, contrairement au terme(pas de lien direct)</p>
-                                            <p style="text-align: left;font-size: 0.5em;">Dans le langage naturel, de
-                                                nombreux autres problèmes
-                                                d'interprétation...
-                                            </p>
-
+                                            <ul style="font-size: 0.5em;">
+                                                <li>La capacité mentale permettant à l'esprit d'assimiler un contenu
+                                                    objectif,
+                                                    c'est-à-dire
+                                                    une
+                                                    réalité indépendante de l'observateur, préalablement traduit en
+                                                    signes et en
+                                                    idées.</li>
+                                                <li>C'est également le résultat de cette assimilation</li>
+                                                <li>Elle représente une possession symbolique des choses et s'étend
+                                                    sur
+                                                    une
+                                                    infinité de
+                                                    niveaux.
+                                                </li>
+                                            </ul>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/TankHumour.png" alt="TankHumour"
-                                                style="max-width: 100%; height: auto;" />
+                                            <img src="./img/ArbreConnaissance.png" alt="ArbreConnaissance"
+                                                style="max-width: 80%; height: auto;" />
                                         </div>
-
                                     </div>
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Problèmes courants dans le langage naturel</p>
-                                        <h3 style="font-size: 0.8em;">Autres problèmes courants dans le langage naturel
+                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
+                                        <h3 style="font-size: 0.9em;">Qu'est ce que l'information</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul style="font-size: 0.5em;">
+                                                <li>Une partie de la connaissance</li>
+                                                <li>Mais avoir une information sur un sujet ne signifie pas
+                                                    "connaître"
+                                                    ce sujet
+                                                </li>
+                                                <li>Plus on accumule d'informations sur un sujet, plus on le
+                                                    "connaît".
+                                                </li>
+                                                <li>La connaissance complète consiste à avoir le plus de facettes
+                                                    possible sur
+                                                    un sujet</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/Information.png" alt="Information"
+                                                style="max-width: 80%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <img src="./img/QuestionsInformation.png" alt="QuestionsInformation"
+                                        style="max-width: 100%; height: auto;" />
+                                </section>
+                                <section>
+                                    <p style="font-size: 0.6em;">Connaissance, Information et données</p>
+                                    <h3 style="font-size: 1em;">Qu’est ce que la donnée?</h3>
+
+                                    <ul style="font-size: 0.5em;">
+                                        <li><b>Dans la conception philosophique de la connaissance</b><br>les
+                                            données
+                                            sont des
+                                            éléments bruts,des faits ou observations sans interprétation, qui
+                                            constituent la matière première pour l'acquisition du savoir.</li><br>
+                                        <li><b>Historiquement, dans le contexte des entreprises</b><br> la donnée
+                                            était
+                                            davantage liée à des notions de fichiers, bases de données ou
+                                            enregistrements, sans nécessairement s’intéresser à son sens ou à son
+                                            interprétation.
+                                        </li><br>
+                                        <p> On constate des difficulé dans la communication à ce sujet entre les
+                                            gestionnaires de la connaissance, les ontologques et les informaticiens
+                                        </p>
+
+                                    </ul>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
+                                        <h3 style="font-size: 0.8em;">La donnée dans la perspective des Systèmes
+                                            d’Information
+                                        </h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul style="font-size: 0.5em;">
+                                                <li>Aujourd’hui, dans toutes les organisations, les idées circulent
+                                                    en
+                                                    permanence.</li>
+                                                <li>Seules celles qui sont formalisées et qui ont une existence
+                                                    physique
+                                                    sont manipulables,exploitables et réutilisables.</li>
+                                                <li>La donnée représente l’existence physique même d’une
+                                                    information.
+                                                </li>
+                                                <li>La donnée devient information lorsqu'elle véhicule un sens, en
+                                                    particulier lorsqu’elle est interprétée dans un contexte donné.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/autodaffe.png" alt="autodaffe"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
+                                        <h3 style="font-size: 0.8em;">La donnée dans le contexte de la connaissance
+                                        </h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul style="font-size: 0.45em;">
+                                                <li><b>Données</b>: Ce sont des faits bruts et non interprétés,
+                                                    comme
+                                                    des
+                                                    chiffres ou des observations, qui manquent de contexte</li>
+                                                <li><b>Information</b> : Elle résulte de l'organisation et du
+                                                    traitement
+                                                    des
+                                                    données, donnant un sens à ces dernières grâce à leur
+                                                    contextualisation.</li>
+                                                <li><b>Connaissance</b> : Elle se forme lorsque l'information est
+                                                    comprise et
+                                                    intégrée, permettant d'en tirer des conclusions et d'appliquer
+                                                    des
+                                                    compétences.</li>
+                                                <li><b>Sagesse</b> : C'est l'utilisation éclairée de la connaissance
+                                                    pour
+                                                    prendre des décisions judicieuses, souvent basée sur
+                                                    l'expérience et
+                                                    le discernement.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/DIKW.png" alt="DIKW"
+                                                style="max-width: 100%; height: auto;" />
+                                            <ul style="font-size: 0.5em;">
+                                        </div>
+                                    </div>
+
+                                </section>
+                            </section>
+
+                            <section>
+                                <section>
+                                    <ol style="list-style-type:none; ">
+                                        <li style="counter-reset: main 2;">Problèmes de communication
+                                            <p>Pour construire l'intéropérabilité sémantique des systèmes de gestions de
+                                                connaissances et d'information, de nombreux problèmes relatifs aux
+                                                langages naturels et aux données sont à résoudre.
+                                            </p>
+                                            <ol>
+                                                <li>Confusions liées au langage naturel</li>
+                                                <li>Autres sources de confusion</li>
+                                                <li>Le cas courant de l'homonymie</li>
+                                                <li>Problèmes liés aux données</li>
+                                                <li>Problèmes liés à l'information</li>
+                                                <li>Problèmes liés à la connaissance</li>
+                                                <li>Conclusion</li>
+                                        </li>
+                                    </ol>
+                                    <p style="text-align: left;">Cela implique de se baser sur des représentations
+                                        formelles et explicite des domaines de connaissance, les ontologies</p>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+
+                                        <h3 style="font-size: 0.8em;">C.1 Confusions liées au langage naturel
                                         </h3>
                                         <div>
                                             <div class="content-zone">
@@ -595,7 +861,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <p style="font-size: 0.6em;text-align: left;">2. Ambiguïtés contextuelles
+                                            <p style="font-size: 0.6em;text-align: left;">C.2 Ambiguïtés contextuelles
                                             </p>
 
                                             <ul style="font-size: 0.5em;">
@@ -609,11 +875,10 @@
                                             </p>
                                         </div>
                                 </section>
-
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Problèmes courants dans le langage naturel</p>
-                                        <h3 style="font-size: 0.8em;">Autres sources de confusion</h3>
+
+                                        <h3 style="font-size: 0.8em;">C.2 Autres sources de confusion</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -651,161 +916,33 @@
                                     </div>
                                 </section>
                                 <section>
-                                    <h2 style="font-size: 0.8em;">Connaissance, Information et données</h2>
-                                    <img src="./img/SemantiqueInformationConnaissance.png"
-                                        alt="SemantiqueInformationConnaissance" style="max-width: 50%; height: auto;" />
-                                </section>
-                                <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
-                                        <h3 style="font-size: 0.9em;">Qu'est ce que la connaissance</h3>
+                                        <h3 style="font-size: 0.8em;">C.3 Le cas courant de l'homonymie</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <ul style="font-size: 0.5em;">
-                                                <li>La capacité mentale permettant à l'esprit d'assimiler un contenu
-                                                    objectif,
-                                                    c'est-à-dire
-                                                    une
-                                                    réalité indépendante de l'observateur, préalablement traduit en
-                                                    signes et en
-                                                    idées.</li>
-                                                <li>C'est également le résultat de cette assimilation</li>
-                                                <li>Elle représente une possession symbolique des choses et s'étend sur
-                                                    une
-                                                    infinité de
-                                                    niveaux.
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone">
-                                            <img src="./img/ArbreConnaissance.png" alt="ArbreConnaissance"
-                                                style="max-width: 80%; height: auto;" />
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
-                                        <h3 style="font-size: 0.9em;">Qu'est ce que l'information</h3>
-                                    </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <ul style="font-size: 0.5em;">
-                                                <li>Une partie de la connaissance</li>
-                                                <li>Mais avoir une information sur un sujet ne signifie pas "connaître"
-                                                    ce sujet
-                                                </li>
-                                                <li>Plus on accumule d'informations sur un sujet, plus on le "connaît".
-                                                </li>
-                                                <li>La connaissance complète consiste à avoir le plus de facettes
-                                                    possible sur
-                                                    un sujet</li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone">
-                                            <img src="./img/Information.png" alt="Information"
-                                                style="max-width: 80%; height: auto;" />
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <img src="./img/QuestionsInformation.png" alt="QuestionsInformation"
-                                        style="max-width: 100%; height: auto;" />
-                                </section>
-                                <section>
-                                    <p style="font-size: 0.6em;">Connaissance, Information et données</p>
-                                    <h3 style="font-size: 1em;">Qu’est ce que la donnée?</h3>
+                                            <p style="text-align: left;font-size: 0.5em;">Du fait des Homonymie, ne
+                                                confondez pas le terme et le concept qui,
+                                                lui,
+                                                est lié au référent
+                                                dans le monde réel, contrairement au terme(pas de lien direct)</p>
+                                            <p style="text-align: left;font-size: 0.5em;">Dans le langage naturel, de
+                                                nombreux autres problèmes
+                                                d'interprétation...
+                                            </p>
 
-                                    <ul style="font-size: 0.5em;">
-                                        <li><b>Dans la conception philosophique de la connaissance</b><br>les données
-                                            sont des
-                                            éléments bruts,des faits ou observations sans interprétation, qui
-                                            constituent la matière première pour l'acquisition du savoir.</li><br>
-                                        <li><b>Historiquement, dans le contexte des entreprises</b><br> la donnée était
-                                            davantage liée à des notions de fichiers, bases de données ou
-                                            enregistrements, sans nécessairement s’intéresser à son sens ou à son
-                                            interprétation.
-                                        </li><br>
-                                        <p> On constate des difficulé dans la communication à ce sujet entre les
-                                            gestionnaires de la connaissance, les ontologques et les informaticiens</p>
-
-                                    </ul>
-                                </section>
-                                <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
-                                        <h3 style="font-size: 0.8em;">La donnée dans la perspective des Systèmes
-                                            d’Information
-                                        </h3>
-                                    </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <ul style="font-size: 0.5em;">
-                                                <li>Aujourd’hui, dans toutes les organisations, les idées circulent en
-                                                    permanence.</li>
-                                                <li>Seules celles qui sont formalisées et qui ont une existence physique
-                                                    sont manipulables,exploitables et réutilisables.</li>
-                                                <li>La donnée représente l’existence physique même d’une information.
-                                                </li>
-                                                <li>La donnée devient information lorsqu'elle véhicule un sens, en
-                                                    particulier lorsqu’elle est interprétée dans un contexte donné.</li>
-                                            </ul>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/autodaffe.png" alt="autodaffe"
+                                            <img src="./img/TankHumour.png" alt="TankHumour"
                                                 style="max-width: 100%; height: auto;" />
                                         </div>
+
                                     </div>
                                 </section>
 
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Connaissance, Information et données</p>
-                                        <h3 style="font-size: 0.8em;">La donnée dans le contexte de la connaissance</h3>
-                                    </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <ul style="font-size: 0.45em;">
-                                                <li><b>Données</b>: Ce sont des faits bruts et non interprétés, comme
-                                                    des
-                                                    chiffres ou des observations, qui manquent de contexte</li>
-                                                <li><b>Information</b> : Elle résulte de l'organisation et du traitement
-                                                    des
-                                                    données, donnant un sens à ces dernières grâce à leur
-                                                    contextualisation.</li>
-                                                <li><b>Connaissance</b> : Elle se forme lorsque l'information est
-                                                    comprise et
-                                                    intégrée, permettant d'en tirer des conclusions et d'appliquer des
-                                                    compétences.</li>
-                                                <li><b>Sagesse</b> : C'est l'utilisation éclairée de la connaissance
-                                                    pour
-                                                    prendre des décisions judicieuses, souvent basée sur l'expérience et
-                                                    le discernement.</li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone">
-                                            <img src="./img/DIKW.png" alt="DIKW"
-                                                style="max-width: 100%; height: auto;" />
-                                            <ul style="font-size: 0.5em;">
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <h2 style="font-size: 0.8em;">Problèmes courants concernant les données</h2>
-                                    <div class="content-zone">
-
-                                        <div class="image-zone">
-                                            <img src="./img/dataproblems.jpg" alt="TankHumour"
-                                                style="max-width: 50%; height: auto;" />
-                                        </div>
-
-                                    </div>
-                                </section>
-                                <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Problèmes courants concernant les données</p>
-                                        <h3 style="font-size: 0.8em;">Problèmes liés purement aux données</h3>
+                                        <h3 style="font-size: 0.8em;">C.4 Problèmes liés purement aux données</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -844,8 +981,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Problèmes courants concernant les données</p>
-                                        <h3 style="font-size: 0.8em;">Problèmes liés aux informations</h3>
+                                        <h3 style="font-size: 0.8em;">C.5 Problèmes liés aux informations</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -887,8 +1023,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Problèmes courants concernant les données</p>
-                                        <h3 style="font-size: 0.8em;">Problèmes liés aux connaissances</h3>
+                                        <h3 style="font-size: 0.8em;">C.6 Problèmes liés aux connaissances</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -924,35 +1059,85 @@
                                         </div>
                                         <div class="image-zone">
                                             <img src="./img/knowledge-transfer.jpeg" alt="Knowledge Issues"
-                                                style="max-width: 100%; height: auto;" />
+                                                style="max-width: 70%; height: auto;" />
                                             <ul style="font-size: 0.5em;">
                                                 <!-- Ajouter une légende ici si nécessaire -->
                                             </ul>
                                         </div>
                                     </div>
                                 </section>
-
-
-                                <!-- Slide 2: Définition des ontologies -->
                                 <section>
-                                    <h2 style="font-size: 0.8em;">Ontologies</h2>
-                                    <div class="content-zone">
 
-                                        <div class="image-zone">
-                                            <img src="./img/Ontology.webp" alt="Ontologie"
-                                                style="max-width: 100%; height: auto;" />
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.7 Conclusion </h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="text-align: left;">Concernant le partage de sens, il existe de
+                                                nombreux problèmes liés aux langages naturels et aux données.</p>
+
+                                            <ul>
+                                                <li style="text-align: left;">Les problèmes évoqués sont des freins
+                                                    au partage du sens entre systèmes applicatifs et systèmes de
+                                                    gestion de la connaissance.</li>
+                                                <li style="text-align: left;">Il en résulte des silos technologique,
+                                                    applicatifs ou organisationnels entre communautés</li>
+                                                <li style="text-align: left;">Ces problèmes doivent être résolus
+                                                    tant pour les humains que pour les automates.</li>
+                                            </ul>
+                                            <p style="text-align: left;">C'est ce qu'adresse les ontologies</p>
+
+                                        </div>
+                                    </div>
+
+                                </section>
+                            </section>
+                            <section>
+                                <section>
+                                    <ol style="list-style-type:none; ">
+                                        
+                                        <li style="counter-reset: main 3;">Les ontologies
+                                            <p>Il faut comprendre ce Que sont les ontologies, ce qui les constituent et à quoi elles servent V </p>
+                                            <ol>
+                                                <li>Définitions</li>
+                                                <li>L'Ontologie</li>
+                                                <li>Les ontologies</li>
+                                                <li>Qu'est-ce qu'une bonne ontologie</li>
+                                                <li>Les divers usages</li>
+                                                <li>Quelle logique?</li>
+                                                <li>Quels langages?</li>                                  
+                                                                </li>
+                                                                
+                                    </ol>
+                                    <p style="text-align: left;">Pour une formalisation explicite, on s'appuie sur la logique et la théorie des ensembles ></p>       
+                                     
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.6em;">D.1 Définition</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul style="font-size: 0.4em;">
+                                                <li>L'Ontologie est une discipline phylosophique</li>
+                                                <li>Les ontologies sont des modèles formels de domaines de connaissance
+                                                </li>
+                                            </ul>
+
                                         </div>
 
                                     </div>
                                 </section>
+
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.6em;">L'ontologie n'est pas une notion nouvelle</h3>
-                                        <p>et précède l'ère informatique</p>
+                                        <h3 style="font-size: 0.6em;">D.2 L'Ontologie</h3>
+                                        <p>L'ontologie n'est pas nouvelle et précède l'ère informatique</p>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.4em;text-align: left;">Une discipline philosophique —
+                                            <p style="font-size: 0.4em;text-align: left;">C'est une discipline
+                                                philosophique —
                                                 une branche de la philosophie qui traite
                                                 de la nature et de l'organisation de la réalité
                                                 Science de l'Être (Aristote, Métaphysique, IV, 1<br>Elle essaie de
@@ -962,25 +1147,32 @@
                                                 <li>Qu'est-ce qui caractérise l'être ?</li>
                                                 <li>En fin de compte, qu'est-ce que l'être ?</li>
                                             </ul>
-                                            <p style="font-size: 0.4em;text-align: left;">L’utilisation en linguistique
+                                            <p style="font-size: 0.4em;text-align: left;">L’utilisation en
+                                                linguistique
                                                 des ontologies
                                                 est notamment celle relative
                                                 à la sémiotique et à la sémantique.</p>
-                                            <p style="font-size: 0.4em;text-align: left;">L'ontologie en linguistique
+                                            <p style="font-size: 0.4em;text-align: left;">L'ontologie en
+                                                linguistique
                                                 touche à des
                                                 questions fondamentales sur la
-                                                manière dont le langage structure notre perception et notre description
+                                                manière dont le langage structure notre perception et notre
+                                                description
                                                 du monde. </p>
-                                            <p style="font-size: 0.4em;text-align: left;">Les théories vont de celles
+                                            <p style="font-size: 0.4em;text-align: left;">Les théories vont de
+                                                celles
                                                 qui examinent la
                                                 manière dont les catégories
-                                                linguistiques correspondent à la réalité, à celles qui suggèrent que le
+                                                linguistiques correspondent à la réalité, à celles qui suggèrent que
+                                                le
                                                 langage façonne les réalités qu'il décrit.</p>
-                                            <p style="font-size: 0.4em;text-align: left;">De nombreux auteurs, souvent à
+                                            <p style="font-size: 0.4em;text-align: left;">De nombreux auteurs,
+                                                souvent à
                                                 l'intersection
                                                 de la philosophie, de la
                                                 linguistique et des sciences cognitives, ont contribué à cette
-                                                réflexion, chacun offrant une perspective unique sur la manière dont le
+                                                réflexion, chacun offrant une perspective unique sur la manière dont
+                                                le
                                                 langage articule le monde des concepts et des réalités.</p>
                                         </div>
                                         <div class="image-zone">
@@ -991,8 +1183,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies</p>
-                                        <h3 style="font-size: 0.8em;">Qu'est-ce qu'une ontologie aujourd'hui ?</h3>
+                                        <h3 style="font-size: 0.8em;">D.3 Les ontologies</h3>
                                     </div>
 
                                     <div class="content-zone">
@@ -1000,9 +1191,11 @@
                                             <p style="font-size: 0.6em;">
                                                 Une ontologie est une <strong>modélisation formelle</strong> d’un
                                                 domaine de
-                                                connaissance, qui capture les concepts, leurs relations, propriétés et
+                                                connaissance, qui capture les concepts, leurs relations, propriétés
+                                                et
                                                 règles.
-                                                Elle permet de décrire de manière explicite et normée un savoir commun à
+                                                Elle permet de décrire de manière explicite et normée un savoir
+                                                commun à
                                                 une
                                                 communauté.
                                             </p>
@@ -1010,10 +1203,12 @@
                                             <p style="font-size: 0.8em;">Objectifs</pp>
                                             <ul>
                                                 <li>Structurer les données et assurer leur cohérence.</li>
-                                                <li>Faciliter le raisonnement automatique et l’interopérabilité.</li>
-                                                <li>Adresser les problèmes liés aux langages naturels.</li>
-                                                <li>Adresser les problèmes relatifs aux données, informations et
-                                                    connaissances</li>
+                                                <li>Adresser les problèmes liés aux langages naturels et aux données
+                                                </li>
+                                                <li>Permettre le raisonnement automatique
+                                                </li>
+                                                <li>Construire l'interopérabilité sémantique</li>
+
                                             </ul>
 
                                             <p style="font-size: 0.8em;">Découpage</p>
@@ -1022,7 +1217,8 @@
                                                 <li><strong>Applications :</strong> Détails spécifiques pour un cas
                                                     d’usage.
                                                 </li>
-                                                <li><strong>Organisation :</strong> Terminologies propres à une entité.
+                                                <li><strong>Organisation :</strong> Terminologies propres à une
+                                                    entité.
                                                 </li>
                                             </ul>
                                             </p>
@@ -1032,8 +1228,8 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies</p>
-                                        <h3 style="font-size: 0.8em;">Qu'est-ce qu'une bonne ontologie</h3>
+                                        <h3 style="font-size: 0.8em;">D.4 Qu'est-ce qu'une bonne ontologie
+                                        </h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1041,12 +1237,15 @@
                                                 ontologie soit</p>
                                             <ul style="font-size: 0.6em;">
                                                 <li>Significative: tous les concepts considérés ont un référent</li>
-                                                <li>Correcte: elle capture les connaissances des experts en la matière
+                                                <li>Correcte: elle capture les connaissances des experts en la
+                                                    matière
                                                 </li>
                                                 <li>Redondance minimale: pas de synonymes non intentionnels</li>
-                                                <li>Axiomatisation riche: descriptions (suffisamment) détaillées</li>
+                                                <li>Axiomatisation riche: descriptions (suffisamment) détaillées
+                                                </li>
                                             </ul>
-                                            <p style="font-size: 0.8em;text-align: left;">On souhaite du raisonnement
+                                            <p style="font-size: 0.8em;text-align: left;">On souhaite du
+                                                raisonnement
                                                 automatique</p>
                                             <ul style="font-size: 0.6em;">
                                                 <li>Appui sur des formalisations mathématiques</li>
@@ -1058,17 +1257,18 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies</p>
-                                        <h3 style="font-size: 0.8em;">Les divers usages</h3>
+                                        <h3 style="font-size: 0.8em;">D.5 Les divers usages</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
 
                                             <ul style="font-size: 0.7em;">
-                                                <li>Phase de conceptualisation pour le processus d'ingénierie logicielle
+                                                <li>Phase de conceptualisation pour le processus d'ingénierie
+                                                    logicielle
                                                 </li>
                                                 <li>Traitement du langage naturel</li>
-                                                <li>Intelligence artificielle: base de connaissances avec raisonnement,
+                                                <li>Intelligence artificielle: base de connaissances avec
+                                                    raisonnement,
                                                     IA Explicative</li>
                                                 <li>Agrégation sémantique de données hétérogènes</li>
                                             </ul>
@@ -1077,7 +1277,6 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies</p>
                                         <h3 style="font-size: 0.8em;">Quelle logique?</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
@@ -1092,11 +1291,55 @@
                                             </ul>
                                             <p style="font-size: 0.8em;text-align: left;">Le degré de formalisation
                                                 varie considérablement</p>
-                                            <p style="font-size: 0.8em;text-align: left;">Une plus grande formalisation
+                                            <p style="font-size: 0.8em;text-align: left;">Une plus grande
+                                                formalisation
                                                 rend ls langages plus adaptés à l'automatisation</p>
 
                                         </div>
                                     </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">D3.4 Quels langages?</h3>
+                                    </div>
+                                    <div style="display: flex; gap: 20px;text-align: left;">
+                                        <div style="font-size: 0.8em;">
+                                            <p style="font-size: 0.8em;text-align: left;">Il existe de nombreuses
+                                                langages de description d'ontologie.</p>
+                                            <p style="font-size: 0.8em;text-align: left;">Mais tous n'ont pas la
+                                                même
+                                                expressivité ni la même utilité, en particulier en ce qui concerne
+                                                le
+                                                support du raisonnement automatisé.</p>
+                                            <p style="font-size: 0.8em;text-align: left;">Parmi les langages les
+                                                plus
+                                                utilisés, on peut citer</p>
+
+                                            <ul style="font-size: 0.7em;"" >
+                                                <li>Langage(s) naturel(s)</li>
+                                                <li>UML, RDF, SKOS, Prolog, OWL (Lite, Full, DL) ...</li>
+                                            </ul>
+                                            <p style=" font-size: 0.8em;text-align: left;">On souhaite un langage
+                                                permettant le raisonnement sur la base de la logique descriptive</p>
+                                                <ul style="font-size: 0.7em;"" >
+                                                <li style=" list-style-type: none; ">&#x2192;OWL DL</li> 
+                                            </ul>                                                                      
+                                        </div>                                    
+                                    </div>
+                                </section>
+                            </section>
+                            <section>
+                                <section>
+                                    <ol style="list-style-type:none; ">
+                                        
+                                        <li style="counter-reset: main 4;">Logique et théorie des ensembles
+                                            <p>Il faut comprendre ce Que sont les ontologies, ce qui les constituent et à quoi elles servent V </p>
+                                            <ol>
+                                                
+                                                                
+                                    </ol>
+                                    <p style="text-align: left;">Pour une formalisation explicite, on s'appuie sur la logique et la théorie des ensembles ></p>       
+                                     
                                 </section>
                                 <section>
                                     <div class="title-zone">
@@ -1112,7 +1355,8 @@
                                                 <li>La théorie des ensembles : structuration des concepts.</li>
                                             </ul>
                                             <p style="font-size: 0.8em;text-align: left;">Ces deux disciplines
-                                                fournissent des bases pour modéliser et automatiser des raisonnements.
+                                                fournissent des bases pour modéliser et automatiser des
+                                                raisonnements.
                                             </p>
                                         </div>
                                     </div>
@@ -1128,12 +1372,15 @@
                                             <p style="font-size: 0.8em;text-align: left;">La logique est un outil
                                                 puissant pour exprimer des affirmations :</p>
                                             <ul style="font-size: 0.7em;">
-                                                <li><strong>Proposition :</strong> Une affirmation pouvant être vraie ou
+                                                <li><strong>Proposition :</strong> Une affirmation pouvant être
+                                                    vraie ou
                                                     fausse.</li>
-                                                <li><strong>Connecteurs :</strong> ET (∧), OU (∨), NON (¬), implication
+                                                <li><strong>Connecteurs :</strong> ET (∧), OU (∨), NON (¬),
+                                                    implication
                                                     (→).</li>
                                             </ul>
-                                            <p style="font-size: 0.8em;text-align: left;">Elle permet de vérifier des
+                                            <p style="font-size: 0.8em;text-align: left;">Elle permet de vérifier
+                                                des
                                                 règles de manière rigoureuse.</p>
                                         </div>
                                     </div>
@@ -1146,7 +1393,8 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;">Les quantificateurs permettent
+                                            <p style="font-size: 0.8em;text-align: left;">Les quantificateurs
+                                                permettent
                                                 de généraliser ou restreindre des propositions :</p>
                                             <ul style="font-size: 0.7em;">
                                                 <li><strong>Universel (∀) :</strong> "Pour tout". Exemple :
@@ -1161,51 +1409,56 @@
                                         </div>
                                     </div>
                                 </section>
-
+                                
+                                
                                 <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies - théorie des ensembles</p>
-                                        <h3 style="font-size: 0.8em;">Concepts de base</h3>
-                                    </div>
-                                    <div style="display: flex; gap: 20px;">
-                                        <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em; text-align: left;">
-                                                La théorie des ensembles modélise des collections d'éléments, des
-                                                relations et des opérations, qui
-                                                sont fondamentales pour comprendre les concepts ontologiques :
-                                            </p>
-                                            <ul style="font-size: 0.7em;">
-                                                <li>
-                                                    <strong>Ensemble :</strong> Une collection d'objets
-                                                    (<code>A = {1, 2, 3}</code>).
-                                                </li>
-                                                <li>
-                                                    <strong>Appartenance :</strong> <code>x ∈ A</code> signifie que
-                                                    <code>x</code> appartient à l'ensemble <code>A</code>.
-                                                </li>
-                                                <li>
-                                                    <strong>Opérations :</strong> Union (<code>A ∪ B</code>),
-                                                    intersection (<code>A ∩ B</code>), différence (<code>A - B</code>).
-                                                </li>
-                                                <li>
-                                                    <strong>Ensembles disjoints :</strong> Deux ensembles <code>A</code>
-                                                    et <code>B</code> sont disjoints
-                                                    si leur intersection est vide (<code>A ∩ B = ∅</code>).
-                                                </li>
-                                                <li>
-                                                    <strong>Union disjointe :</strong> Une union de plusieurs ensembles
-                                                    disjoints. Chaque élément appartient
-                                                    à un seul des ensembles constituant l'union (<code>A ∪ B</code>, où
-                                                    <code>A ∩ B = ∅</code>).
-                                                </li>
-                                            </ul>
+                                    <div class=" title-zone">
+                                                    <p style="font-size: 0.6em;">Ontologies - théorie des ensembles</p>
+                                                    <h3 style="font-size: 0.8em;">Concepts de base</h3>
                                         </div>
-                                        <div class="image-zone">
-                                            <img src="./img/theorie_ensembles.png"
-                                                alt="Concepts de la théorie des ensembles"
-                                                style="max-width: 100%; height: auto;" />
+                                        <div style="display: flex; gap: 20px;">
+                                            <div style="font-size: 0.8em;">
+                                                <p style="font-size: 0.8em; text-align: left;">
+                                                    La théorie des ensembles modélise des collections d'éléments, des
+                                                    relations et des opérations, qui
+                                                    sont fondamentales pour comprendre les concepts ontologiques :
+                                                </p>
+                                                <ul style="font-size: 0.7em;">
+                                                    <li>
+                                                        <strong>Ensemble :</strong> Une collection d'objets
+                                                        (<code>A = {1, 2, 3}</code>).
+                                                    </li>
+                                                    <li>
+                                                        <strong>Appartenance :</strong> <code>x ∈ A</code> signifie que
+                                                        <code>x</code> appartient à l'ensemble <code>A</code>.
+                                                    </li>
+                                                    <li>
+                                                        <strong>Opérations :</strong> Union (<code>A ∪ B</code>),
+                                                        intersection (<code>A ∩ B</code>), différence
+                                                        (<code>A - B</code>).
+                                                    </li>
+                                                    <li>
+                                                        <strong>Ensembles disjoints :</strong> Deux ensembles
+                                                        <code>A</code>
+                                                        et <code>B</code> sont disjoints
+                                                        si leur intersection est vide (<code>A ∩ B = ∅</code>).
+                                                    </li>
+                                                    <li>
+                                                        <strong>Union disjointe :</strong> Une union de plusieurs
+                                                        ensembles
+                                                        disjoints. Chaque élément appartient
+                                                        à un seul des ensembles constituant l'union (<code>A ∪ B</code>,
+                                                        où
+                                                        <code>A ∩ B = ∅</code>).
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="image-zone">
+                                                <img src="./img/theorie_ensembles.png"
+                                                    alt="Concepts de la théorie des ensembles"
+                                                    style="max-width: 100%; height: auto;" />
+                                            </div>
                                         </div>
-                                    </div>
                                 </section>
 
                                 <section>
@@ -1215,7 +1468,8 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;">Une relation est un lien entre
+                                            <p style="font-size: 0.8em;text-align: left;">Une relation est un lien
+                                                entre
                                                 les éléments de deux ensembles (ou plus) :</p>
                                             <ul style="font-size: 0.7em;">
                                                 <li><strong>Définition :</strong> Une relation <code>R</code> est un
@@ -1223,7 +1477,8 @@
                                                     <code>R ⊆ A × B</code>.
                                                 </li>
                                                 <li><strong>Exemple :</strong> Si <code>A = {1, 2}</code> et
-                                                    <code>B = {a, b}</code>, une relation <code>R</code> pourrait être :
+                                                    <code>B = {a, b}</code>, une relation <code>R</code> pourrait
+                                                    être :
                                                     <code>R = {(1, a), (2, b)}</code>.
                                                 </li>
                                             </ul>
@@ -1238,7 +1493,8 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;">Les relations peuvent avoir
+                                            <p style="font-size: 0.8em;text-align: left;">Les relations peuvent
+                                                avoir
                                                 différentes propriétés :</p>
                                             <ul style="font-size: 0.7em;">
                                                 <li><strong>Réflexive :</strong> Tout élément est en relation avec
@@ -1267,12 +1523,15 @@
                                             <p style="font-size: 0.8em;text-align: left;">Les relations peuvent être
                                                 classifiées en fonction de leurs propriétés :</p>
                                             <ul style="font-size: 0.7em;">
-                                                <li><strong>Relation d'équivalence :</strong> Réflexive, symétrique et
+                                                <li><strong>Relation d'équivalence :</strong> Réflexive, symétrique
+                                                    et
                                                     transitive. Exemple : l'égalité (<code>=</code>).</li>
                                                 <li><strong>Relation d'ordre :</strong> Réflexive, antisymétrique et
                                                     transitive. Exemple : l'ordre (<code>≤</code>).</li>
-                                                <li><strong>Fonction :</strong> Relation où chaque élément de l'ensemble
-                                                    de départ est lié à un seul élément de l'ensemble d'arrivée.</li>
+                                                <li><strong>Fonction :</strong> Relation où chaque élément de
+                                                    l'ensemble
+                                                    de départ est lié à un seul élément de l'ensemble d'arrivée.
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -1290,7 +1549,8 @@
                                             <ul style="font-size: 0.7em;">
                                                 <li><strong>Graphe orienté :</strong> Les arcs d’un graphe sont des
                                                     relations entre sommets.</li>
-                                                <li><strong>Base de données :</strong> Une table relie des colonnes à
+                                                <li><strong>Base de données :</strong> Une table relie des colonnes
+                                                    à
                                                     travers des clés primaires et étrangères.</li>
                                                 <li><strong>Ontologies :</strong> Relations entre concepts pour
                                                     modéliser des connaissances.</li>
@@ -1302,7 +1562,8 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies - logique et théorie des ensembles</p>
+                                        <p style="font-size: 0.6em;">Ontologies - logique et théorie des ensembles
+                                        </p>
                                         <h3 style="font-size: 0.8em;">Opérateurs Logiques : AND et OR</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
@@ -1310,16 +1571,19 @@
                                             <p style="font-size: 0.8em;text-align: left;">Les opérateurs logiques se
                                                 traduisent en théorie des ensembles :</p>
                                             <ul style="font-size: 0.7em;">
-                                                <li><strong>AND (Intersection) :</strong> Les éléments communs à deux
+                                                <li><strong>AND (Intersection) :</strong> Les éléments communs à
+                                                    deux
                                                     ensembles. <br>
                                                     <code>A ∩ B</code>.
                                                 </li>
-                                                <li><strong>OR (Union) :</strong> Les éléments présents dans au moins un
+                                                <li><strong>OR (Union) :</strong> Les éléments présents dans au
+                                                    moins un
                                                     des ensembles. <br>
                                                     <code>A ∪ B</code>.
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.8em;text-align: left;">Ces interactions permettent de
+                                            <p style="font-size: 0.8em;text-align: left;">Ces interactions
+                                                permettent de
                                                 modéliser des relations logiques.</p>
                                         </div>
                                         <div style="font-size: 0.8em;">
@@ -1341,7 +1605,8 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies - logique et théorie des ensembles</p>
+                                        <p style="font-size: 0.6em;">Ontologies - logique et théorie des ensembles
+                                        </p>
                                         <h3 style="font-size: 0.8em;">Définition Extensive des Ensembles</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
@@ -1352,29 +1617,37 @@
                                                 Voici quelques exemples :
                                             </p>
                                             <ul style="font-size: 0.6em;">
-                                                <li><strong>Exemple 1 (Union avec quantificateur) :</strong> L'ensemble
+                                                <li><strong>Exemple 1 (Union avec quantificateur) :</strong>
+                                                    L'ensemble
                                                     des éléments <code>x</code> qui sont dans <code>X</code> ou dans
-                                                    <code>Y</code>, et pour lesquels il existe un élément <code>y</code>
-                                                    tel que <code>R(x, y)</code> (une relation), peut être écrit comme :
+                                                    <code>Y</code>, et pour lesquels il existe un élément
+                                                    <code>y</code>
+                                                    tel que <code>R(x, y)</code> (une relation), peut être écrit
+                                                    comme :
                                                     <br>
                                                     <code>{x | (x ∈ X ∨ x ∈ Y) ∧ ∃y (R(x, y))}</code>.
                                                 </li>
                                                 <li><strong>Exemple 2 (Quantificateur universel avec relation)
-                                                        :</strong> L'ensemble des éléments <code>x</code> pour lesquels
+                                                        :</strong> L'ensemble des éléments <code>x</code> pour
+                                                    lesquels
                                                     tous les éléments <code>y</code> dans l'ensemble <code>Y</code>
-                                                    satisfont une relation <code>R(x, y)</code>, peut être exprimé comme
+                                                    satisfont une relation <code>R(x, y)</code>, peut être exprimé
+                                                    comme
                                                     : <br>
                                                     <code>{x | ∀y (y ∈ Y → R(x, y))}</code>.
                                                 </li>
                                                 <li><strong>Exemple 3 (Quantificateurs multiples avec relation)
                                                         :</strong> L'ensemble des éléments <code>x</code> tels qu'il
-                                                    existe un <code>y</code> et un <code>z</code> où <code>x</code> est
+                                                    existe un <code>y</code> et un <code>z</code> où <code>x</code>
+                                                    est
                                                     en relation avec <code>y</code> et <code>z</code> : <br>
                                                     <code>{x | ∃y ∃z (R(x, y) ∧ S(x, z))}</code>.
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.7em;text-align: left;">Ces exemples montrent comment
-                                                les ensembles peuvent être décrits en combinant des relations logiques
+                                            <p style="font-size: 0.7em;text-align: left;">Ces exemples montrent
+                                                comment
+                                                les ensembles peuvent être décrits en combinant des relations
+                                                logiques
                                                 et des quantificateurs (existence et universalité), ce qui permet de
                                                 modéliser des situations plus complexes.</p>
                                         </div>
@@ -1388,17 +1661,21 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;">La logique d'ordre supérieur
+                                            <p style="font-size: 0.8em;text-align: left;">La logique d'ordre
+                                                supérieur
                                                 étend la logique classique :</p>
                                             <ul style="font-size: 0.7em;">
                                                 <li>Elle permet de raisonner sur des <strong>ensembles
                                                         d'ensembles</strong>.</li>
-                                                <li>Exemple : "Tous les ensembles qui contiennent un élément commun avec
+                                                <li>Exemple : "Tous les ensembles qui contiennent un élément commun
+                                                    avec
                                                     A".</li>
-                                                <li>Elle est plus expressive mais ne permet pas toujours un raisonnement
+                                                <li>Elle est plus expressive mais ne permet pas toujours un
+                                                    raisonnement
                                                     automatisé.</li>
                                             </ul>
-                                            <p style="font-size: 0.8em;text-align: left;">Courant pour les modèles de
+                                            <p style="font-size: 0.8em;text-align: left;">Courant pour les modèles
+                                                de
                                                 systèmes</p>
 
                                         </div>
@@ -1410,7 +1687,8 @@
                                                 <text x="50" y="170" style="font-size: 0.5em; fill: white;">Ensemble
                                                     d'ensembles</text>
                                             </svg>
-                                            <p style="font-size: 0.6em;text-align: center;">A : élément de l'ensemble
+                                            <p style="font-size: 0.6em;text-align: center;">A : élément de
+                                                l'ensemble
                                                 rouge.<br>Rouge : sous-ensemble de bleu.</p>
                                         </div>
                                     </div>
@@ -1432,9 +1710,11 @@
                                                 <li><strong>Entre 0 et 1 :</strong> Degré de probabilité ou de
                                                     pertinence.</li>
                                             </ul>
-                                            <p style="font-size: 0.8em;text-align: left;">Exemple : "Il est 70% probable
+                                            <p style="font-size: 0.8em;text-align: left;">Exemple : "Il est 70%
+                                                probable
                                                 qu'il pleuve".</p>
-                                            <p style="font-size: 0.8em;text-align: left;">Utilisé par exemple pour la
+                                            <p style="font-size: 0.8em;text-align: left;">Utilisé par exemple pour
+                                                la
                                                 robotique</p>
 
                                         </div>
@@ -1453,43 +1733,31 @@
                                 </section>
 
 
-                                <section>
-                                    <div class="title-zone">
-                                        <p style="font-size: 0.6em;">Ontologies</p>
-                                        <h3 style="font-size: 0.8em;">Quels langages?</h3>
-                                    </div>
-                                    <div style="display: flex; gap: 20px;text-align: left;">
-                                        <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;">Il existe de nombreuses
-                                                langages de description d'ontologie.</p>
-                                            <p style="font-size: 0.8em;text-align: left;">Mais tous n'ont pas la même
-                                                expressivité ni la même utilité, en particulier en ce qui concerne le
-                                                support du raisonnement automatisé.</p>
-                                            <p style="font-size: 0.8em;text-align: left;">Parmi les langages les plus
-                                                utilisés, on peut citer</p>
 
-                                            <ul style="font-size: 0.7em;"" >
-                                                <li>Langage(s) naturel(s)</li>
-                                                <li>UML, RDF, SKOS, Prolog, OWL (Lite, Full, DL) ...</li>
-                                            </ul>
-                                            <p style=" font-size: 0.8em;text-align: left;">On souhaite un langage
-                                                permettant le raisonnement sur la base de la logique descriptive</p>
-                                                <ul style="font-size: 0.7em;"" >
-                                                <li style=" list-style-type: none; ">&#x2192;OWL DL</li> 
-                                            </ul>                                                                      
-                                        </div>                                    
-                                    </div>
-                                </section>
-                                
+
                             </section>
 
                             <!-- Partie 2 : OWL et ontologies -->
                             <section>
                                 <section>
+
+                                    <ol style=" list-style-type:none; ">
+                                        <li style=" counter-reset: main 5;">Modélisation sémantique avec OWL
+                                            <p>Les bases théoriques de l'interopérabilité sémantique</p>
+                                            <ol>
+                                                <li>Objectifs de la section</li>
+
+
+                                        </li>
+                                    </ol>
+                                </section>
+
+                                <section>
                                     <div class=" title-zone" style="font-size: 1em;">
-                                                    <h1 style="font-size: 1em;">Modélisation sémantique avec OWL</h1>
-                                        </div>
-                                        <p style="font-size: 0.8em;">OWL (Ontology Web Language)</p>
+                                        <h1 style="font-size: 1em;">Modélisation sémantique avec OWL
+                                        </h1>
+                                    </div>
+                                    <p style="font-size: 0.8em;">OWL (Ontology Web Language)</p>
                                 </section>
                                 <section>
                                     <p style="font-size: 0.6em;">Modélisation sémantique avec OWL</p>
@@ -1514,8 +1782,10 @@
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
                                             <p style="font-size: 0.6em;text-align: left;">Protégé est un logiciel
-                                                open-source largement utilisé pour la création, l'édition et la gestion
-                                                des ontologies, particulièrement celles basées sur le langage OWL2 (Web
+                                                open-source largement utilisé pour la création, l'édition et la
+                                                gestion
+                                                des ontologies, particulièrement celles basées sur le langage OWL2
+                                                (Web
                                                 Ontology Language).</p>
                                             <ul style="font-size: 0.5em;">
                                                 <li><strong>Création d'ontologies</strong></li>
@@ -1524,7 +1794,8 @@
                                                 <li><strong>Interface graphique</strong></li>
                                                 <li><strong>Export et partage</strong> </li>
                                             </ul>
-                                            <p style="font-size: 0.6em;text-align: left;">Il est très utilisé dans la
+                                            <p style="font-size: 0.6em;text-align: left;">Il est très utilisé dans
+                                                la
                                                 recherche, le développement d'applications sémantiques, et dans des
                                                 domaines comme l'intelligence artificielle, la gestion des
                                                 connaissances, et le web sémantique.</p>
@@ -1568,9 +1839,11 @@
                                         <div style="font-size: 0.6em;">
                                             <p style="font-size: 0.8em;text-align: left;">Syntaxe Manchester dans
                                                 Protégé:
-                                                moyen simple et lisible de décrire une ontologie,rendant la logique de
+                                                moyen simple et lisible de décrire une ontologie,rendant la logique
+                                                de
                                                 description
-                                                (DL) plus accessible sans nécessiter une connaissance approfondie de la
+                                                (DL) plus accessible sans nécessiter une connaissance approfondie de
+                                                la
                                                 notation formelle.</p>
                                             <ul style="font-size: 0.6em;">
                                                 <li><strong>Accessibilité :</strong> Description des concepts et des
@@ -1578,9 +1851,11 @@
                                                     intuitive</li>
                                                 <li><strong>Concepts et relations :</strong> Définition simple des
                                                     classes, relations et de leur composition avec <em>and</em>,
-                                                    <em>or</em>, <em>not</em>, etc.Par exemple pour définir une classe
+                                                    <em>or</em>, <em>not</em>, etc.Par exemple pour définir une
+                                                    classe
                                                     de
-                                                    personnes ayant un âge supérieur à 18 ans et étant des étudiants, on
+                                                    personnes ayant un âge supérieur à 18 ans et étant des
+                                                    étudiants, on
                                                     pourrait utiliser la syntaxe suivante :
                                                     <code>Personne and (aPourAge value > 18) and Etudiant</code>.
                                                 </li>
@@ -1645,21 +1920,26 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.6em;text-align: left;">Le viewer est un utilitaire de
+                                            <p style="font-size: 0.6em;text-align: left;">Le viewer est un
+                                                utilitaire de
                                                 visualisation d'ontologie OWL qui reprende et complète les symboles
                                                 proposés par Protégé pour OWL.</p>
                                             <ul style="font-size: 0.4em;">
-                                                <li><strong>Classes, properties et individus :</strong> visualisation
+                                                <li><strong>Classes, properties et individus :</strong>
+                                                    visualisation
                                                     sous forme de noeud avec les symboles utilisés par Protégé</li>
                                                 <li><strong>Caractéristiques des propriétés:</strong> les
                                                     caractéristiques sont visibles sour forme de symboles</li>
-                                                <li><strong>Relations entre individus, classes et propriétés :</strong>
+                                                <li><strong>Relations entre individus, classes et propriétés
+                                                        :</strong>
                                                     type,domain, range, subsomption, équivalence... </li>
-                                                <li><strong>Structure d'une ontologie et imports :</strong> Sous formes
+                                                <li><strong>Structure d'une ontologie et imports :</strong> Sous
+                                                    formes
                                                     d'éléments imbriqués.</li>
                                             </ul>
                                             <p style="font-size: 0.6em;text-align: left;">Il s'agit d'un prototype
-                                                permettant des visualisations interactives intégrables dans des pages
+                                                permettant des visualisations interactives intégrables dans des
+                                                pages
                                                 Web</p>
                                         </div>
                                         <div style="font-size: 0.8em;">
@@ -1778,26 +2058,31 @@
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone" style="font-size: 0.7em;">
-                                            <p style="font-size: 0.7em;text-align: left;">Les 3 concepts de bases en OWL
+                                            <p style="font-size: 0.7em;text-align: left;">Les 3 concepts de bases en
+                                                OWL
                                                 sont:</p>
                                             <ul style="font-size: 0.6em;">
                                                 <li><b>Individus :</b> Représentent des instances concrètes ou
                                                     spécifiques, c'est-à-dire des entités réelles ou imaginées.
 
                                                 </li>
-                                                <li><b>Propriétés :</b> Décrivent les relations entre les individus ou
+                                                <li><b>Propriétés :</b> Décrivent les relations entre les individus
+                                                    ou
                                                     leurs caractéristiques. Elles permettent de structurer les
                                                     interactions :
                                                     <ul style="font-size: 0.8em;">
-                                                        <li><b>Propriétés d'objet :</b> Relient des individus entre eux.
+                                                        <li><b>Propriétés d'objet :</b> Relient des individus entre
+                                                            eux.
 
                                                         </li>
-                                                        <li><b>Propriétés de données :</b> Relient des individus à des
+                                                        <li><b>Propriétés de données :</b> Relient des individus à
+                                                            des
                                                             valeurs littérales.
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li><b>Classes :</b> Catégorisent les individus en concepts abstraits,
+                                                <li><b>Classes :</b> Catégorisent les individus en concepts
+                                                    abstraits,
                                                     permettant d'organiser les connaissances.
                                                     <br>
                                                 </li>
@@ -1862,11 +2147,13 @@
                                             <ul style="font-size: 0.5em;">
 
                                                 <li>
-                                                    <b>Propriétés d’objet (<i>Object Properties</i>) :</b> Relient des
+                                                    <b>Propriétés d’objet (<i>Object Properties</i>) :</b> Relient
+                                                    des
                                                     individus entre eux.
                                                 </li>
                                                 <li>
-                                                    <b>Propriétés de données (<i>Data Properties</i>) :</b> Relient un
+                                                    <b>Propriétés de données (<i>Data Properties</i>) :</b> Relient
+                                                    un
                                                     individu à une valeur littérale.
                                                 </li>
                                                 <li>
@@ -1874,22 +2161,26 @@
                                                     individus peuvent être sujets de la propriété.
                                                 </li>
                                                 <li>
-                                                    <b>Ensemble d'arrivée (<i>Range</i>) :</b> Définit les classes ou
+                                                    <b>Ensemble d'arrivée (<i>Range</i>) :</b> Définit les classes
+                                                    ou
                                                     types dont les individus ou valeurs peuvent être objets de la
                                                     propriété.
                                                 </li>
                                                 <li>
-                                                    <b>Propriétés inverses:</b> Une propriété peut être l'inverse d'une
+                                                    <b>Propriétés inverses:</b> Une propriété peut être l'inverse
+                                                    d'une
                                                     autre (exemple ParentDe et EnfantDe)
                                                 </li>
                                                 <li>
-                                                    <b>Chaines de propriétés:</b> Une propriété peut être définie comme
+                                                    <b>Chaines de propriétés:</b> Une propriété peut être définie
+                                                    comme
                                                     une chaîne de propriété (aUnOncle=aUnParent o aUnFrere)
                                                 </li>
                                             </ul>
                                             <p style="font-size: 0.6em;text-align: left;">
                                                 Comme les classe, les propriétés objet constituent des ensembles qui
-                                                peuvent être disjoints, semblables(équivalence) ou inclus (subsomption).
+                                                peuvent être disjoints, semblables(équivalence) ou inclus
+                                                (subsomption).
                                             </p>
                                         </div>
                                         <div class="image-zone">
@@ -1951,13 +2242,15 @@
                                             </p>
                                             <ul style="font-size: 0.4em;">
                                                 <li>
-                                                    <b>Équivalence (égalité) :</b> Deux classes ou propriétés sont dites
+                                                    <b>Équivalence (égalité) :</b> Deux classes ou propriétés sont
+                                                    dites
                                                     équivalentes si elles décrivent
                                                     exactement le même ensemble d'éléments ou les mêmes relations.
 
                                                 </li>
                                                 <li style="font-size: 1em;">
-                                                    <b>Subsomption (inclusion) :</b> Une classe ou propriété A subsume
+                                                    <b>Subsomption (inclusion) :</b> Une classe ou propriété A
+                                                    subsume
                                                     une autre classe ou propriété B si
                                                     tout élément de B est aussi un élément de A. Cette relation
                                                     correspond à une inclusion d'ensemble.
@@ -2055,18 +2348,23 @@
                                 <section>
                                     <div class="title-zone">
                                         <p style="font-size: 0.6em;">Construction du langage OWL</p>
-                                        <h3 style="font-size: 0.8em;">Individus : Typage, Identité et Propriétés</h3>
+                                        <h3 style="font-size: 0.8em;">Individus : Typage, Identité et Propriétés
+                                        </h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.5em;text-align: left;">Les individus représentent des
-                                                entités spécifiques dans un domaine et permettent de relier des concepts
+                                            <p style="font-size: 0.5em;text-align: left;">Les individus représentent
+                                                des
+                                                entités spécifiques dans un domaine et permettent de relier des
+                                                concepts
                                                 abstraits à des éléments concrets.</p>
                                             <ul style="font-size: 0.4em;">
-                                                <li><b><code>isa</code> :</b> Définit qu'un individu est une instance
+                                                <li><b><code>isa</code> :</b> Définit qu'un individu est une
+                                                    instance
                                                     d'une classe, ou que la classe type l'individu
                                                 </li>
-                                                <li><b><code>sameAs</code> :</b> Indique que deux individus représentent
+                                                <li><b><code>sameAs</code> :</b> Indique que deux individus
+                                                    représentent
                                                     la même entité dans le monde réel (elles sont identiques)
                                                 </li>
                                                 <li><b>Attribution de propriétés :</b> déclaration explicite ou
@@ -2124,16 +2422,19 @@
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone" style="font-size: 0.7em;">
-                                            <p style="font-size: 0.6em;text-align: left;">Ils permettent d'exprimer des
+                                            <p style="font-size: 0.6em;text-align: left;">Ils permettent d'exprimer
+                                                des
                                                 restrictions sur les propriétés entre
-                                                individus et sont essentiels pour modéliser précisément les relations
+                                                individus et sont essentiels pour modéliser précisément les
+                                                relations
                                                 et les contraintes dans une ontologie.</p>
                                             <ul style="font-size: 0.5em;">
                                                 <li><b>Quantificateur existentiel (<code>some</code>):</b> Spécifie
                                                     qu'il existe au moins un lien correspondant à une propriété:
                                                     <code>Person and hasChild some Son</code>
                                                 </li>
-                                                <li><b>Quantificateur universel (<code>only</code>):</b> Spécifie que
+                                                <li><b>Quantificateur universel (<code>only</code>):</b> Spécifie
+                                                    que
                                                     tous les liens d'une propriété concernent une classe donnée:
                                                     <code>Male and  hasChild only Daughter</code>
                                                 </li>
@@ -2142,17 +2443,20 @@
                                                     <code>Person and hasChild exactly 2</code>
                                                 </li>
                                                 <li><b>Quantificateur minimum (<code>min</code>) et maximum
-                                                        (<code>max</code>):</b> Permettent de définir des contraintes
+                                                        (<code>max</code>):</b> Permettent de définir des
+                                                    contraintes
                                                     numériques sur le nombre de liens:
                                                     <code>Person and hasChild max 3</code>
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.6em;text-align: left;">Ces restrictions s’appliquent
+                                            <p style="font-size: 0.6em;text-align: left;">Ces restrictions
+                                                s’appliquent
                                                 aux propriétés objet (<i>Object Properties</i>) et permettent de
                                                 raisonner automatiquement sur les modèles.</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/OWLQuantificateurExistentiel.png" alt="OWL Quantificateur Existentiel"
+                                            <img src="./img/OWLQuantificateurExistentiel.png"
+                                                alt="OWL Quantificateur Existentiel"
                                                 style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
@@ -2199,7 +2503,8 @@
                                     <div class="content-zone">
                                         <div class="text-zone">
                                             <p style="font-size: 0.4em;text-align: left;">En OWL, <b>Self</b>,
-                                                <b>Value</b>, et <b>Key</b> sont des mécanismes permettant de modéliser
+                                                <b>Value</b>, et <b>Key</b> sont des mécanismes permettant de
+                                                modéliser
                                                 des relations spécifiques ou des identifications uniques entre les
                                                 individus et leurs propriétés.
                                             </p>
@@ -2221,8 +2526,10 @@
                                                     identifier de manière unique les individus dans une ontologie.
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.4em;text-align: left">Ces mécanismes sont utiles pour
-                                                définir des contraintes spécifiques, assurer l'unicité ou modéliser des
+                                            <p style="font-size: 0.4em;text-align: left">Ces mécanismes sont utiles
+                                                pour
+                                                définir des contraintes spécifiques, assurer l'unicité ou modéliser
+                                                des
                                                 relations particulières dans une ontologie.</p>
                                         </div>
                                         <div class="image-zone">
@@ -2239,14 +2546,18 @@
                                 <section>
                                     <div class="title-zone">
                                         <p style="font-size: 0.6em;">Construction d'une ontologie</p>
-                                        <h3 style="font-size: 0.8em;">Donnée, Information et Automatismes Protégé</h3>
+                                        <h3 style="font-size: 0.8em;">Donnée, Information et Automatismes Protégé
+                                        </h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone" style="font-size: 0.7em;">
-                                            <p style="font-size: 0.6em;text-align: left;">En OWL, la gestion des données
+                                            <p style="font-size: 0.6em;text-align: left;">En OWL, la gestion des
+                                                données
                                                 et des informations repose sur des
-                                                mécanismes logiques. Protégé, en tant qu'éditeur d'ontologies, offre des
-                                                comportements automatiques notables qui facilitent le travail avec des
+                                                mécanismes logiques. Protégé, en tant qu'éditeur d'ontologies, offre
+                                                des
+                                                comportements automatiques notables qui facilitent le travail avec
+                                                des
                                                 ontologies, mais peuvent surprendre les débutants.</p>
                                             <ul style="font-size: 0.5em;">
                                                 <li><b>Réduction des assertions redondantes</b>
@@ -2255,15 +2566,17 @@
                                                 <li><b>Importation de fichiers RDF avec création des classes OWL</b>
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.6em; text-align: left;">Ces comportements montrent
+                                            <p style="font-size: 0.6em; text-align: left;">Ces comportements
+                                                montrent
                                                 comment Protégé combine flexibilité et rigueur
-                                                pour transformer des données brutes en informations structurées, tout en
+                                                pour transformer des données brutes en informations structurées,
+                                                tout en
                                                 aidant à construire une ontologie cohérente.</p>
                                         </div>
                                         <div class="image-zone">
                                             <img src="./img/TripletRepetes.png" alt="Triplets répétés"
                                                 style="max-width: 100%; height: auto;" />
-                                                <img src="./img/ImportTripletsRepetes.png" alt="Import Triplets répétés"
+                                            <img src="./img/ImportTripletsRepetes.png" alt="Import Triplets répétés"
                                                 style="max-width: 50%; height: auto;" />
                                         </div>
                                     </div>
@@ -2314,10 +2627,13 @@
                                     <div class="content-zone">
                                         <div class="text-zone">
                                             <p style="font-size: 0.4em;text-align: left;">Lors de la création d'une
-                                                ontologie, il est essentiel de valider la logique capturée pour garantir
-                                                sa cohérence interne et son utilité pratique dans le domaine visé.</p>
+                                                ontologie, il est essentiel de valider la logique capturée pour
+                                                garantir
+                                                sa cohérence interne et son utilité pratique dans le domaine visé.
+                                            </p>
 
-                                            <p style="font-size: 0.5em;text-align: left;"><b>Validation de la cohérence</b>
+                                            <p style="font-size: 0.5em;text-align: left;"><b>Validation de la
+                                                    cohérence</b>
                                             <ul style="font-size: 0.4em;">
                                                 <li>Vérifier qu'aucune contradiction logique n'existe dans
                                                     l'ontologie.</li>
@@ -2326,7 +2642,8 @@
                                                     propriétés et des relations.</li>
                                             </ul>
                                             </p>
-                                            <p style="font-size: 0.5em;text-align: left;"><b>Validation de l'utilité</b>
+                                            <p style="font-size: 0.5em;text-align: left;"><b>Validation de
+                                                    l'utilité</b>
                                             <ul style="font-size: 0.4em;">
                                                 <li>S'assurer que l'ontologie permet de répondre aux cas d'usage
                                                     identifiés.</li>
@@ -2336,7 +2653,8 @@
                                             </p>
 
                                             <p style="font-size: 0.4em;text-align: left;">La validation garantit que
-                                                l'ontologie est non seulement logique, mais également capable de remplir
+                                                l'ontologie est non seulement logique, mais également capable de
+                                                remplir
                                                 son rôle dans son contexte d'application.</p>
                                         </div>
                                         <div class="image-zone">
@@ -2388,23 +2706,28 @@
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.5em;text-align: left;">L'interopérabilité sémantique
+                                            <p style="font-size: 0.5em;text-align: left;">L'interopérabilité
+                                                sémantique
                                                 garantit que des systèmes, applications ou organisations différents
-                                                peuvent échanger et interpréter des données de manière cohérente, tout
+                                                peuvent échanger et interpréter des données de manière cohérente,
+                                                tout
                                                 en préservant le sens des informations.</p>
                                             <ul style="font-size: 0.4em;">
                                                 <li><b>Compréhension partagée des concepts :</b> Utilisation
-                                                    d'ontologies ou de vocabulaires communs pour définir clairement les
+                                                    d'ontologies ou de vocabulaires communs pour définir clairement
+                                                    les
                                                     termes et leurs relations.</li>
                                                 <li><b>Intégration des données :</b> Alignement des modèles et
-                                                    structures via des mappings de classes, propriétés et concepts.</li>
-                                                <li><b>Automatisation des échanges :</b> Recours à des outils capables
+                                                    structures via des mappings de classes, propriétés et concepts.
+                                                </li>
+                                                <li><b>Automatisation des échanges :</b> Recours à des outils
+                                                    capables
                                                     d'inférer et valider les informations grâce aux règles définies.
                                                 </li>
                                             </ul>
 
                                         </div>
-                                        
+
                                     </div>
                                     <aside class="notes">
                                         <p style="font-size: 0.5em;text-align: left;">L'interopérabilité sémantique
@@ -2448,7 +2771,8 @@
                                                     <b>Intégration a posteriori des données</b>
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.5em;text-align: left;">Pas d'exclusion mutuelle</p>
+                                            <p style="font-size: 0.5em;text-align: left;">Pas d'exclusion mutuelle
+                                            </p>
                                         </div>
                                     </div>
                                     <aside class="notes">
@@ -2488,21 +2812,25 @@
                                         <div class="text-zone">
                                             <p style="font-size: 0.5em;text-align: left;">L'alignement lors de la
                                                 conceptualisation consiste à intégrer, dès la conception d’une
-                                                application, des ontologies ou vocabulaires partagés produits par des
+                                                application, des ontologies ou vocabulaires partagés produits par
+                                                des
                                                 communautés de connaissance et de pratique.</p>
                                             <ul style="font-size: 0.4em;">
-                                                <li><b>Utilisation d'ontologies reconnues :</b> Intégration de standards
+                                                <li><b>Utilisation d'ontologies reconnues :</b> Intégration de
+                                                    standards
                                                     existants pour définir des concepts et propriétés (ex. : Dublin
-                                                    Core, FOAF).</li>
+                                                    Core, FOAF, Ontologies publiées ou considérées par GS1).</li>
                                                 <li><b>Uniformisation des modèles :</b> Adoption de schémas et
-                                                    terminologies communes pour assurer la compatibilité avec d'autres
+                                                    terminologies communes pour assurer la compatibilité avec
+                                                    d'autres
                                                     systèmes.</li>
                                                 <li><b>Avantage :</b> Réduction des conflits sémantiques grâce à une
                                                     conceptualisation partagée dès le départ.</li>
                                             </ul>
                                             <p style="font-size: 0.5em;text-align: left;"><b>Exemple :</b> Lors du
                                                 développement d'une application e-commerce, l'utilisation d'une
-                                                ontologie comme GoodRelations permet de structurer les concepts tels que
+                                                ontologie comme GoodRelations permet de structurer les concepts tels
+                                                que
                                                 les produits, prix ou transactions.</p>
                                         </div>
                                         <div class="image-zone">
@@ -2520,25 +2848,33 @@
                                     <div class="content-zone">
                                         <div class="text-zone">
                                             <p style="font-size: 0.5em;text-align: left;">Dans cette approche,
-                                                l'interopérabilité est construite après coup pour intégrer des données
-                                                provenant de systèmes applicatifs existants, souvent incompatibles entre eux.</p>
+                                                l'interopérabilité est construite après coup pour intégrer des
+                                                données
+                                                provenant de systèmes applicatifs existants, souvent incompatibles
+                                                entre
+                                                eux.</p>
                                             <ul style="font-size: 0.4em;">
-                                                <li><b>Mapping entre ontologies :</b> Création de correspondances entre
-                                                    les classes et propriétés des différents systèmes applicatifs.</li>
-                                                <li><b>Utilisation d’ontologies pivots :</b> Conversion des données vers
+                                                <li><b>Mapping entre ontologies :</b> Création de correspondances
+                                                    entre
+                                                    les classes et propriétés des différents systèmes applicatifs.
+                                                </li>
+                                                <li><b>Utilisation d’ontologies pivots :</b> Conversion des données
+                                                    vers
                                                     un format intermédiaire basé sur une ontologie centrale pour
                                                     faciliter l’intégration.</li>
-                                                <li><b>Avantage :</b> Adaptation aux systèmes existants sans nécessiter
+                                                <li><b>Avantage :</b> Adaptation aux systèmes existants sans
+                                                    nécessiter
                                                     leur refonte complète.</li>
                                             </ul>
                                             <p style="font-size: 0.5em;text-align: left;"><b>Exemple :</b> Pour
-                                                interconnecter des systèmes applicatifs logistiques entre eux, un mapping est établi
+                                                interconnecter des systèmes applicatifs logistiques entre eux, un
+                                                mapping est établi
                                                 entre les concepts "Product" dans l’une et "BOMItem" dans
                                                 l’autre, en utilisant une ontologie pivot défini par GS1</p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/AlignementSemantiqueAPosteriori.png" alt="Alignement à postériori"
-                                                style="max-width: 100%; height: auto;" />
+                                            <img src="./img/AlignementSemantiqueAPosteriori.png"
+                                                alt="Alignement à postériori" style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                 </section>
@@ -2552,13 +2888,17 @@
 
                                             <ul style="font-size: 0.5em;">
                                                 <li><b>Données : </b> Faits ou événements formalisés par des
-                                                    **métadonnées interprétables** qui fournissent un cadre sémantique.
+                                                    **métadonnées interprétables** qui fournissent un cadre
+                                                    sémantique.
                                                 </li>
-                                                <li><b>Information : </b> Organisation des données selon des relations
+                                                <li><b>Information : </b> Organisation des données selon des
+                                                    relations
                                                     et concepts via des ontologies comme OWL, donnant du sens et du
                                                     contexte.</li>
-                                                <li><b>Connaissance : </b> Inférer de nouvelles relations ou concepts à
-                                                    partir de l'information explicite, en s'appuyant sur le modèle de
+                                                <li><b>Connaissance : </b> Inférer de nouvelles relations ou
+                                                    concepts à
+                                                    partir de l'information explicite, en s'appuyant sur le modèle
+                                                    de
                                                     connaissance OWL.</li>
                                                 <li><b>Sagesse : </b> Application éclairée des connaissances pour
                                                     résoudre des problèmes complexes et prendre des décisions
@@ -2588,26 +2928,31 @@
                                 <section>
                                     <div class="title-zone">
                                         <p style="font-size: 0.6em;">Apport des ontologies et de OWL</p>
-                                        <h3 style="font-size: 0.8em;">Synonymie, Polysémie et Ambiguïté Syntaxique</h3>
+                                        <h3 style="font-size: 0.8em;">Synonymie, Polysémie et Ambiguïté Syntaxique
+                                        </h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
                                             <p style="font-size: 0.5em;text-align: left;">
                                                 OWL aide &agrave; r&eacute;soudre les probl&egrave;mes de synonymie,
-                                                polys&eacute;mie et ambigu&iuml;t&eacute; syntaxique en utilisant des
+                                                polys&eacute;mie et ambigu&iuml;t&eacute; syntaxique en utilisant
+                                                des
                                                 identifiants uniques (IRIs), des labels et des annotations.
                                             </p>
                                             <ul style="font-size: 0.4em;">
                                                 <li><b>Synonymie :</b> Association de termes diff&eacute;rents au
                                                     m&ecirc;me concept via des labels.</li>
-                                                <li><b>Polys&eacute;mie :</b> Cr&eacute;ation de classes distinctes pour
+                                                <li><b>Polys&eacute;mie :</b> Cr&eacute;ation de classes distinctes
+                                                    pour
                                                     chaque sens d'un terme.</li>
                                                 <li><b>Ambigu&iuml;t&eacute; Syntaxique :</b> Clarification des
-                                                    relations entre concepts par des propri&eacute;t&eacute;s formelles.
+                                                    relations entre concepts par des propri&eacute;t&eacute;s
+                                                    formelles.
                                                 </li>
                                             </ul>
                                             <p style="font-size: 0.5em;text-align: left;">
-                                                OWL assure une repr&eacute;sentation pr&eacute;cise des connaissances
+                                                OWL assure une repr&eacute;sentation pr&eacute;cise des
+                                                connaissances
                                                 pour une interpr&eacute;tation coh&eacute;rente.
                                             </p>
                                         </div>
@@ -2650,8 +2995,10 @@
                                                 <li><b>Description pour les utilisateurs</b></li>
                                                 <li><b>Définition formelle (en OWL)</b></li>
                                             </ul>
-                                            <p style="font-size: 0.5em;text-align: left;">Ainsi, une ontologie OWL est
-                                                une représentation sémantique riche qui facilite l'interopérabilité et
+                                            <p style="font-size: 0.5em;text-align: left;">Ainsi, une ontologie OWL
+                                                est
+                                                une représentation sémantique riche qui facilite l'interopérabilité
+                                                et
                                                 l'exploitation des connaissances.</p>
                                         </div>
                                         <div class="image-zone">
@@ -2715,7 +3062,8 @@
                                     <div class="content-zone">
                                         <div class="text-zone" style="font-size: 0.8em;">
 
-                                            <p style="text-align: left;">Les ontologies en OWL (Web Ontology Language)
+                                            <p style="text-align: left;">Les ontologies en OWL (Web Ontology
+                                                Language)
                                                 apportent une valeur économique
                                                 significative aux entreprises en facilitant l'interopérabilité
                                                 sémantique. <br><br>Elles
@@ -2723,14 +3071,16 @@
                                             <ul style="font-size: 0.6em;">
                                                 <li>Réduire les coûts d'intégration et de gestion des échanges de
                                                     données</li>
-                                                <li>Réduire les risques grâce à une meilleure compréhension des données
+                                                <li>Réduire les risques grâce à une meilleure compréhension des
+                                                    données
                                                     et de
                                                     leurs relations</li>
                                                 <li>Rationaliser les processus en créant un langage commun et en
                                                     simplifiant
                                                     l'automatisation</li>
                                                 <li>Optimiser la gestion des ressources et la chaîne de valeur</li>
-                                                <li>Faciliter l'innovation et l'adoption de nouvelles technologies</li>
+                                                <li>Faciliter l'innovation et l'adoption de nouvelles technologies
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -2738,30 +3088,41 @@
                                         <p>Les ontologies en OWL (Web Ontology Language) ne se contentent pas de
                                             faciliter
                                             l'interopérabilité technique entre systèmes disparates, elles apportent
-                                            également une valeur économique considérable pour les entreprises. Grâce à
+                                            également une valeur économique considérable pour les entreprises. Grâce
+                                            à
                                             l'interopérabilité sémantique, elles permettent de :</p>
                                         <ul>
-                                            <li><strong>Interopérabilité sémantique et réduction des coûts :</strong> En
+                                            <li><strong>Interopérabilité sémantique et réduction des coûts
+                                                    :</strong> En
                                                 permettant aux systèmes de partager des données de manière
                                                 sémantiquement
                                                 cohérente, les ontologies OWL réduisent le besoin de recourir à des
                                                 solutions complexes de transformation de données ou à des interfaces
-                                                coûteuses. Cela permet de diminuer les coûts associés à l'intégration de
-                                                nouveaux systèmes et à la gestion des échanges de données. Par ailleurs,
-                                                l'utilisation d'un langage commun pour la modélisation des connaissances
-                                                évite les coûts liés aux erreurs de communication ou aux incohérences
+                                                coûteuses. Cela permet de diminuer les coûts associés à
+                                                l'intégration de
+                                                nouveaux systèmes et à la gestion des échanges de données. Par
+                                                ailleurs,
+                                                l'utilisation d'un langage commun pour la modélisation des
+                                                connaissances
+                                                évite les coûts liés aux erreurs de communication ou aux
+                                                incohérences
                                                 entre
                                                 différents départements ou partenaires externes.</li>
-                                            <li><strong>Réduction des risques :</strong> Grâce à une définition précise
+                                            <li><strong>Réduction des risques :</strong> Grâce à une définition
+                                                précise
                                                 des
                                                 concepts et de leurs relations, les ontologies en OWL permettent de
                                                 mieux
-                                                comprendre les implications des données et de leurs interactions dans
-                                                l'ensemble de l'entreprise. Cela réduit les risques d'interprétations
-                                                erronées ou de mauvaises décisions, qui peuvent avoir des conséquences
+                                                comprendre les implications des données et de leurs interactions
+                                                dans
+                                                l'ensemble de l'entreprise. Cela réduit les risques
+                                                d'interprétations
+                                                erronées ou de mauvaises décisions, qui peuvent avoir des
+                                                conséquences
                                                 financières ou opérationnelles importantes. De plus, cette précision
                                                 aide à
-                                                identifier plus facilement les risques potentiels dans les processus et
+                                                identifier plus facilement les risques potentiels dans les processus
+                                                et
                                                 à y
                                                 répondre de manière proactive.</li>
                                             <li><strong>Rationalisation des processus :</strong> L'adoption des
@@ -2771,40 +3132,55 @@
                                                 qui relie les différentes parties de l'entreprise. Cela simplifie
                                                 l'automatisation des tâches, réduit les doublons et améliore
                                                 l'efficacité
-                                                des flux d'information. L'intégration de nouvelles technologies ou de
+                                                des flux d'information. L'intégration de nouvelles technologies ou
+                                                de
                                                 nouveaux processus devient également plus fluide, car les systèmes
                                                 peuvent
-                                                comprendre et utiliser les mêmes définitions et structures de données.
+                                                comprendre et utiliser les mêmes définitions et structures de
+                                                données.
                                             </li>
                                             <li><strong>Optimisation des ressources et de la gestion de la chaîne de
                                                     valeur
                                                     :</strong> L'alignement des processus et des données grâce aux
-                                                ontologies OWL permet aux entreprises de mieux gérer leurs ressources,
+                                                ontologies OWL permet aux entreprises de mieux gérer leurs
+                                                ressources,
                                                 en
                                                 garantissant une utilisation plus efficace des informations et des
                                                 outils
-                                                disponibles. Cela se traduit par une réduction des gaspillages et une
-                                                amélioration de la rentabilité, notamment par une meilleure gestion des
-                                                stocks, une plus grande prévisibilité des besoins et une coordination
+                                                disponibles. Cela se traduit par une réduction des gaspillages et
+                                                une
+                                                amélioration de la rentabilité, notamment par une meilleure gestion
+                                                des
+                                                stocks, une plus grande prévisibilité des besoins et une
+                                                coordination
                                                 optimisée entre les différents départements ou partenaires.</li>
                                             <li><strong>Facilitation de l'innovation et de la croissance :</strong>
-                                                L'interopérabilité sémantique, combinée à une gestion plus précise des
-                                                connaissances, permet à l'entreprise d'innover plus rapidement et de se
+                                                L'interopérabilité sémantique, combinée à une gestion plus précise
+                                                des
+                                                connaissances, permet à l'entreprise d'innover plus rapidement et de
+                                                se
                                                 différencier sur le marché. Elle facilite également l'adoption de
                                                 nouvelles
-                                                technologies, comme l'intelligence artificielle ou l'Internet des objets
+                                                technologies, comme l'intelligence artificielle ou l'Internet des
+                                                objets
                                                 (IoT), en offrant une base solide de données interconnectées et
-                                                compréhensibles par les machines, ce qui permet une intégration rapide
+                                                compréhensibles par les machines, ce qui permet une intégration
+                                                rapide
                                                 et
                                                 efficace de ces technologies.</li>
                                         </ul>
-                                        <p>En résumé, l'adoption d'ontologies OWL ne se limite pas à un gain technique.
+                                        <p>En résumé, l'adoption d'ontologies OWL ne se limite pas à un gain
+                                            technique.
                                             Elle
-                                            génère une valeur économique substantielle, notamment par la réduction des
+                                            génère une valeur économique substantielle, notamment par la réduction
+                                            des
                                             coûts
-                                            d'intégration, la gestion des risques, la rationalisation des processus et
-                                            l'optimisation des ressources. Les entreprises qui adoptent cette approche
-                                            bénéficient d'une plus grande agilité, de meilleurs processus décisionnels
+                                            d'intégration, la gestion des risques, la rationalisation des processus
+                                            et
+                                            l'optimisation des ressources. Les entreprises qui adoptent cette
+                                            approche
+                                            bénéficient d'une plus grande agilité, de meilleurs processus
+                                            décisionnels
                                             et
                                             d'une capacité accrue à innover, tout en restant compétitives dans un
                                             environnement économique en constante évolution.</p>
@@ -2817,7 +3193,8 @@
                                     </div>
                                     <div class="content-zone" style="font-size: 0.8em;">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.7em;text-align: left;">La communication entre experts
+                                            <p style="font-size: 0.7em;text-align: left;">La communication entre
+                                                experts
                                                 de domaine, spécialistes OWL et informaticien est essentielle pour
                                                 garantir la
                                                 collaboration requise pour produire et utiliser des représentations
@@ -2916,18 +3293,34 @@
                                 <section>
                                     <h1 style="font-size: 1.2em;text-align: center;">Conclusion</h1>
                                     <p style="font-size: 0.8em;text-align: left;">Résumé des points clés</p>
-                                    <p style="font-size: 0.5em;text-align: left;">Pour pouvoir construire l'interopérabilité sémantique, nous avons</p>
+                                    <p style="font-size: 0.5em;text-align: left;">Pour pouvoir construire
+                                        l'interopérabilité sémantique, nous avons</p>
                                     <ul style="font-size: 0.5em;">
-                                        <li>Défini ce qu'est la sémantique et ses liens avec ontologie, logique et théorie des ensembles</li>
-                                        <li>Exploré OWL comme un des langages de formalisation d'ontologie supportant les besoins pour définir précisémment la sémantique en étant aidé par les ordinateurs</li>
+                                        <li>Défini ce qu'est la sémantique et ses liens avec ontologie, logique et
+                                            théorie des ensembles</li>
+                                        <li>Exploré OWL comme un des langages de formalisation d'ontologie
+                                            supportant
+                                            les besoins pour définir précisémment la sémantique en étant aidé par
+                                            les
+                                            ordinateurs</li>
                                     </ul>
                                     <p style="font-size: 0.8em;text-align: left;">Perspectives</p>
-                                    <p style="font-size: 0.5em;text-align: left;">Nous nous sommes restreints aux aspects sémantiques sans détailler les aspects informatiques et la réalisation. En outre, il ne s'agit que d'une introduction et il peut être nécessaire d'approfondir la production de représentation d'ontologies en OWL pour des modèles plus complexxe</p>
+                                    <p style="font-size: 0.5em;text-align: left;">Nous nous sommes restreints aux
+                                        aspects sémantiques sans détailler les aspects informatiques et la
+                                        réalisation.
+                                        En outre, il ne s'agit que d'une introduction et il peut être nécessaire
+                                        d'approfondir la production de représentation d'ontologies en OWL pour des
+                                        modèles plus complexxe</p>
                                     <ul style="font-size: 0.5em;">
-                                        <li>Définir ce qu'est la sémantique et ses liens avec ontologie, logique et théorie des ensembles</li>
-                                        <li>Explorer OWL comme un des langages de formalisation d'ontologie supportant les besoins pour définir précisémment la sémantique en étant aidé par les ordinateurs</li>
+                                        <li>Définir ce qu'est la sémantique et ses liens avec ontologie, logique et
+                                            théorie des ensembles</li>
+                                        <li>Explorer OWL comme un des langages de formalisation d'ontologie
+                                            supportant
+                                            les besoins pour définir précisémment la sémantique en étant aidé par
+                                            les
+                                            ordinateurs</li>
                                     </ul>
-               
+
                                 </section>
                             </section>
                             <section>
@@ -3524,7 +3917,8 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <p style="font-size: 0.6em;">[Titre court décrivant le sujet de la diapositive]
+                                        <p style="font-size: 0.6em;">[Titre court décrivant le sujet de la
+                                            diapositive]
                                         </p>
                                         <h4 style="font-size: 0.8em;">[Sous-titre expliquant l'idée principale]</h4>
                                     </div>
