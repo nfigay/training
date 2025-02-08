@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphe Composite avec W2UI & Cytoscape.js</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w2ui/1.5/w2ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/w2ui/1.5/w2ui.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.24.0/cytoscape.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/layout-base/layout-base.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cose-base/cose-base.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-undo-redo/cytoscape-undo-redo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-expand-collapse/cytoscape-expand-collapse.js"></script>
+
+    <style>
+        /* Tab styling */
+
+        .tab-container {
+            width: 98%;
+            display: flex;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 10px;
+            overflow-x: auto;
+        }
+
+        .tab {
+
+            padding: 10px 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #f4f4f4;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background-color: white;
+            border-top: 2px solid #007bff;
+            font-weight: bold;
+        }
+
+        /* Hide non-active content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        body,
+        html {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+        }
+
+        #layout {
+            width: 250px;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #cy {
+            flex-grow: 1;
+            height: 100vh;
+        }
+
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Panneau latéral W2UI -->
+    <div id="layout">
+        <h3>Contrôles</h3>
+        <button onclick="expandSelected()">Déplier sélection</button>
+        <button onclick="collapseSelected()">Plier sélection</button>
+        <button onclick="expandAll()">Déplier tout</button>
+        <button onclick="collapseAll()">Plier tout</button>
+        <button onclick="ur.undo()">↩️ Annuler</button>
+        <button onclick="ur.redo()">↪️ Rétablir</button>
+    </div>
+
+    <!-- Zone du graphe -->
+    <div id="cy"></div>
+
+    <!-- Zone d'import de fichier -->
+    <input type="file" name="name" id="inputfile" style="display:none" />
+    <input type="file" name="name" id="inputinferredfile" style="display:none" />
+
+    <!-- Zone sortie des triplets RDF-->
+     <div style="display:grid">
+    <div id="output">
+        <div id="classesTab" class="tab-content active">
+            <label for="classesSelect">Classes OWL trouvées :</label>
+            <select id="classesSelect" size="10" multiple></select>
+        </div>
+
+        <div id="classEquivalenceTab" class="tab-content">
+            <label for="classEquivalenceSelect">Classes d'équivalence entre propriétés :</label>
+            <select id="classEquivalenceSelect" size="10" multiple></select>
+        </div>
+
+        <div id="objectPropertiesTab" class="tab-content">
+            <label for="objectPropertiesSelect">Propriétés de type objet trouvées :</label>
+            <select id="objectPropertiesSelect" size="10" multiple></select>
+        </div>
+
+        <div id="dataPropertiesTab" class="tab-content">
+            <label for="dataPropertiesSelect">Propriétés de type données trouvées :</label>
+            <select id="dataPropertiesSelect" size="10" multiple></select>
+        </div>
+
+        <div id="namedIndividualsTab" class="tab-content">
+            <label for="namedIndividualsSelect">Individus nommés OWL trouvés :</label>
+            <select id="namedIndividualsSelect" size="10" multiple></select>
+        </div>
+
+        <div id="isaRelationsTab" class="tab-content">
+            <label for="isaRelationsSelect">Relations de typage d'individus :</label>
+            <select id="isaRelationsSelect" size="10" multiple></select>
+        </div>
+
+        <div id="classSubsumptionTab" class="tab-content">
+            <label for="classSubsumptionSelect">Relations de subsomption entre classes :</label>
+            <select id="classSubsumptionSelect" size="10" multiple></select>
+        </div>
+
+        <div id="propertySubsumptionTab" class="tab-content">
+            <label for="propertySubsumptionSelect">Relations de subsomption entre propriétés :</label>
+            <select id="propertySubsumptionSelect" size="10" multiple></select>
+        </div>
+
+        <div id="propertyEquivalenceTab" class="tab-content">
+            <label for="propertyEquivalenceSelect">Relations d'équivalence entre propriétés :</label>
+            <select id="propertyEquivalenceSelect" size="10" multiple></select>
+        </div>
+
+        <div id="propertyInverseTab" class="tab-content">
+            <label for="propertyInverseSelect">Relations inverse entre propriétés :</label>
+            <select id="propertyInverseSelect" size="10" multiple></select>
+        </div>
+
+        <div id="individualRelationsTab" class="tab-content">
+            <label for="individualRelationsSelect">Relations entre individus :</label>
+            <select id="individualRelationsSelect" size="10" multiple></select>
+        </div>
+
+        <div id="domainsTab" class="tab-content">
+            <label for="domainsSelect">Déclarations de domaines :</label>
+            <select id="domainsSelect" size="10" multiple></select>
+        </div>
+
+        <div id="rangesTab" class="tab-content">
+            <label for="rangesSelect">Déclarations de portées :</label>
+            <select id="rangesSelect" size="10" multiple></select>
+        </div>
+    </div>
+    <div class="tab-container" id="tabs">
+        <!-- Tabs will be generated dynamically -->
+    </div>
+</div>
+
+
+    <script>
+        // Define tab structure dynamically
+        const tabs = [
+            { id: "classesTab", label: "Classes" },
+            { id: "classEquivalenceTab", label: "Équivalence Classes" },
+            { id: "objectPropertiesTab", label: "Obj. Properties" },
+            { id: "dataPropertiesTab", label: "Data Properties" },
+            { id: "namedIndividualsTab", label: "Individus" },
+            { id: "isaRelationsTab", label: "Typage Individus" },
+            { id: "classSubsumptionTab", label: "Subsomption Classes" },
+            { id: "propertySubsumptionTab", label: "Subsomption Prop." },
+            { id: "propertyEquivalenceTab", label: "Équivalence Prop." },
+            { id: "propertyInverseTab", label: "Propriétés Inverses" },
+            { id: "individualRelationsTab", label: "Relations Individus" },
+            { id: "domainsTab", label: "Domaines" },
+            { id: "rangesTab", label: "Portées" }
+        ];
+
+        // Generate tabs dynamically
+        const tabContainer = document.getElementById("tabs");
+        tabs.forEach(tab => {
+            const tabElement = document.createElement("div");
+            tabElement.classList.add("tab");
+            tabElement.textContent = tab.label;
+            tabElement.dataset.tab = tab.id;
+            tabContainer.appendChild(tabElement);
+
+            // Set first tab as active by default
+            if (tab.id === "classesTab") {
+                tabElement.classList.add("active");
+            }
+        });
+
+        // Add event listener for switching tabs
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.addEventListener("click", function () {
+                // Remove active class from all tabs and hide content
+                document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+                document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+
+                // Activate clicked tab and its corresponding content
+                this.classList.add("active");
+                document.getElementById(this.dataset.tab).classList.add("active");
+            });
+        });
+
+
+        // Initialisation du graphe Cytoscape.js
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: [
+                { data: { id: 'a' } },
+                { data: { id: 'b' } },
+                { data: { id: 'c', parent: 'a' } },
+                { data: { id: 'd', parent: 'a' } },
+                { data: { id: 'e', parent: 'b' } },
+                { data: { id: 'f' } },
+                { data: { id: 'ab', source: 'a', target: 'b' } },
+                { data: { id: 'af', source: 'a', target: 'f' } },
+                { data: { id: 'be', source: 'b', target: 'e' } }
+            ],
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': '#666',
+                        'label': 'data(id)',
+                        'width': '30px',
+                        'height': '30px'
+                    }
+                },
+                {
+                    selector: '$node > node',
+                    style: {
+                        'background-color': '#bbb',
+                        'padding': '10px',
+                        'shape': 'roundrectangle',
+                        'label': 'data(id)'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 2,
+                        'line-color': '#ccc',
+                        'target-arrow-shape': 'triangle'
+                    }
+                }
+            ],
+            layout: {
+                name: 'fcose',
+                animate: false
+            }
+        });
+
+        // Ajout des plugins
+        var ur = cy.undoRedo();
+        var api = cy.expandCollapse({
+            layoutBy: { name: 'fcose', animate: true },
+            fisheye: true,
+            animate: 'end',
+            undoable: true
+        });
+
+        // Déplier tout au chargement
+        api.expandAll();
+        cy.layout({ name: 'fcose', animate: true }).run();
+
+        // Fonctions de contrôle
+        function expandSelected() {
+            var selected = cy.$(':selected');
+            if (selected.length > 0) {
+                api.expand(selected);
+            } else {
+                alert("Sélectionnez un élément à déplier.");
+            }
+        }
+
+        function collapseSelected() {
+            var selected = cy.$(':selected');
+            if (selected.length > 0) {
+                api.collapse(selected);
+            } else {
+                alert("Sélectionnez un élément à plier.");
+            }
+        }
+
+        function expandAll() {
+            api.expandAll();
+            cy.layout({ name: 'fcose', animate: true }).run();
+        }
+
+        function collapseAll() {
+            api.collapseAll();
+        }
+
+        // Ajout d'événements pour sélectionner un élément en cliquant dessus
+        cy.on('tap', 'node', function (evt) {
+            cy.elements().unselect();
+            evt.target.select();
+        });
+
+    </script>
+
+</body>
+
+</html>

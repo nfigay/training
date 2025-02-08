@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.plm-interop.org/family#"
+     xml:base="http://www.plm-interop.org/family"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:family="http://www.plm-interop.org/family#">
+    <owl:Ontology rdf:about="http://www.plm-interop.org/family"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family#Identifier01 -->
+
+    <owl:AnnotationProperty rdf:about="http://www.plm-interop.org/family#Identifier01"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#b9295f3b_81a8_4542_b044_17fd9dd1ef44 -->
+
+    <owl:AnnotationProperty rdf:about="http://www.plm-interop.org/family#b9295f3b_81a8_4542_b044_17fd9dd1ef44">
+        <rdfs:label>Identifier02</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.plm-interop.org/family#d7cbead6_001f_4c35_8b66_ce97c092f7d3 -->
+
+    <owl:AnnotationProperty rdf:about="http://www.plm-interop.org/family#d7cbead6_001f_4c35_8b66_ce97c092f7d3">
+        <rdfs:label>Identifier03</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family#FirstName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.plm-interop.org/family#FirstName"/>
+    
+
+
+    <!-- http://www.plm-interop.org/family#ProperName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.plm-interop.org/family#ProperName"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family#b87499ed_0e33_410a_ae5d_c8414538181a -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#b87499ed_0e33_410a_ae5d_c8414538181a">
+        <rdfs:label>C1</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#36c156c4_b036_488c_9155_9109cb7d8a2f -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#36c156c4_b036_488c_9155_9109cb7d8a2f">
+        <rdfs:label>C5</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#49111d31_952e_4e4b_bdfa_963bc72434bc -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#49111d31_952e_4e4b_bdfa_963bc72434bc">
+        <rdfs:label>C4</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#52984887_a9f6_4827_83cd_5fe235ee7f6b -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#52984887_a9f6_4827_83cd_5fe235ee7f6b">
+        <rdfs:label>C2</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family#81cca73c_3cce_40c2_9256_42e3f565fdfa -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family#81cca73c_3cce_40c2_9256_42e3f565fdfa">
+        <rdfs:label>C3</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family#1d2101b5_b07a_4a64_8cd0_bde01a6bcca0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plm-interop.org/family#1d2101b5_b07a_4a64_8cd0_bde01a6bcca0">
+        <rdf:type rdf:resource="http://www.plm-interop.org/family#b87499ed_0e33_410a_ae5d_c8414538181a"/>
+        <rdf:type rdf:resource="http://www.plm-interop.org/family#36c156c4_b036_488c_9155_9109cb7d8a2f"/>
+        <rdf:type rdf:resource="http://www.plm-interop.org/family#49111d31_952e_4e4b_bdfa_963bc72434bc"/>
+        <rdf:type rdf:resource="http://www.plm-interop.org/family#52984887_a9f6_4827_83cd_5fe235ee7f6b"/>
+        <rdf:type rdf:resource="http://www.plm-interop.org/family#81cca73c_3cce_40c2_9256_42e3f565fdfa"/>
+        <Identifier01>jPKUY76</Identifier01>
+        <b9295f3b_81a8_4542_b044_17fd9dd1ef44>hkjkljs!àç!fsàç!sdf</b9295f3b_81a8_4542_b044_17fd9dd1ef44>
+        <d7cbead6_001f_4c35_8b66_ce97c092f7d3>89-09-7A234</d7cbead6_001f_4c35_8b66_ce97c092f7d3>
+        <rdfs:label>name1</rdfs:label>
+        <rdfs:label>name2</rdfs:label>
+        <rdfs:label>name3</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

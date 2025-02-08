@@ -9,6 +9,14 @@
 <http://www.plm-interop.org/family> rdf:type owl:Ontology .
 
 #################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.plm-interop.org/family#UUID
+:UUID rdf:type owl:AnnotationProperty .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -199,8 +207,14 @@
               owl:FunctionalProperty ;
      rdfs:domain :Person ;
      rdfs:range xsd:integer ;
-     rdfs:label "Oncle"@fr ,
-                "Tonton"@fr .
+     rdfs:label :Age ,
+                :Person ,
+                "Age" .
+
+
+###  http://www.plm-interop.org/family#FirstName
+:FirstName rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :Name .
 
 
 ###  http://www.plm-interop.org/family#Name
@@ -208,14 +222,9 @@
       rdfs:range xsd:string .
 
 
-###  http://www.plm-interop.org/family#NomDeFamille
-:NomDeFamille rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :Name .
-
-
-###  http://www.plm-interop.org/family#Prenom
-:Prenom rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf :Name .
+###  http://www.plm-interop.org/family#ProperName
+:ProperName rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :Name .
 
 
 ###  http://www.plm-interop.org/family#aNumeroIdentiteNational
@@ -251,12 +260,13 @@
                                                    ) ;
                                 rdf:type owl:Class
                               ] ;
-          rdfs:subClassOf :Female .
+          rdfs:subClassOf :Female ;
+          rdfs:seeAlso :Lineage .
 
 
 ###  http://www.plm-interop.org/family#Family
 :Family rdf:type owl:Class ;
-        owl:equivalentClass :lineage ;
+        owl:equivalentClass :Lineage ;
         rdfs:label "Family" .
 
 
@@ -326,11 +336,14 @@
          rdfs:subClassOf :Male .
 
 
+###  http://www.plm-interop.org/family#Lineage
+:Lineage rdf:type owl:Class .
+
+
 ###  http://www.plm-interop.org/family#Male
 :Male rdf:type owl:Class ;
       rdfs:subClassOf :Gender ;
-      rdfs:label "Gender" ,
-                 "Male" .
+      rdfs:label "Male" .
 
 
 ###  http://www.plm-interop.org/family#Mother
@@ -360,6 +373,9 @@
         owl:disjointUnionOf ( :Female
                               :Male
                             ) ;
+        owl:hasKey ( :aNumeroIdentiteNational
+                   ) ;
+        :UUID "myUUID"@fr ;
         rdfs:label "Person" .
 
 
@@ -413,10 +429,6 @@
                                  ] .
 
 
-###  http://www.plm-interop.org/family#lineage
-:lineage rdf:type owl:Class .
-
-
 #################################################################
 #    Individuals
 #################################################################
@@ -428,6 +440,11 @@
               :aNumeroIdentiteNational "GH678DIJ"^^xsd:string .
 
 
+###  http://www.plm-interop.org/family#OWLNamedIndividual_d1a3927f_7e28_49b0_a09f_cf5eb4b289e7
+:OWLNamedIndividual_d1a3927f_7e28_49b0_a09f_cf5eb4b289e7 rdf:type owl:NamedIndividual ;
+                                                         rdfs:label "Nicolas" .
+
+
 ###  http://www.plm-interop.org/family#individual_A
 :individual_A rdf:type owl:NamedIndividual ,
                        :Female ;
@@ -437,11 +454,17 @@
 
 ###  http://www.plm-interop.org/family#individual_C
 :individual_C rdf:type owl:NamedIndividual ,
-                       :Male ;
+                       :Female ;
               :hasParent :Individual_B ;
               :Age 20 ;
-              :NomDeFamille "Figay"^^xsd:string ;
-              :Prenom "Nicolas"^^xsd:string ;
+              :FirstName "John"^^xsd:string ;
+              :ProperName "Doe"^^xsd:string ;
+              :aNumeroIdentiteNational "H56G78998H"^^xsd:string .
+
+
+###  http://www.plm-interop.org/family#individual_Z
+:individual_Z rdf:type owl:NamedIndividual ,
+                       :Person ;
               :aNumeroIdentiteNational "H56G78998H"^^xsd:string .
 
 
