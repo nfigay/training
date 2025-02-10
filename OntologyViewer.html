@@ -46,7 +46,8 @@
           /* Tab styling */
 
         .tab-container {
-            width: 98%;
+            width: 100%;
+            height: 50px;
             display: flex;
             border-bottom: 2px solid #ccc;
             margin-bottom: 10px;
@@ -54,33 +55,36 @@
         }
 
         .tab {
-
             padding: 10px 15px;
             cursor: pointer;
             border: 1px solid #ccc;
             border-bottom: none;
             background-color: #f4f4f4;
             margin-right: 5px;
+            width: 98%;
         }
 
         .tab.active {
             background-color: white;
             border-top: 2px solid #007bff;
             font-weight: bold;
+            width: 98%;
         }
 
         /* Hide non-active content */
         .tab-content {
             display: none;
+
         }
 
         .tab-content.active {
             display: block;
+            width: 100%;
         }
 
         /* Style for select boxes */
         select {
-            width: 98%;
+            width: 100%;
             height: 150px;
             margin-top: 5px;
         }
@@ -91,31 +95,18 @@
             display: none;
         }
 
-        select {
-            width: 98%;
-            height: 200px;
-            margin: 10px 0;
-            padding: 5px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            font-family: Arial, sans-serif;
-            overflow: auto;
-        }
 
         #cy {
-            width: 98%;
-            height: 500px;
-            border: 1px solid black;
+            width: 100%;
+            height: 100%;
         }
 
         #infoPanel {
-            border: 1px solid black;
+            border: 0px solid black;
             padding: 10px;
-            width: 20%;
-            height: 50%;
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 50px;
-            right: 20px;
             background-color: #f9f9f9;
             overflow: auto;
             /* Enables both horizontal and vertical scrolling */
@@ -130,109 +121,84 @@
             margin-top: 0;
         }
     </style>
+    <script>
+        window.addEventListener('beforeunload', function (event) {
+            // Cancel the event to trigger the confirmation dialog
+            event.preventDefault();
+
+            // Setting event.returnValue triggers the browser's confirmation dialog
+            event.returnValue = 'Are you sure you want to leave? You may have unsaved changes.';
+
+            // Note: The text inside event.returnValue will not be shown in modern browsers;
+            // the browser will display a standard message instead.
+        });
+    </script>
 </head>
 
 <body>
-    <div id="app" style="width: 100%; height: 100vh;">
-        <div id="toolbar"></div>
-        <div id="main" style="height: calc(100% - 40px);">
-
-            <input type="file" name="name" id="inputfile" style="display:none" />
-            <input type="file" name="name" id="inputinferredfile" style="display:none" />
-
-
-
-
-            <div id="cy"></div>
-            <div id="infoPanel">
-                <h3>Informations</h3>
-                <p><strong>ID:</strong> <span id="Id">N/A</span><br />
-                    <strong>Label:</strong> <span id="Label">N/A</span>
-                </p>
-                <p><strong>IRI:</strong> <span id="IRI">N/A</span><br />
-                    <strong>Statement:</strong> <span id="Statement">N/A</span><br />
-                    <strong>Type:</strong> <span id="Type">N/A</span><br>
-
-
-            </div>
-            <div class="tab-container" id="tabs">
-                <!-- Tabs will be generated dynamically -->
-            </div>
-
-            <div id="output">
-                <div id="classesTab" class="tab-content active">
-                    <label for="classesSelect">Classes OWL trouvées :</label>
-                    <select id="classesSelect" size="10" multiple></select>
-                </div>
-
-                <div id="classEquivalenceTab" class="tab-content">
-                    <label for="classEquivalenceSelect">Classes d'équivalence entre propriétés :</label>
-                    <select id="classEquivalenceSelect" size="10" multiple></select>
-                </div>
-
-                <div id="objectPropertiesTab" class="tab-content">
-                    <label for="objectPropertiesSelect">Propriétés de type objet trouvées :</label>
-                    <select id="objectPropertiesSelect" size="10" multiple></select>
-                </div>
-
-                <div id="dataPropertiesTab" class="tab-content">
-                    <label for="dataPropertiesSelect">Propriétés de type données trouvées :</label>
-                    <select id="dataPropertiesSelect" size="10" multiple></select>
-                </div>
-
-                <div id="namedIndividualsTab" class="tab-content">
-                    <label for="namedIndividualsSelect">Individus nommés OWL trouvés :</label>
-                    <select id="namedIndividualsSelect" size="10" multiple></select>
-                </div>
-
-                <div id="isaRelationsTab" class="tab-content">
-                    <label for="isaRelationsSelect">Relations de typage d'individus :</label>
-                    <select id="isaRelationsSelect" size="10" multiple></select>
-                </div>
-
-                <div id="classSubsumptionTab" class="tab-content">
-                    <label for="classSubsumptionSelect">Relations de subsomption entre classes :</label>
-                    <select id="classSubsumptionSelect" size="10" multiple></select>
-                </div>
-
-                <div id="propertySubsumptionTab" class="tab-content">
-                    <label for="propertySubsumptionSelect">Relations de subsomption entre propriétés :</label>
-                    <select id="propertySubsumptionSelect" size="10" multiple></select>
-                </div>
-
-                <div id="propertyEquivalenceTab" class="tab-content">
-                    <label for="propertyEquivalenceSelect">Relations d'équivalence entre propriétés :</label>
-                    <select id="propertyEquivalenceSelect" size="10" multiple></select>
-                </div>
-
-                <div id="propertyInverseTab" class="tab-content">
-                    <label for="propertyInverseSelect">Relations inverse entre propriétés :</label>
-                    <select id="propertyInverseSelect" size="10" multiple></select>
-                </div>
-
-                <div id="individualRelationsTab" class="tab-content">
-                    <label for="individualRelationsSelect">Relations entre individus :</label>
-                    <select id="individualRelationsSelect" size="10" multiple></select>
-                </div>
-
-                <div id="domainsTab" class="tab-content">
-                    <label for="domainsSelect">Déclarations de domaines :</label>
-                    <select id="domainsSelect" size="10" multiple></select>
-                </div>
-
-                <div id="rangesTab" class="tab-content">
-                    <label for="rangesSelect">Déclarations de portées :</label>
-                    <select id="rangesSelect" size="10" multiple></select>
-                </div>
-            </div>
-        </div>
+    <div id="app" style="width: 100%; height: 70vh;">
+        <div id="mainLayout" style="height: calc(100% - 40px);" />
     </div>
+    <div class="tab-container" id="tabs"></div>
+    <div style="height: 100px;" id="output" style="display: block;"></div>
+
+    <input type="file" name="name" id="inputfile" style="display:none" />
+    <input type="file" name="name" id="inputinferred    file" style="display:none" />
 
     <script type="module">
         var mainMenu;
+        var tripleTabs;
+        // Define tab structure dynamically
+        const tabsData = [
+            "triples",
+            "classes",
+            "classEquivalence",
+            "objectProperties",
+            "dataProperties",
+            "namedIndividuals",
+            "isaRelations",
+            "classSubsumption",
+            "propertySubsumption",
+            "propertyEquivalence",
+            "propertyInverse",
+            "individualRelations",
+            "domains",
+            "ranges"
+        ];
         const resources = {
             en: {
                 translation: {
+                    tabs: {
+                        triplesTab: "Triples",
+                        classesTab: "Classes",
+                        classEquivalenceTab: "Equivalence Classes",
+                        objectPropertiesTab: "Obj. Properties",
+                        dataPropertiesTab: "Data Properties",
+                        namedIndividualsTab: "Individuals",
+                        isaRelationsTab: "Individual Typing",
+                        classSubsumptionTab: "Class Subsumption",
+                        propertySubsumptionTab: "Property Subsumption",
+                        propertyEquivalenceTab: "Property Equivalence",
+                        propertyInverseTab: "Inverse Properties",
+                        individualRelationsTab: "Individual Relations",
+                        domainsTab: "Domains",
+                        rangesTab: "Ranges",
+                        triplesLabel: "Triplets trouvés",
+                        classesLabel: "Found OWL Classes",
+                        classEquivalenceLabel: "Equivalence classes between properties",
+                        objectPropertiesLabel: "Found object properties",
+                        dataPropertiesLabel: "Found datatype properties",
+                        namedIndividualsLabel: "Found NamedIndividuals",
+                        isaRelationsLabel: "Individuals typring Relations",
+                        classSubsumptionLabel: "Classes subsumption relations",
+                        propertySubsumptionLabel: "Properties subsumption relations",
+                        propertyEquivalenceLabel: "Properties equivalence relations",
+                        propertyInverseLabel: "Properties inverse relations",
+                        individualRelationsLabel: "Relations between individuals",
+                        domainsLabel: "Domain declarations",
+                        rangesLabel: "Tange declarations",
+                    },
+
                     menu: {
                         language: "Language",
                         fr: "🇫🇷 French",
@@ -243,14 +209,18 @@
                         expandCollapse: "Expand/Collapse",
                         nodes: "Nodes",
                         expandallnodes: "Expand All",
-                        collapseallnodes: "Collapse All",
+                        collapseAllNodes: "Collapse All",
                         expandSelectedNodes: "Expand Selected",
                         collapseSelectedNodes: "Collapse Selected",
+                        expandSelectedNodesRecursively: "Expand Selected Recursively",
+                        collapseSelectedNodesRecursively: "Collapse Selected Recursively",
                         edges: "Edges",
                         expandAllEdges: "Expand All",
                         collapseAllEdges: "Collapse All",
                         expandSelectedEdges: "Expand Selected",
                         collapseSelectedEdges: "Collapse Selected",
+                        collapseEdgesBetweenNodes: "Reduce Between Selected Nodes",
+                        expandEdgesBetweenNodes: "Expand Between Selected Nodes",
                         rendering: "Rendering",
                         renderingnodeirishortname: "IRI Short Name",
                         label: "Label",
@@ -280,24 +250,42 @@
                         random: "Random",
                         cola: "Cola",
                         dagre: "Dagre",
-                        classesTab: "Classes",
-                        classEquivalenceTab: "Equivalence Classes",
-                        objectPropertiesTab: "Obj. Properties",
-                        dataPropertiesTab: "Data Properties",
-                        namedIndividualsTab: "Individuals",
-                        isaRelationsTab: "Individual Typing",
-                        classSubsumptionTab: "Class Subsumption",
-                        propertySubsumptionTab: "Property Subsumption",
-                        propertyEquivalenceTab: "Property Equivalence",
-                        propertyInverseTab: "Inverse Properties",
-                        individualRelationsTab: "Individual Relations",
-                        domainsTab: "Domains",
-                        rangesTab: "Ranges"
+
                     }
                 }
             },
             fr: {
                 translation: {
+                    tabs: {
+                        triplesTab: "Triplets",
+                        classesTab: "Classes",
+                        classEquivalenceTab: "Équivalence Classes",
+                        objectPropertiesTab: "Propriétés Obj.",
+                        dataPropertiesTab: "Propriétés Données",
+                        namedIndividualsTab: "Individus",
+                        isaRelationsTab: "Typage Individus",
+                        classSubsumptionTab: "Subsomption Classes",
+                        propertySubsumptionTab: "Subsomption Prop.",
+                        propertyEquivalenceTab: "Équivalence Prop.",
+                        propertyInverseTab: "Propriétés Inverses",
+                        individualRelationsTab: "Relations Individus",
+                        domainsTab: "Domaines",
+                        rangesTab: "Portées",
+                        triplesLabel: "Found triples",
+                        classesLabel: "Classes OWL trouvées",
+                        classEquivalenceLabel: "Classes d'équivalence entre propriétés",
+                        objectPropertiesLabel: "Propriétés de type objet trouvées",
+                        dataPropertiesLabel: "Propriétés de type données trouvées",
+                        namedIndividualsLabel: "Individus nommés OWL trouvés",
+                        isaRelationsLabel: "Relations de typage d'individus",
+                        classSubsumptionLabel: "Relations de subsomption entre classes",
+                        propertySubsumptionLabel: "Relations de subsomption entre propriétés",
+                        propertyEquivalenceLabel: "Relations d'équivalence entre propriétés",
+                        propertyInverseLabel: "Relations inverses entre propriétés",
+                        individualRelationsLabel: "Relations entre individus",
+                        domainsLabel: "Déclarations de domaines",
+                        rangesLabel: "Déclarations de portées",
+                    },
                     menu: {
                         language: "Langage",
                         fr: "🇫🇷 Français",
@@ -307,15 +295,19 @@
                         importinferred: "Import des axiomes inférré de l'ontologie",
                         expandCollapse: "Développer/Réduire",
                         nodes: "Nœuds",
-                        expandallnodes: "Tout développer",
-                        collapseallnodes: "Tout réduire",
+                        expandAllNodes: "Tout développer",
+                        collapseAllNodes: "Tout réduire",
                         expandSelectedNodes: "Développer sélectionnés",
                         collapseSelectedNodes: "Réduire sélectionnés",
+                        expandSelectedNodesRecursively: "Développer sélectionnés récursivement",
+                        collapseSelectedNodesRecursively: "Réduire sélectionnés récursivement",
                         edges: "Arêtes",
                         expandAllEdges: "Tout développer",
                         collapseAllEdges: "Tout réduire",
                         expandSelectedEdges: "Développer sélectionnés",
                         collapseSelectedEdges: "Réduire sélectionnés",
+                        collapseEdgesBetweenNodes: "Réduire entre les noeuds sélectionnés",
+                        expandEdgesBetweenNodes: "Développer entre les noeuds sélectionnés",
                         rendering: "Rendu",
                         renderingnodeirishortname: "Nom court IRI",
                         label: "Étiquette",
@@ -345,24 +337,35 @@
                         random: "Aléatoire",
                         cola: "Cola",
                         dagre: "Dagre",
-                        classesTab: "Classes",
-                        classEquivalenceTab: "Équivalence Classes",
-                        objectPropertiesTab: "Propriétés Obj.",
-                        dataPropertiesTab: "Propriétés Données",
-                        namedIndividualsTab: "Individus",
-                        isaRelationsTab: "Typage Individus",
-                        classSubsumptionTab: "Subsomption Classes",
-                        propertySubsumptionTab: "Subsomption Prop.",
-                        propertyEquivalenceTab: "Équivalence Prop.",
-                        propertyInverseTab: "Propriétés Inverses",
-                        individualRelationsTab: "Relations Individus",
-                        domainsTab: "Domaines",
-                        rangesTab: "Portées"
+
                     }
                 }
             }
         };
+        const outputDiv = document.getElementById("output");
 
+        if (outputDiv) {
+            tabsData.forEach(key => {
+                const tabDiv = document.createElement("div");
+                tabDiv.id = `${key}Tab`;
+                tabDiv.className = "tab-content";
+
+                const label = document.createElement("label");
+                label.htmlFor = `${key}Select`;
+                label.textContent = i18next.t(`tabs.${key}Label`) + " :";
+
+                const select = document.createElement("select");
+                select.id = `${key}Select`;
+                select.size = 10;
+                select.multiple = true;
+
+                tabDiv.appendChild(label);
+                tabDiv.appendChild(select);
+                outputDiv.appendChild(tabDiv);
+            });
+        } else {
+            console.error("L'élément #output n'existe pas dans le DOM !");
+        }
 
         i18next.init({
             lng: "fr", // Default language
@@ -372,8 +375,10 @@
         function changeLanguage(lang) {
             i18next.changeLanguage(lang, () => {
                 updateToolbarTranslations();
+                updateTabsTranslations();
             });
         }
+
         function updateMenu() {
             w2ui.mainMenu.items.forEach(item => {
                 item.text = i18next.t(item.text); // Translate
@@ -382,7 +387,6 @@
         }
 
         function addNewMenuItem() {
-
 
             mainMenu.items.push({
                 type: "button",
@@ -395,8 +399,28 @@
             updateToolbarTranslations(); // Ensure new item is updated when switching languages
         }
 
-        function updateToolbarTranslations() {
+        function updateTabsTranslations() {
+            tripleTabs.tabs.forEach(tab => {
+                var myLabel = tab.id + "Tab"
+                if (myLabel in i18next.t("tabs", { returnObjects: true })) {
+                    tab.text = i18next.t(`tabs.${myLabel}`);
+                }
+                var myLabel = tab.id + "Label"
 
+                const label = document.querySelector(`label[for="${tab.id}Select"]`);
+                if (label) {
+                    if (myLabel in i18next.t("tabs", { returnObjects: true })) {
+                        label.textContent = i18next.t(myLabel) + " :";
+                    }
+                }
+            });
+
+            tripleTabs.refresh(); // Apply the changes
+        }
+
+
+
+        function updateToolbarTranslations() {
             mainMenu.items.forEach(item => {
 
                 if (item.id in i18next.t("menu", { returnObjects: true })) {
@@ -425,38 +449,28 @@
 
             mainMenu.refresh(); // Apply the changes
         }
-        // Define tab structure dynamically
-        const tabsData = [
-            "classesTab",
-            "classEquivalenceTab",
-            "objectPropertiesTab",
-            "dataPropertiesTab",
-            "namedIndividualsTab",
-            "isaRelationsTab",
-            "classSubsumptionTab",
-            "propertySubsumptionTab",
-            "propertyEquivalenceTab",
-            "propertyInverseTab",
-            "individualRelationsTab",
-            "domainsTab",
-            "rangesTab"
-        ];
 
-        // Create W2UI tabs dynamically
-        let tabsConfig = {
-            tabs: {
+        function initializeTripleTabs() {
+            if (w2ui.tabs) return; // Prevent multiple initializations
+
+            // Create W2UI tabs dynamically
+            var tabsConfig = {
                 name: 'tabs',
-                box: '#tabs',
                 active: 'classesTab', // Default active tab
                 tabs: tabsData.map(id => ({
                     id,
-                    text: i18next.t(id) // Translate tab label
+                    text: i18next.t(`tabs.${id}Tab`) // Translate tab label
                 })),
                 onClick(event) {
-                    query('#tab-example .tab-content').hide()
-                    query(`#tab-example #${event.target}`).show()
+                    handleTabsAction(event)
+                    //  query('#tab-example .tab-content').hide()
+                    //  query(`#tab-example #${event.target}`).show()
                 }
+
             }
+            console.log(tabsConfig)
+            tripleTabs = new w2tabs(tabsConfig)
+            return tripleTabs;
         }
 
         const script = document.createElement("script");
@@ -485,7 +499,6 @@
             layout.run(); // Apply layout
         }
 
-
         var groupEdges = true;
         var allowNestedEdgeCollapse = true;
         var reader;
@@ -495,6 +508,7 @@
         }
 
         // Function to toggle the icon between checked and unchecked states
+
         function toggleIcon(itemId) {
             let item = w2ui.toolbar.get(itemId);
             let newIcon = item.icon === 'fa fa-square' ? 'fa fa-check-square' : 'fa fa-square'; // Toggle between square and check-square
@@ -625,10 +639,12 @@
                         {
                             id: "nodes", text: i18next.t("menu.nodes"),
                             items: [
-                                { id: "expandallnodes", text: i18next.t("menu.expandallnodes") },
-                                { id: "collapseallnodes", text: i18next.t("menu.collapseallnodes") },
+                                { id: "expandAllNodes", text: i18next.t("menu.expandAllNodes") },
+                                { id: "collapseAllNodes", text: i18next.t("menu.collapseAllNodes") },
                                 { id: "expandSelectedNodes", text: i18next.t("menu.expandSelectedNodes") },
-                                { id: "collapseSelectedNodes", text: i18next.t("menu.collapseSelectedNodes") }
+                                { id: "collapseSelectedNodes", text: i18next.t("menu.collapseSelectedNodes") },
+                                { id: "expandSelectedNodesRecursively", text: i18next.t("menu.expandSelectedNodesRecursively") },
+                                { id: "collapseSelectedNodesRecursively", text: i18next.t("menu.collapseSelectedNodesRecursively") },
                             ]
                         },
                         {
@@ -637,7 +653,10 @@
                                 { id: "expandAllEdges", text: i18next.t("menu.expandAllEdges") },
                                 { id: "collapseAllEdges", text: i18next.t("menu.collapseAllEdges") },
                                 { id: "expandSelectedEdges", text: i18next.t("menu.expandSelectedEdges") },
-                                { id: "collapseSelectedEdges", text: i18next.t("menu.collapseSelectedEdges") }
+                                { id: "collapseSelectedEdges", text: i18next.t("menu.collapseSelectedEdges") },
+                                { id: "collapseEdgesBetweenNodes", text: i18next.t("menu.collapseEdgesBetweenNodes") },
+                                { id: "expandEdgesBetweenNodes", text: i18next.t("menu.expandEdgesBetweenNodes") },
+
                             ]
                         }
                     ]
@@ -712,23 +731,39 @@
 
         }
         function initializeToolbar() {
-            if (w2ui.toolbar) return; // Prevent multiple initializations
+            if (w2ui.mainMenu) return; // Prevent multiple initializations
             mainMenu = new w2toolbar({
-                name: "toolbar",
-                box: "#toolbar",
+                name: "mainMenu",
                 items: getMenuItems(),
                 onClick: function (event) {
                     handleMenuAction(event); // Handle menu actions
                 }
             });
             updateToolbarTranslations()
-            
+            return mainMenu;
         }
+        function handleTabsAction(event) {
+            alert(event.target)
+            // Add event listener for switching tabs
+            // document.querySelectorAll(".tab").forEach(tab => {
+            //     tab.addEventListener("click", function () {
+            //         // Remove active class from all tabs and hide content
+            //         document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            //         document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+
+            // Activate clicked tab and its corresponding content
+            //         this.classList.add("active");
+            //        document.getElementById(this.dataset.tab).classList.add("active");
+            //    });
+            // });
+        }
+
+
         function handleMenuAction(event) {
             switch (event.target) {
-                case 'view:noderendering':
+                case 'view:nodeRendering':
                     break;
-                case "view.edgerendering":
+                case "view.edgeRendering":
                     console.log("createEdgeRenderingSubMenu();")
                     break;
                 case 'owl:open':
@@ -748,22 +783,36 @@
                     api.collapseAll()
                     break;
                 case 'expandCollapse:expandSelectedNodes':
-                    api.expandRecursively(cy.$(":selected"));
+                    api.expand(cy.$(":selected"));
                     break;
                 case 'expandCollapse:collapseSelectedNodes':
+                    api.collapse(cy.$(":selected"));
+                    break;
+                case 'expandCollapse:expandSelectedNodesRecursively':
+                    api.expandRecursively(cy.$(":selected"));
+                    break;
+                case 'expandCollapse:collapseSelectedNodesRecursively':
                     api.collapseRecursively(cy.$(":selected"));
                     break;
                 case 'expandCollapse:expandAllEdges':
+                    alert("expandAllEdges")
                     api.expandAllEdges();
                     break;
                 case 'expandCollapse:collapseAllEdges':
+                    alert("collapseAllEdges")
                     api.collapseAllEdges()
                     break;
                 case 'expandCollapse:expandSelectedEdges':
-                    api.expandEdges(edges, getEdgeOptions());
+                    api.expandEdges(cy.$("edge:selected"));
                     break;
                 case 'expandCollapse:collapseSelectedEdges':
-                    api.collapseEdges(edges, getEdgeOptions());
+                    api.collapseEdges(cy.$("edge:selected"));
+                    break;
+                case 'expandCollapse:collapseEdgesBetweenNodes':
+                    api.collapseEdgesBetweenNodes(cy.$("node:selected"));
+                    break;
+                case 'expandCollapse:expandEdgesBetweenNodes':
+                    api.expandEdgesBetweenNodes(cy.$("node:selected"));
                     break;
                 case 'isaEdges':
                     setTypingDisplay('isaEdges');
@@ -820,21 +869,31 @@
         import { w2toolbar } from 'https://rawgit.com/vitmalina/w2ui/master/dist/w2ui.es6.min.js'
         // Define the layout first
         let layout = new w2layout({
-            box: '#layout',
+            //box: '#layout',
             name: 'mainLayout',
             panels: [
                 { type: 'top', size: 50, style: 'border-bottom: 1px solid #ccc;' },
                 { type: 'left', size: 200, style: 'border-right: 1px solid #ccc;' },
-                { type: 'main', style: 'background: #f8f9fa;' },
-                { type: 'right', size: 250, style: 'border-left: 1px solid #ccc;' },
-                { type: 'bottom', size: 50, style: 'border-top: 1px solid #ccc;' }
+                { type: 'main', style: 'background: #f8f9fa;', html: '<div id="cy"></div> ' },
+                {
+                    type: 'right', size: 250, style: 'border-left: 1px solid #ccc;', html: `
+                            <div id="infoPanel">        
+                <h3>Informations</h3>
+                <p><strong>ID:</strong> <span id="Id">N/A</span><br />
+                    <strong>Label:</strong> <span id="Label">N/A</span>
+                </p>
+                <p><strong>IRI:</strong> <span id="IRI">N/A</span><br />
+                    <strong>Statement:</strong> <span id="Statement">N/A</span><br />
+                    <strong>Type:</strong> <span id="Type">N/A</span><br>
+            </div>` },
+                {
+                    type: 'bottom', size: 50, style: 'border-top: 1px solid #ccc;', html: ``
+                }
             ]
         })
-        layout.render('#layout'); // Render the layout in the container
-
-        initializeToolbar();
-        w2ui.mainLayout.html('top', "mainMenu");
-
+        layout.render('#mainLayout'); // Render the layout in the container      
+        w2ui.mainLayout.html('top', initializeToolbar());
+        w2ui.mainLayout.html('bottom', initializeTripleTabs());
 
         // --- Placeholder Functions ---
         function Open() {
@@ -914,50 +973,6 @@
             ele.tippy.setContent(ele.id());
         }
 
-        // Define tab structure dynamically
-        const tabs = [
-            { id: "classesTab", label: "Classes" },
-            { id: "classEquivalenceTab", label: "Équivalence Classes" },
-            { id: "objectPropertiesTab", label: "Obj. Properties" },
-            { id: "dataPropertiesTab", label: "Data Properties" },
-            { id: "namedIndividualsTab", label: "Individus" },
-            { id: "isaRelationsTab", label: "Typage Individus" },
-            { id: "classSubsumptionTab", label: "Subsomption Classes" },
-            { id: "propertySubsumptionTab", label: "Subsomption Prop." },
-            { id: "propertyEquivalenceTab", label: "Équivalence Prop." },
-            { id: "propertyInverseTab", label: "Propriétés Inverses" },
-            { id: "individualRelationsTab", label: "Relations Individus" },
-            { id: "domainsTab", label: "Domaines" },
-            { id: "rangesTab", label: "Portées" }
-        ];
-
-        // Generate tabs dynamically
-        const tabContainer = document.getElementById("tabs");
-        tabs.forEach(tab => {
-            const tabElement = document.createElement("div");
-            tabElement.classList.add("tab");
-            tabElement.textContent = tab.label;
-            tabElement.dataset.tab = tab.id;
-            tabContainer.appendChild(tabElement);
-
-            // Set first tab as active by default
-            if (tab.id === "classesTab") {
-                tabElement.classList.add("active");
-            }
-        });
-
-        // Add event listener for switching tabs
-        document.querySelectorAll(".tab").forEach(tab => {
-            tab.addEventListener("click", function () {
-                // Remove active class from all tabs and hide content
-                document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-                document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
-
-                // Activate clicked tab and its corresponding content
-                this.classList.add("active");
-                document.getElementById(this.dataset.tab).classList.add("active");
-            });
-        });
 
         // Create Node Function
         function createNode(id, label, type, IRI, parent = null) {
@@ -1115,19 +1130,21 @@
         }
 
         function getLabelFromIRI(iri) {
-            const hashIndex = iri.lastIndexOf('#');
-            if (hashIndex !== -1 && hashIndex < iri.length - 1) {
-                // Si un # est trouvé et qu'il n'est pas à la fin, renvoyer ce qui est après
-                return iri.substring(hashIndex + 1);
-            }
+            try {
+                const hashIndex = iri.lastIndexOf('#');
+                if (hashIndex !== -1 && hashIndex < iri.length - 1) {
+                    // Si un # est trouvé et qu'il n'est pas à la fin, renvoyer ce qui est après
+                    return iri.substring(hashIndex + 1);
+                }
 
-            const slashIndex = iri.lastIndexOf('/');
-            if (slashIndex !== -1 && slashIndex < iri.length - 1) {
-                // Si aucun # ou si le # est à la fin, renvoyer ce qui est après le dernier /
-                return iri.substring(slashIndex + 1);
-            }
-            // Si aucun / ou # significatif n'est trouvé, retourner l'IRI complet
-            return iri;
+                const slashIndex = iri.lastIndexOf('/');
+                if (slashIndex !== -1 && slashIndex < iri.length - 1) {
+                    // Si aucun # ou si le # est à la fin, renvoyer ce qui est après le dernier /
+                    return iri.substring(slashIndex + 1);
+                }
+                // Si aucun / ou # significatif n'est trouvé, retourner l'IRI complet
+                return iri;
+            } catch (error) { console.log(error) }
         }
 
         function displayLabelsOnDoubleClick(resource, store, containerId) {
