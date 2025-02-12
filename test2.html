@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>W2UI Demo: layout/1</title>
     <meta charset="UTF-8">
@@ -130,20 +131,21 @@
         });
     </script>
 </head>
+
 <body>
 
 
-<div id="app" style="width: 100%; height: 70vh;">
-    <div id="mainLayout" style="height: calc(100% - 40px);" />
-</div>
-<div class="tab-container" id="tabs"></div>
-<div style="height: 100px;" id="output" style="display: block;"></div>
+    <div id="app" style="width: 100%; height: 70vh;">
+        <div id="mainLayout" style="height: calc(100% - 40px);" />
+    </div>
+    <div class="tab-container" id="tabs"></div>
+    <div style="height: 100px;" id="output" style="display: block;"></div>
 
-<input type="file" name="name" id="inputfile" style="display:none" />
-<input type="file" name="name" id="inputinferred    file" style="display:none" />
+    <input type="file" name="name" id="inputfile" style="display:none" />
+    <input type="file" name="name" id="inputinferred    file" style="display:none" />
 
-<script type="module">
- var mainMenu;
+    <script type="module">
+        var mainMenu;
         var tripleTabs;
         var removed;
         // Define tab structure dynamically
@@ -437,19 +439,244 @@
             console.error("L'élément #output n'existe pas dans le DOM !");
         }
 
+        function updateMenu() {
+            w2ui.mainMenu.items.forEach(item => {
+                item.text = i18next.t(item.text); // Translate
+            });
+            w2ui.mainMenu.refresh(); // Refresh UI
+        }
+
+        function addNewMenuItem() {
+
+            mainMenu.items.push({
+                type: "button",
+                id: "newItem",
+                text: i18next.t("menu.newItem"),
+                icon: "fa fa-star"
+            });
+
+            mainMenu.refresh();
+            updateToolbarTranslations(); // Ensure default language is applied to menu items  
+
+        }
+
+        function updateTabsTranslations() {
+            tripleTabs.tabs.forEach(tab => {
+                var myLabel = tab.id + "Tab"
+                if (myLabel in i18next.t("tabs", { returnObjects: true })) {
+                    tab.text = i18next.t(`tabs.${myLabel}`);
+                }
+                var myLabel = tab.id + "Label"
+                const label = document.querySelector(`label[for="${tab.id}Select"]`);
+                if (label) {
+
+                    if (myLabel in i18next.t("tabs", { returnObjects: true })) {
+                        label.textContent = i18next.t(`tabs.${myLabel}`) + " :";
+                    }
+                }
+            });
+            tripleTabs.refresh(); // Apply the changes
+        }
 
 
-let pstyle = 'border: 1px solid #efefef; padding: 5px'
-new w2layout({
-    box: '#mainLayout',
-    name: 'layout',
-    panels: [
-        { type: 'top', size: 50, style: pstyle, html: 'top' },
-        { type: 'left', size: 200, style: pstyle, html: 'left' },
-        { type: 'main', style: pstyle, html: 'main' }
-    ]
-})
-</script>
+        function updateToolbarTranslations() {
+            mainMenu.items.forEach(item => {
+
+                if (item.id in i18next.t("menu", { returnObjects: true })) {
+                    item.text = i18next.t(`menu.${item.id}`);
+                    //  console.log(item.id)
+                    // console.log(item.id + " -> " + item.text)
+                    if (item.items) {
+                        item.items.forEach(subItem => {
+                            if (subItem.id in i18next.t("menu", { returnObjects: true })) {
+                                subItem.text = i18next.t(`menu.${subItem.id}`);
+                            }
+                            // console.log(subItem.id + " -> " + subItem.text)
+                            if (subItem.items) {
+                                subItem.items.forEach(subSubItem => {
+                                    if (subSubItem.id in i18next.t("menu", { returnObjects: true })) {
+                                        subSubItem.text = i18next.t(`menu.${subSubItem.id}`);
+                                    }
+                                    //  console.log(subSubItem.id + " -> " + subSubItem.text)
+                                });
+                            }
+                        });
+                    }
+                }
+
+            });
+
+            mainMenu.refresh(); // Apply the changes
+        }
+
+        function initializeTripleTabs() {
+            if (w2ui.tabs) return; // Prevent multiple initializations
+
+            // Create W2UI tabs dynamically
+            var tabsConfig = {
+                name: 'tabs',
+                active: 'classesTab', // Default active tab
+                tabs: tabsData.map(id => ({
+                    id,
+                    text: i18next.t(`tabs.${id}Tab`) // Translate tab label
+                })),
+                onClick(event) {
+                    handleTabsAction(event) //show the tabSelect of the selected tab
+                }
+
+            }
+            console.log(tabsConfig)
+            tripleTabs = new w2tabs(tabsConfig)
+            return tripleTabs;
+        }
+
+        const script = document.createElement("script");
+        script.src = "lib/cytoscape-cola.js";
+        script.onload = function () {
+            console.log("Cytoscape-Cola loaded successfully");
+            cytoscape.use(cytoscapeCola);
+        };
+        document.head.appendChild(script);
+
+        const script2 = document.createElement("script");
+        script2.src = "lib/cytoscape-dagre.js";
+        script2.onload = function () {
+            console.log("Cytoscape-Dagre loaded successfully");
+            cytoscape.use(cytoscapeDagre);
+        };
+
+        document.head.appendChild(script2);
+        function applyDagreLayout(rankDir = 'TB') { // Default to 'Top-Bottom'
+            let layout = cy.layout({
+                name: 'dagre',
+                rankDir: rankDir, // Accepts 'TB' (top-bottom), 'LR' (left-right), etc.
+                animate: true
+            });
+
+            layout.run(); // Apply layout
+        }
+
+        var groupEdges = true;
+        var allowNestedEdgeCollapse = true;
+        var reader;
+        // Extract short name from URI
+        function getShortName(uri) {
+            return uri.includes('#') ? uri.split('#').pop() : uri.split('/').pop();
+        }
+
+        // Function to toggle the icon between checked and unchecked states
+
+        function toggleIcon(itemId) {
+            let item = w2ui.toolbar.get(itemId);
+            let newIcon = item.icon === 'fa fa-square' ? 'fa fa-check-square' : 'fa fa-square'; // Toggle between square and check-square
+
+            // Update the item with the new icon
+            w2ui.toolbar.set(itemId, { icon: newIcon });
+        }
+        // Fonction pour changer le layout
+        function changeLayout(layoutName) {
+            cy.layout({ name: layoutName, animate: true, fit: true, padding: 10 }).run();
+        }
+
+        // Function for reading files - will be updated with a more sophisticated one
+        function readTxtFile(file, cb) {
+            const fileReader = new FileReader();
+            fileReader.onload = () => {
+                try {
+                    cb(fileReader.result);
+                } catch (error) {
+                    logger.error('Given file is not suitable.', error);
+                }
+            };
+            fileReader.onerror = (error) => {
+                logger.error('File could not be read!', error);
+                fileReader.abort();
+            };
+            fileReader.readAsText(file);
+        }
+
+        //        
+        function loadRDF(file, inferred = false) {
+            if (!file) {
+                if (inferred) {
+                    alert("Veuillez sélectionner le fichier OWL inferred.");
+                } else {
+                    alert("Veuillez sélectionner un fichier OWL.");
+                }
+
+                return;
+            }
+            let reader = new FileReader();
+            reader.onload = (event) => {
+                const data = event.target.result;  // File content
+                let format;
+                try {
+                    format = detectFormat(data);
+                    //alert(`Format RDF détecté : ${format}`);
+                } catch (error) {
+                    alert(`Erreur de détection du format RDF : ${error.message}`);
+                    return;
+                }
+
+                let defaultBaseIRI = 'http://example.org/ontology#';// Base IRI par défaut
+                let store = $rdf.graph();// Créer un store RDF
+
+                // Parsing RDF
+                $rdf.parse(data, store, defaultBaseIRI, format, (error) => {
+                    if (error) {
+                        alert(`Error when parsing RDF : ${error}`);
+                        return;
+                    }
+                    console.log(`Parsing successful. Number of loaded triples: ${store.statements.length}`);
+
+                    // Step 2: Extract the actual base IRI
+                    const basePredicate = $rdf.namedNode('http://www.w3.org/2000/01/rdf-schema#base');
+                    let actualBaseIRI = store.any(null, basePredicate, null);
+
+                    // Step 3: Normalize URIs if the base differs
+                    if (actualBaseIRI && actualBaseIRI !== defaultBaseIRI) {
+                        store.statements.forEach(statement => {
+                            ['subject', 'predicate', 'object'].forEach(term => {
+                                const value = statement[term].value;
+                                if (value.startsWith(defaultBaseIRI)) {
+                                    statement[term].value = value.replace(defaultBaseIRI, actualBaseIRI);
+                                }
+                            });
+                        });
+                        defaultBaseIRI = actualBaseIRI;
+                    }
+                    console.log('Final RDF Store:', store);
+                    w2confirm("Do you want to show RDF triples in place of OWL?")
+                        .yes(() => {
+                            validateRDF(store);
+                        })
+                        .no(() => {
+                            validateOWL(store);
+                        });
+                });
+            };
+
+            reader.readAsText(file); // Read file as text
+        }
+
+        function getEdgeOptions() {
+            var groupEdgesOfSameTypeOnCollapse = groupEdges;//document.getElementById('groupEdges').checked;
+            var allowNestedEdgeCollapse = allowNestedEdgeCollapse;//document.getElementById('allowNestedEdgeCollapse').checked;
+            return { groupEdgesOfSameTypeOnCollapse: groupEdgesOfSameTypeOnCollapse, allowNestedEdgeCollapse: allowNestedEdgeCollapse };
+        }
+
+        let pstyle = 'border: 1px solid #efefef; padding: 5px'
+        new w2layout({
+            box: '#mainLayout',
+            name: 'layout',
+            panels: [
+                { type: 'top', size: 50, style: pstyle, html: 'top' },
+                { type: 'left', size: 200, style: pstyle, html: 'left' },
+                { type: 'main', style: pstyle, html: 'main' }
+            ]
+        })
+    </script>
 
 </body>
+
 </html>
