@@ -69,7 +69,7 @@
 
         /* Hide non-active content */
         .tab-content {
-            display: none;
+            display: block;
 
         }
 
@@ -143,6 +143,300 @@
 <input type="file" name="name" id="inputinferred    file" style="display:none" />
 
 <script type="module">
+ var mainMenu;
+        var tripleTabs;
+        var removed;
+        // Define tab structure dynamically
+        const tabsData = [
+            "triples",
+            "classes",
+            "classEquivalence",
+            "objectProperties",
+            "dataProperties",
+            "namedIndividuals",
+            "isaRelations",
+            "classSubsumption",
+            "propertySubsumption",
+            "propertyEquivalence",
+            "propertyInverse",
+            "individualRelations",
+            "domains",
+            "ranges"
+        ];
+        const resources = {
+            en: {
+                translation: {
+                    tabs: {
+                        triplesTab: "Triples",
+                        classesTab: "Classes",
+                        classEquivalenceTab: "Equivalence Classes",
+                        objectPropertiesTab: "Obj. Properties",
+                        dataPropertiesTab: "Data Properties",
+                        namedIndividualsTab: "Individuals",
+                        isaRelationsTab: "Individual Typing",
+                        classSubsumptionTab: "Class Subsumption",
+                        propertySubsumptionTab: "Property Subsumption",
+                        propertyEquivalenceTab: "Property Equivalence",
+                        propertyInverseTab: "Inverse Properties",
+                        individualRelationsTab: "Individual Relations",
+                        domainsTab: "Domains",
+                        rangesTab: "Ranges",
+                        triplesLabel: "Triplets trouvés",
+                        classesLabel: "Found OWL Classes",
+                        classEquivalenceLabel: "Equivalence classes between properties",
+                        objectPropertiesLabel: "Found object properties",
+                        dataPropertiesLabel: "Found datatype properties",
+                        namedIndividualsLabel: "Found NamedIndividuals",
+                        isaRelationsLabel: "Individuals typring Relations",
+                        classSubsumptionLabel: "Classes subsumption relations",
+                        propertySubsumptionLabel: "Properties subsumption relations",
+                        propertyEquivalenceLabel: "Properties equivalence relations",
+                        propertyInverseLabel: "Properties inverse relations",
+                        individualRelationsLabel: "Relations between individuals",
+                        domainsLabel: "Domain declarations",
+                        rangesLabel: "Tange declarations",
+                    },
+
+                    menu: {
+                        language: "Language",
+                        fr: "🇫🇷 French",
+                        en: "🇬🇧 English",
+                        owl: "OWL File",
+                        open: "Open",
+                        importinferred: "Import inferred axioms as ontology",
+                        expandCollapse: "Expand/Collapse",
+                        nodes: "Nodes",
+                        expandallnodes: "Expand All",
+                        collapseAllNodes: "Collapse All",
+                        expandSelectedNodes: "Expand Selected",
+                        collapseSelectedNodes: "Collapse Selected",
+                        expandSelectedNodesRecursively: "Expand Selected Recursively",
+                        collapseSelectedNodesRecursively: "Collapse Selected Recursively",
+                        edges: "Edges",
+                        expandAllEdges: "Expand All",
+                        collapseAllEdges: "Collapse All",
+                        expandSelectedEdges: "Expand Selected",
+                        collapseSelectedEdges: "Collapse Selected",
+                        collapseEdgesBetweenNodes: "Reduce Between Selected Nodes",
+                        expandEdgesBetweenNodes: "Expand Between Selected Nodes",
+                        rendering: "Rendering",
+                        renderingnodeirishortname: "Render by Entity IRI Short Name(id)",
+                        noderenderinglabel: "Render by Label(RDFS Label)",
+                        noderenderingprefix: "Render by prefixed name",
+                        noderenderingannotation: "Render by annotation property",
+                        noderenderingcustom: "Customed rendering",
+                        edgeirishortName: "Render by Property IRI Short Name(id)",
+                        edgerenderingprefixName: "Render by prefixed name",
+                        edgerenderinglabel: "Render by Label(RDFS Label)",
+                        edgerenderingannotationProperty: "Render by annotation property",
+                        edgerenderingcustom: "Customed rendering",
+                        label: "Label",
+                        prefixName: "Prefix Name",
+                        annotationProperty: "Annotation Property",
+                        customRendering: "Custom Rendering",
+                        display: "Display",
+                        showowlconstructs: "Show OWL Constructs Nodes",
+                        showisa: "Show isa as link",
+                        showdomainrange: "Show domain and range as nodes",
+                        showlabelasnode: "Show labels as nodes",
+                        showlabelasedge: "Show labels as edges",
+                        showannotationasnode: "Show annotations as nodes",
+                        showannotationasedge: "Show annotations as edges",
+                        viewpoint: "Viewpoints",
+                        individual: "Individuals",
+                        ontology: "Ontologies",
+                        sop: "Subject Object Properties",
+                        data: "Data",
+                        layout: "Layouts",
+                        fcose: "Fcose",
+                        grid: "Grid",
+                        circle: "Circle",
+                        cose: "Cose",
+                        breadthfirst: "Breadthfirst",
+                        concentric: "Concentric",
+                        random: "Random",
+                        cola: "Cola",
+                        dagre: "Dagre",
+                        showhidegrabifydelete: "Actions on graph elements",
+                        showhide: "Show/Hide",
+                        hideselected: "Hide Selected",
+                        hidenonselected: "Hide Non Selected",
+                        unhideall: "Unhide All",
+                        grabifyungrabify: "Grabify/Ungrabify",
+                        ungrabifyselected: "Ungrabify Selected",
+                        ungrabifynonselected: "Ungrabify Non Selected",
+                        grabifyselected: "Grabify Selected",
+                        grabifynonselect: "Grabify Non Selected",
+                        lockunlock: "Lock/Unlock",
+                        lockselected: "Lock Selected",
+                        locknonselected: "Lock Non Selected",
+                        unlockselected: "Unlock Selected",
+                        unlocknonselect: "Unlock Non Select",
+                        removerestore: "Remove Restore",
+                        removeselected: "Remove Selected",
+                        removeunselected: "Remove Unselected",
+                        removeall: "Remove All",
+                        restore: "Restore"
+                    },
+                }
+            },
+            fr: {
+                translation: {
+                    tabs: {
+                        triplesTab: "Triplets",
+                        classesTab: "Classes",
+                        classEquivalenceTab: "Équivalence Classes",
+                        objectPropertiesTab: "Propriétés Obj.",
+                        dataPropertiesTab: "Propriétés Données",
+                        namedIndividualsTab: "Individus",
+                        isaRelationsTab: "Typage Individus",
+                        classSubsumptionTab: "Subsomption Classes",
+                        propertySubsumptionTab: "Subsomption Prop.",
+                        propertyEquivalenceTab: "Équivalence Prop.",
+                        propertyInverseTab: "Propriétés Inverses",
+                        individualRelationsTab: "Relations Individus",
+                        domainsTab: "Domaines",
+                        rangesTab: "Portées",
+                        triplesLabel: "Found triples",
+                        classesLabel: "Classes OWL trouvées",
+                        classEquivalenceLabel: "Classes d'équivalence entre propriétés",
+                        objectPropertiesLabel: "Propriétés de type objet trouvées",
+                        dataPropertiesLabel: "Propriétés de type données trouvées",
+                        namedIndividualsLabel: "Individus nommés OWL trouvés",
+                        isaRelationsLabel: "Relations de typage d'individus",
+                        classSubsumptionLabel: "Relations de subsomption entre classes",
+                        propertySubsumptionLabel: "Relations de subsomption entre propriétés",
+                        propertyEquivalenceLabel: "Relations d'équivalence entre propriétés",
+                        propertyInverseLabel: "Relations inverses entre propriétés",
+                        individualRelationsLabel: "Relations entre individus",
+                        domainsLabel: "Déclarations de domaines",
+                        rangesLabel: "Déclarations de portées",
+
+                    },
+                    menu: {
+                        language: "Langage",
+                        fr: "🇫🇷 Français",
+                        en: "🇬🇧 English",
+                        owl: "Fichier OWL",
+                        open: "Ouvrir",
+                        importinferred: "Import des axiomes inférré de l'ontologie",
+                        expandCollapse: "Développer/Réduire",
+                        nodes: "Nœuds",
+                        expandAllNodes: "Tout développer",
+                        collapseAllNodes: "Tout réduire",
+                        expandSelectedNodes: "Développer sélectionnés",
+                        collapseSelectedNodes: "Réduire sélectionnés",
+                        expandSelectedNodesRecursively: "Développer sélectionnés récursivement",
+                        collapseSelectedNodesRecursively: "Réduire sélectionnés récursivement",
+                        edges: "Arêtes",
+                        expandAllEdges: "Tout développer",
+                        collapseAllEdges: "Tout réduire",
+                        expandSelectedEdges: "Développer sélectionnés",
+                        collapseSelectedEdges: "Réduire sélectionnés",
+                        collapseEdgesBetweenNodes: "Réduire entre les noeuds sélectionnés",
+                        expandEdgesBetweenNodes: "Développer entre les noeuds sélectionnés",
+                        rendering: "Rendu",
+                        renderingnodeirishortname: "Nom court IRI",
+                        label: "Étiquette",
+                        prefixName: "Nom du préfixe",
+                        annotationProperty: "Propriété d’annotation",
+                        customRendering: "Rendu personnalisé",
+                        display: "Affichage",
+                        showowlconstructs: "... des nœuds OWL",
+                        showisa: "... de 'isa' comme lien",
+                        showdomainrange: "... des domaines et portées comme nœuds",
+                        showlabelasnode: "... des labels comme noeuds",
+                        showlabelasedge: "... des labels comme liens",
+                        showannotationasnode: "... des annotations comme noeuds",
+                        showannotationasedge: "... des annotations comme liens",
+                        viewpoint: "Points de vue",
+                        individual: "Individus",
+                        ontology: "Ontologies",
+                        sop: "Propriétés sujet-objet",
+                        data: "Données",
+                        layout: "Mises en page",
+                        fcose: "Fcose",
+                        grid: "Grille",
+                        circle: "Cercle",
+                        cose: "Cose",
+                        breadthfirst: "Parcours en largeur",
+                        concentric: "Concentrique",
+                        random: "Aléatoire",
+                        cola: "Cola",
+                        dagre: "Dagre",
+                        showhidegrabifydelete: "Actions sur éléments du graphe",
+                        showhide: "Montrer/Cacher",
+                        hideselected: "Cacher les sélectionnés",
+                        hidenonselected: "Cacher les non sélectionnés",
+                        unhideall: "Révéler tout",
+                        grabifyungrabify: "Activer/Désactiver la prise",
+                        ungrabifyselected: "Libérer la sélection",
+                        ungrabifynonselected: "Libérer les non sélectionnés",
+                        grabifyselected: "Prendre la sélection",
+                        grabifynonselect: "Prendre les non sélectionnés",
+                        lockunlock: "Verrouiller/Déverrouiller",
+                        lockselected: "Verrouiller la sélection",
+                        locknonselected: "Verrouiller les non sélectionnés",
+                        unlockselected: "Déverrouiller la sélection",
+                        unlocknonselect: "Déverrouiller les non sélectionnés",
+                        removerestore: "Supprimer/Restaurer",
+                        removeselected: "Supprimer la sélection",
+                        removeunselected: "Supprimer les non sélectionnés",
+                        removeall: "Tout supprimer",
+                        restore: "Restaurer",
+                        rendering: "Rendu",
+                        renderingnodeirishortname: "Rendu par Nom Court de l'IRI de l'Entité (id)",
+                        noderenderinglabel: "Rendu par Libellé (RDFS Label)",
+                        noderenderingprefix: "Rendu par Nom Préfixé",
+                        noderenderingannotation: "Rendu par Propriété d'Annotation",
+                        noderenderingcustom: "Rendu Personnalisé",
+                        edgeirishortName: "Rendu par Nom Court de l'IRI de la Propriété (id)",
+                        edgerenderingprefixName: "Rendu par Nom Préfixé",
+                        edgerenderinglabel: "Rendu par Libellé (RDFS Label)",
+                        edgerenderingannotationProperty: "Rendu par Propriété d'Annotation",
+                        edgerenderingcustom: "Rendu Personnalisé"
+                    }
+                }
+            }
+        };
+
+        i18next.init({
+            lng: "fr", // Default language
+            fallbackLng: "en", // Fallback language
+            resources: resources // Use in-memory translations
+        })
+        function changeLanguage(lang) {
+            i18next.changeLanguage(lang, () => {
+                updateToolbarTranslations();
+                updateTabsTranslations();
+            });
+        }
+
+        const outputDiv = document.getElementById("output");
+
+        if (outputDiv) {
+            tabsData.forEach(key => {
+                const tabDiv = document.createElement("div");
+                tabDiv.id = `${key}Tab`;
+                tabDiv.className = "tab-content";
+
+                const label = document.createElement("label");
+                label.htmlFor = `${key}Select`;
+                label.textContent = i18next.t(`tabs.${key}Label`) + " :";
+
+                const select = document.createElement("select");
+                select.id = `${key}Select`;
+                select.size = 10;
+                select.multiple = true;
+
+                tabDiv.appendChild(label);
+                tabDiv.appendChild(select);
+                outputDiv.appendChild(tabDiv);
+            });
+        } else {
+            console.error("L'élément #output n'existe pas dans le DOM !");
+        }
+
 
 
 let pstyle = 'border: 1px solid #efefef; padding: 5px'
