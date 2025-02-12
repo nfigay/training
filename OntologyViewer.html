@@ -31,9 +31,6 @@
     <script src="https://unpkg.com/cytoscape-dagre/cytoscape-dagre.js"></script>
     <script src="https://unpkg.com/i18next@latest/dist/umd/i18next.min.js"></script>
 
-
-
-
     <style>
         /* colors for protege
         annotation: 209 122 9 #D17A09
@@ -148,6 +145,7 @@
     <script type="module">
         var mainMenu;
         var tripleTabs;
+        var removed;
         // Define tab structure dynamically
         const tabsData = [
             "triples",
@@ -222,7 +220,16 @@
                         collapseEdgesBetweenNodes: "Reduce Between Selected Nodes",
                         expandEdgesBetweenNodes: "Expand Between Selected Nodes",
                         rendering: "Rendering",
-                        renderingnodeirishortname: "IRI Short Name",
+                        renderingnodeirishortname: "Render by Entity IRI Short Name(id)",
+                        noderenderinglabel: "Render by Label(RDFS Label)",
+                        noderenderingprefix: "Render by prefixed name",
+                        noderenderingannotation: "Render by annotation property",
+                        noderenderingcustom: "Customed rendering",
+                        edgeirishortName: "Render by Property IRI Short Name(id)",
+                        edgerenderingprefixName: "Render by prefixed name",
+                        edgerenderinglabel: "Render by Label(RDFS Label)",
+                        edgerenderingannotationProperty: "Render by annotation property",
+                        edgerenderingcustom: "Customed rendering",
                         label: "Label",
                         prefixName: "Prefix Name",
                         annotationProperty: "Annotation Property",
@@ -250,8 +257,27 @@
                         random: "Random",
                         cola: "Cola",
                         dagre: "Dagre",
-
-                    }
+                        showhidegrabifydelete: "Actions on graph elements",
+                        showhide: "Show/Hide",
+                        hideselected: "Hide Selected",
+                        hidenonselected: "Hide Non Selected",
+                        unhideall: "Unhide All",
+                        grabifyungrabify: "Grabify/Ungrabify",
+                        ungrabifyselected: "Ungrabify Selected",
+                        ungrabifynonselected: "Ungrabify Non Selected",
+                        grabifyselected: "Grabify Selected",
+                        grabifynonselect: "Grabify Non Selected",
+                        lockunlock: "Lock/Unlock",
+                        lockselected: "Lock Selected",
+                        locknonselected: "Lock Non Selected",
+                        unlockselected: "Unlock Selected",
+                        unlocknonselect: "Unlock Non Select",
+                        removerestore: "Remove Restore",
+                        removeselected: "Remove Selected",
+                        removeunselected: "Remove Unselected",
+                        removeall: "Remove All",
+                        restore: "Restore"
+                    },
                 }
             },
             fr: {
@@ -285,6 +311,7 @@
                         individualRelationsLabel: "Relations entre individus",
                         domainsLabel: "Déclarations de domaines",
                         rangesLabel: "Déclarations de portées",
+
                     },
                     menu: {
                         language: "Langage",
@@ -337,11 +364,54 @@
                         random: "Aléatoire",
                         cola: "Cola",
                         dagre: "Dagre",
-
+                        showhidegrabifydelete: "Actions sur éléments du graphe",
+                        showhide: "Montrer/Cacher",
+                        hideselected: "Cacher les sélectionnés",
+                        hidenonselected: "Cacher les non sélectionnés",
+                        unhideall: "Révéler tout",
+                        grabifyungrabify: "Activer/Désactiver la prise",
+                        ungrabifyselected: "Libérer la sélection",
+                        ungrabifynonselected: "Libérer les non sélectionnés",
+                        grabifyselected: "Prendre la sélection",
+                        grabifynonselect: "Prendre les non sélectionnés",
+                        lockunlock: "Verrouiller/Déverrouiller",
+                        lockselected: "Verrouiller la sélection",
+                        locknonselected: "Verrouiller les non sélectionnés",
+                        unlockselected: "Déverrouiller la sélection",
+                        unlocknonselect: "Déverrouiller les non sélectionnés",
+                        removerestore: "Supprimer/Restaurer",
+                        removeselected: "Supprimer la sélection",
+                        removeunselected: "Supprimer les non sélectionnés",
+                        removeall: "Tout supprimer",
+                        restore: "Restaurer",
+                        rendering: "Rendu",
+                        renderingnodeirishortname: "Rendu par Nom Court de l'IRI de l'Entité (id)",
+                        noderenderinglabel: "Rendu par Libellé (RDFS Label)",
+                        noderenderingprefix: "Rendu par Nom Préfixé",
+                        noderenderingannotation: "Rendu par Propriété d'Annotation",
+                        noderenderingcustom: "Rendu Personnalisé",
+                        edgeirishortName: "Rendu par Nom Court de l'IRI de la Propriété (id)",
+                        edgerenderingprefixName: "Rendu par Nom Préfixé",
+                        edgerenderinglabel: "Rendu par Libellé (RDFS Label)",
+                        edgerenderingannotationProperty: "Rendu par Propriété d'Annotation",
+                        edgerenderingcustom: "Rendu Personnalisé"
                     }
                 }
             }
         };
+
+        i18next.init({
+            lng: "fr", // Default language
+            fallbackLng: "en", // Fallback language
+            resources: resources // Use in-memory translations
+        })
+        function changeLanguage(lang) {
+            i18next.changeLanguage(lang, () => {
+                updateToolbarTranslations();
+                updateTabsTranslations();
+            });
+        }
+
         const outputDiv = document.getElementById("output");
 
         if (outputDiv) {
@@ -367,17 +437,7 @@
             console.error("L'élément #output n'existe pas dans le DOM !");
         }
 
-        i18next.init({
-            lng: "fr", // Default language
-            fallbackLng: "en", // Fallback language
-            resources: resources // Use in-memory translations
-        })
-        function changeLanguage(lang) {
-            i18next.changeLanguage(lang, () => {
-                updateToolbarTranslations();
-                updateTabsTranslations();
-            });
-        }
+
 
         function updateMenu() {
             w2ui.mainMenu.items.forEach(item => {
@@ -396,7 +456,8 @@
             });
 
             mainMenu.refresh();
-            updateToolbarTranslations(); // Ensure new item is updated when switching languages
+            updateToolbarTranslations(); // Ensure default language is applied to menu items  
+
         }
 
         function updateTabsTranslations() {
@@ -406,18 +467,16 @@
                     tab.text = i18next.t(`tabs.${myLabel}`);
                 }
                 var myLabel = tab.id + "Label"
-
                 const label = document.querySelector(`label[for="${tab.id}Select"]`);
                 if (label) {
+
                     if (myLabel in i18next.t("tabs", { returnObjects: true })) {
-                        label.textContent = i18next.t(myLabel) + " :";
+                        label.textContent = i18next.t(`tabs.${myLabel}`) + " :";
                     }
                 }
             });
-
             tripleTabs.refresh(); // Apply the changes
         }
-
 
 
         function updateToolbarTranslations() {
@@ -462,9 +521,7 @@
                     text: i18next.t(`tabs.${id}Tab`) // Translate tab label
                 })),
                 onClick(event) {
-                    handleTabsAction(event)
-                    //  query('#tab-example .tab-content').hide()
-                    //  query(`#tab-example #${event.target}`).show()
+                    handleTabsAction(event) //show the tabSelect of the selected tab
                 }
 
             }
@@ -662,46 +719,87 @@
                     ]
                 },
                 {
-                    type: 'menu-check', id: 'rendering', text: i18next.t("menu.rendering"), icon: 'fa fa-eye',
+                    type: 'menu-check', id: 'rendering', text: i18next.t("menu.rendering"), icon: 'fa fa-eye', disabled: false,
                     items: [
                         { text: '-- Node' },
 
-                        { id: 'noderendering_iri', text: i18next.t("menu.renderingnodeirishortname") },
-                        { id: 'noderendering_label', text: 'Label' },
-                        { id: 'noderendering_prefix', text: 'Prefix Name' },
-                        { id: 'noderendering_annotation', text: 'Annotation Properties' },
-                        { id: 'noderendering_custom', text: 'Custom Rendering' }
+                        { id: 'renderingnodeirishortname', text: i18next.t("menu.renderingnodeirishortname"), disabled: true },
+                        { id: 'noderenderinglabel', text: i18next.t("menu.noderenderinglabel"), disabled: true },
+                        { id: 'noderenderingprefix', text: i18next.t("menu.noderenderingprefix"), disabled: true },
+                        { id: 'noderenderingannotation', text: i18next.t("menu.noderenderingannotation"), disabled: true },
+                        { id: 'noderenderingcustom', text: i18next.t("menu.noderenderingcustom"), disabled: true }
 
                         ,
                         { text: '-- Edge' },
 
-                        { id: 'edgeirishortName', text: 'IRI Short Name' },
-                        { id: 'edgerendering_prefixName', text: 'Prefix Name' },
-                        { id: 'edgerendering_label', text: 'Label' },
-                        { id: 'edgerendering_annotationProperty', text: 'Annotation Property' },
-                        { id: 'edgerendering_custom', text: 'Custom' }
+                        { id: 'edgeirishortName', text: i18next.t("menu.edgeirishortName"), disabled: false },
+                        { id: 'edgerenderingprefixName', text: i18next.t("menu.edgerenderingprefixName"), disabled: true },
+                        { id: 'edgerenderinglabel', text: i18next.t("menu.edgerenderinglabel"), disabled: true },
+                        { id: 'edgerenderingannotationProperty', text: i18next.t("menu.edgerenderingannotationProperty"), disabled: true },
+                        { id: 'edgerenderingcustom', text: i18next.t("menu.edgerenderingcustom"), disabled: true }
                     ]
                 },
                 {
-                    type: 'menu-check', id: 'display', text: i18next.t('display'), icon: 'fa fa-eye',
+                    type: 'menu', id: 'showhidegrabifydelete', text: i18next.t("menu.showhidegrabifydelete"), icon: 'fa fa-eye',
                     items: [
-                        { id: 'showowlconstructs', text: i18next.t('showowlconstructs') },
-                        { id: 'showisa', text: i18next.t('showisa') },
-                        { id: 'showdomainrange', text: i18next.t('showdomainrange') },
-                        { id: 'showlabelasnode', text: i18next.t('showlableasnode') },
-                        { id: 'showlabelasedge', text: i18next.t('showlabelasedge') },
-                        { id: 'showannotationasnode', text: i18next.t('showannotationasnode') },
-                        { id: 'showannotationasedge', text: i18next.t('showannotationasedge') }
+                        {
+                            id: 'showhide', text: i18next.t("menu.showhide"),
+                            items: [
+                                { id: 'hideselected', text: i18next.t("menu.hideselected") },
+                                { id: 'hidenonselected', ttext: i18next.t("menu.hidenonselected") },
+                                { id: 'unhideall', text: i18next.t("menu.unhideall") },
+                            ]
+                        },
+                        {
+                            id: 'grabifyungrabify', text: i18next.t("menu.ungrabifyselected"),
+                            items: [
+                                { id: 'ungrabifyselected', text: i18next.t("menu.ungrabifyselected") },
+                                { id: 'ungrabifynonselected', text: i18next.t("menu.ungrabifynonselected") },
+                                { id: 'grabifyselected', text: i18next.t("menu.grabifyselected") },
+                                { id: 'grabifynonselect', text: i18next.t("menu.grabifynonselect") }
+                            ]
+                        },
+                        {
+                            id: 'lockunlock', text: i18next.t("menu.lockunlock"),
+                            items: [
+                                { id: 'lockselected', text: i18next.t("menu.lockselected") },
+                                { id: 'locknonselected', text: i18next.t("menu.locknonselected") },
+                                { id: 'unlockselected', text: i18next.t("menu.unlockselected") },
+                                { id: 'unlocknonselect', text: i18next.t("menu.unlocknonselect") }
+                            ]
+                        },
+                        {
+                            id: 'removerestore', text: i18next.t("menu.removerestore"),
+                            items: [
+                                { id: 'removeselected', text: i18next.t("menu.removeselected") },
+                                { id: 'removeunselected', text: i18next.t("menu.removeunselected") },
+                                { id: 'removeall', text: i18next.t("menu.removeall") },
+                                { id: 'restore', text: i18next.t("menu.restore") },
+
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: 'menu-check', id: 'display', text: i18next.t('display'), icon: 'fa fa-eye', disabled: false,
+                    items: [
+                        { id: 'showowlconstructs', text: i18next.t('showowlconstructs'), disabled: true },
+                        { id: 'showisa', text: i18next.t('showisa'), disabled: true },
+                        { id: 'showdomainrange', text: i18next.t('showdomainrange'), disabled: true },
+                        { id: 'showlabelasnode', text: i18next.t('showlableasnode'), disabled: true },
+                        { id: 'showlabelasedge', text: i18next.t('showlabelasedge'), disabled: true },
+                        { id: 'showannotationasnode', text: i18next.t('showannotationasnode'), disabled: true },
+                        { id: 'showannotationasedge', text: i18next.t('showannotationasedge'), disabled: true }
 
                     ],
                 },
                 {
-                    type: 'menu-check', id: 'viewpoint', text: i18next.t('viewpoint'), icon: 'fa fa-eye',
+                    type: 'menu-check', id: 'viewpoint', text: i18next.t('viewpoint'), icon: 'fa fa-eye', disabled: false,
                     items: [
-                        { id: 'individual', text: i18next.t('individual') },
-                        { id: 'ontology', text: 'ontology' },
-                        { id: 'sop', text: 'Subject Object Properties' },
-                        { id: 'data', text: 'Data' },
+                        { id: 'individual', text: i18next.t('individual'), disabled: true },
+                        { id: 'ontology', text: 'ontology', disabled: true },
+                        { id: 'sop', text: 'Subject Object Properties', disabled: true },
+                        { id: 'data', text: 'Data', disabled: true },
                     ]
                 },
                 {
@@ -743,21 +841,10 @@
             return mainMenu;
         }
         function handleTabsAction(event) {
-            alert(event.target)
-            // Add event listener for switching tabs
-            // document.querySelectorAll(".tab").forEach(tab => {
-            //     tab.addEventListener("click", function () {
-            //         // Remove active class from all tabs and hide content
-            //         document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-            //         document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
-
-            // Activate clicked tab and its corresponding content
-            //         this.classList.add("active");
-            //        document.getElementById(this.dataset.tab).classList.add("active");
-            //    });
-            // });
+            var myTabContent = event.target + "Tab"
+            document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+            document.getElementById(myTabContent).classList.add("active");
         }
-
 
         function handleMenuAction(event) {
             switch (event.target) {
@@ -795,11 +882,11 @@
                     api.collapseRecursively(cy.$(":selected"));
                     break;
                 case 'expandCollapse:expandAllEdges':
-                    alert("expandAllEdges")
+                    //  alert("expandAllEdges")
                     api.expandAllEdges();
                     break;
                 case 'expandCollapse:collapseAllEdges':
-                    alert("collapseAllEdges")
+                    //  alert("collapseAllEdges")
                     api.collapseAllEdges()
                     break;
                 case 'expandCollapse:expandSelectedEdges':
@@ -863,6 +950,112 @@
                     break;
                 case 'language:en':
                     changeLanguage('en')
+                    break;
+
+                case 'showhidegrabifydelete:showhide':
+                    break;
+                case 'showhidegrabifydelete:hideselected':
+                    var eles = cy.$(":selected");
+                    eles = eles.filter(":visible");
+                    eles = eles.union(eles.connectedEdges());
+                    eles.unselect();
+                    console.log(eles)
+                    eles.css('visibility', 'hidden');
+                    eles.css('display', 'none');
+                    break;
+                case 'showhidegrabifydelete:hidenonselected':
+                    var unselected = cy.nodes(":unselected");
+                    var selected = cy.nodes(":selected");
+                    unselected.forEach(function (node) {
+                        if (node.descendants(node.id()).intersection(selected).length == 0) {
+                            node.css('visibility', 'hidden');
+                            node.css('display', 'none');
+                        }
+                    })
+                    break;
+                case 'showhidegrabifydelete:unhideall':
+                    var eles = cy.filter(":hidden");
+                    var connectedEdges = eles.connectedEdges(function (edge) {
+                        if ((edge.source().visible() || eles.contains(edge.source())) && (edge.target().visible() || eles.contains(edge.target()))) {
+                            return true;
+                        }
+                        return false;
+                    });
+                    eles = eles.union(connectedEdges);
+                    eles.unselect();
+                    eles.style('visibility', 'visible');
+                    eles.style('display', 'element');
+                    break;
+                case 'showhidegrabifydelete:grabifyungrabify':
+                    break;
+                case 'showhidegrabifydelete:ungrabifyselected':
+                    var nodes = cy.nodes(":selected").ungrabify();
+                    ungrabifiedNodes = ungrabifiedNodes.concat(nodes);
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:ungrabifynonselected':
+                    var nodes = cy.nodes(":unselected").ungrabify();
+                    ungrabifiedNodes = ungrabifiedNodes.concat(nodes);
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:grabifyselected':
+                    var nodes = cy.nodes(":selected").grabify();
+                    ungrabifiedNodes = ungrabifiedNodes.filter(function (el) {
+                        return !nodes.includes(el);
+                    });
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:grabifynonselect':
+                    var nodes = cy.nodes(":unselected").grabify();
+                    ungrabifiedNodes = ungrabifiedNodes.filter(function (el) {
+                        return !nodes.includes(el);
+                    });
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:lockunlock':
+                    break;
+                case 'showhidegrabifydelete:lockselected':
+                    var nodes = cy.nodes(":selected").lock();
+                    lockedNodes = lockedNodes.concat(nodes);
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:locknonselected':
+                    var nodes = cy.nodes(":unselected").lock();
+                    lockedNodes = lockedNodes.concat(nodes);
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:unlockselected':
+                    var nodes = cy.nodes(":selected").unlock();
+                    lockedNodes = lockedNodes.filter(function (el) {
+                        return !nodes.includes(el);
+                    });
+                    nodes.unselect();
+                    break;
+                case 'showhidegrabifydelete:unlocknonselect':
+                    var nodes = cy.nodes(":unselected").unlock();
+                    lockedNodes = lockedNodes.filter(function (el) {
+                        return !nodes.includes(el);
+                    });
+                    nodes.unselect();
+                    break;
+
+                case 'showhidegrabifydelete:removeselected':
+                    //   if (undoRedo) { ur.do("remove", elements) } else { removed = removed.union(cy.remove(elements)); }
+
+                    removed = cy.remove(cy.$(":selected"));
+
+                    break;
+                case 'showhidegrabifydelete:removeunselected':
+                    //  if (undoRedo) { ur.do("remove", elements) } else { removed = removed.union(cy.remove(elements)); }
+                    removed = cy.remove(cy.$(":unselected"));
+
+                    break;
+                case 'showhidegrabifydelete:removeall':
+                    //    if (undoRedo) { ur.do("remove", elements) } else { removed = removed.union(cy.remove(elements)); }
+                    removed = cy.remove(cy.$());
+                    break;
+                case 'showhidegrabifydelete:restore':
+                    removed.restore();
                     break;
             }
         }
@@ -2434,25 +2627,41 @@ Text:${label.text}
             var infoHtml = '';
 
             if (target.isNode()) {
+                const CompoundNodeRelatedKeys = [
+                    'expandcollapseRenderedStartX', 'expandcollapseRenderedStartY',
+                    'expandcollapseRenderedCueSize',
+                    'collapse',
+                    'position-before-collapse',
+                    'size-before-collapse',
+                    'collapsedChildren',
+                    'x-before-fisheye',
+                    'y-before-fisheye',
+                    'width-before-fisheye',
+                    'height-before-fisheye',
+                    'infoLabel'
+                ];
+
                 infoHtml += '<strong>Node Information</strong><br>';
                 // Loop through node data and display as name: value
                 var nodeData = target.data();
                 for (var key in nodeData) {
-                    if (nodeData.hasOwnProperty(key)) {
+                    if (nodeData.hasOwnProperty(key) && !CompoundNodeRelatedKeys.includes(key)) {
                         infoHtml += '<strong>' + key + '</strong>: ' + nodeData[key] + '<br>';
                     }
                 }
             } else if (target.isEdge()) {
                 infoHtml += '<strong>Edge Information</strong><br>';
-                // Display edge details
-                infoHtml += 'ID: ' + target.id() + '<br>';
-                infoHtml += 'Source: ' + target.source().id() + '<br>';
-                infoHtml += 'Target: ' + target.target().id() + '<br><br>';
 
                 // Loop through edge data and display as name: value
                 var edgeData = target.data();
+                const CompoundEdgeRelatedKeys = [
+                    'collapsedEdges',
+                    'edgeType',
+                    'directionType',
+                    'originalEnds'
+                ];
                 for (var key in edgeData) {
-                    if (edgeData.hasOwnProperty(key)) {
+                    if (edgeData.hasOwnProperty(key) && !CompoundEdgeRelatedKeys.includes(key)) {
                         infoHtml += key + ': ' + edgeData[key] + '<br>';
                     }
                 }
@@ -2475,6 +2684,7 @@ Text:${label.text}
             // Check if the double-click is outside of any node or edge
             infoPanel.style.display = 'none';
         });
+        updateTabsTranslations()
 
     </script>
 </body>
