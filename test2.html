@@ -30,17 +30,124 @@
     <!-- Cytoscape-Dagre Extension -->
     <script src="lib/cytoscape-dagre.js"></script>
     <script src="lib/i18next.min.js"></script>
+    <style>
+        /* colors for protege
+        annotation: 209 122 9 #D17A09
+        class: 209 165 0 #D1A500
+        Objecttype Property :0 121 186 #0079BA
+        Datatype Property: 56 161 74 #38A14A
+        Datatype 173 59 69 #AD3B45
+        Individuals 135 75 130 #874B82
+
+          /* Tab styling */
+
+        .tab-container {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 10px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #f4f4f4;
+            margin-right: 5px;
+            width: 98%;
+        }
+
+        .tab.active {
+            background-color: white;
+            border-top: 2px solid #007bff;
+            font-weight: bold;
+            width: 98%;
+        }
+
+        /* Hide non-active content */
+        .tab-content {
+            display: none;
+
+        }
+
+        .tab-content.active {
+            display: block;
+            width: 100%;
+        }
+
+        /* Style for select boxes */
+        select {
+            width: 100%;
+            height: 150px;
+            margin-top: 5px;
+        }
+
+        /* Hide the native file input */
+        #fileInput,
+        #fileInput2 {
+            display: none;
+        }
+
+
+        #cy {
+            width: 100%;
+            height: 100%;
+        }
+
+        #infoPanel {
+            border: 0px solid black;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #f9f9f9;
+            overflow: auto;
+            /* Enables both horizontal and vertical scrolling */
+            white-space: nowrap;
+            /* Prevents text from wrapping to the next line */
+            word-wrap: break-word;
+            /* Allows long words to break and not overflow */
+            display: none;
+        }
+
+        #infoPanel h3 {
+            margin-top: 0;
+        }
+    </style>
+    <script>
+        window.addEventListener('beforeunload', function (event) {
+            // Cancel the event to trigger the confirmation dialog
+            event.preventDefault();
+
+            // Setting event.returnValue triggers the browser's confirmation dialog
+            event.returnValue = 'Are you sure you want to leave? You may have unsaved changes.';
+
+            // Note: The text inside event.returnValue will not be shown in modern browsers;
+            // the browser will display a standard message instead.
+        });
+    </script>
 </head>
 <body>
 
-<div id="layout" style="width: 900px; height: 400px;"></div>
+
+<div id="app" style="width: 100%; height: 70vh;">
+    <div id="mainLayout" style="height: calc(100% - 40px);" />
+</div>
+<div class="tab-container" id="tabs"></div>
+<div style="height: 100px;" id="output" style="display: block;"></div>
+
+<input type="file" name="name" id="inputfile" style="display:none" />
+<input type="file" name="name" id="inputinferred    file" style="display:none" />
 
 <script type="module">
 
 
 let pstyle = 'border: 1px solid #efefef; padding: 5px'
 new w2layout({
-    box: '#layout',
+    box: '#mainLayout',
     name: 'layout',
     panels: [
         { type: 'top', size: 50, style: pstyle, html: 'top' },
