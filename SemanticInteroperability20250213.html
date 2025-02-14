@@ -255,69 +255,25 @@
 
         }
 
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            color: #2d89ef;
-            font-weight: bold;
+        /* Pour éviter l'interstice entre l'en-tête et le contenu défilant */
+        .scrollable-table thead th {
+            border-top: 0px solid black;
         }
 
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 320px;
-            /* Largeur basée sur le rapport du rectangle d’or */
-            height: 198px;
-            /* Hauteur calculée (320 / 1.618 ≈ 198) */
-            background-color: #2d89ef;
-            color: rgba(255, 255, 255, 0.95);
-            text-align: left;
-            padding: 12px;
-            border-radius: 10px;
-            position: absolute;
-            z-index: 1000;
-            bottom: auto;
-            top: 120%;
-            /* Sous l’élément */
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            font-size: 0.5em;
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-            overflow-y: auto;
-            /* Défilement vertical si nécessaire */
-            white-space: normal;
-            word-wrap: break-word;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Responsive pour les petits écrans */
+        @media (max-width: 768px) {
+            .content-zone {
+                flex-direction: column;
+                /* Empiler le texte et l'image */
+                text-align: center;
+                /* Centrer le texte sur petits écrans */
+            }
+
+            .text-zone {
+                padding-right: 0;
+                /* Enlever l'espacement à droite sur petits écrans */
+            }
         }
-
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-
-            /* Pour éviter l'interstice entre l'en-tête et le contenu défilant */
-            .scrollable-table thead th {
-                border-top: 0px solid black;
-            }
-
-            /* Responsive pour les petits écrans */
-            @media (max-width: 768px) {
-                .content-zone {
-                    flex-direction: column;
-                    /* Empiler le texte et l'image */
-                    text-align: center;
-                    /* Centrer le texte sur petits écrans */
-                }
-
-                .text-zone {
-                    padding-right: 0;
-                    /* Enlever l'espacement à droite sur petits écrans */
-                }
-            }
     </style>
 
 </head>
@@ -356,8 +312,7 @@
                                         </li>
                                         <li>contribuer à l'établissement de l'interopérabilité sémantique</li>
                                     </ul>
-                                    <p style="text-align: left;">L'ingénierie informatique de l'interopérabilité et
-                                        celle des
+                                    <p style="text-align: left;">L'ingénierie informatique de l'interopérabilité et celle des
                                         ontologies ne sont pas adressées.</p>
                                 </section>
                             </section>
@@ -418,7 +373,7 @@
                                                 <li>Extension au monde informatique</li>
                                                 <li>Communautés, Domaines et Concepts Multiples</li>
                                                 <li>Application à l'Interopérabilité</li>
-
+                                                
                                             </ol>
                                             <p>Il faut également comprendre ce que sont la connaissance, l'information
                                                 et les données ></p>
@@ -650,8 +605,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">A.10 Communautés, Domaines et concepts multiples
-                                        </h3>
+                                        <h3 style="font-size: 0.8em;">A.10 Communautés, Domaines et concepts multiples</h3>
                                     </div>
                                     <div class="image-zone">
                                         <img src="./img/ContextesMultiples.png" alt="ContextesMultiples"
@@ -1150,6 +1104,7 @@
                                                 à quoi elles servent V </p>
                                             <ol>
                                                 <li>Définitions</li>
+                                                <li>L'Ontologie</li>
                                                 <li>Les ontologies</li>
                                                 <li>Qu'est-ce qu'une bonne ontologie</li>
                                                 <li>Les divers usages</li>
@@ -1180,56 +1135,75 @@
                                     </div>
                                 </section>
 
-
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">D.2 Les ontologies</h3>
+                                        <h3 style="font-size: 0.8em;">D.2 L'Ontologie</h3>
+                                        <p>L'ontologie n'est pas nouvelle et précède l'ère informatique</p>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="font-size: 0.4em;text-align: left;">C'est une discipline
+                                                philosophique —
+                                                une branche de la philosophie qui traite
+                                                de la nature et de l'organisation de la réalité
+                                                Science de l'Être (Aristote, Métaphysique, IV, 1<br>Elle essaie de
+                                                répondre aux
+                                                questions suivantes:</p>
+                                            <ul style="font-size: 0.4em;">
+                                                <li>Qu'est-ce qui caractérise l'être ?</li>
+                                                <li>En fin de compte, qu'est-ce que l'être ?</li>
+                                            </ul>
+                                            <p style="font-size: 0.4em;text-align: left;">L’utilisation en
+                                                linguistique
+                                                des ontologies
+                                                est notamment celle relative
+                                                à la sémiotique et à la sémantique.</p>
+                                            <p style="font-size: 0.4em;text-align: left;">L'ontologie en
+                                                linguistique
+                                                touche à des
+                                                questions fondamentales sur la
+                                                manière dont le langage structure notre perception et notre
+                                                description
+                                                du monde. </p>
+                                            <p style="font-size: 0.4em;text-align: left;">Les théories vont de
+                                                celles
+                                                qui examinent la
+                                                manière dont les catégories
+                                                linguistiques correspondent à la réalité, à celles qui suggèrent que
+                                                le
+                                                langage façonne les réalités qu'il décrit.</p>
+                                            <p style="font-size: 0.4em;text-align: left;">De nombreux auteurs,
+                                                souvent à
+                                                l'intersection
+                                                de la philosophie, de la
+                                                linguistique et des sciences cognitives, ont contribué à cette
+                                                réflexion, chacun offrant une perspective unique sur la manière dont
+                                                le
+                                                langage articule le monde des concepts et des réalités.</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="img/ontologie.png" alt="ontologie"
+                                                style="width: 100%; margin-top: 20px;">
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">D.3 Les ontologies</h3>
                                     </div>
 
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p style="font-size: 0.6em;text-align: left;">
+                                            <p style="font-size: 0.6em;">
                                                 Une ontologie est une <strong>modélisation formelle</strong> d’un
                                                 domaine de
-                                                connaissance, qui capture les <span class="tooltip">concepts<span
-                                                        class="tooltip-text">Un concept représente une catégorie
-                                                        d’objets, d’idées ou d’entités appartenant à un domaine de
-                                                        connaissance. C’est une classe qui regroupe des instances
-                                                        partageant des caractéristiques communes.
-
-                                                        🧩 Exemple : Dans une ontologie sur les entreprises, Employé,
-                                                        Département et Projet sont des concepts.</span></span>, leurs
-                                                <span class="tooltip">relations<span class="tooltip-text">Une relation
-                                                        décrit un lien ou une interaction entre deux concepts. Elle
-                                                        formalise comment les entités sont connectées.
-
-                                                        🧩 Exemple : travailleDans relie le concept Employé au concept
-                                                        Département.
-                                                        📌 Types de relations :
-                                                        Hiérarchiques : estUn (Employé est une Personne)
-                                                        Associatives : travailleAvec, dirige</span></span>, <span
-                                                    class="tooltip">propriétés<span class="tooltip-text">Une propriété
-                                                        décrit une caractéristique ou un attribut associé à un concept.
-                                                        Elle associe un concept à une valeur (nombre, texte, date,
-                                                        etc.).
-
-                                                        🧩 Exemple :
-                                                        Pour Employé, les propriétés peuvent être nom, âge, salaire.
-                                                        Pour Projet, les propriétés peuvent être nom, date de début,
-                                                        budget.</span></span>
-                                                et <span class="tooltip">règles<span class="tooltip-text">Une règle
-                                                        définit des contraintes ou des inférences logiques dans
-                                                        l’ontologie. Elle formalise des conditions qui doivent être
-                                                        respectées ou des déductions automatiques.
-
-                                                        🧩 Exemple :
-                                                        Si un employé travaille dans un département et que ce
-                                                        département appartient à une entreprise, alors cet employé
-                                                        travaille pour cette entreprise.
-                                                        Un employé ne peut pas avoir deux numéros de sécurité sociale
-                                                        différents.</span></span>.
+                                                connaissance, qui capture les concepts, leurs relations, propriétés
+                                                et
+                                                règles.
                                                 Elle permet de décrire de manière explicite et normée un savoir
-                                                commun à une communauté.
+                                                commun à
+                                                une
+                                                communauté.
                                             </p>
 
                                             <p style="font-size: 0.8em;">Objectifs</pp>
@@ -1260,7 +1234,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">D.3 Qu'est-ce qu'une bonne ontologie
+                                        <h3 style="font-size: 0.8em;">D.4 Qu'est-ce qu'une bonne ontologie
                                         </h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
@@ -1268,46 +1242,17 @@
                                             <p style="font-size: 0.8em;text-align: left;">On s'attend à ce qu'une
                                                 ontologie soit</p>
                                             <ul style="font-size: 0.6em;">
-                                                <li>Significative: tous les concepts considérés ont un <span
-                                                        class="tooltip" style="font-size: 1em;">référent<span
-                                                            style="font-size: 12px;" class="tooltip-text">Un référent
-                                                            est ce à quoi un concept fait référence dans le monde réel
-                                                            ou dans un domaine de connaissance. C’est l’objet, la
-                                                            classe, l’événement ou l’entité concrète ou abstraite
-                                                            désignée par un terme. Une ontologie est dite significative
-                                                            lorsque chaque concept décrit possède un référent clairement
-                                                            identifiable et pertinent.</span></span></li>
+                                                <li>Significative: tous les concepts considérés ont un référent</li>
                                                 <li>Correcte: elle capture les connaissances des experts en la
                                                     matière
                                                 </li>
                                                 <li>Redondance minimale: pas de synonymes non intentionnels</li>
-                                                <li>Descriptions (suffisamment) détaillées avec une <span
-                                                        style="font-size: 1em;" class="tooltip">axiomatisation<span
-                                                            style="font-size: 12px;"
-                                                            class="tooltip-text">L’axiomatisation désigne l’ensemble des
-                                                            règles, des contraintes et des relations formellement
-                                                            définies entre les concepts dans une ontologie. Ces axiomes
-                                                            permettent de préciser la signification des concepts, leurs
-                                                            propriétés, ainsi que les relations qui les lient. Une
-                                                            axiomatisation riche fournit des descriptions détaillées,
-                                                            exprimées souvent en logique formelle, afin de permettre une
-                                                            interprétation précise et une utilisation cohérente de
-                                                            l’ontologie.</span></span> riche
+                                                <li>Axiomatisation riche: descriptions (suffisamment) détaillées
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 1em;text-align: left;">On souhaite l'automatisation du
-                                                <span class="tooltip">raisonnement<span style="font-size: 12px;"
-                                                        class="tooltip-text">Le
-                                                        raisonnement est le
-                                                        processus de déduction, d’inférence ou de vérification
-                                                        automatique de nouvelles connaissances à partir des concepts et
-                                                        des axiomes définis dans l’ontologie. Grâce aux formalisations
-                                                        logiques et mathématiques (comme la logique des prédicats et la
-                                                        théorie des ensembles), un système peut déduire de nouvelles
-                                                        informations, détecter des incohérences ou vérifier la
-                                                        complétude des descriptions.
-                                                    </span></span>
-                                            </p>
+                                            <p style="font-size: 0.8em;text-align: left;">On souhaite du
+                                                raisonnement
+                                                automatique</p>
                                             <ul style="font-size: 0.6em;">
                                                 <li>Appui sur des formalisations mathématiques</li>
                                                 <li>Combinaison de logique(s) et de la théorie des ensembles
@@ -1318,7 +1263,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">D.4 Les divers usages</h3>
+                                        <h3 style="font-size: 0.8em;">D.5 Les divers usages</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1338,7 +1283,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">D.5 Quelle logique?</h3>
+                                        <h3 style="font-size: 0.8em;">D.6 Quelle logique?</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1361,7 +1306,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">D.6 Quels langages?</h3>
+                                        <h3 style="font-size: 0.8em;">D.7 Quels langages?</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;text-align: left;">
                                         <div style="font-size: 0.8em;">
@@ -1443,24 +1388,27 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.8em;text-align: left;"> La logique est un outil
-                                                puissant pour formuler des propositions et évaluer leur véracité:</p>
+                                            <p style="font-size: 0.8em;text-align: left;">La logique est un outil
+                                                puissant pour exprimer des affirmations :</p>
                                             <ul style="font-size: 0.7em;">
-                                                <li><strong>Proposition :</strong> Énoncé pouvant être vrai ou faux,
-                                                    indépendamment de l’acte de l’énoncer.</li>
+                                                <li><strong>Proposition :</strong> Une affirmation(ou assertion) pouvant être
+                                                    vraie ou
+                                                    fausse.</li>
                                                 <li><strong>Connecteurs :</strong> ET (∧), OU (∨), NON (¬),
                                                     implication
                                                     (→).</li>
                                             </ul>
-                                            <p style="font-size: 0.8em;text-align: left;">Elle permet de vérifier la
-                                                validité de raisonnements selon des règles rigoureuses.</p>
+                                            <p style="font-size: 0.8em;text-align: left;">Elle permet de vérifier
+                                                des
+                                                règles de manière rigoureuse.</p>
                                         </div>
                                     </div>
                                 </section>
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">E.3 Quantificateurs</h3>
+                                        <p style="font-size: 0.6em;">Ontologies - logique</p>
+                                        <h3 style="font-size: 0.8em;">Quantificateurs</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1484,7 +1432,7 @@
 
                                 <section>
                                     <div class=" title-zone">
-                                        <h3 style="font-size: 0.8em;">E.4 Concepts de base</h3>
+                                        <h3 style="font-size: 0.8em;">E.3 Concepts de base</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1495,7 +1443,7 @@
                                             </p>
                                             <ul style="font-size: 0.7em;">
                                                 <li>
-                                                    <strong>Ensemble :</strong> Une collection d'élément (ou objets*)
+                                                    <strong>Ensemble :</strong> Une collection d'objets
                                                     (<code>A = {1, 2, 3}</code>).
                                                 </li>
                                                 <li>
@@ -1522,23 +1470,14 @@
                                                     <code>A ∩ B = ∅</code>).
                                                 </li>
                                             </ul>
-                                            <p style="text-align: left;font-size: 12px;">* Un objet est une entité
-                                                individuelle, tandis qu'un élément est défini
-                                                par son appartenance à l'ensemble.<br>
-                                                ** Les objets réels, tout comme les éléments d'un ensemble, ne sont pas
-                                                des instances, car ils existent indépendamment des modèles ou des
-                                                classes à partir desquels des instances peuvent être créées ; en
-                                                d'autres termes, ce sont des entités concrètes ou des unités d'un tout,
-                                                et non des réalisations dérivées d'un processus d'instanciation à partir
-                                                d'une abstraction.</p>
                                         </div>
-
+    
                                     </div>
                                 </section>
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">E.5 Relations</h3>
+                                        <h3 style="font-size: 0.8em;">E.4 Relations</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1562,7 +1501,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">E.6 Caractéristiques des relations</h3>
+                                        <h3 style="font-size: 0.8em;">E.5 Caractéristiques des relations</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1588,7 +1527,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">E.7 Types de relations</h3>
+                                        <h3 style="font-size: 0.8em;">E.6 Types de relations</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
@@ -1611,36 +1550,68 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">E.8 Exemples pratiques</h3>
+                                        <h3 style="font-size: 0.8em;">E.7 Exemples pratiques</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
-                                        <div style="font-size: 0.8em;text-align:left">
-                                            <p style="font-size: 0.8em;text-align: left;">Diverses représentations des
-                                                relations pour les:</p>
+                                        <div style="font-size: 0.8em;">
+                                            <p style="font-size: 0.8em;text-align: left;">Applications concrètes des
+                                                relations :</p>
                                             <ul style="font-size: 0.7em;">
-                                                <li><strong>Graphes orientés :</strong> ensembles de sommets et arcs où
-                                                    les
-                                                    arcs ont une direction. Exemple : Réseau social (Utilisateur A
-                                                    "suit" Utilisateur B).
-                                                </li>
-                                                <li><strong>Bases de données :</strong> Tables avec colonnes liées par
-                                                    clés primaires et clés étrangères. Exemple : Table Employé avec
-                                                    ID_Employé (clé primaire), ID_Departement (clé étrangère).</li>
-                                                <li><strong>Ontologies :</strong> Modèles formel représentant des
-                                                    concepts et leurs liens typés ou références. Exemple : Ontologie
-                                                    médicale avec "Maladie" liée à "Symptôme" par "cause".</li>
-                                            </ul>
-
-                                            <p style="font-size: 0.8em;text-align: left;">Représentation pour :</p>
-                                            <ul>
-                                                <li>Graphe Orienté : Sommets reliés par des arcs directionnels.</li>
-                                                <li>Base de Données : Table avec clés primaires/étrangères.</li>
-                                                <li>Ontologie : Concepts reliés par des liens typés (ex. "cause").</li>
+                                                <li><strong>Graphe orienté :</strong> Les arcs d’un graphe sont des
+                                                    relations entre sommets.</li>
+                                                <li><strong>Base de données :</strong> Une table relie des colonnes
+                                                    à
+                                                    travers des clés primaires et étrangères.</li>
+                                                <li><strong>Ontologies :</strong> Relations entre concepts pour
+                                                    modéliser des connaissances.</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </section>
 
+
+                                <section>
+                                    <div class="title-zone">
+
+                                        <h3 style="font-size: 0.8em;">E.8 Opérateurs Logiques : AND et OR</h3>
+                                    </div>
+                                    <div style="display: flex; gap: 20px;">
+                                        <div style="font-size: 0.8em;">
+                                            <p style="font-size: 0.8em;text-align: left;">Les opérateurs logiques se
+                                                traduisent en théorie des ensembles :</p>
+                                            <ul style="font-size: 0.7em;">
+                                                <li><strong>AND (Intersection) :</strong> Les éléments communs à
+                                                    deux
+                                                    ensembles. <br>
+                                                    <code>A ∩ B</code>.
+                                                </li>
+                                                <li><strong>OR (Union) :</strong> Les éléments présents dans au
+                                                    moins un
+                                                    des ensembles. <br>
+                                                    <code>A ∪ B</code>.
+                                                </li>
+                                            </ul>
+                                            <p style="font-size: 0.8em;text-align: left;">Ces interactions
+                                                permettent de
+                                                modéliser des relations logiques.</p>
+                                        </div>
+                                        <div style="font-size: 0.8em;">
+                                            <svg width="200" height="150">
+                                                <!-- Union (OR) -->
+                                                <circle cx="70" cy="75" r="50" fill="rgba(0, 0, 255, 0.2)" />
+                                                <circle cx="130" cy="75" r="50" fill="rgba(0, 0, 255, 0.2)" />
+                                                <text x="60" y="145" style="font-size: 0.6em;">A ∪ B</text>
+                                            </svg>
+                                            <svg width="200" height="150">
+                                                <!-- Intersection (AND) -->
+                                                <circle cx="70" cy="75" r="50" fill="rgba(0, 0, 255, 0.2)" />
+                                                <circle cx="130" cy="75" r="50" fill="rgba(0, 0, 255, 0.2)" />
+                                                <circle cx="100" cy="75" r="30" fill="rgba(0, 0, 255, 0.5)" />
+                                                <text x="60" y="145" style="font-size: 0.6em;">A ∩ B</text>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </section>
                                 <section>
                                     <div class="title-zone">
                                         <h3 style="font-size: 0.8em;">E.9 Définition Extensive des Ensembles</h3>
@@ -1648,27 +1619,44 @@
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
                                             <p style="font-size: 0.8em;text-align: left;">Les ensembles peuvent être
-                                                définis à l’aide de quantificateurs ("pour tout", "il existe") et de
-                                                relations. Voici trois exemples :
+                                                définis de manière plus complexe en utilisant des
+                                                <strong>quantificateurs</strong> et des <strong>relations</strong>.
+                                                Voici quelques exemples :
                                             </p>
                                             <ul style="font-size: 0.6em;">
-                                                <li><strong>Exemple 1 – Union avec condition</strong>
-                                                    Ensemble des éléments dans X ou Y, liés à au moins un élément :
-                                                    <code>{x | (x ∈ X ∨ x ∈ Y) ∧ ∃y R(x, y)}</code>.
+                                                <li><strong>Exemple 1 (Union avec quantificateur) :</strong>
+                                                    L'ensemble
+                                                    des éléments <code>x</code> qui sont dans <code>X</code> ou dans
+                                                    <code>Y</code>, et pour lesquels il existe un élément
+                                                    <code>y</code>
+                                                    tel que <code>R(x, y)</code> (une relation), peut être écrit
+                                                    comme :
+                                                    <br>
+                                                    <code>{x | (x ∈ X ∨ x ∈ Y) ∧ ∃y (R(x, y))}</code>.
                                                 </li>
-                                                <li><strong>Exemple 2 – Condition universelle
-                                                        :</strong> Ensemble des éléments liés à tous les éléments de Y :
+                                                <li><strong>Exemple 2 (Quantificateur universel avec relation)
+                                                        :</strong> L'ensemble des éléments <code>x</code> pour
+                                                    lesquels
+                                                    tous les éléments <code>y</code> dans l'ensemble <code>Y</code>
+                                                    satisfont une relation <code>R(x, y)</code>, peut être exprimé
+                                                    comme
+                                                    : <br>
                                                     <code>{x | ∀y (y ∈ Y → R(x, y))}</code>.
                                                 </li>
-                                                <li><strong>Exemple 3 – Relations multiples
-                                                        :</strong> Ensemble des éléments liés à deux éléments distincts
-                                                    : <br>
+                                                <li><strong>Exemple 3 (Quantificateurs multiples avec relation)
+                                                        :</strong> L'ensemble des éléments <code>x</code> tels qu'il
+                                                    existe un <code>y</code> et un <code>z</code> où <code>x</code>
+                                                    est
+                                                    en relation avec <code>y</code> et <code>z</code> : <br>
                                                     <code>{x | ∃y ∃z (R(x, y) ∧ S(x, z))}</code>.
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.7em;text-align: left;">Ces exemples montrent comment
-                                                décrire des ensembles complexes avec des quantificateurs (∀ : pour tout,
-                                                ∃ : il existe) et des relations logiques</p>
+                                            <p style="font-size: 0.7em;text-align: left;">Ces exemples montrent
+                                                comment
+                                                les ensembles peuvent être décrits en combinant des relations
+                                                logiques
+                                                et des quantificateurs (existence et universalité), ce qui permet de
+                                                modéliser des situations plus complexes.</p>
                                         </div>
                                     </div>
                                 </section>
@@ -1719,6 +1707,81 @@
                                     </table>
                                 </section>
 
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">E.11 Logique d'ordre supérieur</h3>
+                                    </div>
+                                    <div style="display: flex; gap: 20px;">
+                                        <div style="font-size: 0.8em;">
+                                            <p style="font-size: 0.8em;text-align: left;">La logique d'ordre
+                                                supérieur
+                                                étend la logique classique :</p>
+                                            <ul style="font-size: 0.7em;">
+                                                <li>Elle permet de raisonner sur des <strong>ensembles
+                                                        d'ensembles</strong>.</li>
+                                                <li>Exemple : "Tous les ensembles qui contiennent un élément commun
+                                                    avec
+                                                    A".</li>
+                                                <li>Elle est plus expressive mais ne permet pas toujours un
+                                                    raisonnement
+                                                    automatisé.</li>
+                                            </ul>
+                                            <p style="font-size: 0.8em;text-align: left;">Courant pour les modèles
+                                                de
+                                                systèmes</p>
+
+                                        </div>
+                                        <div style="font-size: 0.8em;">
+                                            <svg width="300" height="200">
+                                                <!-- Ensemble d'ensembles -->
+                                                <circle cx="100" cy="100" r="70" fill="blue" />
+                                                <circle cx="140" cy="100" r="30" fill="red" />
+                                                <text x="135" y="105" style="font-size: 0.5em; fill: black;">A</text>
+                                                <text x="15" y="200" style="font-size: 0.5em; fill: black;">Ensemble
+                                                    d'ensembles</text>
+                                            </svg>
+                                            <p style="font-size: 0.6em;text-align: center;">A : élément de
+                                                l'ensemble
+                                                rouge.<br>Rouge : sous-ensemble de bleu.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">E.12 Logique floue</h3>
+                                    </div>
+                                    <div style="display: flex; gap: 20px;">
+                                        <div style="font-size: 0.8em;">
+                                            <p style="font-size: 0.8em;text-align: left;">La logique floue étend la
+                                                logique classique avec des valeurs de vérité entre 0 et 1 :</p>
+                                            <ul style="font-size: 0.7em;">
+                                                <li><strong>1 (Vrai) :</strong> Certitude totale.</li>
+                                                <li><strong>0 (Faux) :</strong> Aucune vérité.</li>
+                                                <li><strong>Entre 0 et 1 :</strong> Degré de probabilité ou de
+                                                    pertinence.</li>
+                                            </ul>
+                                            <p style="font-size: 0.8em;text-align: left;">Exemple : "Il est 70%
+                                                probable
+                                                qu'il pleuve".</p>
+                                            <p style="font-size: 0.8em;text-align: left;">Utilisé par exemple pour
+                                                la
+                                                robotique</p>
+
+                                        </div>
+                                        <div style="font-size: 0.8em;">
+                                            <svg width="200" height="150">
+                                                <!-- Logique floue illustration -->
+                                                <rect x="30" y="75" width="140" height="20" fill="red" />
+                                                <rect x="30" y="75" width="98" height="20" fill="blue" />
+                                                <text x="30" y="110" style="font-size: 0.6em;fill: black;">70%
+                                                    probabilité</text>
+                                            </svg>
+                                            <p style="font-size: 0.7em;text-align: center;">Exemple d'une vérité
+                                                partielle : 0.7.</p>
+                                        </div>
+                                    </div>
+                                </section>
                             </section>
 
                             <!-- Partie 2 : OWL et ontologies -->
@@ -1758,8 +1821,7 @@
                                         <li>utilisé pour modéliser des connaissances complexes</li>
                                         <li>adapté pour fédérer les ontologies de plusieurs domaines</li>
                                         <li>supporté par de nombreux outils, en particulier Protégé</li>
-                                        <li>supporté par des moteurs de raisonnement avec l'hypothèse d'un monde ouvert
-                                        </li>
+                                        <li>supporté par des moteurs de raisonnement avec l'hypothèse d'un monde ouvert</li> 
                                     </ul>
                                 </section>
 
@@ -1769,33 +1831,31 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            
-                                            <ul style="font-size: 0.5em;text-align: left;">
+                                            <p style="font-size: 0.6em;text-align: left;">Protégé est un logiciel
+                                                open-source largement utilisé pour la création, l'édition et la
+                                                gestion
+                                                des ontologies, particulièrement celles basées sur le langage OWL2
+                                                (Web
+                                                Ontology Language).</p>
+                                            <ul style="font-size: 0.5em;">
                                                 <li><strong>Création d'ontologies</strong></li>
                                                 <li><strong>Support OWL2</strong></li>
                                                 <li><strong>Raisonnement</strong></li>
                                                 <li><strong>Interface graphique</strong></li>
                                                 <li><strong>Export et partage</strong> </li>
                                             </ul>
-                                            
+                                            <p style="font-size: 0.6em;text-align: left;">Il est très utilisé dans
+                                                la
+                                                recherche, le développement d'applications sémantiques, et dans des
+                                                domaines comme l'intelligence artificielle, la gestion des
+                                                connaissances, et le web sémantique.</p>
                                         </div>
                                         <div style="font-size: 0.8em;">
-                                            <img src="./img/screenshoptProtege.png"
+                                            <img src="./img/A-screenshot-of-the-class-editor-of-Protege-OWL-The-hierarchy-of-classes-is-shown-on-the.png"
                                                 alt="Protégé Logo"
                                                 style="width: 100%; height: auto; display: block; margin: auto;">
                                         </div>
                                     </div>
-                                    <p style="font-size: 0.4em;text-align: left;">Protégé est un logiciel
-                                        open-source largement utilisé pour la création, l'édition et la
-                                        gestion
-                                        des ontologies, particulièrement celles basées sur le langage OWL2
-                                        (Web
-                                        Ontology Language).</p>
-                                        <p style="font-size: 0.4em;text-align: left;">Il est très utilisé dans
-                                            la
-                                            recherche, le développement d'applications sémantiques, et dans des
-                                            domaines comme l'intelligence artificielle, la gestion des
-                                            connaissances, et le web sémantique.</p>
                                     <aside class="notes">
                                         <ul style="font-size: 0.4em;">
                                             <li><strong>Création d'ontologies :</strong> Protégé permet de définir
@@ -1834,48 +1894,46 @@
                                                 (DL) plus accessible sans nécessiter une connaissance approfondie de
                                                 la
                                                 notation formelle.</p>
-                                            
+                                            <ul style="font-size: 0.6em;">
+                                                <li><strong>Accessibilité :</strong> Description des concepts et des
+                                                    relations de manière textuelle et
+                                                    intuitive</li>
+                                                <li><strong>Concepts et relations :</strong> Définition simple des
+                                                    classes, relations et de leur composition avec <em>and</em>,
+                                                    <em>or</em>, <em>not</em>, etc.Par exemple pour définir une
+                                                    classe
+                                                    de
+                                                    personnes ayant un âge supérieur à 18 ans et étant des
+                                                    étudiants, on
+                                                    pourrait utiliser la syntaxe suivante :
+                                                    <code>Personne and (aPourAge value > 18) and Etudiant</code>.
+                                                </li>
+                                                <li><strong>Représentation de restrictions :</strong> Expression des
+                                                    restrictions sur les propriétés. Par exemple :
+                                                    <code>Personne and (aPourEnfant some HPI)</code> définit une
+                                                    personne
+                                                    ayant un enfant de type HPI.
+                                                </li>
+
+                                            </ul>
+                                            <p style="font-size: 0.7em;text-align: left;">La syntaxe Manchester
+                                                simplifie le travail de formalisation des ontologies en Description
+                                                Logic, tout en offrant suffisamment de puissance pour modéliser des
+                                                relations complexes dans le domaine des connaissances.</p>
                                         </div>
                                         <div style="font-size: 0.8em;">
-                                            <img src="./img/manchester.png" alt="Syntaxe Manchester"
+                                            <img src="./img/Dl-query-equip-blur2.png" alt="Syntaxe Manchester"
                                                 style="width: 100%; height: auto; display: block; margin: auto;">
                                         </div>
-                                        
                                     </div>
-                                    <ul style="font-size: 0.5em;">
-                                        <li><strong>Accessibilité :</strong> Description des concepts et des
-                                            relations de manière textuelle et
-                                            intuitive</li>
-                                        <li><strong>Concepts et relations :</strong> Définition simple des
-                                            classes, relations et de leur composition avec <em>and</em>,
-                                            <em>or</em>, <em>not</em>, etc.Par exemple pour définir une
-                                            classe
-                                            de
-                                            personnes ayant un âge supérieur à 18 ans et étant des
-                                            étudiants, on
-                                            pourrait utiliser la syntaxe suivante :
-                                            <code>Personne and (aPourAge value > 18) and Etudiant</code>.
-                                        </li>
-                                        <li><strong>Représentation de restrictions :</strong> Expression des
-                                            restrictions sur les propriétés. Par exemple :
-                                            <code>Personne and (aPourEnfant some HPI)</code> définit une
-                                            personne
-                                            ayant un enfant de type HPI.
-                                        </li>
-
-                                    </ul>
-                                    <p style="font-size: 0.5em;text-align: left;">La syntaxe Manchester
-                                        simplifie le travail de formalisation des ontologies en Description
-                                        Logic, tout en offrant suffisamment de puissance pour modéliser des
-                                        relations complexes dans le domaine des connaissances.</p>
                                     <aside class="notes">
 
-                                        <p style="font-size: 0.5em;text-align: left;">La syntaxe Manchester est un
+                                        <p style="font-size: 0.8em;text-align: left;">La syntaxe Manchester est un
                                             moyen simple et lisible de définir des axiomes et des classes dans une
                                             ontologie, utilisée dans Protégé pour rendre la logique des descriptions
                                             (DL) plus accessible sans nécessiter une connaissance approfondie de la
                                             notation formelle.</p>
-                                        <ul style="font-size: 0.4em;">
+                                        <ul style="font-size: 0.6em;">
                                             <li><strong>Accessibilité :</strong> La syntaxe Manchester permet de
                                                 décrire des concepts et des relations de manière textuelle et
                                                 intuitive, ce qui facilite la création d'ontologies pour les
@@ -1898,7 +1956,7 @@
                                             </li>
 
                                         </ul>
-                                        <p style="font-size: 0.5em;text-align: left;">La syntaxe Manchester
+                                        <p style="font-size: 0.7em;text-align: left;">La syntaxe Manchester
                                             simplifie le travail de formalisation des ontologies en Description
                                             Logic, tout en offrant suffisamment de puissance pour modéliser des
                                             relations complexes dans le domaine des connaissances.</p>
@@ -1943,99 +2001,98 @@
                                 <section>
                                     <div class=" title-zone" style="font-size: 1em;">
                                         <h3 style="font-size: 0.8em;">F.5 Constructions du langage OWL</h3>
-                                        <P style="font-size: 0.7em;">Tableau des construction du langage OWL
-                                        </p>
-                                        <div class="scrollable-table">
-                                            <table style="width: 100%; border-collapse: collapse; font-size: 0.5em;">
-                                                <thead>
-                                                    <tr
-                                                        style="background-color: #f4f4f4; text-align: left; border-bottom: 1px solid #ccc;">
-                                                        <th style="padding: 8px; border-right: 1px solid #ccc;">Logic
-                                                        </th>
-                                                        <th style="padding: 8px; border-right: 1px solid #ccc;">Théorie
-                                                            des Ens.</th>
-                                                        <th style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            Manchester</th>
-                                                        <th style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            Description</th>
-                                                        <th style="padding: 8px;">Exemple</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr style="border-bottom: 1px solid #ccc;">
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">AND (∧)
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            Intersection (∩)</td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            <code>A and B</code>
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">Les
-                                                            éléments communs entre deux ensembles ou concepts.</td>
-                                                        <td style="padding: 8px;">A ∩ B (ex. : "Person and Student")
-                                                        </td>
-                                                    </tr>
-                                                    <tr style="border-bottom: 1px solid #ccc;">
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">OR (∨)
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">Union
-                                                            (∪)
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            <code>A or B</code>
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">Les
-                                                            éléments appartenant à au moins un des ensembles ou
-                                                            concepts.</td>
-                                                        <td style="padding: 8px;">A ∪ B (ex. : "Person or Animal")</td>
-                                                    </tr>
-                                                    <tr style="border-bottom: 1px solid #ccc;">
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            Quantificateur existentiel (∃) </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            Existence d'un élément</td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            hasChild some Person
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">Il
-                                                            existe au moins un élément dans la relation spécifiée.</td>
-                                                        <td style="padding: 8px;">∃ hasChild.Person (ex. : "un individu
-                                                            pour qui il existe un enfant qui soit une personne.")</td>
-                                                    </tr>
-                                                    <tr style="border-bottom: 1px solid #ccc;">
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            Quantificateur universel(∀)</td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">Tous les
-                                                            éléments</td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">
-                                                            hasParent only Person
-                                                        </td>
-                                                        <td style="padding: 8px; border-right: 1px solid #ccc;">Tous les
-                                                            éléments satisfont la relation spécifiée.</td>
-                                                        <td style="padding: 8px;">∀ hasParent.Person (ex. : "tout
-                                                            individu
-                                                            ayant un parent qui soit une personne.")</td>
-                                                    </tr>
-                                                    <tr style="border-bottom: 1px solid #ccc; height: 20px;">
-                                                        <td style="padding: 4px; border-right: 1px solid #ccc;"> NOT (¬)
-                                                        </td>
-                                                        <td style="padding: 4px; border-right: 1px solid #ccc;">
-                                                            Complément</td>
-                                                        <td style="padding: 4px; border-right: 1px solid #ccc;">
-                                                            <code>not A</code>
-                                                        </td>
-                                                        <td style="padding: 4px; border-right: 1px solid #ccc;">Tous les
-                                                            éléments qui ne sont pas dans l'ensemble ou le concept
-                                                            spécifié.</td>
-                                                        <td style="padding: 4px;">¬A (ex. : "Not Student" pour
-                                                            représenter tout ce qui n'est pas un étudiant.)</td>
-                                                    </tr>
+                                    <P style="font-size: 0.7em;">Tableau des construction du langage OWL
+                                    </p>
+                                    <div class="scrollable-table">
+                                        <table style="width: 100%; border-collapse: collapse; font-size: 0.5em;">
+                                            <thead>
+                                                <tr
+                                                    style="background-color: #f4f4f4; text-align: left; border-bottom: 1px solid #ccc;">
+                                                    <th style="padding: 8px; border-right: 1px solid #ccc;">Logic
+                                                    </th>
+                                                    <th style="padding: 8px; border-right: 1px solid #ccc;">Théorie
+                                                        des Ens.</th>
+                                                    <th style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        Manchester</th>
+                                                    <th style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        Description</th>
+                                                    <th style="padding: 8px;">Exemple</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1px solid #ccc;">
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">AND (∧)
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        Intersection (∩)</td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        <code>A and B</code>
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">Les
+                                                        éléments communs entre deux ensembles ou concepts.</td>
+                                                    <td style="padding: 8px;">A ∩ B (ex. : "Person and Student")
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ccc;">
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">OR (∨)
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">Union
+                                                        (∪)
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        <code>A or B</code>
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">Les
+                                                        éléments appartenant à au moins un des ensembles ou
+                                                        concepts.</td>
+                                                    <td style="padding: 8px;">A ∪ B (ex. : "Person or Animal")</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ccc;">
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        Quantificateur existentiel (∃) </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        Existence d'un élément</td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        hasChild some Person
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">Il
+                                                        existe au moins un élément dans la relation spécifiée.</td>
+                                                    <td style="padding: 8px;">∃ hasChild.Person (ex. : "un individu
+                                                        pour qui il existe un enfant qui soit une personne.")</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ccc;">
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        Quantificateur universel(∀)</td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">Tous les
+                                                        éléments</td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">
+                                                        hasParent only Person
+                                                    </td>
+                                                    <td style="padding: 8px; border-right: 1px solid #ccc;">Tous les
+                                                        éléments satisfont la relation spécifiée.</td>
+                                                    <td style="padding: 8px;">∀ hasParent.Person (ex. : "tout individu
+                                                        ayant un parent qui soit une personne.")</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ccc; height: 20px;">
+                                                    <td style="padding: 4px; border-right: 1px solid #ccc;"> NOT (¬)
+                                                    </td>
+                                                    <td style="padding: 4px; border-right: 1px solid #ccc;">
+                                                        Complément</td>
+                                                    <td style="padding: 4px; border-right: 1px solid #ccc;">
+                                                        <code>not A</code>
+                                                    </td>
+                                                    <td style="padding: 4px; border-right: 1px solid #ccc;">Tous les
+                                                        éléments qui ne sont pas dans l'ensemble ou le concept
+                                                        spécifié.</td>
+                                                    <td style="padding: 4px;">¬A (ex. : "Not Student" pour
+                                                        représenter tout ce qui n'est pas un étudiant.)</td>
+                                                </tr>
 
 
-                                                </tbody>
-                                            </table>
+                                            </tbody>
+                                        </table>
 
-                                        </div>
+                                    </div>
                                 </section>
                                 <section>
                                     <div class="title-zone">
@@ -3344,7 +3401,7 @@
                             </section>
                             <section>
                                 <section>
-                                    <h1 style="font-size: 0.8em;">Annexes</h1>
+                                    <h1  style="font-size: 0.8em;">Annexes</h1>
 
                                     <ul>
                                         <li>Symboles et concepts utilisés pour décrire les ontologies</li>

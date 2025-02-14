@@ -197,7 +197,6 @@
                         domainsLabel: "Domain declarations",
                         rangesLabel: "Tange declarations",
                     },
-
                     menu: {
                         language: "Language",
                         fr: "🇫🇷 French",
@@ -207,7 +206,7 @@
                         importinferred: "Import inferred axioms as ontology",
                         expandCollapse: "Expand/Collapse",
                         nodes: "Nodes",
-                        expandallnodes: "Expand All",
+                        expandAllNodes: "Expand All",
                         collapseAllNodes: "Collapse All",
                         expandSelectedNodes: "Expand Selected",
                         collapseSelectedNodes: "Collapse Selected",
@@ -279,6 +278,14 @@
                         removeall: "Remove All",
                         restore: "Restore"
                     },
+                    confirm: {
+                        replacegraph: "Do you want to replace the current graph? If yes, current graph will be removed, if no, it will be merged with the import.",
+                        rdfinplaceofowl: "Do you want to show RDF triples in place of OWL?"
+                    },
+                    alert: {
+                        selectowlinferred: "Please select the inferred OWL File",
+                        selectowl: "Please select you OWL File"
+                    }
                 }
             },
             fr: {
@@ -396,6 +403,15 @@
                         edgerenderinglabel: "Rendu par Libellé (RDFS Label)",
                         edgerenderingannotationProperty: "Rendu par Propriété d'Annotation",
                         edgerenderingcustom: "Rendu Personnalisé"
+                    },
+                    confirm: {
+                        replacegraph: "Voulez vous remplacer le graphe courant? Sinon l'import sera fusionné avec le graphe courant.",
+                        rdfinplaceofowl: "Voulez vous visualizer le graphe RDF au lien de l'ontologie OWL?   "
+                    }
+                    ,
+                    alert: {
+                        selectowlinferred: "Veuillez sélectionner le fichier OWL inferred.",
+                        selectowl: "Veuillez sélectionner un fichier OWL."
                     }
                 }
             }
@@ -600,9 +616,12 @@
         function loadRDF(file, inferred = false) {
             if (!file) {
                 if (inferred) {
-                    alert("Veuillez sélectionner le fichier OWL inferred.");
+                    alert(i18next.t(alert.selectowlinferred));
+
+
                 } else {
-                    alert("Veuillez sélectionner un fichier OWL.");
+                    alert(i18next.t(alert.selectowl));
+
                 }
 
                 return;
@@ -647,7 +666,8 @@
                         defaultBaseIRI = actualBaseIRI;
                     }
                     console.log('Final RDF Store:', store);
-                    w2confirm("Do you want to show RDF triples in place of OWL?")
+                    w2confirm(i18next.t(`confirm.rdfinplaceofowl`))
+
                         .yes(() => {
                             validateRDF(store);
                         })
@@ -673,7 +693,7 @@
                 alert("No file selected!");
                 return;
             }
-            w2confirm("Do you want to replace? If yes, current graph will be removed, if no, it will be merged with the import.")
+            w2confirm(i18next.t(`confirm.replacegraph`))
                 .yes(() => {
                     cy.$().remove();
                     loadRDF(file); // Pass file object
@@ -733,7 +753,7 @@
                         ,
                         { text: '-- Edge' },
 
-                        { id: 'edgeirishortName', text: i18next.t("menu.edgeirishortName"), disabled: false },
+                        { id: 'edgeirishortName', text: i18next.t("menu.edgeirishortName"), disabled: true },
                         { id: 'edgerenderingprefixName', text: i18next.t("menu.edgerenderingprefixName"), disabled: true },
                         { id: 'edgerenderinglabel', text: i18next.t("menu.edgerenderinglabel"), disabled: true },
                         { id: 'edgerenderingannotationProperty', text: i18next.t("menu.edgerenderingannotationProperty"), disabled: true },
@@ -1060,7 +1080,7 @@
                     break;
             }
         }
-            // Define the layout first
+        // Define the layout first
         let layout = new w2layout({
             //box: '#layout',
             name: 'mainLayout',
@@ -1601,9 +1621,14 @@ Text:${label.text}
 
         // Fonction de validation RDF for s o p triples visualisation
         function validateRDF(store) {
+            const triplesSelect = document.getElementById('triplesSelect');
+            document.getElementById('triplesSelect').innerHTML = '';
 
             let nodeSet = new Set(); // To track added node IDs
             store.statements.forEach(({ subject, predicate, object }) => {
+                const option = document.createElement('option');
+                option.textContent = subject + " " + predicate + " " + object;
+                triplesSelect.appendChild(option);
                 // Process subject node
                 const subjectLabel = subject.termType === "NamedNode" ? getLabelFromIRI(subject.value) : subject.value;
                 const subjectClass = subject.termType === "NamedNode" ? "irinode" : "literalnode";
