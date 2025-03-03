@@ -142,7 +142,7 @@
 
     <input type="file" name="name" id="inputfile" style="display:none" />
     <input type="file" name="name" id="inputinferred    file" style="display:none" />
-
+    <input type="file" name="name" id="load-from-inp" style="display:none" />
     <script type="module">
         var mainMenu;
         var tripleTabs;
@@ -204,6 +204,9 @@
                         owl: "OWL File",
                         open: "Open",
                         importinferred: "Import inferred axioms as ontology",
+                        savegraph: "Save Graph",
+                        loadgraph: "Load Graph",
+                        exportjson: "Export Json",
                         expandCollapse: "Expand/Collapse",
                         nodes: "Nodes",
                         expandAllNodes: "Expand All",
@@ -328,6 +331,9 @@
                         owl: "Fichier OWL",
                         open: "Ouvrir",
                         importinferred: "Import des axiomes inférré de l'ontologie",
+                        savegraph: "Sauve Graphe",
+                        loadgraph: "Charge Graphe",
+                        exportjson: "Exporte Json",
                         expandCollapse: "Développer/Réduire",
                         nodes: "Nœuds",
                         expandAllNodes: "Tout développer",
@@ -416,6 +422,137 @@
                 }
             }
         };
+        function setColor4CompoundEdge(e) {
+            const collapsedEdges = e.data('collapsedEdges');
+            const edgeType = collapsedEdges[0].data('edgeType');
+
+            // Check if the edge type has a defined line color, return it if it exists
+            const color = collapsedEdges[0].style('line-color');
+            if (color) {
+                return color;
+            }
+            return '#b3b3b3'; // Default color if none is defined
+        }
+
+        function setLineStyleForCompoundEdge(e) {
+            const collapsedEdges = e.data('collapsedEdges');
+            const edgeType = collapsedEdges[0].data('edgeType');
+
+            // Inherit line style from the first collapsed edge's edge type
+            const lineStyle = collapsedEdges[0].style('line-style');
+            if (lineStyle) {
+                return lineStyle;
+            }
+            return 'solid'; // Default line style if none is defined
+        }
+
+        function setTargetArrowShape(e) {
+            const collapsedEdges = e.data('collapsedEdges');
+            const shapes = {};
+
+            // Iterate through the collapsed edges to collect unique target arrow shapes
+            for (let i = 0; i < collapsedEdges.length; i++) {
+                const edge = collapsedEdges[i];
+                const shape = edge.style('target-arrow-shape');
+
+                if (shape && shape !== 'none') {
+                    shapes[shape] = true;
+                }
+            }
+
+            // Determine a consistent shape for the collapsed edge based on directionality
+            if (Object.keys(shapes).length === 0) {
+                return 'none'; // Default to no arrow if no distinct shapes found
+            }
+            return Object.keys(shapes)[0]; // Use the first shape found in collapsed edges
+        }
+
+        function setSourceArrowShape(e) {
+            const collapsedEdges = e.data('collapsedEdges');
+            const shapes = {};
+
+            // Iterate through the collapsed edges to collect unique source arrow shapes
+            for (let i = 0; i < collapsedEdges.length; i++) {
+                const edge = collapsedEdges[i];
+                const shape = edge.style('source-arrow-shape');
+
+                if (shape && shape !== 'none') {
+                    shapes[shape] = true;
+                }
+            }
+
+            // Determine a consistent shape for the collapsed edge based on directionality
+            if (Object.keys(shapes).length === 0) {
+                return 'none'; // Default to no arrow if no distinct shapes found
+            }
+            return Object.keys(shapes)[0]; // Use the first shape found in collapsed edges
+        }
+
+        function doElemsMultiTypes(elems) {
+            const classDict = {};
+            for (let i = 0; i < elems.length; i++) {
+                classDict[elems[i].data('edgeType')] = true;
+            }
+            return Object.keys(classDict).length > 1;
+        }
+        function exportVisibleGraphToFile(cy) {
+            let graphData = [];
+
+            // Extract visible nodes
+            cy.nodes(':visible').forEach(node => {
+                let nodeData = {
+                    data: {
+                        id: node.id(),
+                        label: node.data('label'),
+                    }
+                };
+
+                let parent = node.parent();
+                if (parent.length > 0) {
+                    nodeData.data.parent = parent.id();
+                }
+
+                let classes = node.classes();
+                if (classes) {
+                    nodeData.classes = classes;
+                }
+
+                graphData.push(nodeData);
+            });
+
+            // Extract visible edges
+            cy.edges(':visible').forEach(edge => {
+                let edgeData = {
+                    data: {
+                        id: edge.id(),
+                        source: edge.source().id(),
+                        target: edge.target().id(),
+                        label: edge.data('label')
+                    }
+                };
+
+                let edgeType = edge.data('edgeType');
+                if (edgeType) {
+                    edgeData.data.edgeType = edgeType;
+                }
+
+                graphData.push(edgeData);
+            });
+
+            // Convertir en JSON et créer un Blob
+            let jsonString = JSON.stringify(graphData, null, 2);
+            let blob = new Blob([jsonString], { type: "application/json" });
+
+            // Créer un lien de téléchargement
+            let a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            var filename = "owl.json"
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
 
         i18next.init({
             lng: "fr", // Default language
@@ -524,6 +661,14 @@
             });
 
             mainMenu.refresh(); // Apply the changes
+        }
+        var groupEdges = true;
+        var allowNestedEdgeCollapse = true;
+        function getEdgeOptions() {
+            var groupEdgesOfSameTypeOnCollapse = groupEdges;
+            var allowNestedEdgeCollapse = allowNestedEdgeCollapse;
+
+            return { groupEdgesOfSameTypeOnCollapse: groupEdgesOfSameTypeOnCollapse, allowNestedEdgeCollapse: allowNestedEdgeCollapse };
         }
 
         function initializeTripleTabs() {
@@ -680,11 +825,6 @@
             reader.readAsText(file); // Read file as text
         }
 
-        function getEdgeOptions() {
-            var groupEdgesOfSameTypeOnCollapse = groupEdges;//document.getElementById('groupEdges').checked;
-            var allowNestedEdgeCollapse = allowNestedEdgeCollapse;//document.getElementById('allowNestedEdgeCollapse').checked;
-            return { groupEdgesOfSameTypeOnCollapse: groupEdgesOfSameTypeOnCollapse, allowNestedEdgeCollapse: allowNestedEdgeCollapse };
-        }
 
         //// Loading files
         document.getElementById('inputfile').addEventListener('change', function (event) {
@@ -709,6 +849,11 @@
                     items: [
                         { id: "open", text: i18next.t("menu.open") },
                         { id: "importinferred", text: i18next.t("menu.importinferred") },
+                        { type: 'break' },
+                        { id: "savegraph", text: i18next.t("menu.savegraph") },
+                        { id: "loadgraph", text: i18next.t("menu.loadgraph") },
+                        { type: 'break' },
+                        { id: "exportjson", text: i18next.t("menu.exportjson") }
                     ]
                 },
                 {
@@ -884,6 +1029,34 @@
                     file2.value = '';
                     file2.click();
                     break;
+                case 'owl:loadgraph':
+                    const el = document.getElementById('load-from-inp');
+                    el.value = '';
+                    el.click();
+                    break;
+                case 'owl:exportjson':
+                    exportVisibleGraphToFile(cy);
+                    break;
+                case 'owl:savegraph':
+                    if (typeof cy === 'undefined' || !cy) {
+                        console.warn("Cytoscape instance (cy) is not initialized.");
+                        w2alert("Graph non initialisé. Impossible de sauvegarder.");
+                        break;
+                    }
+                    var fileNameToSave = "myGraph.archicg";
+                    w2prompt({
+                        label: 'Enter value',
+                        value: fileNameToSave,
+                        attrs: 'size=6'
+                    })
+                        .change((event) => {
+                            fileNameToSave = event.detail.originalEvent.target.value;
+                        })
+                        .ok(() => {
+                            var visibleElements = cy.elements(':visible'); // Sélectionne uniquement les éléments visibles
+                            api.saveJson(visibleElements, fileNameToSave);
+                        });
+                    break;
                 case 'expandCollapse:expandAllNodes':
                     api.expandAll()
                     break;
@@ -904,23 +1077,24 @@
                     break;
                 case 'expandCollapse:expandAllEdges':
                     //  alert("expandAllEdges")
-                    api.expandAllEdges();
+                    api.expandAllEdges(getEdgeOptions());
                     break;
                 case 'expandCollapse:collapseAllEdges':
                     //  alert("collapseAllEdges")
-                    api.collapseAllEdges()
+                    var options = {}
+                    api.collapseAllEdges(getEdgeOptions())
                     break;
                 case 'expandCollapse:expandSelectedEdges':
-                    api.expandEdges(cy.$("edge:selected"));
+                    api.expandEdges(cy.$("edge:selected"), getEdgeOptions());
                     break;
                 case 'expandCollapse:collapseSelectedEdges':
-                    api.collapseEdges(cy.$("edge:selected"));
+                    api.collapseEdges(cy.$("edge:selected"), getEdgeOptions());
                     break;
                 case 'expandCollapse:collapseEdgesBetweenNodes':
-                    api.collapseEdgesBetweenNodes(cy.$("node:selected"));
+                    api.collapseEdgesBetweenNodes(cy.$("node:selected"), getEdgeOptions());
                     break;
                 case 'expandCollapse:expandEdgesBetweenNodes':
-                    api.expandEdgesBetweenNodes(cy.$("node:selected"));
+                    api.expandEdgesBetweenNodes(cy.$("node:selected"), getEdgeOptions());
                     break;
                 case 'isaEdges':
                     setTypingDisplay('isaEdges');
@@ -1171,7 +1345,7 @@
         ]);
 
         function makePopper(ele) {
-            console.log("makePopper")
+            // console.log("makePopper")
             let ref = ele.popperRef();
             ele.tippy = tippy(document.createElement('div'), {
                 // popperInstance will be available onCreate
@@ -1257,7 +1431,9 @@
                 id,
                 label,
                 source,
-                target
+                target,
+                type,
+                edgeType: type
             };
 
             // Push the edge data to the edges array
@@ -1341,6 +1517,76 @@
         function generateNodeId(iri) {
             return iri.replace(/[^a-zA-Z0-9]/g, '_');
         }
+
+        function getPathFromIRI(iri) {
+            try {
+                var path = iri;
+                var LogMessage = "no # or /";
+
+                console.log(`iri: ${iri}`);
+
+                // Find the position of # and / (if they exist)
+                const hashIndex = iri.lastIndexOf('#');
+                const slashIndex = iri.lastIndexOf('/');
+
+                // If # exists, we take the substring before the #
+                if (hashIndex !== -1) {
+                    path = iri.substring(0, hashIndex);
+                    LogMessage = "#";
+                }
+                // If only / exists and no #, we take the substring before the last /
+                else if (slashIndex !== -1) {
+                    path = iri.substring(0, slashIndex);
+                    LogMessage = "/";
+                }
+
+                console.log(LogMessage);
+                return path;
+            } catch (error) {
+                console.error("Error in getPathFromIRI:", error);
+                return null;
+            }
+        }
+
+
+        function removeTrailingSeparator(iri) {
+            console.log(iri)
+            if (iri.endsWith('/') || iri.endsWith('#')) {
+                return iri.slice(0, -1); // Remove the last character
+            }
+            return iri;
+        }
+
+        function getOWLTypeFromPredicate(predicate, end) {
+            var typeMapping = {
+                // Classes and subclasses
+                "subClass": { subjectType: "class", objectType: "class" },
+                "isa": { subjectType: "individual", objectType: "class" },
+                // Properties (Object, Datatype, and Annotation)
+                "subProperty": { subjectType: "property", objectType: "property" },
+            };
+
+            console.log(`predicate:${predicate}`);
+            console.log(`end:${end}`);
+
+            if (typeMapping[predicate]) {  // Ensure predicate exists in mapping
+                if (end === "object") {
+                    console.log(typeMapping[predicate]);
+                    console.log(typeMapping[predicate]["objectType"])
+                    return typeMapping[predicate]["objectType"];
+                }
+                if (end === "subject") {
+                    console.log(typeMapping[predicate]);
+                    console.log(typeMapping[predicate]["subjectType"])
+                    return typeMapping[predicate]["subjectType"];
+                }
+            } else {
+                console.warn(`Warning: Predicate "${predicate}" not found in type mapping.`);
+            }
+
+            return null; // Return null if predicate is not found
+        }
+
 
         function getLabelFromIRI(iri) {
             try {
@@ -1667,9 +1913,40 @@ Text:${label.text}
                         classes: edge.classes
                     });
                 } catch (error) {
-                    // Log the error to the console with details about the edge
-                    console.error(`Failed to add edge with ID: ${edge.data.id}`, error);
-                    //console.log('Edge data:', edge.data);
+                    console.warn(`Error adding edge ${edge.data.id}: ${error.message}`);
+
+                    // Check and create missing source node
+                    alert("blank source: " + edge.data.source)
+                    if (cy.getElementById(edge.data.source).length === 0) {
+                        cy.add({
+                            group: 'nodes',
+                            data: { id: edge.data.source },
+                            classes: 'blank-node'
+                        });
+                        console.log(`Created blank node: ${edge.data.source}`);
+                    }
+                    console.log("blank target: " + edge.data.source)
+                    // Check and create missing target node
+                    if (cy.getElementById(edge.data.target).length === 0) {
+                        cy.add({
+                            group: 'nodes',
+                            data: { id: edge.data.target },
+                            classes: 'blank-node'
+                        });
+                        console.log(`Created blank node: ${edge.data.target}`);
+                    }
+
+                    // Retry adding the edge now that nodes exist
+                    try {
+                        cy.add({
+                            group: 'edges',
+                            data: edge.data,
+                            classes: edge.classes
+                        });
+                    } catch (retryError) {
+                        console.error(`Failed again to add edge ${edge.data.id}:`, retryError);
+                    }
+
                 }
             });
 
@@ -1697,8 +1974,8 @@ Text:${label.text}
             if (imports.length > 0) {
                 imports.forEach((importedOntology) => {
                     //   console.log(`Imported Ontology: ${importedOntology.value}`);
-                    createNode(importedOntology.value, importedOntology.value, "ontology", importedOntology.value, "");
-                    createEdge(ULID.ulid(), "import", ontologyIRI.value, importedOntology.value, "import")
+                    createNode(removeTrailingSeparator(importedOntology.value), removeTrailingSeparator(importedOntology.value), "ontology", importedOntology.value, "");
+                    createEdge(ULID.ulid(), "import", removeTrailingSeparator(ontologyIRI.value), removeTrailingSeparator(importedOntology.value), "import")
                 });
             } else {
                 //   console.log('No imports found');
@@ -1995,6 +2272,7 @@ Text:${label.text}
                         const objectId = subclass.object.value; // Subclass target is the object
                         const edgeId = `${subjectId}-subclassof->${objectId}`;
                         if (!edges.some(edge => edge.data.id === edgeId)) { // Avoid duplicate edges
+                            // function createEdge(id, label, source, target, type)
                             createEdge(edgeId, "", subjectId, objectId, 'subClass');
                         }
                     });
@@ -2234,9 +2512,50 @@ Text:${label.text}
                         classes: edge.classes
                     });
                 } catch (error) {
-                    // Log the error to the console with details about the edge
-                    console.error(`Failed to add edge with ID: ${edge.data.id}`, error);
-                    //console.log('Edge data:', edge.data);
+                    // console.warn(`Error adding edge ${edge.data.id}: ${error.message}`);
+                    // Check and create missing source node
+                    console.log(edge.data)
+                    if (cy.getElementById(edge.data.source).length === 0) {
+                        var parent = getPathFromIRI(edge.data.source)
+                        cy.add({
+                            group: 'nodes',
+                            data: {
+                                id: edge.data.source,
+                                label: getLabelFromIRI(edge.data.source),
+                                parent: parent,
+                            },
+                            classes: getOWLTypeFromPredicate(edge.classes, "subject")
+                        });
+                        console.log("2349 blank source: " + edge.data.source)
+                    }
+
+                    // Check and create missing target node
+                    if (cy.getElementById(edge.data.target).length === 0) {
+                        var parent = getPathFromIRI(edge.data.target);
+                        cy.add({
+                            group: 'nodes',
+                            data: {
+                                id: edge.data.target,
+                                label: getLabelFromIRI(edge.data.target),
+                                parent: parent// "http://data.europa.eu/m8g"
+                            },
+                            classes: getOWLTypeFromPredicate(edge.classes, "object")
+                        });
+                        console.log(`2365 Blank target: ${edge.data.target}`);
+                        console.log(`2365 Parent: ${parent}`);
+                    }
+
+                    // Retry adding the edge now that nodes exist
+                    try {
+                        cy.add({
+                            group: 'edges',
+                            data: edge.data,
+                            classes: edge.classes
+                        });
+                    } catch (retryError) {
+                        console.log(`Failed again to add edge ${edge.data.id}:`, retryError);
+                    }
+
                 }
             });
             // Déplier tout au chargement
@@ -2265,6 +2584,7 @@ Text:${label.text}
                         "shape": "rectangle"
                     }
                 },
+
                 // Selected node styling
                 {
                     selector: ':selected',
@@ -2278,7 +2598,7 @@ Text:${label.text}
                 {
                     selector: 'node',
                     style: {
-                        'label': ele => i18next.t(ele.data("label")),
+                        'label': ele => ele.data("label"),
                         'text-halign': 'center',
                         'text-valign': 'top',
                         'color': 'black',
@@ -2289,6 +2609,12 @@ Text:${label.text}
                     style: {
                         'background-color': '#874B82', // Purple for individual nodes
                         'shape': 'diamond',
+                        'font-size': function (ele) {
+                            const label = ele.data('label');
+                            const labelLength = label ? label.length : 1;
+                            return Math.max(10, 12 / (labelLength / 2));  // Dynamic font size, divided by 2
+
+                        }
                     }
                 },
                 {
@@ -2419,25 +2745,41 @@ Text:${label.text}
                 {
                     selector: 'edge.isa',
                     style: {
-                        'line-color': 'blue',
-                        'width': 1,
-                        'label': "isa"
+                        'line-color': '#ae56d6',  // Blue, matching Protégé's ontology color
+                        'width': 1.5,
+                        'mid-target-arrow-shape': 'triangle',
+                        'mid-target-arrow-fill': 'hollow',
+                        'mid-target-arrow-color': '#ae56d6',
+                        'target-arrow-shape': 'none', // No target arrow to avoid duplication
+                        'label': ''
                     }
                 },
                 // Edge style: relation
                 {
                     selector: 'edge.relation',
                     style: {
-                        'line-color': 'black',
-                        'source-arrow-shape': 'none',
-                        'target-arrow-shape': 'vee',
-                        'arrow-scale': 1.5,
+                        'line-style': 'dashed',
+                        'line-color': '#874B82',  // Darker gray for the edge
+                        'source-arrow-shape': 'none',  // No arrow at the source
+                        'target-arrow-shape': 'none',  // Arrow at the target
+                        'arrow-scale': 1,  // Scale the arrow for visibility
+                        'mid-target-arrow-shape': 'triangle',
+                        'mid-target-arrow-fill': 'hollow',
+                        'mid-target-arrow-color': '#874B82',
+                        'width': 1,  // Edge width
+                        'text-rotation': 'autorotate',  // Ensure label rotates to follow the edge
+                        'text-margin-y': -10,  // Position the label slightly above or below the edge
                         'label': function (ele) {
-                            // Get the label from data and apply the transformation
                             const label = ele.data('label');
-                            return i18next.t(getLabelFromIRI(label));  // Apply getLabelFromIRI to the label
-
+                            return i18next.t(getLabelFromIRI(label));  // Get the label from data and apply translation
                         },
+                        'target-arrow-color': '#874B82',  // Same color for the target arrow as the edge
+                        'font-size': function (ele) {
+                            const label = ele.data('label');
+                            const labelLength = label ? label.length : 1;
+                            return Math.max(10, 12 / (labelLength / 2));  // Dynamic font size, divided by 2
+
+                        }
                     }
                 },
                 // Edge style: relation
@@ -2464,7 +2806,7 @@ Text:${label.text}
                     style: {
                         'line-color': 'yellow',
                         'source-arrow-shape': 'none',
-                        'target-arrow-shape': 'none',
+                        'target-arrow-shape': 'vee',
                         'arrow-scale': 1.5,
                         'source-text-offset': 30,
                         'source-label': function (ele) {
@@ -2481,7 +2823,7 @@ Text:${label.text}
                         'label': 'D',
                         'line-color': 'blue',
                         'source-arrow-shape': 'none',
-                        'target-arrow-shape': 'none',
+                        'target-arrow-shape': 'vee',
                         'arrow-scale': 1,
                         'width': 1
                     }
@@ -2493,7 +2835,7 @@ Text:${label.text}
                         'label': 'R',
                         'line-color': 'blue',
                         'source-arrow-shape': 'none',
-                        'target-arrow-shape': 'none',
+                        'target-arrow-shape': 'vee',
                         'arrow-scale': 1,
                         'width': 1
                     }
@@ -2572,16 +2914,38 @@ Text:${label.text}
                 {
                     selector: 'edge.subClass',
                     style: {
-                        'line-color': '#000000',  // Black line color for the edge
-                        'line-style': 'solid',    // Solid line style
-                        'width': 1,               // Edge width for visibility
-                        'target-arrow-shape': 'triangle', // Use a square shape for the arrow
-                        'target-arrow-color': '#000000',  // Matching color for the arrow
-                        'source-arrow-shape': 'none', // No source arrow
-                        'label': '',              // No label on the specialization edge
-                        'arrow-scale': 1.5,       // Scale the arrow size for better visibility
-                        'target-arrow-fill': 'hollow'  // Hollow rectangle (border only)
+                        'line-color': '#1f77b4',  // Blue, matching Protégé's ontology color
+                        'width': 1.5,
+                        'mid-target-arrow-shape': 'triangle',
+                        'mid-target-arrow-fill': 'hollow',
+                        'mid-target-arrow-color': '#1f77b4',
+                        'target-arrow-shape': 'none', // No target arrow to avoid duplication
+                        'label': ''
 
+                    }
+                },
+                {
+                    selector: 'edge.cy-expand-collapse-collapsed-edge',
+                    style: {
+                        "text-outline-color": "#ffffff",
+                        "text-outline-width": "2px",
+                        'label': (e) => {
+                            return e.data('edgeType') + '(' + e.data('collapsedEdges').length + ')';
+                        },
+                        'width': function (edge) {
+                            const n = edge.data('collapsedEdges').length;
+                            return (3 + Math.log2(n)) + 'px'; // Thicker edge for multiple elements
+                        },
+                        'line-style': setLineStyleForCompoundEdge.bind(this),
+                        'line-color': setColor4CompoundEdge.bind(this),
+                        'target-arrow-color': setColor4CompoundEdge.bind(this),
+                        'target-arrow-shape': setTargetArrowShape.bind(this),
+                        'source-arrow-shape': setSourceArrowShape.bind(this),
+                        'source-arrow-color': setColor4CompoundEdge.bind(this),
+                        'shape': (e) => {
+                            const collapsedEdges = e.data('collapsedEdges');
+                            return collapsedEdges[0].style('shape');
+                        }
                     }
                 }
             ],
@@ -2710,6 +3074,24 @@ Text:${label.text}
             infoPanel.style.display = 'none';
         });
         updateTabsTranslations()
+
+        //// Loading files
+        document.getElementById('load-from-inp').addEventListener('change', function () {
+            readTxtFile(this.files[0], function (txt) {
+                w2confirm('Do you want to replace? If yes, current graph will be removed, if no, it will be fusionned with the import)')
+                    .yes(() => {
+                        cy.$().remove();
+                        api.loadJson(txt);
+                        api.collapseAll();
+                        api.collapseAllEdges(getEdgeOptions());
+                    })
+                    .no(() => {
+                        api.loadJson(txt);
+                        api.collapseAll();
+                        api.collapseAllEdges(getEdgeOptions());
+                    });
+            })
+        });
 
     </script>
 </body>

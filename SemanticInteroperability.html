@@ -25,6 +25,26 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
     <style>
+        #infoPanel {
+            border: 0px solid black;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #f9f9f9;
+            overflow: auto;
+            /* Enables both horizontal and vertical scrolling */
+            white-space: nowrap;
+            /* Prevents text from wrapping to the next line */
+            word-wrap: break-word;
+            /* Allows long words to break and not overflow */
+            display: none;
+        }
+
+        #infoPanel h3 {
+            margin-top: 0;
+        }
+
         .hidden {
             display: none;
         }
@@ -323,7 +343,9 @@
 </head>
 
 <body>
+    <div id="infoPanel" style="display: none;"></div>
     <div id="presentation-container">
+
         <div class="reveal">
 
             <!-- Any section element inside of this container is displayed as a slide -->
@@ -338,9 +360,11 @@
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
                     <link rel="stylesheet"
                         href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
+
                 </head>
 
                 <body>
+
                     <div class="reveal">
                         <div class="slides">
                             <!-- Introduction -->
@@ -1769,7 +1793,7 @@
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            
+
                                             <ul style="font-size: 0.5em;text-align: left;">
                                                 <li><strong>Création d'ontologies</strong></li>
                                                 <li><strong>Support OWL2</strong></li>
@@ -1777,11 +1801,10 @@
                                                 <li><strong>Interface graphique</strong></li>
                                                 <li><strong>Export et partage</strong> </li>
                                             </ul>
-                                            
+
                                         </div>
                                         <div style="font-size: 0.8em;">
-                                            <img src="./img/screenshoptProtege.png"
-                                                alt="Protégé Logo"
+                                            <img src="./img/screenshoptProtege.png" alt="Protégé Logo"
                                                 style="width: 100%; height: auto; display: block; margin: auto;">
                                         </div>
                                     </div>
@@ -1791,11 +1814,11 @@
                                         des ontologies, particulièrement celles basées sur le langage OWL2
                                         (Web
                                         Ontology Language).</p>
-                                        <p style="font-size: 0.4em;text-align: left;">Il est très utilisé dans
-                                            la
-                                            recherche, le développement d'applications sémantiques, et dans des
-                                            domaines comme l'intelligence artificielle, la gestion des
-                                            connaissances, et le web sémantique.</p>
+                                    <p style="font-size: 0.4em;text-align: left;">Il est très utilisé dans
+                                        la
+                                        recherche, le développement d'applications sémantiques, et dans des
+                                        domaines comme l'intelligence artificielle, la gestion des
+                                        connaissances, et le web sémantique.</p>
                                     <aside class="notes">
                                         <ul style="font-size: 0.4em;">
                                             <li><strong>Création d'ontologies :</strong> Protégé permet de définir
@@ -1834,13 +1857,13 @@
                                                 (DL) plus accessible sans nécessiter une connaissance approfondie de
                                                 la
                                                 notation formelle.</p>
-                                            
+
                                         </div>
                                         <div style="font-size: 0.8em;">
                                             <img src="./img/manchester.png" alt="Syntaxe Manchester"
                                                 style="width: 100%; height: auto; display: block; margin: auto;">
                                         </div>
-                                        
+
                                     </div>
                                     <ul style="font-size: 0.5em;">
                                         <li><strong>Accessibilité :</strong> Description des concepts et des
@@ -3333,6 +3356,8 @@
                                             modèles plus complexe</li>
                                         <li>d'explorer les aspects plus techniques en lien avec les spécifications du
                                             W3C et les technologies associées au Linked Data et Web Sémantique.</li>
+                                        <li>de travailler sur les chaînes de production et les environnements de
+                                            consommation des ontologies</li>
                                         <li>de travailler sur l'ingénierie des ontologies et sur les standards de type
                                             SMART</li>
                                         <li>de voir d'autres langages de formalisation basé sur des logiques d'ordre
@@ -3968,8 +3993,9 @@
                                             </p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="[chemin/vers/image.svg]" alt="[Description de l'image]"
+                                            <img src="img/ontologie.png" alt="[Description de l'image]"
                                                 style="max-width: 100%; height: auto;" />
+
                                         </div>
                                     </div>
                                     <aside class="notes">
@@ -3979,6 +4005,35 @@
                                         - Points de discussion ou questions à poser à l'audience]
                                     </aside>
                                 </section>
+                                <section data-graph="Graph_1">
+                                    <h2>Graph 1 Slide</h2>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p>Here is some textual content for Graph 1.</p>
+                                        </div>
+                                        <div class="image-zone"></div> <!-- Image zone for Graph 1 -->
+                                    </div>
+                                </section>
+
+                                <!-- Section for Graph 2 with a content-zone that includes the image zone -->
+
+                                <section>
+                                    <h2>Other Content Slide</h2>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p>Other content without any graph.</p>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section data-graph="Graph_2">
+                                    <h2>Graph 2 Slide</h2>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p>Here is some textual content for Graph 2.</p>
+                                        </div>
+                                        <div class="image-zone"></div> <!-- Image zone for Graph 2 -->
+                                    </div>
+                                </section>
                             </section>
                         </div>
                     </div>
@@ -3986,17 +4041,33 @@
         </div>
 
         <script src="dist/reveal.js"></script>
+        <script src="lib/cytoscape.min.js"></script>
+        <script src="lib/layout-base.js"></script>
+        <script src="lib/cose-base.js"></script>
+        <script src="lib/cytoscape-fcose.js"></script>
+        <script src="lib/cytoscape-undo-redo.js"></script>
+        <script src="lib/cytoscape-expand-collapse.js"></script>
+        <script src="lib/layout-base.js"></script>
+        <script src="lib/cola.min.js"></script>
+        <script src="lib/cytoscape-cola.js"></script>
+        <!-- Dagre.js (Required for cytoscape-dagre) -->
+        <script src="lib/dagre.min.js"></script>
+        <!-- Cytoscape-Dagre Extension -->
+        <script src="lib/cytoscape-dagre.js"></script>
         <script src="plugin/zoom/zoom.js"></script>
         <script src="plugin/notes/notes.js"></script>
         <script src="plugin/search/search.js"></script>
         <script src="plugin/markdown/markdown.js"></script>
         <script src="plugin/highlight/highlight.js"></script>
         <script src="plugin/menu/menu.js"></script>
+        <script src="lib/i18next.min.js"></script>
+        <script type="module" src="js/cytoscape/displayer.js"></script> <!-- Your script -->
         <script>
 
             // Also available as an ES module, see:
             // https://revealjs.com/initialization/
             Reveal.initialize({
+                disableLayout: false,
                 controls: true,
                 progress: true,
                 center: true,
@@ -4005,11 +4076,9 @@
                 slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
                 notes: true,
                 menu: {
-
                     titleSelector: 'h1, h2,h3',
                     hideMissingTitles: true,
                     transitions: true,
-
                     // Adds a menu button to the slides to open the menu panel.
                     // Set to 'false' to hide the button.
                     openButton: true,
@@ -4019,6 +4088,7 @@
                 // Learn about plugins: https://revealjs.com/plugins/
                 plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
             });
+
 
         </script>
     </div>
