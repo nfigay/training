@@ -1,33 +1,9 @@
-// Define the list of modules to load
-const modules = [
-  "./js/cytoscape/module1.js",
-  "./js/cytoscape/module2.js",
-  "./js/cytoscape/module3.js"
-];
-
-// Function to load a script dynamically
-function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.type = 'module';
-    script.async = true; // Ensure async behavior
-    script.onload = () => resolve(src); // Resolve when script is loaded
-    script.onerror = (err) => reject(new Error(`Failed to load module: ${src}`)); // Reject on error
-    document.head.appendChild(script);
-  });
+const isServerEnvironment = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+if (isServerEnvironment) {
+  // Dynamically import modules only in server mode
+  import('./modules/module1.js').then(module => module.module1());
+  import('./modules/module2.js').then(module => module.module2());
+  import('./modules/module3.js').then(module => module.module3());
+} else {
+  console.log("Running locally. No modules will be imported.");
 }
-
-// Function to load all modules sequentially
-async function loadModules() {
-  for (const module of modules) {
-    try {
-      await loadScript(module);
-      console.log(`${module} loaded successfully`);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-}
-
-loadModules();

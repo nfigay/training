@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Application</title>
+  <script>
+    // If running locally, skip module imports
+    if (window.location.protocol === "file:") {
+        console.log("Running locally, modules will not be loaded.");
+    }
+</script>
 </head>
 <body>
   <h1>Welcome to the app</h1>
@@ -12,5 +18,8 @@
 
   <!-- Include the module loader script -->
   <script src="./js/cytoscape/module.js"></script>
+  <script src="./js/cytoscape/module1.js"></script>
+  <script src="./js/cytoscape/module2.js"></script>
+  <script src="./js/cytoscape/module3.js"></script>
 </body>
 </html>

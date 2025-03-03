@@ -1,4 +1,9 @@
-// module2.js
-export function greet() {
-  console.log("Hello from Module 2!");
+const isServerEnvironment = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+
+if (isServerEnvironment) {
+    console.log("Module 1 loaded.");
+}
+
+export function module1() {
+    console.log("Module 1 function executed.");
 }

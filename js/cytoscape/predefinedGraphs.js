@@ -1,4 +1,5 @@
-export const predefinedGraphs = {
+export 
+const predefinedGraphs = {
     "Graph_1": [
         
         {
