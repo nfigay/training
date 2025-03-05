@@ -459,22 +459,25 @@
 
             // Extract visible edges
             cy.edges(':visible').forEach(edge => {
-                let edgeData = {
-                    data: {
-                        id: edge.id(),
-                        source: edge.source().id(),
-                        target: edge.target().id(),
-                        label: edge.data('label')
-                    }
-                };
+    let edgeData = {
+        data: {
+            id: edge.id(),
+            source: edge.source().id(),
+            target: edge.target().id(),
+            label: edge.data('label'),
+            type: edge.data('type')
+        },
+        classes: edge.classes() // Récupération directe des classes existantes
+    };
 
-                let edgeType = edge.data('edgeType');
-                if (edgeType) {
-                    edgeData.data.edgeType = edgeType;
-                }
+    let edgeType = edge.data('edgeType');
+    if (edgeType) {
+        edgeData.data.edgeType = edgeType;
+    }
 
-                graphData.push(edgeData);
-            });
+    graphData.push(edgeData);
+});
+
 
             // Convertir en JSON et créer un Blob
             let jsonString = JSON.stringify(graphData, null, 2);
