@@ -1378,7 +1378,9 @@
                                                 varie considérablement</p>
                                             <p style="font-size: 0.8em;text-align: left;">Une plus grande
                                                 formalisation
-                                                rend ls langages plus adaptés à l'automatisation</p>
+                                                rend les langages plus adaptés à l'automatisation</p>
+                                            <p style="font-size: 0.8em;text-align: left;">Toutes les logiques ne
+                                                permettent pas le raisonnement</p>
 
                                         </div>
                                     </div>
@@ -1624,7 +1626,8 @@
                                                     transitive. Exemple : l'égalité (<code>=</code>).</li>
                                                 <li><strong>Relation d'ordre :</strong> Réflexive, antisymétrique et
                                                     transitive. Exemple : l'ordre (<code>≤</code>).</li>
-                                                <li><strong>Fonction :</strong> Relation où chaque élément de
+                                                <li><strong>Fonction (relation fonctionnelle) :</strong> Relation où
+                                                    chaque élément de
                                                     l'ensemble
                                                     de départ est lié à un seul élément de l'ensemble d'arrivée.
                                                 </li>
@@ -1667,32 +1670,37 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">E.9 Définition Extensive des Ensembles</h3>
+                                        <h3 style="font-size: 0.8em;">E.9 Définition Intensive des Ensembles</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
                                             <p style="font-size: 0.8em;text-align: left;">Les ensembles peuvent être
-                                                définis à l’aide de quantificateurs ("pour tout", "il existe") et de
-                                                relations. Voici trois exemples :
+                                                définis en énonçant une propriété que doivent satisfaire tous ses
+                                                éléments, ex A={x∣P(x)}</p>
+                                            <p style="font-size: 0.8em;text-align: left;">Pour cela on utilise
+                                                généralement les quantificateurs existentiels (∃) et universels (∀),
+                                                ainsi que des expressions logiques (conjonction ∧, disjonction ∨,
+                                                négation ¬, etc.).
+                                                Voici trois exemples :
                                             </p>
                                             <ul style="font-size: 0.6em;">
                                                 <li><strong>Exemple 1 – Union avec condition</strong>
-                                                    Ensemble des éléments dans X ou Y, liés à au moins un élément :
+                                                    Ensemble des éléments dans X ou Y, liés à au moins un élément:
                                                     <code>{x | (x ∈ X ∨ x ∈ Y) ∧ ∃y R(x, y)}</code>.
                                                 </li>
                                                 <li><strong>Exemple 2 – Condition universelle
-                                                        :</strong> Ensemble des éléments liés à tous les éléments de Y :
+                                                        :</strong> Ensemble des éléments liés à tous les éléments de
+                                                    Y:<br>
                                                     <code>{x | ∀y (y ∈ Y → R(x, y))}</code>.
                                                 </li>
                                                 <li><strong>Exemple 3 – Relations multiples
-                                                        :</strong> Ensemble des éléments liés à deux éléments distincts
-                                                    : <br>
+                                                        :</strong> Ensemble des éléments liés à deux éléments distincts:
+                                                    <br>
                                                     <code>{x | ∃y ∃z (R(x, y) ∧ S(x, z))}</code>.
                                                 </li>
                                             </ul>
-                                            <p style="font-size: 0.7em;text-align: left;">Ces exemples montrent comment
-                                                décrire des ensembles complexes avec des quantificateurs (∀ : pour tout,
-                                                ∃ : il existe) et des relations logiques</p>
+                                            <p style="font-size: 0.7em;text-align: left;">Par opposition, une définition
+                                                extensive repose sur l'énumération explicite des éléments. </p>
                                         </div>
                                     </div>
                                 </section>
@@ -1927,39 +1935,89 @@
                                             relations complexes dans le domaine des connaissances.</p>
                                     </aside>
                                 </section>
-                                <section>
+                                <section data-graph="Graph_3">
                                     <div class="title-zone">
                                         <h3 style="font-size: 0.8em;">F.4 Viewer OWL</h3>
                                     </div>
                                     <div style="display: flex; gap: 20px;">
                                         <div style="font-size: 0.8em;">
-                                            <p style="font-size: 0.6em;text-align: left;">Le viewer est un
-                                                utilitaire de
-                                                visualisation d'ontologie OWL qui reprende et complète les symboles
-                                                proposés par Protégé pour OWL.</p>
-                                            <ul style="font-size: 0.4em;">
-                                                <li><strong>Classes, properties et individus :</strong>
-                                                    visualisation
-                                                    sous forme de noeud avec les symboles utilisés par Protégé</li>
-                                                <li><strong>Caractéristiques des propriétés:</strong> les
-                                                    caractéristiques sont visibles sour forme de symboles</li>
-                                                <li><strong>Relations entre individus, classes et propriétés
-                                                        :</strong>
-                                                    type,domain, range, subsomption, équivalence... </li>
-                                                <li><strong>Structure d'une ontologie et imports :</strong> Sous
-                                                    formes
-                                                    d'éléments imbriqués.</li>
-                                            </ul>
-                                            <p style="font-size: 0.6em;text-align: left;">Il s'agit d'un prototype
-                                                permettant des visualisations interactives intégrables dans des
-                                                pages
-                                                Web</p>
-                                        </div>
-                                        <div style="font-size: 0.8em;">
-                                            <img src="./img/OWLViewer.png" alt="Protégé Logo"
-                                                style="width: 70%; height: auto; display: block; margin: auto;">
-                                            <img src="./img/symbolsViewer.png" alt="Protégé Logo"
-                                                style="width: 70%; height: auto; display: block; margin: auto;">
+                                            <div class="content-zone">
+                                                <div class="text-zone">
+                                                    <p style="font-size: 0.6em;text-align: left;">Le viewer est un
+                                                        utilitaire de
+                                                        visualisation d'ontologie OWL qui reprende et complète les
+                                                        symboles
+                                                        proposés par Protégé pour OWL.</p>
+                                                    <ul style="font-size: 0.4em;">
+                                                        <li><strong>Groupes par type de construction OWL</strong></li>
+                                                        <li><strong>Classes<svg width="16" height="16"
+                                                                    viewBox="0 0 16 16"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    style="vertical-align: middle;">
+                                                                    <circle cx="8" cy="8" r="7" fill="#D1A500" />
+                                                                </svg>, propriétés: objet<svg width="16" height="16"
+                                                                    viewBox="0 0 16 16"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    style="vertical-align: middle;">
+                                                                    <rect x="2" y="2" width="12" height="12"
+                                                                        fill="#0079BA" />
+                                                                </svg> ou data<svg width="16" height="16"
+                                                                    viewBox="0 0 16 16"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    style="vertical-align: middle;">
+                                                                    <rect x="2" y="2" width="12" height="12"
+                                                                        fill="#38A14A" />
+                                                                </svg>, individus<svg width="16" height="16"
+                                                                    viewBox="0 0 16 16"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    style="vertical-align: middle;">
+                                                                    <polygon points="8,1 15,8 8,15 1,8"
+                                                                        fill="#874B82" />
+                                                                </svg>...
+                                                                :</strong></li>
+
+                                                        <li><strong>Caractéristiques des propriétés: ↔ symétrique, , x↔
+                                                                antisymétrique,↻ inverse, ◯
+                                                                réflexive,x◯ antiréflexive, transitive △, →
+                                                                fonctionnelle, ←
+                                                                inverse fonctionnelle </strong></li>
+                                                        <li><strong>Relations entre individus, classes et propriétés
+                                                                :</strong>
+                                                            domain (D), range(R), ⊂ subsomption, ≡ équivalence, ⊥
+                                                            disjoint... </li>
+                                                        <li><strong>Structure d'une ontologie et imports :</strong> Sous
+                                                            formes
+                                                            d'éléments imbriqués.</li>
+                                                    </ul>
+                                                    <p style="font-size: 0.6em;text-align: left;">Il s'agit d'un
+                                                        prototype
+                                                        permettant des visualisations interactives intégrables dans des
+                                                        pages
+                                                        Web</p>
+                                                        <div style="font-size: 15px;">
+                                                            Etendre <span class="clickable-action" data-action="expand"
+                                                                data-target="all">noeuds</span>
+                                                            <span class="clickable-action" data-action="expandedges" data-target="all">
+                                                                arcs</span>
+                                                            Réduire <span class="clickable-action" data-action="collapse"
+                                                                data-target="all">noeuds</span>.
+                                                            <span class="clickable-action" data-action="collapseedges"
+                                                                data-target="all">arcs</span>.<br />
+                                                            Sélection Etendre
+                                                            <span class="clickable-action" data-action="expand"
+                                                                data-target="selection">noeuds</span>
+                                                            <span class="clickable-action" data-action="expand"
+                                                                data-target="edges">arcs</span>
+                                                            Réduire <span class="clickable-action" data-action="collapse"
+                                                                data-target="selection">noeuds</span>
+                                                            <span class="clickable-action" data-action="collapse"
+                                                                data-target="edges">arcs</span>.
+                                                        </div>
+                                                </div>
+                                                <div class="image-zone">
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
@@ -4006,11 +4064,27 @@
                                     </aside>
                                 </section>
                                 <section data-graph="Graph_1">
-                                    <h2>Graph 1 Slide</h2>
+                                    <h4 "font-size:20px;">Ontologie de la famille</h4>
+                                    <div style="font-size: 15px;">
+                                        Etendre <span class="clickable-action" data-action="expand"
+                                            data-target="all">noeuds</span>
+                                        <span class="clickable-action" data-action="expandedges" data-target="all">
+                                            arcs</span>
+                                        Réduire <span class="clickable-action" data-action="collapse"
+                                            data-target="all">noeuds</span>.
+                                        <span class="clickable-action" data-action="collapseedges"
+                                            data-target="all">arcs</span>.<br />
+                                        Sélection Etendre
+                                        <span class="clickable-action" data-action="expand"
+                                            data-target="selection">noeuds</span>
+                                        <span class="clickable-action" data-action="expand"
+                                            data-target="edges">arcs</span>
+                                        Réduire <span class="clickable-action" data-action="collapse"
+                                            data-target="selection">noeuds</span>
+                                        <span class="clickable-action" data-action="collapse"
+                                            data-target="edges">arcs</span>.
+                                    </div>
                                     <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p>Here is some textual content for Graph 1.</p>
-                                        </div>
                                         <div class="image-zone"></div> <!-- Image zone for Graph 1 -->
                                     </div>
                                 </section>
@@ -4061,7 +4135,9 @@
         <script src="plugin/highlight/highlight.js"></script>
         <script src="plugin/menu/menu.js"></script>
         <script src="lib/i18next.min.js"></script>
-        <script type="module" src="js/cytoscape/displayer.js"></script> <!-- Your script -->
+        <script defer src="js/cytoscape/predefinedGraphs.js"></script>
+        <script defer src="js/cytoscape/OntologyViewerStyle.js"></script>
+        <script defer src="js/cytoscape/displayer.js"></script> <!-- Your script -->
         <script>
 
             // Also available as an ES module, see:
