@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Enregistrement et Lecture avec Changement de Ton</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .button-container {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #transcript-container {
+      width: 80%;
+      max-height: 300px;  
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      font-size: 18px;
+    }
+    #transcript {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test de la reconnaissance vocale et de la lecture Text-to-Speech avec changement de ton</h1>
+
+  <div class="button-container">
+    <button id="start-recognition">Commencer l'enregistrement</button>
+    <button id="stop-recognition">Arrêter l'enregistrement</button>
+    <button id="play-text">Lire le texte</button>
+  </div>
+
+  <h3>Texte enregistré :</h3>
+  <div id="transcript-container">
+    <div id="transcript" contenteditable="true">Enregistrez votre texte en appuyant sur le bouton "Commencer l'enregistrement".</div>
+  </div>
+
+  <div class="output" id="speech-output"></div>
+
+  <script>
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'fr-FR';  
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    const transcriptElement = document.getElementById("transcript");
+    const startButton = document.getElementById("start-recognition");
+    const stopButton = document.getElementById("stop-recognition");
+    const playButton = document.getElementById("play-text");
+
+    let transcript = ""; 
+
+    recognition.onresult = function(event) {
+      let result = event.results[event.resultIndex];
+      if (result.isFinal) {
+        transcript += result[0].transcript + " ";
+        transcriptElement.textContent = transcript;
+      }
+    };
+
+    startButton.onclick = function() {
+      transcript = "";  
+      transcriptElement.textContent = "Enregistrement en cours...";
+      recognition.start();
+    };
+
+    stopButton.onclick = function() {
+      recognition.stop();
+      transcriptElement.textContent = transcript;  
+    };
+
+    function splitTextIntoPhrases(text) {
+      return text.split(/([.?!])\s*/).filter(Boolean).map(item => item.trim()).join('');
+    }
+
+    function getSpeechSettingsForPunctuation(text) {
+      let rate = 1; // Vitesse normale
+      let pitch = 1; // Tonalité normale
+
+      if (text.includes('?')) {
+        rate = 0.9;  // Un peu plus lent pour une question
+        pitch = 1.2;  // Tonalité plus élevée pour une question
+      } else if (text.includes('!')) {
+        rate = 1.1;  // Un peu plus rapide pour exprimer de l'excitation
+        pitch = 1.4;  // Tonalité plus élevée pour exclamation
+      }
+
+      return { rate, pitch };
+    }
+
+    function speakText(text) {
+      const phrases = text.split(/([.?!])/).filter(Boolean);
+      let idx = 0;
+
+      function speakNextPhrase() {
+        if (idx < phrases.length) {
+          const phrase = phrases[idx];
+          const { rate, pitch } = getSpeechSettingsForPunctuation(phrase);
+          const utterance = new SpeechSynthesisUtterance(phrase);
+
+          utterance.lang = 'fr-FR'; 
+          utterance.rate = rate;  
+          utterance.pitch = pitch;
+
+          utterance.onend = function() {
+            idx++;
+            setTimeout(speakNextPhrase, 500);
+          };
+
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+
+      speakNextPhrase();
+    }
+
+    playButton.onclick = function() {
+      const correctedText = transcriptElement.textContent;
+      if (correctedText) {
+        speakText(correctedText);
+      } else {
+        document.getElementById("speech-output").textContent = "Aucun texte à lire.";
+      }
+    };
+  </script>
+</body>
+</html>

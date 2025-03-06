@@ -1994,25 +1994,26 @@
                                                         permettant des visualisations interactives intégrables dans des
                                                         pages
                                                         Web</p>
-                                                        <div style="font-size: 15px;">
-                                                            Etendre <span class="clickable-action" data-action="expand"
-                                                                data-target="all">noeuds</span>
-                                                            <span class="clickable-action" data-action="expandedges" data-target="all">
-                                                                arcs</span>
-                                                            Réduire <span class="clickable-action" data-action="collapse"
-                                                                data-target="all">noeuds</span>.
-                                                            <span class="clickable-action" data-action="collapseedges"
-                                                                data-target="all">arcs</span>.<br />
-                                                            Sélection Etendre
-                                                            <span class="clickable-action" data-action="expand"
-                                                                data-target="selection">noeuds</span>
-                                                            <span class="clickable-action" data-action="expand"
-                                                                data-target="edges">arcs</span>
-                                                            Réduire <span class="clickable-action" data-action="collapse"
-                                                                data-target="selection">noeuds</span>
-                                                            <span class="clickable-action" data-action="collapse"
-                                                                data-target="edges">arcs</span>.
-                                                        </div>
+                                                    <div style="font-size: 15px;">
+                                                        Etendre <span class="clickable-action" data-action="expand"
+                                                            data-target="all">noeuds</span>
+                                                        <span class="clickable-action" data-action="expandedges"
+                                                            data-target="all">
+                                                            arcs</span>
+                                                        Réduire <span class="clickable-action" data-action="collapse"
+                                                            data-target="all">noeuds</span>.
+                                                        <span class="clickable-action" data-action="collapseedges"
+                                                            data-target="all">arcs</span>.<br />
+                                                        Sélection Etendre
+                                                        <span class="clickable-action" data-action="expand"
+                                                            data-target="selection">noeuds</span>
+                                                        <span class="clickable-action" data-action="expand"
+                                                            data-target="edges">arcs</span>
+                                                        Réduire <span class="clickable-action" data-action="collapse"
+                                                            data-target="selection">noeuds</span>
+                                                        <span class="clickable-action" data-action="collapse"
+                                                            data-target="edges">arcs</span>.
+                                                    </div>
                                                 </div>
                                                 <div class="image-zone">
 
@@ -4139,6 +4140,54 @@
         <script defer src="js/cytoscape/OntologyViewerStyle.js"></script>
         <script defer src="js/cytoscape/displayer.js"></script> <!-- Your script -->
         <script>
+            function speakText(text, language = "en", voiceName = "Alex", rate = 0.6) {
+                const synth = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance(text);
+
+                // Sélectionner la voix
+                const voices = synth.getVoices();
+                const selectedVoice = voices.find(voice => voice.name === voiceName && voice.lang === language);
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                } else {
+                    // Si la voix spécifique n'est pas trouvée, prendre la première voix disponible
+                    utterance.voice = voices[0];
+                }
+
+                // Vitesse plus lente (0.8 est plus lent que la vitesse normale de 1.0)
+                utterance.rate = rate;
+
+                // Ajouter des pauses entre les bullet points
+                // Diviser le texte en éléments de liste et les prononcer un par un
+                const bulletPoints = text.split("\n").map(point => point.trim()).filter(Boolean);
+
+                // Créer une séquence pour prononcer chaque bullet point avec une pause
+                let currentIndex = 0;
+                function speakNextBullet() {
+                    if (currentIndex < bulletPoints.length) {
+                        const bulletText = bulletPoints[currentIndex];
+                        const utterance = new SpeechSynthesisUtterance(bulletText);
+                        utterance.voice = selectedVoice;
+                        utterance.rate = rate;
+
+                        utterance.onend = () => {
+                            currentIndex++;
+                            speakNextBullet();  // Passer au suivant après une pause naturelle
+                        };
+
+                        synth.speak(utterance);
+                    }
+                }
+
+                speakNextBullet();  // Commencer la lecture
+            }
+
+            // Exemple pour un texte français lent avec pauses
+         //   document.addEventListener("slidechanged", (event) => {
+         //       const text = event.currentSlide.innerText;
+         //       speakText(text, "fr-FR", "Audrey", 0.8);  // Voix "Thomas" en français avec un débit lent
+          //  });
+
 
             // Also available as an ES module, see:
             // https://revealjs.com/initialization/

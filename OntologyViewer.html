@@ -30,7 +30,7 @@
     <!-- Cytoscape-Dagre Extension -->
     <script src="lib/cytoscape-dagre.js"></script>
     <script src="lib/i18next.min.js"></script>
- 
+
 
     <style>
         /* colors for protege
@@ -142,7 +142,7 @@
     <div style="height: 100px;" id="output" style="display: block;"></div>
 
     <input type="file" name="name" id="inputfile" style="display:none" />
-    <input type="file" name="name" id="inputinferred    file" style="display:none" />
+    <input type="file" name="name" id="inputinferred" style="display:none" />
     <input type="file" name="name" id="load-from-inp" style="display:none" />
     <script type="module">
         var mainMenu;
@@ -423,7 +423,7 @@
                 }
             }
         };
-      
+
 
         function doElemsMultiTypes(elems) {
             const classDict = {};
@@ -459,24 +459,24 @@
 
             // Extract visible edges
             cy.edges(':visible').forEach(edge => {
-    let edgeData = {
-        data: {
-            id: edge.id(),
-            source: edge.source().id(),
-            target: edge.target().id(),
-            label: edge.data('label'),
-            type: edge.data('type')
-        },
-        classes: edge.classes() // Récupération directe des classes existantes
-    };
+                let edgeData = {
+                    data: {
+                        id: edge.id(),
+                        source: edge.source().id(),
+                        target: edge.target().id(),
+                        label: edge.data('label'),
+                        type: edge.data('type')
+                    },
+                    classes: edge.classes() // Récupération directe des classes existantes
+                };
 
-    let edgeType = edge.data('edgeType');
-    if (edgeType) {
-        edgeData.data.edgeType = edgeType;
-    }
+                let edgeType = edge.data('edgeType');
+                if (edgeType) {
+                    edgeData.data.edgeType = edgeType;
+                }
 
-    graphData.push(edgeData);
-});
+                graphData.push(edgeData);
+            });
 
 
             // Convertir en JSON et créer un Blob
@@ -699,6 +699,7 @@
 
         //        
         function loadRDF(file, inferred = false) {
+            alert(inferred)
             if (!file) {
                 if (inferred) {
                     alert(i18next.t(alert.selectowlinferred));
@@ -782,6 +783,19 @@
                     loadRDF(file); // Pass file object
                 });
         });
+
+        //// Loading inferred files
+        document.getElementById('inputinferred').addEventListener('change', function (event) {
+            
+            const file = event.target.files[0];
+            if (!file) {
+                alert("No file selected!");
+                return;
+            }
+            loadRDF(file, true); // Pass file object
+
+        });
+
         function getMenuItems() {
             return [
                 {
@@ -964,8 +978,8 @@
                     file.value = '';
                     file.click();
                     break;
-                case 'importinferred':
-                    const file2 = document.getElementById('inputinferredfile')
+                case 'owl:importinferred':
+                    const file2 = document.getElementById('inputinferred')
                     file2.value = '';
                     file2.click();
                     break;
@@ -1532,7 +1546,7 @@
         }
 
 
- 
+
 
         function displayLabelsOnDoubleClick(resource, store, containerId) {
             // Add event listener for double click
@@ -2495,7 +2509,7 @@ Text:${label.text}
 
 
         }
-console.log(OntologyViewerStyle)
+        console.log(OntologyViewerStyle)
         var cy = cytoscape({
             container: document.getElementById('cy'),
             elements: [], // Ajoutez vos éléments ici
@@ -2554,7 +2568,7 @@ console.log(OntologyViewerStyle)
         cy.on('mouseout', 'node, edge', (event) => {
             if (event.target.tippy) event.target.tippy.hide();
         });
-     //   cy.on("expandcollapse.afterexpand", function(event) {  api.collapseAllEdges(getEdgeOptions()) })
+        //   cy.on("expandcollapse.afterexpand", function(event) {  api.collapseAllEdges(getEdgeOptions()) })
 
         // Event listener for node or edge click
         cy.on('tap', 'node, edge', function (event) {
@@ -2626,7 +2640,7 @@ console.log(OntologyViewerStyle)
             // Check if the double-click is outside of any node or edge
             infoPanel.style.display = 'none';
             api.collapseAllEdges(getEdgeOptions())
-            
+
         });
         updateTabsTranslations()
 
@@ -2647,7 +2661,7 @@ console.log(OntologyViewerStyle)
                     });
             })
         });
-        
+
     </script>
 </body>
 

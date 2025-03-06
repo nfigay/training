@@ -243,7 +243,7 @@ var OntologyViewerStyle = [
     {
         selector: 'edge',
         style: {
-            'width': 3,
+            'width': 1,
             'curve-style': 'bezier',
             'target-arrow-color': 'black',
             'line-color': '#999',
@@ -303,6 +303,7 @@ var OntologyViewerStyle = [
             'line-color': 'black',
             'source-arrow-shape': 'none',
             'target-arrow-shape': 'vee',
+            'target-arrow-color': 'black',
             'arrow-scale': 1.5,
             'label': function (ele) {
                 // Get the label from data and apply the transformation
@@ -321,7 +322,9 @@ var OntologyViewerStyle = [
             'line-color': 'yellow',
             'source-arrow-shape': 'none',
             'target-arrow-shape': 'vee',
-            'arrow-scale': 1.5,
+            'target-arrow-color': 'yellow',
+            'arrow-scale': 1,
+            'width': 1,
             'source-text-offset': 30,
             'source-label': function (ele) {
                 // Get the label from data and apply the transformation
@@ -338,6 +341,7 @@ var OntologyViewerStyle = [
             'line-color': 'blue',
             'source-arrow-shape': 'none',
             'target-arrow-shape': 'vee',
+            'target-arrow-color': 'blue',
             'arrow-scale': 1,
             'width': 1
         }
@@ -350,6 +354,7 @@ var OntologyViewerStyle = [
             'line-color': 'blue',
             'source-arrow-shape': 'none',
             'target-arrow-shape': 'vee',
+            'target-arrow-color': 'blue',
             'arrow-scale': 1,
             'width': 1
         }
@@ -420,7 +425,8 @@ var OntologyViewerStyle = [
             'line-color': 'green',  // Black line color for the edge
             'line-style': 'solid',    // Solid line style
             'width': 1,               // Edge width for visibility
-            'target-arrow-shape': 'none', // Use a square shape for the arrow
+            'target-arrow-shape': 'vee', // Use a square shape for the arrow
+            'target-arrow-color': 'green', // Use a square shape for the arrow
             'source-arrow-shape': 'none', // No source arrow                      
         }
     },
