@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.plminterop.org/myOntology" uri="test.owl"/>
+    <uri id="Imports Wizard Entry" name="http://www.plm-interop.org/family" uri="familyInferred.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.example.com/ontologies/ecommerce" uri="EquivalentGroupExemple.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.semanticweb.org/nicolasfigay/ontologies/2024/11/untitled-ontology-61" uri="file:/Users/nicolasfigay/Downloads/ExemplePourMasterClasse.owl"/>
     <uri id="Imports Wizard Entry" name="http://grandpa.mowa.justtrade.net" uri="file:/Users/nicolasfigay/Downloads/TheStevens.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1739750923046" name="http://example.org/ontology" uri="EquivalentGroupExemple.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1739750923046" name="duplicate:http://www.plm-interop.org/family" uri="AnnotationProperties.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1739750923046" name="duplicate:http://www.plm-interop.org/family" uri="singleThing.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1739750923046" name="duplicate:http://www.plm-interop.org/family" uri="familyInferred.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1741932542628" name="http://example.org/ontology" uri="EquivalentGroupExemple.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1741932542628" name="duplicate:http://www.plm-interop.org/family" uri="F4OntologyViewer.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1741932542628" name="duplicate:http://www.plm-interop.org/family" uri="AnnotationProperties.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1741932542628" name="duplicate:http://www.plm-interop.org/family" uri="singleThing.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1741932542628" name="duplicate:http://www.plm-interop.org/family" uri="familyInferred.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1741932542628" name="http://www.plm-interop.org/family/2025/2/6/untitled-ontology-84" uri="inferredfamily.owl"/>
     </group>
 </catalog>
