@@ -364,6 +364,15 @@
                 </head>
 
                 <body>
+                    
+                    <div id="hidden" style="display:none;">
+                        <div id="header">
+                            <div id="footer-left" style="position: absolute;bottom: 10px;left: 10px;font-size: 0.4em">
+                                Dr Nicolas Figay</div>
+                            <div id="footer-right"
+                                style="position: absolute;bottom: 10px;right: 10px;font-size: 0.4em">Avril 2025</div>
+                        </div>
+                    </div>
 
                     <div class="reveal">
                         <div class="slides">
@@ -4139,6 +4148,7 @@
         <script defer src="js/cytoscape/predefinedGraphs.js"></script>
         <script defer src="js/cytoscape/OntologyViewerStyle.js"></script>
         <script defer src="js/cytoscape/displayer.js"></script> <!-- Your script -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script>
             function speakText(text, language = "en", voiceName = "Alex", rate = 0.6) {
                 const synth = window.speechSynthesis;
@@ -4183,10 +4193,10 @@
             }
 
             // Exemple pour un texte français lent avec pauses
-         //   document.addEventListener("slidechanged", (event) => {
-         //       const text = event.currentSlide.innerText;
-         //       speakText(text, "fr-FR", "Audrey", 0.8);  // Voix "Thomas" en français avec un débit lent
-          //  });
+            //   document.addEventListener("slidechanged", (event) => {
+            //       const text = event.currentSlide.innerText;
+            //       speakText(text, "fr-FR", "Audrey", 0.8);  // Voix "Thomas" en français avec un débit lent
+            //  });
 
 
             // Also available as an ES module, see:
@@ -4214,7 +4224,16 @@
                 plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
             });
 
-
+            // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+            var header = $('#header').html();
+            if (window.location.search.match(/print-pdf/gi)) {
+                Reveal.addEventListener('ready', function (event) {
+                    $('.slide-background').append(header);
+                });
+            }
+            else {
+                $('div.slides').append(header);
+            }
         </script>
     </div>
 </body>
