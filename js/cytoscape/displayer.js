@@ -40,7 +40,7 @@ function handleSlideFullyDisplayed() {
     let presentSlide = Reveal.getCurrentSlide();
     console.log(presentSlide)
     let dataGraph = presentSlide ? presentSlide.getAttribute('data-graph') : null;
-    console.log("toto")
+    //console.log("toto")
     if (dataGraph) {
         // effacer tous les cy containers du document
         document.querySelectorAll('#cy-container').forEach(element => element.remove());
