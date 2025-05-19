@@ -3,43 +3,53 @@
 //console.log(JSON.stringify(predefinedGraphs));
 
 function safeStringifyElement(element) {
-    const rawData = element.data();
+    // Get primitive data properties only
+    const data = element.data();
     const safeData = {};
-
-    // Extract only scalar values
-    for (const key in rawData) {
-        if (Object.prototype.hasOwnProperty.call(rawData, key)) {
-            const value = rawData[key];
-            if (value === null || (typeof value !== 'object' && !Array.isArray(value))) {
-                safeData[key] = value;
-            } else {
-                safeData[key] = '[complex]';
-            }
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        const value = data[key];
+        if (value === null || (typeof value !== 'object' && !Array.isArray(value))) {
+          safeData[key] = value;
         }
+      }
     }
-
-    // Add classes
-    try {
-        safeData.classes = element.classes();
-    } catch (e) {
-        safeData.classes = '[unavailable]';
-    }
-
-    // Add visual style
-    try {
-        const style = element.style();
-        const styleProps = style.names();
-        safeData.style = {};
-        for (const prop of styleProps) {
-            safeData.style[prop] = style.get(prop);
-        }
-    } catch (e) {
-       // safeData.style = { error: '[style not accessible]' };
-    }
-
-    return JSON.stringify(safeData, null, 2); // Indented JSON string
-}
-
+  
+    // Get position (x, y)
+    const position = element.position();
+  
+    // Define visual style properties to include
+    const styleProps = [
+      "background-color", "border-color", "border-width",
+      "label", "font-size", "color",
+      "width", "height",
+      "line-color", "line-style",
+      "text-valign", "text-halign",
+      "display", "visibility",
+      "shape", "opacity"
+    ];
+  
+    // Extract rendered styles safely
+    const style = {};
+    styleProps.forEach(prop => {
+      try {
+        style[prop] = element.renderedStyle(prop);
+      } catch {
+        style[prop] = null; // fallback if property not available
+      }
+    });
+  
+    // Combine all parts
+    const combined = {
+      data: safeData,
+      position: position,
+      style: style
+    };
+  
+    // Return pretty JSON string
+    return JSON.stringify(combined, null, 2);
+  }
+  
 
 document.addEventListener("DOMContentLoaded", function () {
     const actions = document.querySelectorAll('.clickable-action');
@@ -169,15 +179,54 @@ function displayGraph(cyContainer, dataGraph) {
         elements: predefinedGraphs[dataGraph],
         style: OntologyViewerStyle
     });
+    cy.on('click', 'node, edge', function (event) {
+        var element = event.target;
 
-   cy.on('click', 'node, edge', function (event) {       
-    const infoPanel = document.getElementById('info-panel');
-    const safeData = safeStringifyElement(event.target);
-    
-    if (infoPanel) {
-        infoPanel.textContent = safeData;
-    }
-});
+        // Get data attributes
+        const data = element.data();
+        const classesString = element.classes(); // e.g. "annotationproperty someOtherClass"
+        const jsonClasses = safeStringifyElement; 
+
+
+        // Define style properties you want to capture
+        const styleProperties = [
+            "background-color",
+            "border-color",
+            "border-width",
+            "label",
+            "font-size",
+            "color",
+            "width",
+            "height",
+            "line-color",
+            "line-style",
+            "text-valign",
+            "text-halign"
+        ];
+
+        // Build a style object with property-value pairs
+        const style = {};
+        styleProperties.forEach(prop => {
+            style[prop] = element.style(prop);
+        });
+
+        // Combine data and style
+        const combined = {
+            data: data,
+            type: jsonClasses,
+            style: style
+        };
+
+        // Display JSON in the info-panel div
+        const infoPanel = document.getElementById('info-panel');
+       
+        const safeData = safeStringifyElement(event.target);
+        infoPanel.textContent = `Classes: ${classesString}\n\nData:\n${safeData}`;
+        if (infoPanel) {
+            infoPanel.textContent = `Classes: ${classesString}\n\nData:\n${safeData}`;
+        
+        }
+    });
 
 
     cy.on('dblclick', 'edge', function (event) {
