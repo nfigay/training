@@ -3,55 +3,44 @@
 //console.log(JSON.stringify(predefinedGraphs));
 
 function safeStringifyElement(element) {
-    // Get all attributes from the element's data()
-    const data = element.data();
-    const classesString = element.classes(); // e.g. "annotationproperty someOtherClass"
-     // Define style properties you want to capture
-     const styleProperties = [
-        "background-color",
-        "border-color",
-        "border-width",
-        "label",
-        "font-size",
-        "color",
-        "width",
-        "height",
-        "line-color",
-        "line-style",
-        "text-valign",
-        "text-halign"
-    ];
-
-    // Build a style object with property-value pairs
-    const style = {};
-    styleProperties.forEach(prop => {
-        style[prop] = element.style(prop);
-    });
-
-
-  
-    // Create a new object with only primitive or stringifiable values
+    const rawData = element.data();
     const safeData = {};
-  
-    for (const key in data) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        const value = data[key];
-        // Keep only if not object or array (or null is okay)
-        if (value === null || (typeof value !== 'object' && !Array.isArray(value))) {
-          safeData[key] = value;
+
+    // Extract only scalar values
+    for (const key in rawData) {
+        if (Object.prototype.hasOwnProperty.call(rawData, key)) {
+            const value = rawData[key];
+            if (value === null || (typeof value !== 'object' && !Array.isArray(value))) {
+                safeData[key] = value;
+            } else {
+                safeData[key] = '[complex]';
+            }
         }
-      }
     }
-     // Combine data and style
-     const combined = {
-        data: data,
-        type: classesString,
-        style: style
-    };
-  
-    // Return the JSON string of safeData with pretty printing
-    return JSON.stringify(combined, null, 2);
-  }
+
+    // Add classes
+    try {
+        safeData.classes = element.classes();
+    } catch (e) {
+        safeData.classes = '[unavailable]';
+    }
+
+    // Add visual style
+    try {
+        const style = element.style();
+        const styleProps = style.names();
+        safeData.style = {};
+        for (const prop of styleProps) {
+            safeData.style[prop] = style.get(prop);
+        }
+    } catch (e) {
+       // safeData.style = { error: '[style not accessible]' };
+    }
+
+    return JSON.stringify(safeData, null, 2); // Indented JSON string
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const actions = document.querySelectorAll('.clickable-action');
 
@@ -180,16 +169,15 @@ function displayGraph(cyContainer, dataGraph) {
         elements: predefinedGraphs[dataGraph],
         style: OntologyViewerStyle
     });
-    cy.on('click', 'node, edge', function (event) {       
-        // Display JSON in the info-panel div
-        const infoPanel = document.getElementById('info-panel');
-       
-        const safeData = safeStringifyElement(event.target);
-        if (infoPanel) {
-            infoPanel.textContent = `${safeData}`;
-        
-        }
-    });
+
+   cy.on('click', 'node, edge', function (event) {       
+    const infoPanel = document.getElementById('info-panel');
+    const safeData = safeStringifyElement(event.target);
+    
+    if (infoPanel) {
+        infoPanel.textContent = safeData;
+    }
+});
 
 
     cy.on('dblclick', 'edge', function (event) {
