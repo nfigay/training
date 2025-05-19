@@ -5691,5 +5691,4686 @@ const predefinedGraphs = {
         { data: { id: "Z", label: "Node Z", "parent": "P" }, classes: "class" },
         { data: { id: "edgeXY", source: "X", target: "Y", label: "X → Y", type: "relation" } },
         { data: { id: "edgeYZ", source: "Y", target: "Z", label: "Y → Z", type: "relation" } }
-    ]
+    ],
+    "Graph_4":[
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/",
+          "label": "http://www.plminterop.org/archimate/"
+        },
+        "classes": [
+          "ontology"
+        ]
+      },
+      {
+        "data": {
+          "id": "defaultOWLAnnotationProperty",
+          "label": "defaultOWLAnnotationProperties"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "Datatype",
+          "label": "DataTypes"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "OWLClass",
+          "label": "OWLClasses",
+          "parent": "http://www.plminterop.org/archimate/"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "OWLAnnotationProperty",
+          "label": "OWLAnnotationProperties",
+          "parent": "http://www.plminterop.org/archimate/"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "OWLProperty",
+          "label": "OWLProperties",
+          "parent": "http://www.plminterop.org/archimate/"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "OWLIndividual",
+          "label": "OWLIndividuals",
+          "parent": "http://www.plminterop.org/archimate/"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "OWLDatatypeProperty",
+          "label": "OWLDatatypeProperty",
+          "parent": "http://www.plminterop.org/archimate/"
+        },
+        "classes": [
+          "datatypeproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Coherence",
+          "label": "Coherence",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Deciding",
+          "label": "Deciding",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Designing",
+          "label": "Designing",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Details",
+          "label": "Details",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Informing",
+          "label": "Informing",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Overview",
+          "label": "Overview",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl#Thing",
+          "label": "Thing",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl#Nothing",
+          "label": "Nothing",
+          "parent": "OWLIndividual"
+        },
+        "classes": [
+          "individual"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2000/01/rdf-schema#label",
+          "label": "label",
+          "parent": "defaultOWLAnnotationProperty"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2000/01/rdf-schema#comment",
+          "label": "comment",
+          "parent": "defaultOWLAnnotationProperty"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://purl.org/dc/elements/1.1/creator",
+          "label": "creator",
+          "parent": "defaultOWLAnnotationProperty"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://purl.org/dc/elements/1.1/date",
+          "label": "date",
+          "parent": "defaultOWLAnnotationProperty"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl#deprecated",
+          "label": "deprecated",
+          "parent": "defaultOWLAnnotationProperty"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl#versionInfo",
+          "label": "versionInfo",
+          "parent": "defaultOWLAnnotationProperty"
+        },
+        "classes": [
+          "annotationproperty"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema",
+          "label": "XMLS",
+          "parent": "Datatype"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+          "label": "RDFS",
+          "parent": "Datatype"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl",
+          "label": "OWL",
+          "parent": "Datatype"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#string",
+          "label": "string",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#boolean",
+          "label": "boolean",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#decimal",
+          "label": "decimal",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#integer",
+          "label": "integer",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#int",
+          "label": "int",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#long",
+          "label": "long",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#short",
+          "label": "short",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#byte",
+          "label": "byte",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#nonPositiveInteger",
+          "label": "nonPositiveInteger",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+          "label": "nonNegativeInteger",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#positiveInteger",
+          "label": "positiveInteger",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#unsignedLong",
+          "label": "unsignedLong",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#unsignedInt",
+          "label": "unsignedInt",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#unsignedShort",
+          "label": "unsignedShort",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#unsignedByte",
+          "label": "unsignedByte",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#float",
+          "label": "float",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#double",
+          "label": "double",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "label": "dateTime",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#date",
+          "label": "date",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#time",
+          "label": "time",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#duration",
+          "label": "duration",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#QName",
+          "label": "QName",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "label": "anyURI",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#base64Binary",
+          "label": "base64Binary",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#hexBinary",
+          "label": "hexBinary",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#normalizedString",
+          "label": "normalizedString",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#token",
+          "label": "token",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#language",
+          "label": "language",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#NMTOKEN",
+          "label": "NMTOKEN",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#ID",
+          "label": "ID",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#IDREF",
+          "label": "IDREF",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#ENTITY",
+          "label": "ENTITY",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2001/XMLSchema#anySimpleType",
+          "label": "anySimpleType",
+          "parent": "http://www.w3.org/2001/XMLSchema"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral",
+          "label": "XMLLiteral",
+          "parent": "http://www.w3.org/1999/02/22-rdf-syntax-ns"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "label": "langString",
+          "parent": "http://www.w3.org/1999/02/22-rdf-syntax-ns"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl#rational",
+          "label": "rational",
+          "parent": "http://www.w3.org/2002/07/owl"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.w3.org/2002/07/owl#real",
+          "label": "real",
+          "parent": "http://www.w3.org/2002/07/owl"
+        },
+        "classes": [
+          "datatype"
+        ]
+      },
+      {
+        "data": {
+          "id": "n0",
+          "label": "n0",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access",
+          "label": "Access",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "n21",
+          "label": "n21",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "n23",
+          "label": "n23",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "n27",
+          "label": "n27",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "n30",
+          "label": "n30",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Accessor_Type1",
+          "label": "Accessor_Type1",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Accessor_Type2",
+          "label": "Accessor_Type2",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Accessor_Type3",
+          "label": "Accessor_Type3",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ActiveStructureElement",
+          "label": "ActiveStructureElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregation",
+          "label": "Aggregation",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/AndJunction",
+          "label": "AndJunction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ApplicationElement",
+          "label": "ApplicationElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Collaboration",
+          "label": "Application_Collaboration",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Component",
+          "label": "Application_Component",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Event",
+          "label": "Application_Event",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Function",
+          "label": "Application_Function",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Interaction",
+          "label": "Application_Interaction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Interface",
+          "label": "Application_Interface",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Process",
+          "label": "Application_Process",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Application_Service",
+          "label": "Application_Service",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchiMateModelingEntity",
+          "label": "ArchiMateModelingEntity",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchiMateModelingRelation",
+          "label": "ArchiMateModelingRelation",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchiMateRule",
+          "label": "ArchiMateRule",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchiMateViewpoint",
+          "label": "ArchiMateViewpoint",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Architecture",
+          "label": "Architecture",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchitectureDescription",
+          "label": "ArchitectureDescription",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchitectureModel",
+          "label": "ArchitectureModel",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchitectureRational",
+          "label": "ArchitectureRational",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchitectureView",
+          "label": "ArchitectureView",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ArchitectureViewpoint",
+          "label": "ArchitectureViewpoint",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Artifact",
+          "label": "Artifact",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aspect",
+          "label": "Aspect",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Assessment",
+          "label": "Assessment",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Assignment",
+          "label": "Assignment",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Association",
+          "label": "Association",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/BehaviourElement",
+          "label": "BehaviourElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/BusinessElement",
+          "label": "BusinessElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Actor",
+          "label": "Business_Actor",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Collaboration",
+          "label": "Business_Collaboration",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Event",
+          "label": "Business_Event",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Function",
+          "label": "Business_Function",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Interaction",
+          "label": "Business_Interaction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Interface",
+          "label": "Business_Interface",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Object",
+          "label": "Business_Object",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Process",
+          "label": "Business_Process",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Role",
+          "label": "Business_Role",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Business_Service",
+          "label": "Business_Service",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Capability",
+          "label": "Capability",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Collaboration",
+          "label": "Collaboration",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Communication_Network",
+          "label": "Communication_Network",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/CompositeElement",
+          "label": "CompositeElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Composition",
+          "label": "Composition",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Concern",
+          "label": "Concern",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Constraint",
+          "label": "Constraint",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Contract",
+          "label": "Contract",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Correspondance",
+          "label": "Correspondance",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/CorrespondanceRule",
+          "label": "CorrespondanceRule",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Course_of_Action",
+          "label": "Course_of_Action",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Cross_aspect_dependencies",
+          "label": "Cross_aspect_dependencies",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/CustomizationElement",
+          "label": "CustomizationElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Data_Object",
+          "label": "Data_Object",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Deliverable",
+          "label": "Deliverable",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/DependencyRelationShip",
+          "label": "DependencyRelationShip",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Derivation_Rule",
+          "label": "Derivation_Rule",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Derivation_Rule_for_Structural_and_Dependency_Relationships",
+          "label": "Derivation_Rule_for_Structural_and_Dependency_Relationships",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Derivation_Rules_for_Dynamic_Relationships",
+          "label": "Derivation_Rules_for_Dynamic_Relationships",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Device",
+          "label": "Device",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Distribution_Network",
+          "label": "Distribution_Network",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Driver",
+          "label": "Driver",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/DynamicRelationship",
+          "label": "DynamicRelationship",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ElementSpecialization",
+          "label": "ElementSpecialization",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Equipment",
+          "label": "Equipment",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Event",
+          "label": "Event",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ExternalActiveStructureElement",
+          "label": "ExternalActiveStructureElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ExternalBehaviorElement",
+          "label": "ExternalBehaviorElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Facility",
+          "label": "Facility",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Flow",
+          "label": "Flow",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Function",
+          "label": "Function",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Gap",
+          "label": "Gap",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Goal",
+          "label": "Goal",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Grouping",
+          "label": "Grouping",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ImplementationMigrationElement",
+          "label": "ImplementationMigrationElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Implementation_Event",
+          "label": "Implementation_Event",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Influence",
+          "label": "Influence",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Influencer_Type1",
+          "label": "Influencer_Type1",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Influencer_Type2",
+          "label": "Influencer_Type2",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Interaction",
+          "label": "Interaction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/InternalActiveStructureElement",
+          "label": "InternalActiveStructureElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/InternalBehaviorElement",
+          "label": "InternalBehaviorElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Junction",
+          "label": "Junction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Location",
+          "label": "Location",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Material",
+          "label": "Material",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Meaning",
+          "label": "Meaning",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ModelKind",
+          "label": "ModelKind",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/MotivationElement",
+          "label": "MotivationElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Node",
+          "label": "Node",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/OrJunction",
+          "label": "OrJunction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/OtherElements",
+          "label": "OtherElements",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/OtherRelationship",
+          "label": "OtherRelationship",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Outcome",
+          "label": "Outcome",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/PassiveStructureElement",
+          "label": "PassiveStructureElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Path",
+          "label": "Path",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/PhysicalElement",
+          "label": "PhysicalElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Plateau",
+          "label": "Plateau",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/PreDefinedProfile",
+          "label": "PreDefinedProfile",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Principle",
+          "label": "Principle",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Process",
+          "label": "Process",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Product",
+          "label": "Product",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Profile",
+          "label": "Profile",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Purpose",
+          "label": "Purpose",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization",
+          "label": "Realization",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization_Type1",
+          "label": "Realization_Type1",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization_Type2",
+          "label": "Realization_Type2",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/RelationshipConnector",
+          "label": "RelationshipConnector",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Representation",
+          "label": "Representation",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Requirement",
+          "label": "Requirement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Resource",
+          "label": "Resource",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Serving",
+          "label": "Serving",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Serving_Type1",
+          "label": "Serving_Type1",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Source_Type1",
+          "label": "Source_Type1",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Source_Type2",
+          "label": "Source_Type2",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Source_Type3",
+          "label": "Source_Type3",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization",
+          "label": "Specialization",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Stakeholder",
+          "label": "Stakeholder",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Strategy",
+          "label": "Strategy",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/StrategyElement",
+          "label": "StrategyElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/StructuralRelationship",
+          "label": "StructuralRelationship",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/StructureElement",
+          "label": "StructureElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SystemOfInterest",
+          "label": "SystemOfInterest",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/System_Software",
+          "label": "System_Software",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Tactic",
+          "label": "Tactic",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TechnologyPhysicalElement",
+          "label": "TechnologyPhysicalElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Collaboration",
+          "label": "Technology_Collaboration",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Event",
+          "label": "Technology_Event",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Function",
+          "label": "Technology_Function",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Interaction",
+          "label": "Technology_Interaction",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Interface",
+          "label": "Technology_Interface",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Object",
+          "label": "Technology_Object",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Process",
+          "label": "Technology_Process",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Technology_Service",
+          "label": "Technology_Service",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering",
+          "label": "Triggering",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_Type1",
+          "label": "Triggering_Type1",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_Type2",
+          "label": "Triggering_Type2",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_Type3",
+          "label": "Triggering_Type3",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_Type4",
+          "label": "Triggering_Type4",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/UserDefinedProfile",
+          "label": "UserDefinedProfile",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Value",
+          "label": "Value",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/ViewpointElement",
+          "label": "ViewpointElement",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Work_Package",
+          "label": "Work_Package",
+          "parent": "OWLClass"
+        },
+        "classes": [
+          "class"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access_relation_from_accessor_type1",
+          "label": "Access_relation_from_accessor_type1",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access_relation_from_accessor_type2",
+          "label": "Access_relation_from_accessor_type2",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access_relation_from_accessor_type3",
+          "label": "Access_relation_from_accessor_type3",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access_relation_from_capability",
+          "label": "Access_relation_from_capability",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access_relation_from_course_of_action",
+          "label": "Access_relation_from_course_of_action",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Access_relation_from_resource",
+          "label": "Access_relation_from_resource",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_applicationComponent",
+          "label": "Aggregated_by_applicationComponent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_applicationEvent",
+          "label": "Aggregated_by_applicationEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_applicationFunctionOrProcessOrInteraction",
+          "label": "Aggregated_by_applicationFunctionOrProcessOrInteraction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_applicationInterface",
+          "label": "Aggregated_by_applicationInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_applicationService",
+          "label": "Aggregated_by_applicationService",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_artifact",
+          "label": "Aggregated_by_artifact",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_assessment",
+          "label": "Aggregated_by_assessment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessActor",
+          "label": "Aggregated_by_businessActor",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessCollaboration",
+          "label": "Aggregated_by_businessCollaboration",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessEvent",
+          "label": "Aggregated_by_businessEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessInterface",
+          "label": "Aggregated_by_businessInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessObjectorContract",
+          "label": "Aggregated_by_businessObjectorContract",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessProcessOrFunctionOrInteraction",
+          "label": "Aggregated_by_businessProcessOrFunctionOrInteraction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessRole",
+          "label": "Aggregated_by_businessRole",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_businessService",
+          "label": "Aggregated_by_businessService",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_capability",
+          "label": "Aggregated_by_capability",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_communicationNetwork",
+          "label": "Aggregated_by_communicationNetwork",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_courseOfAction",
+          "label": "Aggregated_by_courseOfAction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_dataObject",
+          "label": "Aggregated_by_dataObject",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_deliverable",
+          "label": "Aggregated_by_deliverable",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_distributionNetwork",
+          "label": "Aggregated_by_distributionNetwork",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_driver",
+          "label": "Aggregated_by_driver",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_goal",
+          "label": "Aggregated_by_goal",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_grouping",
+          "label": "Aggregated_by_grouping",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_implementationEvent",
+          "label": "Aggregated_by_implementationEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_location",
+          "label": "Aggregated_by_location",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_material",
+          "label": "Aggregated_by_material",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_meaning",
+          "label": "Aggregated_by_meaning",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_nodeOrDeviceOrSystemSoftwareOrTechnologyCollaborationOrEquipmentOrFacility",
+          "label": "Aggregated_by_nodeOrDeviceOrSystemSoftwareOrTechnologyCollaborationOrEquipmentOrFacility",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_outcome",
+          "label": "Aggregated_by_outcome",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_path",
+          "label": "Aggregated_by_path",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_plateau",
+          "label": "Aggregated_by_plateau",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_principle",
+          "label": "Aggregated_by_principle",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_product",
+          "label": "Aggregated_by_product",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_representation",
+          "label": "Aggregated_by_representation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_requirementOrConstraint",
+          "label": "Aggregated_by_requirementOrConstraint",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_resource",
+          "label": "Aggregated_by_resource",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_stakeholder",
+          "label": "Aggregated_by_stakeholder",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_technologyEvent",
+          "label": "Aggregated_by_technologyEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_technologyFunctionOrProcessOrInteraction",
+          "label": "Aggregated_by_technologyFunctionOrProcessOrInteraction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_technologyInterface",
+          "label": "Aggregated_by_technologyInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_technologyService",
+          "label": "Aggregated_by_technologyService",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_value",
+          "label": "Aggregated_by_value",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Aggregated_by_workPackage",
+          "label": "Aggregated_by_workPackage",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/AssignementFrom",
+          "label": "AssignementFrom",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/AssignmentTo",
+          "label": "AssignmentTo",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Assignment_relation_from_resource",
+          "label": "Assignment_relation_from_resource",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Flow_relation_from_source_type1",
+          "label": "Flow_relation_from_source_type1",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Flow_relation_from_source_type2",
+          "label": "Flow_relation_from_source_type2",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Flow_relation_from_source_type3",
+          "label": "Flow_relation_from_source_type3",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Influence_relation_from_Stakeholder",
+          "label": "Influence_relation_from_Stakeholder",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Influence_relation_from_influencer_type1",
+          "label": "Influence_relation_from_influencer_type1",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Influence_relation_from_influencer_type2",
+          "label": "Influence_relation_from_influencer_type2",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_Influence",
+          "label": "Inverse_of_Influence",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_Realization",
+          "label": "Inverse_of_Realization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_aggregation",
+          "label": "Inverse_of_aggregation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_association",
+          "label": "Inverse_of_association",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_composition",
+          "label": "Inverse_of_composition",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_flow",
+          "label": "Inverse_of_flow",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_serving",
+          "label": "Inverse_of_serving",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_specialization",
+          "label": "Inverse_of_specialization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_triggering",
+          "label": "△△Inverse_of_triggering",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Inverse_of_used_by",
+          "label": "Inverse_of_used_by",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization_relation_from_applicationInterface",
+          "label": "Realization_relation_from_applicationInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization_relation_from_product",
+          "label": "Realization_relation_from_product",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization_relation_from_realization_type1",
+          "label": "Realization_relation_from_realization_type1",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Realization_relation_from_realization_type2",
+          "label": "Realization_relation_from_realization_type2",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Serving_relation_from_courseOfAction",
+          "label": "Serving_relation_from_courseOfAction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Serving_relation_from_serving_type1",
+          "label": "Serving_relation_from_serving_type1",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Serving_relation_from_serving_type2",
+          "label": "Serving_relation_from_serving_type2",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Serving_relation_from_serving_type3",
+          "label": "Serving_relation_from_serving_type3",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationship",
+          "label": "SourceRelationship",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForAccess",
+          "label": "SourceRelationshipForAccess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForAggregation",
+          "label": "SourceRelationshipForAggregation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForAssignment",
+          "label": "SourceRelationshipForAssignment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForAssociation",
+          "label": "SourceRelationshipForAssociation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForComposition",
+          "label": "SourceRelationshipForComposition",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForFlow",
+          "label": "SourceRelationshipForFlow",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForInfluence",
+          "label": "SourceRelationshipForInfluence",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForRealization",
+          "label": "SourceRelationshipForRealization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForServing",
+          "label": "SourceRelationshipForServing",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForSpecialization",
+          "label": "SourceRelationshipForSpecialization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceRelationshipForTriggering",
+          "label": "SourceRelationshipForTriggering",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/SourceTargetRelationship",
+          "label": "SourceTargetRelationship",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationCollaboration",
+          "label": "Specialization_relation_from_applicationCollaboration",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationComponent",
+          "label": "Specialization_relation_from_applicationComponent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationEvent",
+          "label": "Specialization_relation_from_applicationEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationFunction",
+          "label": "Specialization_relation_from_applicationFunction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationInteraction",
+          "label": "Specialization_relation_from_applicationInteraction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationInterface",
+          "label": "Specialization_relation_from_applicationInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationProcess",
+          "label": "Specialization_relation_from_applicationProcess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_applicationService",
+          "label": "Specialization_relation_from_applicationService",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_artifact",
+          "label": "Specialization_relation_from_artifact",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_assessment",
+          "label": "Specialization_relation_from_assessment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessActor",
+          "label": "Specialization_relation_from_businessActor",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessCollaboration",
+          "label": "Specialization_relation_from_businessCollaboration",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessEvent",
+          "label": "Specialization_relation_from_businessEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessFunction",
+          "label": "Specialization_relation_from_businessFunction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessInteraction",
+          "label": "Specialization_relation_from_businessInteraction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessInterface",
+          "label": "Specialization_relation_from_businessInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessObjectOrContract",
+          "label": "Specialization_relation_from_businessObjectOrContract",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessProcess",
+          "label": "Specialization_relation_from_businessProcess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessRole",
+          "label": "Specialization_relation_from_businessRole",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_businessService",
+          "label": "Specialization_relation_from_businessService",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_capability",
+          "label": "Specialization_relation_from_capability",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_communicationNetwork",
+          "label": "Specialization_relation_from_communicationNetwork",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_courseOfAction",
+          "label": "Specialization_relation_from_courseOfAction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_dataObject",
+          "label": "Specialization_relation_from_dataObject",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_deliverable",
+          "label": "Specialization_relation_from_deliverable",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_device",
+          "label": "Specialization_relation_from_device",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_distributionNetwork",
+          "label": "Specialization_relation_from_distributionNetwork",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_driver",
+          "label": "Specialization_relation_from_driver",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_equipment",
+          "label": "Specialization_relation_from_equipment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_facility",
+          "label": "Specialization_relation_from_facility",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_gap",
+          "label": "Specialization_relation_from_gap",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_goal",
+          "label": "Specialization_relation_from_goal",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_grouping",
+          "label": "Specialization_relation_from_grouping",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_implementationEvent",
+          "label": "Specialization_relation_from_implementationEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_location",
+          "label": "Specialization_relation_from_location",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_material",
+          "label": "Specialization_relation_from_material",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_meaning",
+          "label": "Specialization_relation_from_meaning",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_node",
+          "label": "Specialization_relation_from_node",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_outcome",
+          "label": "Specialization_relation_from_outcome",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_path",
+          "label": "Specialization_relation_from_path",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_plateau",
+          "label": "Specialization_relation_from_plateau",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_principle",
+          "label": "Specialization_relation_from_principle",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_product",
+          "label": "Specialization_relation_from_product",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_representation",
+          "label": "Specialization_relation_from_representation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_requirementOrConstraint",
+          "label": "Specialization_relation_from_requirementOrConstraint",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_resource",
+          "label": "Specialization_relation_from_resource",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_stakeholder",
+          "label": "Specialization_relation_from_stakeholder",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyCollaboration",
+          "label": "Specialization_relation_from_technologyCollaboration",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyEvent",
+          "label": "Specialization_relation_from_technologyEvent",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyFunction",
+          "label": "Specialization_relation_from_technologyFunction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyInteraction",
+          "label": "Specialization_relation_from_technologyInteraction",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyInterface",
+          "label": "Specialization_relation_from_technologyInterface",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyProcess",
+          "label": "Specialization_relation_from_technologyProcess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_technologyService",
+          "label": "Specialization_relation_from_technologyService",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_value",
+          "label": "Specialization_relation_from_value",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Specialization_relation_from_workPackage",
+          "label": "Specialization_relation_from_workPackage",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationship",
+          "label": "TargetRelationship",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForAccess",
+          "label": "TargetRelationshipForAccess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForAggregation",
+          "label": "TargetRelationshipForAggregation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForAssignment",
+          "label": "TargetRelationshipForAssignment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForAssociation",
+          "label": "TargetRelationshipForAssociation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForComposition",
+          "label": "TargetRelationshipForComposition",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForFlow",
+          "label": "TargetRelationshipForFlow",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForInfluence",
+          "label": "TargetRelationshipForInfluence",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForRealization",
+          "label": "TargetRelationshipForRealization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForServing",
+          "label": "TargetRelationshipForServing",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForSpecialization",
+          "label": "TargetRelationshipForSpecialization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/TargetRelationshipForTriggering",
+          "label": "TargetRelationshipForTriggering",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_relation_from_triggering_type1",
+          "label": "Triggering_relation_from_triggering_type1",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_relation_from_triggering_type2",
+          "label": "Triggering_relation_from_triggering_type2",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_relation_from_triggering_type3",
+          "label": "Triggering_relation_from_triggering_type3",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Triggering_relation_from_triggering_type4",
+          "label": "Triggering_relation_from_triggering_type4",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/Used_by",
+          "label": "Used_by",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/access_",
+          "label": "access_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/aggregation_",
+          "label": "aggregation_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/association_",
+          "label": "association_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/composition_",
+          "label": "composition_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/flow_",
+          "label": "flow_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/hasAspect",
+          "label": "hasAspect",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/hasPurpose",
+          "label": "hasPurpose",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/influence_",
+          "label": "influence_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForAccess",
+          "label": "inverse_of_SourceRelationshipForAccess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForAggregation",
+          "label": "inverse_of_SourceRelationshipForAggregation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForAssignment",
+          "label": "inverse_of_SourceRelationshipForAssignment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForAssociation",
+          "label": "inverse_of_SourceRelationshipForAssociation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForComposition",
+          "label": "inverse_of_SourceRelationshipForComposition",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForFlow",
+          "label": "inverse_of_SourceRelationshipForFlow",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForInfluence",
+          "label": "inverse_of_SourceRelationshipForInfluence",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForRealization",
+          "label": "inverse_of_SourceRelationshipForRealization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForServing",
+          "label": "inverse_of_SourceRelationshipForServing",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForSpecialization",
+          "label": "inverse_of_SourceRelationshipForSpecialization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_SourceRelationshipForTriggering",
+          "label": "inverse_of_SourceRelationshipForTriggering",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForAccess",
+          "label": "inverse_of_TargetRelationshipForAccess",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForAggregation",
+          "label": "inverse_of_TargetRelationshipForAggregation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForAssignment",
+          "label": "inverse_of_TargetRelationshipForAssignment",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForAssociation",
+          "label": "inverse_of_TargetRelationshipForAssociation",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForComposition",
+          "label": "inverse_of_TargetRelationshipForComposition",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForFlow",
+          "label": "inverse_of_TargetRelationshipForFlow",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForInfluence",
+          "label": "inverse_of_TargetRelationshipForInfluence",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForRealization",
+          "label": "inverse_of_TargetRelationshipForRealization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForServing",
+          "label": "inverse_of_TargetRelationshipForServing",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForSpecialization",
+          "label": "inverse_of_TargetRelationshipForSpecialization",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_TargetRelationshipForTriggering",
+          "label": "inverse_of_TargetRelationshipForTriggering",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/inverse_of_access",
+          "label": "inverse_of_access",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/isResourceComposedOf",
+          "label": "isResourceComposedOf",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/realization_",
+          "label": "realization_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/serving_",
+          "label": "serving_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/specialization_",
+          "label": "specialization_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "http://www.plminterop.org/archimate/triggering_",
+          "label": "△△triggering_",
+          "parent": "OWLProperty"
+        },
+        "classes": [
+          "property"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCY03FDPPCB34169V7",
+          "label": "PropertyChain 1",
+          "parent": "http://www.plminterop.org/archimate/AssignmentTo"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCH8NV8VWM8ZW4YK02",
+          "label": "PropertyChain 2",
+          "parent": "http://www.plminterop.org/archimate/AssignmentTo"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVC4AHHS2QJE2T4W9AN",
+          "label": "PropertyChain 3",
+          "parent": "http://www.plminterop.org/archimate/AssignmentTo"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCX9CXWHG60DPFYCMR",
+          "label": "PropertyChain 4",
+          "parent": "http://www.plminterop.org/archimate/AssignmentTo"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCHP9W8B7YVY0MQQVX",
+          "label": "PropertyChain 5",
+          "parent": "http://www.plminterop.org/archimate/AssignmentTo"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCTYF2PZS5AXGGTJ0Z",
+          "label": "PropertyChain 6",
+          "parent": "http://www.plminterop.org/archimate/AssignmentTo"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-0",
+          "label": "1",
+          "parent": "01JVM10WVCY03FDPPCB34169V7"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-0",
+          "label": "2",
+          "parent": "01JVM10WVCY03FDPPCB34169V7"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-1",
+          "label": "1",
+          "parent": "01JVM10WVCH8NV8VWM8ZW4YK02"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-1",
+          "label": "2",
+          "parent": "01JVM10WVCH8NV8VWM8ZW4YK02"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-2",
+          "label": "1",
+          "parent": "01JVM10WVC4AHHS2QJE2T4W9AN"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-2",
+          "label": "2",
+          "parent": "01JVM10WVC4AHHS2QJE2T4W9AN"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-3",
+          "label": "1",
+          "parent": "01JVM10WVCX9CXWHG60DPFYCMR"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-3",
+          "label": "2",
+          "parent": "01JVM10WVCX9CXWHG60DPFYCMR"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-4",
+          "label": "1",
+          "parent": "01JVM10WVCHP9W8B7YVY0MQQVX"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-4",
+          "label": "2",
+          "parent": "01JVM10WVCHP9W8B7YVY0MQQVX"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-5",
+          "label": "1",
+          "parent": "01JVM10WVCTYF2PZS5AXGGTJ0Z"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-5",
+          "label": "2",
+          "parent": "01JVM10WVCTYF2PZS5AXGGTJ0Z"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCJ0XSPRHWT9KR99JR",
+          "label": "PropertyChain 7",
+          "parent": "http://www.plminterop.org/archimate/access_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-6",
+          "label": "1",
+          "parent": "01JVM10WVCJ0XSPRHWT9KR99JR"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-6",
+          "label": "2",
+          "parent": "01JVM10WVCJ0XSPRHWT9KR99JR"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCQ5R9ZVTH6E4D8VFB",
+          "label": "PropertyChain 8",
+          "parent": "http://www.plminterop.org/archimate/aggregation_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCYEYHSQ6VBM4ASAYP",
+          "label": "PropertyChain 9",
+          "parent": "http://www.plminterop.org/archimate/aggregation_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCGCRZXEGFZF3XTZ6T",
+          "label": "PropertyChain 10",
+          "parent": "http://www.plminterop.org/archimate/aggregation_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCGCAAY3J37Y78RJW6",
+          "label": "PropertyChain 11",
+          "parent": "http://www.plminterop.org/archimate/aggregation_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-7",
+          "label": "1",
+          "parent": "01JVM10WVCQ5R9ZVTH6E4D8VFB"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-7",
+          "label": "2",
+          "parent": "01JVM10WVCQ5R9ZVTH6E4D8VFB"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-8",
+          "label": "1",
+          "parent": "01JVM10WVCYEYHSQ6VBM4ASAYP"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-8",
+          "label": "2",
+          "parent": "01JVM10WVCYEYHSQ6VBM4ASAYP"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-9",
+          "label": "1",
+          "parent": "01JVM10WVCGCRZXEGFZF3XTZ6T"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-9",
+          "label": "2",
+          "parent": "01JVM10WVCGCRZXEGFZF3XTZ6T"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-10",
+          "label": "1",
+          "parent": "01JVM10WVCGCAAY3J37Y78RJW6"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-10",
+          "label": "2",
+          "parent": "01JVM10WVCGCAAY3J37Y78RJW6"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVC68MWFAKZ0HXHE5C0",
+          "label": "PropertyChain 12",
+          "parent": "http://www.plminterop.org/archimate/association_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-11",
+          "label": "1",
+          "parent": "01JVM10WVC68MWFAKZ0HXHE5C0"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-11",
+          "label": "2",
+          "parent": "01JVM10WVC68MWFAKZ0HXHE5C0"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVC1601EPVV3TEPN9BY",
+          "label": "PropertyChain 13",
+          "parent": "http://www.plminterop.org/archimate/composition_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-12",
+          "label": "1",
+          "parent": "01JVM10WVC1601EPVV3TEPN9BY"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-12",
+          "label": "2",
+          "parent": "01JVM10WVC1601EPVV3TEPN9BY"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVC0KS8RCSAAXGX19R7",
+          "label": "PropertyChain 14",
+          "parent": "http://www.plminterop.org/archimate/flow_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-13",
+          "label": "1",
+          "parent": "01JVM10WVC0KS8RCSAAXGX19R7"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-13",
+          "label": "2",
+          "parent": "01JVM10WVC0KS8RCSAAXGX19R7"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCTGDFSACN53HVKX6F",
+          "label": "PropertyChain 15",
+          "parent": "http://www.plminterop.org/archimate/influence_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-14",
+          "label": "1",
+          "parent": "01JVM10WVCTGDFSACN53HVKX6F"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-14",
+          "label": "2",
+          "parent": "01JVM10WVCTGDFSACN53HVKX6F"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCDPAAEXEX6X6QJP59",
+          "label": "PropertyChain 16",
+          "parent": "http://www.plminterop.org/archimate/realization_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-15",
+          "label": "1",
+          "parent": "01JVM10WVCDPAAEXEX6X6QJP59"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-15",
+          "label": "2",
+          "parent": "01JVM10WVCDPAAEXEX6X6QJP59"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVCXR43M04RT6NGC3VX",
+          "label": "PropertyChain 17",
+          "parent": "http://www.plminterop.org/archimate/serving_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-16",
+          "label": "1",
+          "parent": "01JVM10WVCXR43M04RT6NGC3VX"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-16",
+          "label": "2",
+          "parent": "01JVM10WVCXR43M04RT6NGC3VX"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVDWA9W0P5RGYHK3W3N",
+          "label": "PropertyChain 18",
+          "parent": "http://www.plminterop.org/archimate/specialization_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-17",
+          "label": "1",
+          "parent": "01JVM10WVDWA9W0P5RGYHK3W3N"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-17",
+          "label": "2",
+          "parent": "01JVM10WVDWA9W0P5RGYHK3W3N"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "01JVM10WVDPTE1X7Q9MGGTW0YP",
+          "label": "PropertyChain 19",
+          "parent": "http://www.plminterop.org/archimate/triggering_"
+        },
+        "classes": [
+          "propertychain"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-0-18",
+          "label": "1",
+          "parent": "01JVM10WVDPTE1X7Q9MGGTW0YP"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      },
+      {
+        "data": {
+          "id": "blank-1-18",
+          "label": "2",
+          "parent": "01JVM10WVDPTE1X7Q9MGGTW0YP"
+        },
+        "classes": [
+          "chainmember"
+        ]
+      }
+  ]
+  
+ 
 };
