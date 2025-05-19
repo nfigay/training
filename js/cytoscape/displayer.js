@@ -1,6 +1,57 @@
 //To be used only when using ES6 module (with a server or github page)
 //import { predefinedGraphs } from "./predefinedGraphs.js";
 //console.log(JSON.stringify(predefinedGraphs));
+
+function safeStringifyElement(element) {
+    // Get all attributes from the element's data()
+    const data = element.data();
+    const classesString = element.classes(); // e.g. "annotationproperty someOtherClass"
+     // Define style properties you want to capture
+     const styleProperties = [
+        "background-color",
+        "border-color",
+        "border-width",
+        "label",
+        "font-size",
+        "color",
+        "width",
+        "height",
+        "line-color",
+        "line-style",
+        "text-valign",
+        "text-halign"
+    ];
+
+    // Build a style object with property-value pairs
+    const style = {};
+    styleProperties.forEach(prop => {
+        style[prop] = element.style(prop);
+    });
+
+
+  
+    // Create a new object with only primitive or stringifiable values
+    const safeData = {};
+  
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        const value = data[key];
+        // Keep only if not object or array (or null is okay)
+        if (value === null || (typeof value !== 'object' && !Array.isArray(value))) {
+          safeData[key] = value;
+        }
+      }
+    }
+     // Combine data and style
+     const combined = {
+        data: data,
+        type: classesString,
+        style: style
+    };
+  
+    // Return the JSON string of safeData with pretty printing
+    return JSON.stringify(combined, null, 2);
+  }
 document.addEventListener("DOMContentLoaded", function () {
     const actions = document.querySelectorAll('.clickable-action');
 
@@ -129,10 +180,18 @@ function displayGraph(cyContainer, dataGraph) {
         elements: predefinedGraphs[dataGraph],
         style: OntologyViewerStyle
     });
-    cy.on('click', 'node, edge', function (event) {
-        var target = event.target;
-        //  console.log(target.classes());
+    cy.on('click', 'node, edge', function (event) {       
+        // Display JSON in the info-panel div
+        const infoPanel = document.getElementById('info-panel');
+       
+        const safeData = safeStringifyElement(event.target);
+        if (infoPanel) {
+            infoPanel.textContent = `${safeData}`;
+        
+        }
     });
+
+
     cy.on('dblclick', 'edge', function (event) {
         let edge = event.target;
 
@@ -156,7 +215,7 @@ function displayGraph(cyContainer, dataGraph) {
                     api.expand(cy.$(":selected"), getEdgeOptions());
 
                 } else if (action === "collapse") {
-                    api.collapse(cy.$(":selected"),getEdgeOptions());
+                    api.collapse(cy.$(":selected"), getEdgeOptions());
 
                 }
             } else if (target === "all") {
@@ -171,12 +230,15 @@ function displayGraph(cyContainer, dataGraph) {
                 else if (action === "collapseedges") {
                     api.collapseAllEdges(getEdgeOptions());
                 }
+                else if (action === "delete") {
+                    alert("delete")
+                }
 
             } else if (target === "edges") {
                 if (action === "expand") {
-                    api.expandEdges(cy.$("edge:selected"),getEdgeOptions());
+                    api.expandEdges(cy.$("edge:selected"), getEdgeOptions());
                 } else if (action === "collapse") {
-                    api.collapseEdges(cy.$("edge:selected"),getEdgeOptions());
+                    api.collapseEdges(cy.$("edge:selected"), getEdgeOptions());
                 }
             }
         });

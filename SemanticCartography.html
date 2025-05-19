@@ -21,6 +21,22 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
     <style>
+        #info-panel {
+            width: 400px;
+            /* fixed width */
+            height: 100px;
+            /* fixed height */
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow: auto;
+            /* adds scrollbars when content overflows */
+            white-space: pre-wrap;
+            /* preserve formatting with line wraps */
+            font-family: monospace;
+            /* easier to read JSON data */
+            background-color: #fafafa;            
+        }
+
         #infoPanel {
             border: 0px solid black;
             padding: 10px;
@@ -372,34 +388,24 @@
                                     <p>Presented by Dr Nicolas Figay and Pr Parisa Ghodous</p>
                                     <p></p>
                                     <p>🎯 Learning Outcomes</p>
-                                    <ul style="font-size: 0.3em;">
-                                        <li><strong>Understand Semantic Interoperability Principles</strong><br>
-                                            Grasp the differences between data, information, and knowledge, and
-                                            understand how semantics foster shared understanding across systems.</li>
-
-                                        <li><strong>Model Ontologies Using OWL</strong><br>
-                                            Use OWL to define formal ontologies for consistent domain representation.
-                                        </li>
-
-                                        <li><strong>Structure Enterprise Architecture with ArchiMate</strong><br>
-                                            Apply ArchiMate to represent enterprise layers and capabilities as part of
-                                            semantic models.</li>
-
-                                        <li><strong>Build Polyglot Hypermodels</strong><br>
-                                            Integrate multiple modeling languages and views into unified, composite
-                                            structures for enhanced system analysis.</li>
-
-                                        <li><strong>Explore Interactive Semantic Graphs with ArchiCG</strong><br>
-                                            Navigate and validate large, heterogeneous models visually using ArchiCG.
-                                        </li>
-
-                                        <li><strong>Apply AI for Interoperability</strong><br>
-                                            Understand how AI can assist in reasoning and automating semantic alignment
-                                            and integration.</li>
-
-                                        <li><strong>Apply Skills to Real Enterprise Contexts</strong><br>
-                                            Use learned techniques to solve practical enterprise integration and digital
-                                            continuity challenges.</li>
+                                    <ul style="font-size: 0.4em;">
+                                        <li>Understand the core principles of <strong>semantic
+                                                interoperability</strong>, including distinctions between data,
+                                            information, and knowledge.</li>
+                                        <li>Discover the value of <strong>semantic cartography</strong>, how it goes
+                                            beyond ontologies, and what makes it truly “semantic.”</li>
+                                        <li>Learn to structure enterprise architecture using <strong>ArchiMate</strong>
+                                            to represent layers and capabilities within semantic models.</li>
+                                        <li>Explore <strong>polyglot hypermodels</strong> that integrate multiple
+                                            modeling languages and views into unified structures.</li>
+                                        <li>Use <strong>ArchiCG</strong> to visually navigate, filter, and validate
+                                            large, heterogeneous semantic graphs interactively.</li>
+                                        <li>Understand how <strong>AI</strong> supports semantic reasoning, alignment,
+                                            and automation in integration tasks.</li>
+                                        <li>Apply all these concepts to <strong>real-world enterprise
+                                                challenges</strong> like digital continuity and cross-system
+                                            interoperability.</li>
+                                    </ul>
                                     </ul>
                                 </section>
                             </section>
@@ -411,24 +417,31 @@
 
                                     <p style="text-align: left; font-size: 0.5em;">
 
-                                        To build semantic interoperability, we begin with <strong>(A)</strong> the
-                                        nature of meaning and <strong>(B)</strong> the distinctions between data,
-                                        information, and knowledge.
-                                        <br><br>
-                                        We then face <strong>(C)</strong> communication challenges in natural language
-                                        and structured data, addressed through <strong>(D)</strong> ontologies and
-                                        polyglot hypermodels that bridge representations.
-                                        <br><br>
-                                        With <strong>(E)</strong> logical foundations, we explore <strong>(F)</strong>
-                                        OWL-based semantic modeling and graph interaction.
-                                        <br><br>
-                                        This leads to <strong>(G)</strong> composite hypermodels blending OWL,
-                                        ArchiMate, and other views, before introducing <strong>(H)</strong> AI-augmented
-                                        interoperability and future perpective.
-                                        <br><br>
-                                        We conclude with <strong>(I)</strong> interactive semantic cartography via
-                                        <em>ArchiCG</em>, integrating all concepts into a unified exploration tool.
+                                        We start with how meaning emerges—not from words, but from signs and shared
+                                        references (A). Visuals help reveal the many ways one idea can be represented
+                                        (B), and graphs become the medium to navigate this complexity (C).
                                     </p>
+                                    <p style="text-align: left; font-size: 0.5em;">
+                                        Interoperability needs more than language—it needs models that bridge domains
+                                        (D), rooted in logic but shaped for humans (E). Interactive graphs link formal
+                                        ontologies to intuitive navigation (F), blending structured views into living
+                                        maps (G).
+                                    </p>
+                                    <p style="text-align: left; font-size: 0.5em;">
+                                        AI augments this journey, offering suggestions while preserving human
+                                        sense-making (H). It all converges in <a
+                                            href="https://nfigay.github.io/ArchiCG/"
+                                            target="_blank"><strong>ArchiCG</strong></a>: a visual and semantic explorer
+                                        where meaning becomes navigable (I)—not read, but seen.
+                                    </p>
+                                    <p>
+                                        You can follow this journey and access all the training resources directly at
+                                        <a href="https://nfigay.github.io/training/SemanticCartography.html"
+                                            target="_blank">
+                                            <strong>nfigay.github.io/training/SemanticCartography.html</strong>
+                                        </a>.
+                                    </p>
+
                                 </section>
                             </section>
                             <section>
@@ -526,7 +539,8 @@
                                                     It examines how these meanings are understood by users in different
                                                     contexts.<br>
                                                     It is divided into several subfields, including linguistic
-                                                    semantics, logical semantics, and <strong>visual semantics</strong>, which focuses on
+                                                    semantics, logical semantics, and <strong>visual semantics</strong>,
+                                                    which focuses on
                                                     the interpretation of visual symbols.
                                                 </p>
                                             </div>
@@ -3634,37 +3648,85 @@
                                             </p>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="img/ontology.png" alt="[Description of the image]" style="max-width: 100%; height: auto;" />
+                                            <img src="img/ontology.png" alt="[Description of the image]"
+                                                style="max-width: 100%; height: auto;" />
                                         </div>
                                     </div>
                                     <aside class="notes">
                                         [Additional information for the presenter, for example:
-                                         - In-depth explanation of each key point
-                                         - Examples to mention verbally
-                                         - Discussion points or questions to ask the audience]
+                                        - In-depth explanation of each key point
+                                        - Examples to mention verbally
+                                        - Discussion points or questions to ask the audience]
                                     </aside>
                                 </section>
-                                
-                                <section data-graph="Graph_4">
-                                    <h4 style="font-size:20px;">OWL Ontology derived from ArchiMate as a Semantic Cartography</h4>
-                                    <div style="font-size: 15px;">
-                                        Expand <span class="clickable-action" data-action="expand" data-target="all">nodes</span>
-                                        <span class="clickable-action" data-action="expandedges" data-target="all">edges</span><br />
-                                        Collapse <span class="clickable-action" data-action="collapse" data-target="all">nodes</span>
-                                        <span class="clickable-action" data-action="collapseedges" data-target="all">edges</span>.<br />
-                                        Selection Expand
-                                        <span class="clickable-action" data-action="expand" data-target="selection">nodes</span>
-                                        <span class="clickable-action" data-action="expand" data-target="edges">edges</span><br />
-                                        Collapse <span class="clickable-action" data-action="collapse" data-target="selection">nodes</span>
-                                        <span class="clickable-action" data-action="collapse" data-target="edges">edges</span>.
+
+                                <section data-graph="Graph_1">
+                                    <h4 style="font-size:20px;">OWL Ontology derived from ArchiMate as a Semantic
+                                        Cartography</h4>
+                                    <div
+                                        style="display: flex; justify-content: center; align-items: center; height: 100%; font-size: 15px;">
+                                        <div style="display: flex; gap: 30px;">
+                                            <!-- Left Action Panel -->
+                                            <div>
+                                                Expand <span class="clickable-action" data-action="expand"
+                                                    data-target="all">nodes</span>
+                                                <span class="clickable-action" data-action="expandedges"
+                                                    data-target="all">edges</span><br />
+                                                Collapse <span class="clickable-action" data-action="collapse"
+                                                    data-target="all">nodes</span>
+                                                <span class="clickable-action" data-action="collapseedges"
+                                                    data-target="all">edges</span>.<br />
+                                                Selection Expand
+                                                <span class="clickable-action" data-action="expand"
+                                                    data-target="selection">nodes</span>
+                                                <span class="clickable-action" data-action="expand"
+                                                    data-target="edges">edges</span><br />
+                                                Collapse <span class="clickable-action" data-action="collapse"
+                                                    data-target="selection">nodes</span>
+                                                <span class="clickable-action" data-action="collapse"
+                                                    data-target="edges">edges</span>.<br>
+                                                
+                                            </div>
+
+
+                                            <!-- Right Creation Panel -->
+                                            <div
+                                                style="border-left: 1px solid #ccc; padding-left: 15px; font-size: 14px; display:none">
+                                                <span class="clickable-action" data-action="create"
+                                                    data-target="element">Create Element</span><br>
+                                                <label for="element-label">Label:</label>
+                                                <input type="text" id="element-label" placeholder="e.g., SensorData"
+                                                    style="width: 120px;"><br />
+
+                                                <label for="element-type">Type:</label>
+                                                <select id="element-type" style="width: 130px;">
+                                                    <option value="class">Class</option>
+                                                    <option value="individual">Individual</option>
+                                                    <option value="dataProperty">Data Property</option>
+                                                    <option value="objectProperty">Object Property</option>
+                                                    <option value="annotation">Annotation</option>
+                                                </select><br />
+
+                                                <label for="element-iri">IRI:</label>
+                                                <input type="text" id="element-iri"
+                                                    placeholder="e.g., http://ex.org#SensorData"
+                                                    style="width: 200px;"><br /><br />
+                                            </div>
+                                            <!-- New Info Panel -->
+                                            <div id="info-panel"
+                                                style="border-left: 1px solid #ccc; padding-left: 15px; 
+                                                margin-left: 20px; font-size: 10px; min-width: 250px; text-align: left;">
+
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="content-zone">
                                         <div class="image-zone"></div> <!-- Image zone for Graph 1 -->
                                     </div>
                                 </section>
-                                
+
                                 <!-- Section for Graph 2 with a content-zone that includes the image zone -->
-                                
+
                                 <section>
                                     <h2>Other Content Slide</h2>
                                     <div class="content-zone">
@@ -3673,7 +3735,7 @@
                                         </div>
                                     </div>
                                 </section>
-                                
+
                                 <section data-graph="Graph_2">
                                     <h2>Graph 2 Slide</h2>
                                     <div class="content-zone">
@@ -3683,7 +3745,7 @@
                                         <div class="image-zone"></div> <!-- Image zone for Graph 2 -->
                                     </div>
                                 </section>
-                                
+
                             </section>
                         </div>
                     </div>
