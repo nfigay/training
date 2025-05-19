@@ -1,6 +1,7 @@
 //To be used only when using ES6 module (with a server or github page)
 //import { predefinedGraphs } from "./predefinedGraphs.js";
 //console.log(JSON.stringify(predefinedGraphs));
+//
 
 function safeStringifyElement(element) {
     // Get primitive data properties only
