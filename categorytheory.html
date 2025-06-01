@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Category Theory with Cytoscape Demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.29.1/dist/ramda.min.js"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+  }
+  #cy {
+    width: 700px; height: 500px; border: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: top;
+  }
+  #controls {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    max-width: 300px;
+  }
+  button {
+    display: block;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  #status {
+    white-space: pre-wrap;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 8px;
+    min-height: 120px;
+    font-size: 13px;
+  }
+  /* Node and edge styles */
+  .object {
+    background-color: #0074D9;
+    label: data(label);
+    color: white;
+    font-weight: bold;
+    text-valign: center;
+    text-halign: center;
+  }
+  .morphism {
+    width: 3;
+    line-color: #999;
+    target-arrow-color: #999;
+    target-arrow-shape: triangle;
+    curve-style: bezier;
+    label: data(label);
+    font-size: 11px;
+  }
+  .identity {
+    background-color: #FF851B; /* orange */
+    border-width: 3;
+    border-color: #FF4136;
+  }
+  .functor-node {
+    background-color: #2ECC40 !important; /* green */
+  }
+  .functor-edge {
+    line-color: #2ECC40 !important;
+    target-arrow-color: #2ECC40 !important;
+    font-weight: bold;
+  }
+  .warning {
+    border-color: red !important;
+    background-color: #FF4136 !important;
+    color: white !important;
+  }
+</style>
+</head>
+<body>
+
+<h2>Category Theory Interactive Demo with Cytoscape</h2>
+
+<div id="cy"></div>
+
+<div id="controls">
+  <button id="addObjectBtn">Add Object (Node)</button>
+  <button id="addMorphismBtn">Add Morphism (Edge)</button>
+  <button id="addIdentityBtn">Add Identity Morphism (Loop)</button>
+  <button id="applyFunctorBtn">Apply Functor (Color Mapping)</button>
+  <button id="checkCategoryBtn">Check Category Laws</button>
+  <button id="resetBtn">Reset Graph</button>
+  <h3>Status / Messages</h3>
+  <div id="status"></div>
+</div>
+
+<script>
+  let cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements: [
+      { data: { id: 'A', label: 'A', type: 'object' }, classes: 'object', position: { x: 150, y: 100 }},
+      { data: { id: 'B', label: 'B', type: 'object' }, classes: 'object', position: { x: 400, y: 100 }},
+      { data: { id: 'f', source: 'A', target: 'B', label: 'f', type: 'morphism' }, classes: 'morphism' }
+    ],
+    style: [
+      {
+        selector: 'node.object',
+        style: {
+          'background-color': '#0074D9',
+          'label': 'data(label)',
+          'color': 'white',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'font-weight': 'bold',
+          'font-size': '16px',
+          'border-width': 0
+        }
+      },
+      {
+        selector: 'node.identity',
+        style: {
+          'background-color': '#FF851B',
+          'border-width': 3,
+          'border-color': '#FF4136',
+          'label': 'data(label)',
+          'color': 'white',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'font-weight': 'bold',
+          'font-size': '14px'
+        }
+      },
+      {
+        selector: 'edge.morphism',
+        style: {
+          'width': 3,
+          'line-color': '#999',
+          'target-arrow-color': '#999',
+          'target-arrow-shape': 'triangle',
+          'curve-style': 'bezier',
+          'label': 'data(label)',
+          'font-size': '12px',
+          'text-background-color': '#fff',
+          'text-background-opacity': 0.7,
+          'text-background-padding': 3
+        }
+      },
+      {
+        selector: '.functor-node',
+        style: {
+          'background-color': '#2ECC40 !important',
+          'font-weight': 'bold'
+        }
+      },
+      {
+        selector: '.functor-edge',
+        style: {
+          'line-color': '#2ECC40 !important',
+          'target-arrow-color': '#2ECC40 !important',
+          'font-weight': 'bold'
+        }
+      },
+      {
+        selector: '.warning',
+        style: {
+          'border-color': 'red',
+          'background-color': '#FF4136',
+          'color': 'white'
+        }
+      }
+    ],
+    layout: {
+      name: 'preset'
+    }
+  });
+
+  // Utility to update status messages
+  function updateStatus(msg) {
+    document.getElementById('status').textContent = msg;
+  }
+
+  // Add new object node with auto-generated id and position
+  let objCount = 2;
+  document.getElementById('addObjectBtn').onclick = () => {
+    objCount++;
+    const id = `O${objCount}`;
+    cy.add({
+      group: 'nodes',
+      data: { id, label: id, type: 'object' },
+      classes: 'object',
+      position: { x: 100 + Math.random() * 400, y: 100 + Math.random() * 300 }
+    });
+    updateStatus(`Added object node: ${id}`);
+  };
+
+  // Add new morphism edge between selected nodes (requires selecting exactly 2 nodes)
+  document.getElementById('addMorphismBtn').onclick = () => {
+    const selected = cy.$('node:selected');
+    if (selected.length !== 2) {
+      updateStatus('Select exactly two nodes to add morphism (from source to target).');
+      return;
+    }
+    const source = selected[0].id();
+    const target = selected[1].id();
+    const id = `m_${source}_${target}_${Date.now()}`;
+    cy.add({
+      group: 'edges',
+      data: { id, source, target, label: 'm', type: 'morphism' },
+      classes: 'morphism'
+    });
+    updateStatus(`Added morphism edge from ${source} to ${target}`);
+  };
+
+  // Add identity morphism (self-loop) on selected node
+  document.getElementById('addIdentityBtn').onclick = () => {
+    const selected = cy.$('node:selected');
+    if (selected.length !== 1) {
+      updateStatus('Select exactly one node to add identity morphism.');
+      return;
+    }
+    const nodeId = selected[0].id();
+    const id = `id_${nodeId}`;
+    // Check if identity morphism exists already
+    if (cy.$(`#${id}`).length > 0) {
+      updateStatus('Identity morphism already exists for this node.');
+      return;
+    }
+    cy.add({
+      group: 'edges',
+      data: { id, source: nodeId, target: nodeId, label: 'id', type: 'identity' },
+      classes: 'morphism identity'
+    });
+    updateStatus(`Added identity morphism on ${nodeId}`);
+  };
+
+  // Apply a functor: map each object to a green node, each morphism to green edge + relabel morphisms
+  document.getElementById('applyFunctorBtn').onclick = () => {
+    cy.nodes().forEach(n => n.addClass('functor-node'));
+    cy.edges().forEach(e => {
+      e.addClass('functor-edge');
+      // Relabel morphism by appending '†' (functor image)
+      e.data('label', e.data('label') + '†');
+    });
+    updateStatus('Functor applied: nodes and edges recolored and morphisms relabeled.');
+  };
+
+  // Check category laws: identity and composition
+  document.getElementById('checkCategoryBtn').onclick = () => {
+    let messages = [];
+
+    // Check for identity morphism on every object node
+    cy.nodes().forEach(node => {
+      const idMorph = cy.edges(`[source = "${node.id()}"][target = "${node.id()}"][type = "identity"]`);
+      if (idMorph.length === 0) {
+        node.addClass('warning');
+        messages.push(`⚠️ Object '${node.id()}' missing identity morphism.`);
+      } else {
+        node.removeClass('warning');
+      }
+    });
+
+    // Composition check (very basic): for edges f: A→B and g: B→C, check if h: A→C exists
+    const edges = cy.edges().filter(e => e.data('type') === 'morphism');
+    const compositionFailures = [];
+
+    edges.forEach(f => {
+      const A = f.data('source');
+      const B = f.data('target');
+      edges.forEach(g => {
+        if (g.data('source') === B) {
+          const C = g.data('target');
+          // Check if there is an edge h: A->C
+          const h = edges.filter(e => e.data('source') === A && e.data('target') === C);
+          if (h.length === 0) {
+            compositionFailures.push(`Missing composition morphism for edges ${f.data('label')} and ${g.data('label')} (no morphism ${A}→${C})`);
+          }
+        }
+      });
+    });
+
+    if (compositionFailures.length > 0) {
+      messages = messages.concat(compositionFailures);
+      // Highlight edges involved in failures
+      edges.forEach(e => e.removeClass('warning'));
+      compositionFailures.forEach(msg => {
+        // Extract node ids from message to highlight edges
+        const regex = /edges (\w+) and (\w+) \(no morphism (\w+)→(\w+)\)/;
+        const match = msg.match(regex);
+        if (match) {
+          const [_, fLabel, gLabel, sourceId, targetId] = match;
+          const ef = edges.filter(e => e.data('label') === fLabel);
+          const eg = edges.filter(e => e.data('label') === gLabel);
+          const eh = edges.filter(e => e.data('source') === sourceId && e.data('target') === targetId);
+          ef.forEach(e => e.addClass('warning'));
+          eg.forEach(e => e.addClass('warning'));
+        }
+      });
+    } else {
+      edges.forEach(e => e.removeClass('warning'));
+    }
+
+    if (messages.length === 0) {
+      updateStatus('✅ Category laws satisfied: all objects have identity morphisms and compositions exist.');
+    } else {
+      updateStatus(messages.join('\n'));
+    }
+  };
+
+  // Reset graph to initial state
+  document.getElementById('resetBtn').onclick = () => {
+    cy.elements().remove();
+    cy.add([
+      { data: { id: 'A', label: 'A', type: 'object' }, classes: 'object', position: { x: 150, y: 100 }},
+      { data: { id: 'B', label: 'B', type: 'object' }, classes: 'object', position: { x: 400, y: 100 }},
+      { data: { id: 'f', source: 'A', target: 'B', label: 'f', type: 'morphism' }, classes: 'morphism' }
+    ]);
+    objCount = 2;
+    updateStatus('Graph reset to initial objects and morphism.');
+  };
+
+  // Enable node selection and edge selection
+  cy.userPanningEnabled(true);
+  cy.userZoomingEnabled(true);
+  cy.boxSelectionEnabled(true);
+  cy.autoungrabify(false);
+
+  // Info on click for nodes and edges
+  cy.on('tap', 'node, edge', (evt) => {
+    const ele = evt.target;
+    updateStatus(`Selected: ${ele.group()} '${ele.data('label')}' (id: ${ele.id()})`);
+  });
+</script>
+
+</body>
+</html>

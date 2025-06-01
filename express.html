@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Express to Cytoscape Graph</title>
+<script src="https://unpkg.com/cytoscape@3.24.1/dist/cytoscape.min.js"></script>
+<style>
+  #cy {
+    width: 100vw;
+    height: 90vh;
+    display: block;
+    border: 1px solid #ccc;
+  }
+  #fileInput, #saveJsonBtn, #loadJsonBtn {
+    margin: 5px 10px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Load EXPRESS File</h2>
+<input type="file" id="fileInput" accept=".exp,.txt,.express" />
+<button id="saveJsonBtn">Save JSON</button>
+<input type="file" id="loadJsonBtn" accept=".json" />
+
+<div id="cy"></div>
+
+<script>
+  // Vanilla JS UUID v4 generator - replaces import uuidv4
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  // Parsing EXPRESS file text to elements for Cytoscape
+  function parseExpress(text) {
+    const lines = text.split(/\r?\n/);
+    const elements = [];
+    const entities = {};
+    const types = {};
+    const complexTypes = {};
+    const edges = [];
+
+    // Helpers for parsing
+    function trimEndSemicolon(str) {
+      return str.trim().replace(/;$/, '');
+    }
+    function parseRange(str) {
+      const m = str.match(/\[(\d+):(\d+|\?)\]/);
+      if (m) return { min: parseInt(m[1], 10), max: m[2] === '?' ? null : parseInt(m[2], 10) };
+      return null;
+    }
+    function makeComplexTypeId() {
+      return uuidv4();
+    }
+
+    // Step 1: collect entities and types
+    for (let i=0; i < lines.length; i++) {
+      let line = lines[i].trim();
+
+      if (line.startsWith('ENTITY ')) {
+        let entityName = line.match(/^ENTITY\s+(\w+)/)[1];
+        entities[entityName] = { attributes: [], subtypeOf: null };
+        // check subtype on same line or next lines
+        let j = i + 1;
+        while (j < lines.length && !lines[j].trim().startsWith('END_ENTITY')) {
+          let subLine = lines[j].trim();
+          if (subLine.startsWith('SUBTYPE OF')) {
+            // extract subtype entities from SUBTYPE OF (A,B,...);
+            let subtypeMatch = subLine.match(/SUBTYPE OF\s*\(([^)]+)\)/);
+            if (subtypeMatch) {
+              let parents = subtypeMatch[1].split(',').map(s=>s.trim());
+              entities[entityName].subtypeOf = parents;
+            }
+          } else if (subLine.match(/:/)) {
+            // attribute line: name : TYPE;
+            let attrMatch = subLine.match(/^(\w+)\s*:\s*(.+);$/);
+            if (attrMatch) {
+              let attrName = attrMatch[1];
+              let attrTypeRaw = attrMatch[2];
+              entities[entityName].attributes.push({name: attrName, typeRaw: attrTypeRaw});
+            }
+          }
+          j++;
+        }
+      } else if (line.startsWith('TYPE ')) {
+        // TYPE Name = something;
+        let typeName = line.match(/^TYPE\s+(\w+)/)[1];
+        let typeDef = line.substring(line.indexOf('=') + 1).trim();
+        // for multi-line type def, gather until semicolon
+        if (!typeDef.endsWith(';')) {
+          let k = i + 1;
+          while (k < lines.length && !lines[k].includes(';')) {
+            typeDef += ' ' + lines[k].trim();
+            k++;
+          }
+          if (k < lines.length) typeDef += ' ' + lines[k].trim();
+          i = k;
+        }
+        typeDef = trimEndSemicolon(typeDef);
+
+        // Save type definition
+        types[typeName] = typeDef;
+      }
+    }
+
+    // Step 2: create nodes for entities
+    for (const entityName in entities) {
+      elements.push({
+        group: 'nodes',
+        data: { id: entityName, label: entityName, type: 'entity' }
+      });
+    }
+
+    // Step 3: create inheritance edges
+    for (const entityName in entities) {
+      let parents = entities[entityName].subtypeOf;
+      if (parents) {
+        for (const p of parents) {
+          if (entities[p]) {
+            edges.push({
+              group: 'edges',
+              data: { id: uuidv4(), source: p, target: entityName, label: 'inherits' }
+            });
+          }
+        }
+      }
+    }
+
+    // Step 4: create nodes for types that are base types or complex
+    function addComplexTypeNode(def) {
+      const id = makeComplexTypeId();
+      let label = def;
+      let arity = null;
+      // Check for collection types with ranges, e.g. SET [1:?] OF Label
+      const colMatch = def.match(/(SET|BAG|ARRAY)\s*(\[[^\]]+\])?\s*OF\s+(.+)/i);
+      if (colMatch) {
+        label = colMatch[1].toUpperCase();
+        arity = colMatch[2] ? colMatch[2].slice(1, -1) : null;
+        const innerType = colMatch[3].trim();
+        complexTypes[id] = { label, arity, innerType };
+      } else {
+        complexTypes[id] = { label: def, arity, innerType: null };
+      }
+      return id;
+    }
+
+    // Step 5: create attribute edges and nodes for complex types if needed
+    for (const entityName in entities) {
+      for (const attr of entities[entityName].attributes) {
+        let typeRaw = attr.typeRaw;
+
+        // Detect collection types and create nodes
+        let targetId = null;
+
+        // Check if it is a collection type with ranges
+        let colMatch = typeRaw.match(/(SET|BAG|ARRAY)\s*(\[[^\]]+\])?\s*OF\s+(.+)/i);
+        if (colMatch) {
+          // complex collection type
+          const collectionType = colMatch[1].toUpperCase();
+          const range = colMatch[2] ? colMatch[2].slice(1, -1) : null;
+          const innerTypeRaw = colMatch[3].trim();
+
+          // Create inner type node or reuse if entity or basic type
+          let innerTargetId = null;
+          if (entities[innerTypeRaw]) {
+            innerTargetId = innerTypeRaw;
+          } else if (types[innerTypeRaw]) {
+            // For simple type reuse type name as id
+            innerTargetId = 'type:' + innerTypeRaw;
+            if (!elements.find(e => e.data.id === innerTargetId)) {
+              elements.push({
+                group: 'nodes',
+                data: { id: innerTargetId, label: innerTypeRaw, type: 'type' }
+              });
+            }
+          } else {
+            // Otherwise, create complex type node
+            innerTargetId = addComplexTypeNode(innerTypeRaw);
+            elements.push({
+              group: 'nodes',
+              data: { id: innerTargetId, label: innerTypeRaw, type: 'complexType' }
+            });
+          }
+
+          // Create collection node
+          const collectionId = addComplexTypeNode(typeRaw);
+          let label = collectionType;
+          elements.push({
+            group: 'nodes',
+            data: { id: collectionId, label: label, type: 'complexType', arity: range || undefined }
+          });
+          // Link collection to inner type
+          edges.push({
+            group: 'edges',
+            data: { id: uuidv4(), source: collectionId, target: innerTargetId, label: 'of' }
+          });
+          targetId = collectionId;
+
+        } else {
+          // Not a collection, direct type
+          if (entities[typeRaw]) {
+            targetId = typeRaw;
+          } else if (types[typeRaw]) {
+            targetId = 'type:' + typeRaw;
+            if (!elements.find(e => e.data.id === targetId)) {
+              elements.push({
+                group: 'nodes',
+                data: { id: targetId, label: typeRaw, type: 'type' }
+              });
+            }
+          } else {
+            // Unknown type, treat as string label node
+            targetId = 'type:' + typeRaw;
+            if (!elements.find(e => e.data.id === targetId)) {
+              elements.push({
+                group: 'nodes',
+                data: { id: targetId, label: typeRaw, type: 'type' }
+              });
+            }
+          }
+        }
+
+        // Create edge entity -> attribute type, labeled by attribute name
+        if (targetId) {
+          edges.push({
+            group: 'edges',
+            data: { id: uuidv4(), source: entityName, target: targetId, label: attr.name }
+          });
+        }
+      }
+    }
+
+    // Add edges to elements
+    for (const e of edges) {
+      elements.push(e);
+    }
+
+    return elements;
+  }
+
+  // Cytoscape init with elements
+  let cy = cytoscape({
+    container: document.getElementById('cy'),
+    style: [
+      {
+        selector: 'node[type="entity"]',
+        style: {
+          'shape': 'rectangle',
+          'background-color': '#6FB1FC',
+          'label': 'data(label)',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'width': 'label',
+          'height': '40px',
+          'padding-left': '10px',
+          'padding-right': '10px',
+          'color': '#000',
+          'font-weight': 'bold',
+          'font-size': '14px',
+          'border-width': 1,
+          'border-color': '#555'
+        }
+      },
+      {
+        selector: 'node[type="type"]',
+        style: {
+          'shape': 'ellipse',
+          'background-color': '#86B342',
+          'label': 'data(label)',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'width': 'label',
+          'height': '30px',
+          'padding-left': '8px',
+          'padding-right': '8px',
+          'color': '#000',
+          'font-size': '12px',
+          'border-width': 1,
+          'border-color': '#444'
+        }
+      },
+      {
+        selector: 'node[type="complexType"]',
+        style: {
+          'shape': 'roundrectangle',
+          'background-color': '#EFB700',
+          'label': 'data(label)',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'width': 'label',
+          'height': '30px',
+          'padding-left': '8px',
+          'padding-right': '8px',
+          'color': '#000',
+          'font-size': '12px',
+          'border-width': 1,
+          'border-color': '#B37B00'
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'curve-style': 'bezier',
+          'target-arrow-shape': 'triangle',
+          'line-color': '#999',
+          'target-arrow-color': '#999',
+          'width': 2,
+          'label': 'data(label)',
+          'font-size': '10px',
+          'text-rotation': 'autorotate',
+          'text-margin-y': -8,
+          'color': '#555'
+        }
+      }
+    ],
+    elements: [],
+    layout: {
+      name: 'cose'
+    }
+  });
+
+  // Load EXPRESS file from input
+  document.getElementById('fileInput').addEventListener('change', function(evt) {
+    const file = evt.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      const elements = parseExpress(text);
+      cy.elements().remove();
+      cy.add(elements);
+      cy.layout({name: 'cose'}).run();
+    };
+    reader.readAsText(file);
+  });
+
+  // Save current graph JSON
+  document.getElementById('saveJsonBtn').addEventListener('click', function() {
+    const json = cy.json();
+    const blob = new Blob([JSON.stringify(json, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'graph.json';
+    a.click();
+  });
+
+  // Load saved JSON graph
+  document.getElementById('loadJsonBtn').addEventListener('change', function(evt) {
+    const file = evt.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const json = JSON.parse(e.target.result);
+      cy.elements().remove();
+      cy.json(json);
+      cy.layout({name: 'cose'}).run();
+    };
+    reader.readAsText(file);
+  });
+</script>
+
+
+<script>
+ 
+</script>
+
+</body>
+</html>

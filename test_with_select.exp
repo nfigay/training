@@ -1,0 +1,51 @@
+SCHEMA TestSchema;
+
+TYPE Label = STRING;
+TYPE PositiveInteger = INTEGER;
+TYPE RealMeasure = REAL;
+TYPE EntityOrLabel = SELECT (BaseElement, Label);
+TYPE LengthUnit = ENUMERATION OF (MILLIMETER, CENTIMETER, METER);
+
+ENTITY BaseElement;
+  id : Label;
+END_ENTITY;
+
+ENTITY GeometryRepresentation;
+  format : Label;
+  dimension : PositiveInteger;
+END_ENTITY;
+
+ENTITY ProductItem
+  SUBTYPE OF (BaseElement);
+  name : Label;
+  geometry : GeometryRepresentation;
+END_ENTITY;
+
+ENTITY Assembly
+  SUBTYPE OF (ProductItem);
+  components : SET [1:?] OF ProductItem;
+END_ENTITY;
+
+ENTITY ProductBag;
+  contents : BAG [0:?] OF ProductItem;
+END_ENTITY;
+
+ENTITY MeasurementSet;
+  values : ARRAY [1:3] OF RealMeasure;
+END_ENTITY;
+
+ENTITY MixedAggregate;
+  bag_of_labels : BAG [1:?] OF Label;
+  array_of_ints : ARRAY [1:2] OF PositiveInteger;
+  set_of_sets : SET [1:?] OF SET [1:3] OF Label;
+END_ENTITY;
+
+ENTITY SelectTest;
+  any_value : EntityOrLabel;
+END_ENTITY;
+
+ENTITY EnumTest;
+  unit : LengthUnit;
+END_ENTITY;
+
+END_SCHEMA;

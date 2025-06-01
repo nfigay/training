@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#"
+     xml:base="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#a47cc161_979a_48f4_bc41_67c1a3e6ad3a -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#a47cc161_979a_48f4_bc41_67c1a3e6ad3a">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#e0de9e8f_db7f_4afc_8a02_aff3fc4ef6e9"/>
+        <rdfs:isDefinedBy>Encompasses applications, platforms, and environments used for designing, modeling, transforming, and deploying the hypermodels and their associated components (e.g., modeling tools, transformation engines, code generators, deployment platforms). This toolchain directly supports the creation and management of the multiple representations.</rdfs:isDefinedBy>
+        <rdfs:label>Toolchain for Development Process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#ac23eac3_8f16_48b7_965f_02f3a0f5a5d5 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#ac23eac3_8f16_48b7_965f_02f3a0f5a5d5">
+        <rdfs:isDefinedBy>This refers to a curated collection of open standards chosen for their applicability to a specific interoperability domain (e.g., PLM). The &quot;managed&quot; aspect implies ongoing governance, versioning, and selection to ensure that the chosen standards remain consistent and relevant over time, forming the backbone of federated interoperability frameworks and supporting the integrity of the extended hypermodel.</rdfs:isDefinedBy>
+        <rdfs:label>Consistent Managed Set of consistant standards</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#b64d26d0_8c47_4374_869d_6e801a0a6071 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#b64d26d0_8c47_4374_869d_6e801a0a6071">
+        <rdfs:isDefinedBy>Refers to a collaborative network of companies, partners, suppliers, and customers that primarily revolves around a central, dominant enterprise. While it involves external entities, the processes, data flows, and decision-making often remain largely governed or initiated by the central organization. Achieving interoperability across this extended network, especially concerning multiple representations of complex products, is a major challenge for the central business.</rdfs:isDefinedBy>
+        <rdfs:label>Extended Enterprise</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#d3fb709b_022d_4d76_8156_3d31cbabe0dc -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#d3fb709b_022d_4d76_8156_3d31cbabe0dc">
+        <rdfs:isDefinedBy>PLM (Product Life Cycle Management) Strategy: A strategic business approach that applies a consistent set of business solutions in support of the collaborative creation, management, dissemination, and use of product definition information across the extended enterprise and/or a network of enterprises. Effective interoperability, supported by extended hypermodels, is a cornerstone of a successful PLM strategy, enabling seamless data flow and process integration throughout a product&apos;s lifecycle from conception to retirement, by consistently managing its various digital representations.</rdfs:isDefinedBy>
+        <rdfs:label>PLM</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#d5cdfadc_3517_4775_ac1c_c15cc86c0447 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#d5cdfadc_3517_4775_ac1c_c15cc86c0447">
+        <rdfs:isDefinedBy>A lanscape is a set of grounds. The landscape of a given standard is the set of available grounds enabling usage of the (versioned- standard, and with appropriate conformance. The landscape of a hypermodel , which are allowing traveling of hypermodels without data loss.</rdfs:isDefinedBy>
+        <rdfs:label>Landscape</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#d8ba68b0_b633_458d_8cdd_79445d750769 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#d8ba68b0_b633_458d_8cdd_79445d750769">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#8c9a85ae_94e2_4daf_a870_6646f52b013b"/>
+        <rdfs:isDefinedBy>A hypermodel (Hm) is an hypergraph providing a multi-representation of a model  using the different standardizzed modeling language implied within a community governing interoperability ot its applications</rdfs:isDefinedBy>
+        <rdfs:label>Hypermodel</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#daf8153a_98ce_41fc_973b_6fcf0edd7251 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#daf8153a_98ce_41fc_973b_6fcf0edd7251">
+        <rdfs:isDefinedBy>It refers to the process of providing or retaining the necessary surrounding information, background, or frame of reference required to correctly understand and interpret a model, data element, or relationship as it transitions between different &quot;grounds&quot; or is shared across diverse enterprises.
+
+It is crucial for semantic preservation, ensuring that the original meaning, purpose, and constraints of an artifact are not lost or misinterpreted when it is viewed or processed in a new environment that might have a different formalism, conventions, or implicit assumptions.
+
+This is achieved through mechanisms like hyper-edges (which explicitly link concepts across different contexts) and annotations (which attach additional semantic information to model elements that might otherwise be lost in direct transformations).
+
+Effective contextualization allows for the unambiguous interpretation of information, bridging the semantic gaps that arise from heterogeneous systems, different domains (as represented by Hypermodel Branches), and the varied purposes for which models are created. It is fundamental for achieving continuous operational interoperability by ensuring that all participating systems and users consistently grasp the intended meaning of exchanged information.</rdfs:isDefinedBy>
+        <rdfs:label>Contextualization</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#df59b6b3_2d27_4c9f_9a94_754695d32e53 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#df59b6b3_2d27_4c9f_9a94_754695d32e53">
+        <rdfs:isDefinedBy>An innovative formal and conceptual framework built upon the idea of a hypermodel. Its core purpose is to achieve semantic preservation and continuous operational interoperability across heterogeneous systems and organizational boundaries within both the extended enterprise and a network of enterprises. It extends traditional graph-based models by introducing &quot;hyper-edges&quot; to explicitly represent complex, n-ary relationships and semantic links between diverse modeling concepts that reside in different &quot;grounds&quot; or formalisms. This framework is designed to prevent information loss and preserve business semantics during transformations and exchanges between these varied representations, which is crucial for a robust PLM strategy.</rdfs:isDefinedBy>
+        <rdfs:label>Extended Hypermodel for Interoperability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#e0de9e8f_db7f_4afc_8a02_aff3fc4ef6e9 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#e0de9e8f_db7f_4afc_8a02_aff3fc4ef6e9">
+        <rdfs:isDefinedBy>A sequence or set of interconnected software tools used to perform a complex series of operations. For extended hypermodels, the toolchain is critical for both development and operational phases, as it handles the creation, manipulation, and interaction with the multiple representations.</rdfs:isDefinedBy>
+        <rdfs:label>Toolchain</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#e8e36b2b_f1cc_499d_a734_0a0582e6b14f -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#e8e36b2b_f1cc_499d_a734_0a0582e6b14f">
+        <rdfs:isDefinedBy>It&apos;s a concept that is suited for simple description of the real world by persons which are not computer scientist</rdfs:isDefinedBy>
+        <rdfs:label>Generic Descriptive Business Concept</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#f48f25a8_72c0_4792_ad5a_a7722e5e781e -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#f48f25a8_72c0_4792_ad5a_a7722e5e781e">
+        <rdfs:isDefinedBy>Hypermodel (according to Carlson, 2006): A set of multiple representations of the same underlying &quot;thing&quot; (e.g., a product, a process, a system) for different purposes. This foundational concept highlights the need to manage diverse views and perspectives of a single entity, which is central to achieving interoperability across heterogeneous systems.</rdfs:isDefinedBy>
+        <rdfs:label>Hypermodel</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#f598821b_5e51_4fb2_a828_15d2b49b9907 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#f598821b_5e51_4fb2_a828_15d2b49b9907">
+        <rdfs:isDefinedBy>Giving a form, but specifically a well-defined, structured, explicit, and unambiguous form.</rdfs:isDefinedBy>
+        <rdfs:label>Formalizing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#0a529b3d_4d0d_453a_aba3_4ca1a2a1b7a3 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#0a529b3d_4d0d_453a_aba3_4ca1a2a1b7a3">
+        <rdfs:isDefinedBy>A publicly available, universally accepted, and often collaboratively developed set of rules and guidelines for how something should be created, managed, or exchanged. These specifications are not merely listed but serve as the foundational basis upon which hypermodel branches are built, providing the stable, common semantic ground that enables interoperability across different representations within and between enterprises.</rdfs:isDefinedBy>
+        <rdfs:label>Open Standardized Specification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#1ee8b13d_c35e_491e_90cb_00d33cddd6d0 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#1ee8b13d_c35e_491e_90cb_00d33cddd6d0">
+        <rdfs:isDefinedBy>It is a generalization of a graph, where edge can connect any number of vertices. Formally, a hypergraph H is a pair H=(X, E) where X is a set of elements, called nodes or vertices, and E is a set of non-empty subsets of X called hyper-edges or links... While graph edges are paris of nodes, hyper-edges are arbitrary sets of nodes and can therefore contain an arbitrary number of nodes. However, it is oftne useful to study hypergraphs where all hyper-edges have the same cardinality: a k-uniform hypergraph is an hypergraph such that al its hyper-edges have size k (in other words, it is a collection of sets of size k). So a 2-unifrom hyper-graph is a graph, a 3-uniform hypergraph is a collection of triples, and so on...
+Unlike graphs, hypergraphs are difficult to draw on paper, so they tend to be studied using the nomenclatre of the set theory rather than the more pictorial descriptions( like trees, forests and cycles) of graph theory.</rdfs:isDefinedBy>
+        <rdfs:label>Hypergrap</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#2787917c_a911_49e8_b955_7d26e3294eba -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#2787917c_a911_49e8_b955_7d26e3294eba">
+        <rdfs:isDefinedBy>A pervasive challenge in interoperability within the extended enterprise and networks of enterprises. It occurs when models or data are converted between systems or languages that lack equivalent expressive power, follow different paradigms, or use disparate terminology. This leads to a reduction or corruption of semantic content, hindering effective communication and collaboration between different representations.</rdfs:isDefinedBy>
+        <rdfs:label>Data / Information Loss</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#28a1f58d_36bb_4e1e_b364_506fa1f6a15a -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#28a1f58d_36bb_4e1e_b364_506fa1f6a15a">
+        <rdfs:isDefinedBy>A fundamental component of an extended hypermodel. Unlike a standard edge (which connects two nodes), a hyper-edge can connect multiple nodes (or concepts) from potentially different &quot;grounds&quot; or formalisms. It is crucial for representing intricate, n-ary relationships and capturing semantic nuances that might otherwise be lost in simpler transformations, thereby supporting the complexity of product and process data in a PLM strategy by linking different representations of the same &quot;thing.&quot;</rdfs:isDefinedBy>
+        <rdfs:label>Hyper Edge</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#3ca78893_782e_42c6_a4d5_eb256b4f5701 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#3ca78893_782e_42c6_a4d5_eb256b4f5701">
+        <rdfs:isDefinedBy>These refer to distinct conceptual or logical segments of an extended hypermodel. Each branch is fundamentally built over an open standardized specification, meaning it rigidly aligns with and leverages the terminology, structures, and semantic rules defined by a specific open standard (e.g., a STEP branch for product data, a BPMN branch for process models, a UML branch for software design). These branches provide a modular, standardized foundation, allowing the extended hypermodel to integrate diverse standardized domains into a coherent semantic network, representing various aspects or purposes of the &quot;same thing&quot; in a consistent manner.</rdfs:isDefinedBy>
+        <rdfs:label>Hypermodel branches</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#36941e8c_b25c_41e8_b540_ce4ad804a54c -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#36941e8c_b25c_41e8_b540_ce4ad804a54c">
+        <rdfs:isDefinedBy>Federation of Interoperability Frameworks (FIF): A proposed approach aiming to prepare and build continuous operational PLM interoperability at an acceptable cost. This is achieved by creating and maintaining a consistent managed set of relevant standards (which directly relates to how hypermodel branches are built upon specific open standardized specifications). This federation helps to overcome the challenges posed by continuously changing business practices and ICT contexts, ensuring that different domains (e.g., design, manufacturing, support) can interoperate effectively by consistently applying agreed-upon standards to their respective representations of the &quot;same thing.&quot;</rdfs:isDefinedBy>
+        <rdfs:label>Federation Interoperability Framework</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#47ae13d0_2aa3_401c_957f_fd4e01fc0e88 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#47ae13d0_2aa3_401c_957f_fd4e01fc0e88">
+        <rdfs:isDefinedBy>A testbed is a platform for conducting rigorous, transparent, and replicable testing of scientific theories, computational tools, and new technologies...The term is used across many disciplines to describe experimental research and new product development platforms and environments. They may vary from hands-on prototype development in manufacturing industries such as automobiles (known as &quot;mules&quot;), aircraft engines or systems and to intellectual property refinement in such fields as computer software development shielded from the hazards of testing live</rdfs:isDefinedBy>
+        <rdfs:label>Testbed</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#54cb62f1_f590_4e9c_accd_39421e999438 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#54cb62f1_f590_4e9c_accd_39421e999438">
+        <rdfs:isDefinedBy>This describes a more decentralized and agile form of inter-organizational collaboration where multiple independent enterprises cooperate on projects or value chains. Unlike the extended enterprise, there isn&apos;t necessarily a single dominant entity; instead, collaboration is often peer-to-peer, project-based, or driven by shared objectives. Interoperability in such a network is highly complex, requiring robust, standardized, and adaptable frameworks like extended hypermodels to manage the exchange of information and services among truly autonomous partners.</rdfs:isDefinedBy>
+        <rdfs:label>Network of Enterprises</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#69acdfcf_6e39_4cff_8dcc_337b76fb65d9 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#69acdfcf_6e39_4cff_8dcc_337b76fb65d9">
+        <rdfs:isDefinedBy>A ground is a concrete environment where a model is formalized. It is constituted by a set of configured versions of software components, which ensure conformance with a given (versioned) standard providing one formalism want to consider withint the hypermodel</rdfs:isDefinedBy>
+        <rdfs:isDefinedBy>These represent the actual instantiations, concrete implementations, or operational contexts of specific modeling formalisms or technical environments. A &quot;ground&quot; is where concepts are expressed according to a particular syntax and semantics. Hypermodels &quot;travel&quot; between these grounds, connecting concepts from different representations and ensuring semantic consistency. They represent the realization context for which a whole toolchain needs to be qualified. They are categorized based on MDA (Model Driven Architecture) models typology:
+Informational Grounds: Pertain to data models and information schemas (e.g., a specific database schema, a STEP AP schema instance).
+Service-Related Grounds: Refer to definitions of services, their interfaces, and operations (e.g., a WSDL description, an OpenAPI specification).
+Process-Related Grounds: Encompass business process definitions and workflows (e.g., a BPMN executable model, a workflow engine&apos;s configuration).</rdfs:isDefinedBy>
+        <rdfs:label>Grounds</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#793e0ceb_ed2b_48b7_b60e_641a994d88b8 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#793e0ceb_ed2b_48b7_b60e_641a994d88b8">
+        <rdfs:isDefinedBy>Interoperability: The overarching objective, defined as the capability of diverse systems, applications, or organizations to seamlessly exchange and effectively utilize information and services. 
+
+The documents highlight various dimensions:
+
+Technical Interoperability: Focuses on the technical means of connectivity (e.g., communication protocols, data formats like XML).
+
+Semantic Interoperability: Ensures that the precise meaning of exchanged information is consistently understood and interpreted by all parties. This is where extended hypermodels play a crucial role, managing the semantics across multiple representations.
+
+Organizational Interoperability: Addresses the alignment of business processes, organizational structures, and legal frameworks between collaborating entities in the extended enterprise and networks of enterprises.</rdfs:isDefinedBy>
+        <rdfs:label>Inter Oganisational Collaboration and Interoperability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#8c9a85ae_94e2_4daf_a870_6646f52b013b -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#8c9a85ae_94e2_4daf_a870_6646f52b013b">
+        <rdfs:isDefinedBy>A model of a system is a description or specification of that system and its enviroment for a given purpose. A model is often presented as a combination of drawing and text. The text may be in a modeling language or in a natural language.</rdfs:isDefinedBy>
+        <rdfs:label>Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#9dc2cf7a_9b0e_443d_9c68_3ab0d6a783eb -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#9dc2cf7a_9b0e_443d_9c68_3ab0d6a783eb">
+        <rdfs:isDefinedBy>This is the process of ensuring that all tools within a specific toolchain (whether for development or for collaboration processes) correctly implement, interpret, and respect the semantic rules, metamodels, and annotation mechanisms defined by the extended hypermodel and its underlying open standardized branches. It ensures that the theoretical interoperability across different representations is achievable and sustainable in practice.</rdfs:isDefinedBy>
+        <rdfs:label>Qualification of a Whole Toolchain</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#91486579_6af1_42c1_9368_286812bc5d1e -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#91486579_6af1_42c1_9368_286812bc5d1e">
+        <rdfs:isDefinedBy>The overriding objective. It is the ability to retain the original meaning, context, and intent of information as it is transformed, exchanged, and utilized across different systems and stages of the product or process lifecycle. Extended hypermodels provide the mechanism to achieve this by explicitly capturing and managing otherwise lost semantics between the multiple representations.</rdfs:isDefinedBy>
+        <rdfs:label>Semantic Preservation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#93bea43d_a68a_4703_96a1_104e6d06a9bc -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#93bea43d_a68a_4703_96a1_104e6d06a9bc">
+        <rdfs:isDefinedBy>This is an operation consisting in exporting in a given groud of a given landscape, transposing (file syntax and formalism changed) and then importing in another ground of the same landscape.</rdfs:isDefinedBy>
+        <rdfs:label>Hypermodel travel</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#93604a5b_bd72_4129_b1a9_d2702a5f4674 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#93604a5b_bd72_4129_b1a9_d2702a5f4674">
+        <rdfs:isDefinedBy>A dynamic and ongoing state where interoperability is not a one-off achievement but a sustained capability for maintaining seamless interaction and information flow despite evolving technical landscapes, changing business practices, and shifts in contextual requirements. It implies the ability to adapt to changes in systems, standards, and organizational structures over time, particularly vital for the long lifecycle of products in PLM and the continuous evolution of their multiple representations across multiple enterprises. This requires proactive management, consistent application of standards, and robust toolchains.</rdfs:isDefinedBy>
+        <rdfs:label>Continuous Operational Interoperability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#98de280e_0667_44e9_bdbb_0ec718a622c3 -->
+
+    <owl:Class rdf:about="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#98de280e_0667_44e9_bdbb_0ec718a622c3">
+        <rdfs:subClassOf rdf:resource="http://www.plm-interop.org/family/2025/4/27/untitled-ontology-93#e0de9e8f_db7f_4afc_8a02_aff3fc4ef6e9"/>
+        <rdfs:isDefinedBy>Includes tools and systems used to facilitate real-time or near real-time interaction, data sharing, and synchronized work across different organizations or departments based on the interoperable models and data (e.g., collaborative design platforms, shared data repositories, communication tools, workflow engines). This toolchain leverages the interoperability enabled by the extended hypermodel to ensure consistent understanding across its diverse representations within an extended enterprise or a network of enterprises.</rdfs:isDefinedBy>
+        <rdfs:label>Toolchain for Collaboration Processes in Operation</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

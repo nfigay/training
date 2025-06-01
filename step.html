@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STEP (P21) Viewer with Cytoscape.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #topbar {
+            padding: 10px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #container {
+            display: flex;
+            height: calc(100vh - 50px);
+        }
+
+        #cy {
+            flex-grow: 2;
+            min-width: 60vw;
+            min-height: 100%;
+            border: 1px solid #ccc;
+        }
+
+        #sidebar {
+            flex-grow: 1;
+            border-left: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: #f9f9f9;
+        }
+
+        select[multiple] {
+            width: 200px;
+            height: 120px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="topbar">
+        <input type="file" id="fileInput" accept=".p21,.step,.stp" />
+        <label for="maxNodes">Max nodes to load:</label>
+        <input type="number" id="maxNodes" min="1" value="100" style="width:60px" />
+        <label for="typeFilter">Filter node types (ctrl+click multiple):</label>
+        <select id="typeFilter" multiple></select>
+        <button id="clearFilterBtn">Clear filters</button>
+    </div>
+
+    <div id="container">
+        <div id="cy"></div>
+        <div id="sidebar">Click a node to see details here.</div>
+    </div>
+
+    <script>
+        let cy = null;
+        let fullGraph = { nodes: [], edges: [] };
+        let currentFilter = new Set();
+
+        const fileInput = document.getElementById('fileInput');
+        const maxNodesInput = document.getElementById('maxNodes');
+        const typeFilterSelect = document.getElementById('typeFilter');
+        const clearFilterBtn = document.getElementById('clearFilterBtn');
+        const sidebar = document.getElementById('sidebar');
+
+        // Parse STEP file to Cytoscape elements (nodes and edges)
+        function parseStepFile(content, maxNodes) {
+            // Reset data
+            const nodesMap = new Map();
+            const edges = [];
+
+            // Regex to extract entities (e.g. #12=ENTITYNAME(...);)
+            const entityRegex = /#(\d+)\s*=\s*([A-Z0-9_]+)\s*\(([^;]*)\);/gi;
+            let match;
+
+            while ((match = entityRegex.exec(content)) !== null) {
+                const id = match[1];
+                const type = match[2];
+                const attrStr = match[3].trim();
+
+                if (!nodesMap.has(id)) {
+                    nodesMap.set(id, { data: { id, label: type, type } });
+                } else {
+                    // Update label/type if needed
+                    nodesMap.get(id).data.label = type;
+                    nodesMap.get(id).data.type = type;
+                }
+
+                // Parse attributes (comma separated, may include vectors)
+                // Assign attributes named by position (attr0, attr1, ...)
+                const attrs = splitAttributes(attrStr);
+                attrs.forEach((attr, i) => {
+                    // Store both raw and parsed values
+                    nodesMap.get(id).data['attr' + i] = attr;
+                });
+            }
+
+            // After creating nodes, create edges for attributes that reference other entities
+            // We consider references like #12 inside attribute values
+            nodesMap.forEach((node) => {
+                Object.entries(node.data).forEach(([key, val]) => {
+                    if (typeof val === 'string') {
+                        // Find all references like #number
+                        const refs = val.match(/#\d+/g);
+                        if (refs) {
+                            refs.forEach((ref) => {
+                                const targetId = ref.substring(1);
+                                if (nodesMap.has(targetId)) {
+                                    edges.push({
+                                        data: {
+                                            id: `${node.data.id}->${targetId}-${key}`,
+                                            source: node.data.id,
+                                            target: targetId,
+                                            label: key
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Limit nodes if necessary
+            const limitedNodes = Array.from(nodesMap.values()).slice(0, maxNodes);
+
+            // Also filter edges to those with both source and target in limited nodes
+            const allowedIds = new Set(limitedNodes.map(n => n.data.id));
+            const limitedEdges = edges.filter(e => allowedIds.has(e.data.source) && allowedIds.has(e.data.target));
+
+            return { nodes: limitedNodes, edges: limitedEdges };
+        }
+
+        // Split attributes by commas, respecting nested parentheses and quotes
+        // To avoid splitting commas inside vectors or strings
+        function splitAttributes(attrStr) {
+            const attrs = [];
+            let current = '';
+            let depth = 0;
+            let inString = false;
+
+            for (let i = 0; i < attrStr.length; i++) {
+                const c = attrStr[i];
+                if (c === '\'' && attrStr[i - 1] !== '\\') {
+                    inString = !inString;
+                    current += c;
+                } else if (!inString) {
+                    if (c === '(') {
+                        depth++;
+                        current += c;
+                    } else if (c === ')') {
+                        depth--;
+                        current += c;
+                    } else if (c === ',' && depth === 0) {
+                        attrs.push(current.trim());
+                        current = '';
+                    } else {
+                        current += c;
+                    }
+                } else {
+                    current += c;
+                }
+            }
+            if (current.trim().length) {
+                attrs.push(current.trim());
+            }
+            return attrs;
+        }
+
+        function renderGraph(graph) {
+            if (cy) {
+                cy.destroy();
+                cy = null;
+            }
+
+            // Extract all types for filter options
+            const typesSet = new Set(graph.nodes.map(n => n.data.type));
+            //  populateTypeFilter(Array.from(typesSet).sort());
+
+            // Apply filter on nodes and edges
+            const filteredGraph = filterGraph(graph, currentFilter);
+
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: [...filteredGraph.nodes, ...filteredGraph.edges],
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            label: 'data(label)',
+
+                            'background-color': ele => nodeColor(ele.data('type')),
+                            color: '#000',             // black label text
+                            'text-valign': 'top',      // label above the node
+                            'text-halign': 'center',   // centered horizontally
+                            'text-margin-y': -10,      // move label up a bit
+                            'width': '40',
+                            'height': '40',
+                            'font-size': 10,
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            width: 2,
+                            'line-color': '#ccc',
+                            'target-arrow-shape': 'triangle',
+                            'target-arrow-color': '#ccc',
+                            'curve-style': 'bezier',
+                            label: 'data(label)',
+                            'font-size': 8,
+                            'text-rotation': 'autorotate',
+                            'text-margin-y': -6
+                        }
+                    },
+                    {
+                        selector: 'node:selected',
+                        style: {
+                            'border-width': 3,
+                            'border-color': '#FFD700',
+                            'background-color': '#FF8C00',
+                        }
+                    }
+                ],
+                layout: { name: 'cose', rows: 10, cols: 10, avoidOverlap: true }
+            });
+
+            cy.on('tap', 'node', evt => {
+                const node = evt.target;
+                displayNodeData(node.data());
+            });
+
+            // Clear sidebar if click on background
+            cy.on('tap', evt => {
+                if (evt.target === cy) {
+                    sidebar.textContent = 'Click a node to see details here.';
+                }
+            });
+        }
+
+        function populateTypeFilter(types) {
+            // Preserve selection if possible
+            const selected = new Set([...typeFilterSelect.selectedOptions].map(opt => opt.value));
+            typeFilterSelect.innerHTML = '';
+            types.forEach(t => {
+                const option = document.createElement('option');
+                option.value = t;
+                option.textContent = t;
+                if (selected.has(t)) option.selected = true;
+                typeFilterSelect.appendChild(option);
+            });
+        }
+
+        function filterGraph(graph, filterSet) {
+            if (!filterSet || filterSet.size === 0) {
+                return graph;
+            }
+            // Filter nodes by type
+            const filteredNodes = graph.nodes.filter(n => filterSet.has(n.data.type));
+            const allowedIds = new Set(filteredNodes.map(n => n.data.id));
+            // Filter edges with source and target in filtered nodes
+            const filteredEdges = graph.edges.filter(e => allowedIds.has(e.data.source) && allowedIds.has(e.data.target));
+            return { nodes: filteredNodes, edges: filteredEdges };
+        }
+
+        function displayNodeData(data) {
+            // Show data key-values, one per line
+            let html = '';
+            Object.entries(data).forEach(([k, v]) => {
+                html += `<strong>${k}:</strong> ${escapeHtml(v)}\n`;
+            });
+            sidebar.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.toString().replace(/[&<>"']/g, (m) => {
+                switch (m) {
+                    case '&': return '&amp;';
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '"': return '&quot;';
+                    case '\'': return '&#39;';
+                    default: return m;
+                }
+            });
+        }
+
+        // Simple color generator for node types
+        const typeColorMap = {};
+        const colors = ['#0074D9', '#2ECC40', '#FF4136', '#FF851B', '#B10DC9', '#FFDC00', '#39CCCC', '#F012BE'];
+        function nodeColor(type) {
+            if (!typeColorMap[type]) {
+                typeColorMap[type] = colors[Object.keys(typeColorMap).length % colors.length];
+            }
+            return typeColorMap[type];
+        }
+
+        // Event handlers
+        fileInput.addEventListener('change', e => {
+            if (!e.target.files || e.target.files.length === 0) return;
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = evt => {
+                const maxNodes = parseInt(maxNodesInput.value) || 100;
+                fullGraph = parseStepFile(evt.target.result, maxNodes);
+                const typesSet = new Set(fullGraph.nodes.map(node => node.data.type));
+                const typesArray = Array.from(typesSet).sort();
+                populateTypeFilter(typesArray);
+                renderGraph(fullGraph);
+                sidebar.textContent = `Loaded ${fullGraph.nodes.length} nodes and ${fullGraph.edges.length} edges. Click a node to see details.`;
+            };
+            reader.readAsText(file);
+        });
+
+        maxNodesInput.addEventListener('change', () => {
+            if (!fullGraph.nodes.length) return;
+            const maxNodes = parseInt(maxNodesInput.value) || 100;
+            const truncatedGraph = {
+                nodes: fullGraph.nodes.slice(0, maxNodes),
+                edges: fullGraph.edges.filter(e => {
+                    const ids = new Set(fullGraph.nodes.slice(0, maxNodes).map(n => n.data.id));
+                    return ids.has(e.data.source) && ids.has(e.data.target);
+                })
+            };
+            renderGraph(truncatedGraph);
+        });
+
+        typeFilterSelect.addEventListener('change', () => {
+            currentFilter = new Set([...typeFilterSelect.selectedOptions].map(opt => opt.value));
+            const filteredGraph = filterGraph(fullGraph, currentFilter);
+            renderGraph(filteredGraph);
+            sidebar.textContent = `Showing ${filteredGraph.nodes.length} nodes and ${filteredGraph.edges.length} edges filtered by type.`;
+        });
+
+        clearFilterBtn.addEventListener('click', () => {
+            currentFilter.clear();
+            // Clear selection in select box
+            for (const option of typeFilterSelect.options) {
+                option.selected = false;
+            }
+            renderGraph(fullGraph);
+            sidebar.textContent = `Showing all ${fullGraph.nodes.length} nodes and ${fullGraph.edges.length} edges.`;
+        });
+
+    </script>
+
+</body>
+
+</html>

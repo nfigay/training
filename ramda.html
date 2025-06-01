@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FP + Category Theory on Cytoscape Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+  <!-- Reliable Ramda CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/ramda@0.29.1/dist/ramda.min.js"></script>
+  <style>
+    #cy {
+      width: 800px;
+      height: 600px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      vertical-align: top;
+    }
+    #controls {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 20px;
+      font-family: sans-serif;
+    }
+    button {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    /* Default node style */
+    .cy-node {
+      background-color: #0074D9;
+      color: white;
+      text-valign: center;
+      text-halign: center;
+      font-size: 14px;
+      font-weight: 700;
+      text-shadow:
+         -1px -1px 0 #000,
+          1px -1px 0 #000,
+         -1px  1px 0 #000,
+          1px  1px 0 #000;
+    }
+    /* Critical highlight style */
+    .critical {
+      background-color: #FF4136 !important; /* red */
+      border-width: 3px;
+      border-color: #85144b;
+      border-style: solid;
+    }
+    /* Functor transformed style */
+    .functor {
+      background-color: #2ECC40 !important; /* green */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Functional & Category Theory on Cytoscape Graph</h2>
+
+  <div id="cy"></div>
+  <div id="controls">
+    <button id="toggleCriticalBtn">Toggle Critical Highlight</button>
+    <button id="applyFunctorBtn">Apply Category-Theory Functor</button>
+    <button id="resetBtn">Reset Graph Styles</button>
+    <p><small>
+      <b>Legend:</b><br />
+      Blue = normal node<br />
+      Red border = critical node (toggled)<br />
+      Green fill = functor transformed node
+    </small></p>
+  </div>
+
+<script>
+  const cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements: [
+      // Nodes
+      { data: { id: 'a', label: 'AppComponent A', type: 'ApplicationComponent' } },
+      { data: { id: 'b', label: 'Device B', type: 'Device' } },
+      { data: { id: 'c', label: 'AppComponent C', type: 'ApplicationComponent' } },
+
+      // Edges
+      { data: { id: 'ab', source: 'a', target: 'b', label: 'deployedTo', type: 'deployment' } },
+      { data: { id: 'cb', source: 'c', target: 'b', label: 'deployedTo', type: 'deployment' } }
+    ],
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'label': 'data(label)',
+          'background-color': '#0074D9',
+          'color': '#fff',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'border-width': 0,
+          'font-weight': 'normal',
+          'font-size': '14px',
+          'text-outline-width': 0
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'label': 'data(label)',
+          'width': 2,
+          'line-color': '#999',
+          'target-arrow-color': '#999',
+          'target-arrow-shape': 'triangle',
+          'curve-style': 'bezier'
+        }
+      },
+      // critical nodes (toggled)
+      {
+        selector: '.critical',
+        style: {
+          'background-color': '#FF4136',
+          'border-color': '#85144b',
+          'border-width': 3,
+          'border-style': 'solid'
+        }
+      },
+      // functor transformed nodes
+      {
+        selector: '.functor',
+        style: {
+          'background-color': '#2ECC40',
+          'font-weight': 'bold'
+        }
+      }
+    ],
+    layout: { name: 'grid', rows: 2 }
+  });
+
+  // --- Functional programming: toggle critical highlight ---
+  const isCritical = node => node.data('type') === 'ApplicationComponent';
+
+  function toggleCriticalHighlight() {
+    cy.nodes().forEach(node => {
+      if (isCritical(node)) {
+        if (node.hasClass('critical')) {
+          node.removeClass('critical');
+        } else {
+          node.addClass('critical');
+        }
+      }
+    });
+  }
+
+  // --- Category theory functor transformation ---
+  const morphisms = {
+    'ApplicationComponent→Device': node => ({
+      ...node,
+      label: `[${node.label}] ⇨ deployed`,
+      addClass: 'functor'
+    })
+  };
+
+  const functor = R.map(node => {
+    const morphismKey = `${node.type}→Device`;
+    return morphisms[morphismKey] ? morphisms[morphismKey](node) : node;
+  });
+
+  function applyFunctorTransformation() {
+    const nodesData = cy.nodes().map(n => ({
+      id: n.id(),
+      label: n.data('label'),
+      type: n.data('type')
+    }));
+
+    const transformed = functor(nodesData);
+
+    transformed.forEach(t => {
+      const node = cy.getElementById(t.id);
+      node.data('label', t.label);
+      if (t.addClass) {
+        node.addClass(t.addClass);
+      }
+    });
+  }
+
+  // Reset all styles and labels
+  function resetGraph() {
+    cy.nodes().forEach(node => {
+      node.removeClass('critical');
+      node.removeClass('functor');
+    });
+
+    cy.getElementById('a').data('label', 'AppComponent A');
+    cy.getElementById('b').data('label', 'Device B');
+    cy.getElementById('c').data('label', 'AppComponent C');
+  }
+
+  // Button handlers
+  document.getElementById('toggleCriticalBtn').onclick = toggleCriticalHighlight;
+  document.getElementById('applyFunctorBtn').onclick = applyFunctorTransformation;
+  document.getElementById('resetBtn').onclick = resetGraph;
+</script>
+</body>
+</html>

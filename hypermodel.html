@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ArchiMate ↔ BPMN Visual Mapping</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.24.0/cytoscape.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.29.0/ramda.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; }
+    #cy { width: 100%; height: 90vh; display: block; }
+    #controls { padding: 10px; background: #f0f0f0; }
+    button { margin-right: 10px; padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <button onclick="applyLanguage('ArchiMate')">ArchiMate View</button>
+    <button onclick="applyLanguage('BPMN')">BPMN View</button>
+  </div>
+  <div id="cy"></div>
+
+  <script>
+    const symbolMappings = {
+      ArchiMate: {
+        ApplicationComponent: { shape: 'roundrectangle', color: '#6BAED6', icon: '🧩' },
+        BusinessActor: { shape: 'ellipse', color: '#31A354', icon: '🏢' },
+        Flow: { style: 'solid', color: '#000' },
+      },
+      BPMN: {
+        Task: { shape: 'rectangle', color: '#FFD700', icon: '🛠️' },
+        Event: { shape: 'ellipse', color: '#FF6347', icon: '🔔' },
+        SequenceFlow: { style: 'dashed', color: '#888' },
+      }
+    };
+
+    const elements = [
+      { data: { id: 'a', label: 'App A', type: 'ApplicationComponent' }},
+      { data: { id: 'b', label: 'Actor B', type: 'BusinessActor' }},
+      { data: { id: 'c', label: 'Task C', type: 'Task' }},
+      { data: { id: 'd', label: 'Event D', type: 'Event' }},
+      { data: { id: 'ab', source: 'a', target: 'b', type: 'Flow' }},
+      { data: { id: 'cd', source: 'c', target: 'd', type: 'SequenceFlow' }}
+    ];
+
+    const cy = cytoscape({
+      container: document.getElementById('cy'),
+      elements: R.clone(elements),
+      style: [ // default style, overridden later
+        {
+          selector: 'node',
+          style: {
+            'shape': 'ellipse',
+            'background-color': '#ccc',
+            'label': 'data(label)',
+            'text-valign': 'center',
+            'text-halign': 'center',
+            'font-size': '16px'
+          }
+        },
+        {
+          selector: 'edge',
+          style: {
+            'width': 2,
+            'line-color': '#aaa',
+            'target-arrow-shape': 'triangle',
+            'curve-style': 'bezier'
+          }
+        }
+      ],
+      layout: {
+        name: 'grid',
+        rows: 2
+      }
+    });
+
+    function applyLanguage(language) {
+      const mapping = symbolMappings[language];
+
+      cy.nodes().forEach(node => {
+        const type = node.data('type');
+        const map = mapping[type];
+        if (map) {
+          node.style({
+            'shape': map.shape,
+            'background-color': map.color,
+            'label': `${map.icon} ${node.data('label')}`
+          });
+        }
+      });
+
+      cy.edges().forEach(edge => {
+        const type = edge.data('type');
+        const map = mapping[type];
+        if (map) {
+          edge.style({
+            'line-style': map.style || 'solid',
+            'line-color': map.color,
+            'target-arrow-color': map.color
+          });
+        }
+      });
+    }
+
+    // Initialize with ArchiMate style
+    applyLanguage('ArchiMate');
+  </script>
+</body>
+</html>

@@ -148,6 +148,7 @@
         var mainMenu;
         var tripleTabs;
         var removed;
+
         // Define tab structure dynamically
         const tabsData = [
             "triples",
@@ -423,6 +424,132 @@
                 }
             }
         };
+
+        function serializeDomainHash(hash) {
+            return JSON.stringify(
+                Object.fromEntries(
+                    Object.entries(hash).map(([key, valueSet]) => [key, Array.from(valueSet)])
+                )
+            );
+        }
+
+        function deserializeDomainHash(json) {
+            const parsed = JSON.parse(json);
+            return Object.fromEntries(
+                Object.entries(parsed).map(([key, valueArray]) => [key, new Set(valueArray)])
+            );
+        }
+
+        function serializeRangeHash(hash) {
+            return JSON.stringify(
+                Object.fromEntries(
+                    Object.entries(hash).map(([key, valueSet]) => [key, Array.from(valueSet)])
+                )
+            );
+        }
+
+        function deserializeRangeHash(json) {
+            const parsed = JSON.parse(json);
+            return Object.fromEntries(
+                Object.entries(parsed).map(([key, valueArray]) => [key, new Set(valueArray)])
+            );
+        }
+
+        // Créer les arêtes temporaires à partir de domains/ranges
+        function showTemporaryDomainRangeEdges(node, cy) {
+            const propertyId = node.id();
+            const data = node.data();
+            const domains = data.domains ? JSON.parse(data.domains) : [];
+            const ranges = data.ranges ? JSON.parse(data.ranges) : [];
+
+            const elementsToAdd = [];
+
+            // Créer une arête pour chaque domaine
+            domains.forEach(domainId => {
+                if (cy.getElementById(domainId).nonempty()) {
+                    elementsToAdd.push({
+                        group: 'edges',
+                        data: {
+                            id: `${propertyId}_domain_${domainId}_tmp`,
+                            source: propertyId,
+                            target: domainId,
+                            label: 'domain',
+                            temporary: true
+                        },
+                        classes: 'domain'
+                    });
+                }
+            });
+
+            // Créer une arête pour chaque range
+            ranges.forEach(rangeId => {
+                if (cy.getElementById(rangeId).nonempty()) {
+                    elementsToAdd.push({
+                        group: 'edges',
+                        data: {
+                            id: `${propertyId}_range_${rangeId}_tmp`,
+                            source: propertyId,
+                            target: rangeId,
+                            label: 'range',
+                            temporary: true
+                        } ,
+                        classes: 'range'
+                    });
+                }
+            });
+            cy.add(elementsToAdd);
+        }
+
+        // Supprimer les arêtes temporaires
+        function removeTemporaryEdges(cy) {
+            cy.edges('[temporary]').remove();
+        }
+
+
+        function updatePropertyNodesWithExistingDomainsAndRangesInGraph(cy, domainHash, rangeHash) {
+            cy.nodes().forEach(node => {
+                const data = node.data();
+                const propertyId = data.id;
+
+                const domainsSet = domainHash[propertyId];
+                const rangesSet = rangeHash[propertyId];
+
+                const domainsInGraph = [];
+                const rangesInGraph = [];
+
+                // Vérifier que les classes du domaine existent dans le graphe
+                if (domainsSet) {
+                    for (const classId of domainsSet) {
+                        if (cy.getElementById(classId).nonempty()) {
+                            domainsInGraph.push(classId);
+                        }
+                    }
+                }
+
+                // Vérifier que les classes du range existent dans le graphe
+                if (rangesSet) {
+                    for (const classId of rangesSet) {
+                        if (cy.getElementById(classId).nonempty()) {
+                            rangesInGraph.push(classId);
+                        }
+                    }
+                }
+
+                // Mise à jour des données si au moins un domaine ou range est valide
+                const newData = {};
+                if (domainsInGraph.length > 0) {
+                    newData.domains = JSON.stringify(domainsInGraph);
+                }
+                if (rangesInGraph.length > 0) {
+                    newData.ranges = JSON.stringify(rangesInGraph);
+                }
+
+                if (Object.keys(newData).length > 0) {
+                    node.data(newData);
+                }
+            });
+        }
+
 
 
         function doElemsMultiTypes(elems) {
@@ -786,7 +913,7 @@
 
         //// Loading inferred files
         document.getElementById('inputinferred').addEventListener('change', function (event) {
-            
+
             const file = event.target.files[0];
             if (!file) {
                 alert("No file selected!");
@@ -1844,6 +1971,7 @@ Text:${label.text}
             //initialisation du graphe
             cy.elements().remove();
             cy.add(nodes);
+            updatePropertyNodesWithExistingDomainsAndRangesInGraph(cy, domainHash, rangeHash)
 
 
             edges.forEach(edge => {
@@ -2304,6 +2432,8 @@ Text:${label.text}
             //domaines
             const domainsSelect = document.getElementById('domainsSelect');
             const domains = [];
+            const domainHash = {}; // The domain hashtable
+
             const domainStatements = store.statementsMatching(null, rdfsDomain, null);
             domainStatements.forEach(domainClass => {
                 if (domainStatements.length === 0) {
@@ -2322,8 +2452,13 @@ Text:${label.text}
                     const subjectId = domainClass.subject.value;
                     const objectId = domainClass.object.value;
                     const edgeId = `${subjectId}-domain-${objectId}`;
+                    // Update hashtable with Sets
+                    if (!domainHash[subject]) {
+                        domainHash[subject] = new Set();
+                    }
+                    domainHash[subject].add(object);
                     // console.log(`I'm creating an edge with ${subjectId} as source and ${objectId} as edge`)
-                    createEdge(edgeId, "", subjectId, objectId, 'domain');
+                    //   createEdge(edgeId, "", subjectId, objectId, 'domain');
                     //   createEdge(edgeId, "", subjectId + "_domain", objectId, 'domain');
 
                 }
@@ -2332,6 +2467,7 @@ Text:${label.text}
             //range
             const rangesSelect = document.getElementById('rangesSelect');
             const ranges = [];
+            const rangeHash = {}; // The range hashtable
             const rangeStatements = store.statementsMatching(null, rdfsRange, null);
             rangeStatements.forEach(rangeClass => {
 
@@ -2351,7 +2487,12 @@ Text:${label.text}
                     const subjectId = rangeClass.subject.value;
                     const objectId = rangeClass.object.value;
                     const edgeId = `${subjectId}-range-${objectId}`;
-                    createEdge(edgeId, "", subjectId, objectId, 'range');
+                    // Update hashtable with Sets
+                    if (!rangeHash[subject]) {
+                        rangeHash[subject] = new Set();
+                    }
+                    rangeHash[subject].add(object);
+                    //  createEdge(edgeId, "", subjectId, objectId, 'range');
                     //    createEdge(edgeId, "", subjectId + "_range", objectId, 'range');
                 }
             });
@@ -2446,6 +2587,7 @@ Text:${label.text}
             createNode("http://www.w3.org/2002/07/owl#Thing", "Thing", "individual", "http://www.w3.org/2002/07/owl#Thing", "OWLIndividual")
             createNode("http://www.w3.org/2002/07/owl#Nothing", "Nothing", "individual", "http://www.w3.org/2002/07/owl#Nothing", "OWLIndividual")
             cy.add(nodes);
+            updatePropertyNodesWithExistingDomainsAndRangesInGraph(cy, domainHash, rangeHash)
             edges.forEach(edge => {
                 try {
                     // Add the edge directly using its existing data
@@ -2555,6 +2697,17 @@ Text:${label.text}
             let selectedOption = event.target.value;
             console.log("Tapped on: " + selectedOption);
             // Here you can launch an action, like opening a side panel
+        });
+
+        cy.on('mousedown', 'node', (event) => {
+            const node = event.target;
+            if (node.data('type') === 'property') {
+                showTemporaryDomainRangeEdges(node, cy);
+            }
+        });
+
+        cy.on('mouseup', () => {
+            removeTemporaryEdges(cy);
         });
         cy.on('add', 'node, edge', (event) => {
             makePopper(event.target);
