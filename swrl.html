@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Extraction, édition et raisonnement SWRL minimal en JS</title>
+  <script src="https://cdn.jsdelivr.net/npm/rdflib@2.2.4/dist/rdflib.min.js"></script>
+  <style>
+    textarea { width: 100%; font-family: monospace; }
+    pre { background: #f0f0f0; padding: 10px; max-height: 300px; overflow-y: auto; }
+    #container { display: flex; gap: 20px; }
+    #left, #right { flex: 1; }
+  </style>
+</head>
+<body>
+
+<h1>Extraction et édition SWRL + raisonnement minimal</h1>
+
+<div id="container">
+
+  <div id="left">
+    <h2>OWL Turtle (exemple)</h2>
+    <textarea id="owlInput" rows="15">
+@prefix : <http://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:hasAncestor rdf:type owl:TransitiveProperty .
+:hasSibling rdf:type owl:SymmetricProperty .
+:hasParent rdf:type owl:ObjectProperty .
+
+:Alice :hasAncestor :Bob .
+:Bob :hasAncestor :Charlie .
+:Alice :hasSibling :Diane .
+:Diane :hasSibling :Alice .
+:Bob :hasParent :Charlie .
+    </textarea>
+    <button id="parseBtn">Parser OWL et extraire règles</button>
+    
+    <h3>Faits extraits</h3>
+    <pre id="factsOut"></pre>
+  </div>
+
+  <div id="right">
+    <h2>Règles SWRL extraites / éditables</h2>
+    <textarea id="rules" rows="10">hasAncestor(?x, ?y) ∧ hasAncestor(?y, ?z) → hasAncestor(?x, ?z)
+hasSibling(?x, ?y) → hasSibling(?y, ?x)</textarea>
+    <button id="toXML">Exporter en SWRL/XML</button>
+    <h3>SWRL/XML exporté</h3>
+    <pre id="output"></pre>
+
+    <h2>Raisonnement Horn-clause (exemple)</h2>
+    <button id="runReasoner">Inférer</button>
+    <h3>Faits après inférence</h3>
+    <pre id="inferred"></pre>
+  </div>
+
+</div>
+
+<script>
+  const RDF = $rdf.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+  const OWL = $rdf.Namespace("http://www.w3.org/2002/07/owl#");
+
+  let store = $rdf.graph();
+
+  const prefixes = {
+    'http://example.org/': '',
+    'http://www.w3.org/2002/07/owl#': 'owl',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf',
+  };
+
+  function getPrefix(term) {
+    const uri = term.value || term;
+    for (const [ns, prefix] of Object.entries(prefixes)) {
+      if (uri.startsWith(ns)) {
+        return (prefix ? prefix + ':' : '') + uri.slice(ns.length);
+      }
+    }
+    return uri;
+  }
+
+  function extractRules() {
+    const rules = [];
+
+    store.statementsMatching(null, RDF('type'), OWL('TransitiveProperty')).forEach(st => {
+      const p = getPrefix(st.subject);
+      rules.push(`${p}(?x, ?y) ∧ ${p}(?y, ?z) → ${p}(?x, ?z)`);
+    });
+
+    store.statementsMatching(null, RDF('type'), OWL('SymmetricProperty')).forEach(st => {
+      const p = getPrefix(st.subject);
+      rules.push(`${p}(?x, ?y) → ${p}(?y, ?x)`);
+    });
+
+    // Exemple : on peut ajouter manuellement ou par extension d'autres règles si besoin ici
+
+    return rules;
+  }
+
+  function swrlToXML(ruleText) {
+    const ns = {
+      swrl: 'http://www.w3.org/2003/11/swrl#',
+      rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+    };
+
+    const [bodyStr, headStr] = ruleText.split('→').map(s => s.trim());
+    if (!bodyStr || !headStr) return 'Format de règle invalide';
+
+    const bodyAtoms = bodyStr.split('∧').map(s => s.trim());
+    const headAtoms = headStr.split('∧').map(s => s.trim());
+
+    function atomToXML(atom) {
+      const m = atom.match(/^(\w+):?(\w*)\((\?\w+),\s*(\?\w+)\)$/) || atom.match(/^(\w+)\((\?\w+),\s*(\?\w+)\)$/);
+      if (!m) return '';
+      const pred = m[2] ? m[1]+':'+m[2] : m[1];
+      const arg1 = m[m.length - 2].substring(1);
+      const arg2 = m[m.length - 1].substring(1);
+
+      return `
+      <swrl:IndividualPropertyAtom>
+        <swrl:propertyPredicate rdf:resource="#${pred}"/>
+        <swrl:argument1 rdf:resource="#${arg1}"/>
+        <swrl:argument2 rdf:resource="#${arg2}"/>
+      </swrl:IndividualPropertyAtom>`;
+    }
+
+    let xml = `<?xml version="1.0"?>
+<swrl:Imp xmlns:swrl="${ns.swrl}" xmlns:rdf="${ns.rdf}">
+  <swrl:body rdf:parseType="Collection">
+    ${bodyAtoms.map(atomToXML).join('')}
+  </swrl:body>
+  <swrl:head rdf:parseType="Collection">
+    ${headAtoms.map(atomToXML).join('')}
+  </swrl:head>
+</swrl:Imp>`;
+
+    return xml;
+  }
+
+  document.getElementById('parseBtn').onclick = () => {
+    const ttl = document.getElementById('owlInput').value;
+    store = $rdf.graph();
+
+    $rdf.parse(ttl, store, 'http://example.org/', 'text/turtle', (err, kb) => {
+      if (err) {
+        alert('Erreur parsing Turtle : ' + err);
+        return;
+      }
+
+      const facts = [];
+      store.statements.forEach(st => {
+        if (st.predicate.equals(RDF('type'))) return;
+        facts.push([getPrefix(st.subject), getPrefix(st.predicate), getPrefix(st.object)]);
+      });
+
+      document.getElementById('factsOut').textContent = facts.map(f => `${f[0]} ${f[1]} ${f[2]}`).join('\n');
+
+      const rules = extractRules();
+      if (rules.length > 0) {
+        document.getElementById('rules').value = rules.join('\n');
+      } else {
+        document.getElementById('rules').value = '# Aucune règle extraite';
+      }
+      document.getElementById('output').textContent = '';
+      document.getElementById('inferred').textContent = '';
+    });
+  };
+
+  document.getElementById('toXML').onclick = () => {
+    const ruleText = document.getElementById('rules').value.trim();
+    if (!ruleText) {
+      alert('Règles vides');
+      return;
+    }
+    const firstRule = ruleText.split('\n').find(r => r.trim() && !r.trim().startsWith('#'));
+    if (!firstRule) {
+      alert('Aucune règle SWRL valide trouvée');
+      return;
+    }
+    const xml = swrlToXML(firstRule);
+    document.getElementById('output').textContent = xml;
+  };
+
+  const factsRaw = [];
+
+  function loadFactsFromStore() {
+    factsRaw.length = 0;
+    store.statements.forEach(st => {
+      if (!st.predicate.equals(RDF('type'))) {
+        factsRaw.push([getPrefix(st.predicate), getPrefix(st.subject), getPrefix(st.object)]);
+      }
+    });
+  }
+
+  function infer(facts) {
+    let newFacts = [];
+    // Inférence sur propriété transitive : hasAncestor
+    facts.forEach(([p, x, y]) => {
+      facts.forEach(([p2, y2, z]) => {
+        if (p === 'hasAncestor' && p2 === 'hasAncestor' && y === y2) {
+          if (!facts.some(f => f[0] === 'hasAncestor' && f[1] === x && f[2] === z)) {
+            newFacts.push(['hasAncestor', x, z]);
+          }
+        }
+      });
+    });
+    // Inférence sur propriété symétrique : hasSibling
+    facts.forEach(([p, x, y]) => {
+      if (p === 'hasSibling') {
+        if (!facts.some(f => f[0] === 'hasSibling' && f[1] === y && f[2] === x)) {
+          newFacts.push(['hasSibling', y, x]);
+        }
+      }
+    });
+    return newFacts;
+  }
+
+  document.getElementById('runReasoner').onclick = () => {
+    loadFactsFromStore();
+    let inferredFacts = [...factsRaw];
+    let added;
+    do {
+      added = infer(inferredFacts);
+      if (added.length > 0) {
+        inferredFacts = inferredFacts.concat(added);
+      }
+    } while (added.length > 0);
+
+    document.getElementById('inferred').textContent = inferredFacts.map(f => `${f[1]} ${f[0]} ${f[2]}`).join('\n');
+  };
+</script>
+
+</body>
+</html>
