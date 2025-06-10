@@ -21,6 +21,42 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
     <style>
+        .reveal-viewport {
+            padding: 0 60px;
+            padding-left: 50px;
+
+        }
+
+        .reveal .slides {
+            max-width: 100%;
+        }
+
+
+
+        .logo-fixed-liris {
+            position: fixed;
+            bottom: 20px;
+            left: 400px;
+            height: 60px;
+            z-index: 1000;
+            pointer-events: none;
+            width: 5%;
+            height: 5%;
+            /* pour ne pas bloquer les clics */
+        }
+
+        .logo-fixed-airbus {
+            position: fixed;
+            bottom: 20px;
+            right: 500px;
+            height: 60px;
+            z-index: 1000;
+            pointer-events: none;
+            width: 5%;
+            height: 5%;
+            /* pour ne pas bloquer les clics */
+        }
+
         #info-panel {
             width: 400px;
             /* fixed width */
@@ -355,6 +391,8 @@
 </head>
 
 <body>
+    <img src="img/logo_liris.svg" class="logo-fixed-liris">
+    <img src="img/Airbus_Logo_2017.svg" class="logo-fixed-airbus">
     <div id="infoPanel" style="display: none;"></div>
     <div id="presentation-container">
 
@@ -380,7 +418,7 @@
                     <div class="reveal">
                         <div class="slides">
                             <!-- Introduction -->
-                            <section>
+                            <section data-background-image="img/ImageFondLiris.png" data-background-size="cover">
                                 <section>
                                     <h1 style="font-size: 1em;text-transform: none;">Semantic Interoperability
                                         Masterclass</h1>
@@ -416,23 +454,27 @@
                                         Interoperability</h2>
 
                                     <p style="text-align: left; font-size: 0.5em;">
-
-                                        We start with how meaning emerges—not from words, but from signs and shared
-                                        references (A). Visuals help reveal the many ways one idea can be represented
-                                        (B), and graphs become the medium to navigate this complexity (C).
+                                        After introducting the research context, related to preparing and building
+                                        continuous operational interoperability in enteprises for Product Lifecycle
+                                        Management or PLM(A), we start our masterclass about Semantic Cartography.
+                                    </p>
+                                    <p style="text-align: left; font-size: 0.5em;">
+                                        First we present how meaning emerges—not from words, but from signs and shared
+                                        references (B). Visuals help reveal the many ways one idea can be represented
+                                        (C), and graphs become the medium to navigate this complexity (D).
                                     </p>
                                     <p style="text-align: left; font-size: 0.5em;">
                                         Interoperability needs more than language—it needs models that bridge domains
-                                        (D), rooted in logic but shaped for humans (E). Interactive graphs link formal
-                                        ontologies to intuitive navigation (F), blending structured views into living
-                                        maps (G).
+                                        (E), rooted in logic but shaped for humans (F). Interactive graphs link formal
+                                        ontologies to intuitive navigation (G), blending structured views into living
+                                        maps (H).
                                     </p>
                                     <p style="text-align: left; font-size: 0.5em;">
                                         AI augments this journey, offering suggestions while preserving human
-                                        sense-making (H). It all converges in <a
+                                        sense-making (I). It all converges in <a
                                             href="https://nfigay.github.io/ArchiCG/"
                                             target="_blank"><strong>ArchiCG</strong></a>: a visual and semantic explorer
-                                        where meaning becomes navigable (I)—not read, but seen.
+                                        where meaning becomes navigable (J)—not read, but seen.
                                     </p>
                                     <p>
                                         You can follow this journey and access all the training resources directly at
@@ -449,6 +491,7 @@
                                     <h2 style="text-transform: none;font-size: 1em;">Masterclass Plan
                                     </h2>
                                     <ol style="list-style-type:none;font-size: 0.6em;">
+                                        <li>Research context</li>
                                         <li>Introduction to the nature of meaning</li>
                                         <li>Distinction between data, information and knowledge</li>
                                         <li>Communication challenges with natural languages</li>
@@ -462,13 +505,70 @@
                                     </ol>
                                 </section>
                             </section>
+                            <section>
+                                <section>
+                                    <ol style="list-style-type:none; ">
+
+                                        <li style="counter-reset: main 0;">Research Context
+                                            <p style="text-align: left;">
+                                                It is imporant to undertand the context
+                                                and movition for Semantic Cartography.
+                                            </p>
+                                            <ol>
+                                                <li>Bridging Silos in Information System Engineering</li>
+                                                <li>Semantic & System Cartography: Bridging Silos Visually</li>
+                                            </ol>
+                                        </li>
+                                        <p style="text-align: left;">
+                                            Then we can start the masterclass about Semantic Cartography.
+                                        </p>
+
+                                    </ol>
+                                </section>
+
+
+                                <section>
+                                    <h2>A.1 Bridging Silos in Information Systems Engineering</h2>
+                                    <ul>
+                                        <li><strong>Real-world systems</strong> span human, organizational, economic,
+                                            societal & technological dimensions</li>
+                                        <li><strong>Diverse contexts:</strong> BPM, GIS, digital twins, PLM, emerging
+                                            tech like ML, blockchain, process mining, sustainability</li>
+                                        <li><strong>Rapid evolution</strong> creates specialized sub-disciplines and
+                                            research silos</li>
+                                        <li><strong>Risk:</strong> Fragmentation threatens coherent system design and
+                                            interoperability</li>
+                                        <li><strong>Critical challenge:</strong> Building <em>continuous operational
+                                                interoperability</em> in enterprises, especially for PLM</li>
+                                        <li><strong>Need:</strong> Holistic approaches that unify diverse aspects and
+                                            support ongoing adaptation</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h2>A.2 Semantic & System Cartography: Bridging Silos Visually</h2>
+                                    <ul>
+                                        <li><strong>Maps, not silos:</strong> A layered, navigable cartography spanning
+                                            data, processes, semantics, and organizational contexts</li>
+                                        <li><strong>Inspired by GIS/GPS:</strong> Provides a living, zoomable,
+                                            context-aware representation for architects and engineers</li>
+                                        <li><strong>Bridging formal & practical:</strong> Combines ontologies, logic,
+                                            and visual notations to support pragmatic interoperability</li>
+                                        <li><strong>Supporting continuous transformation:</strong> Preserve alignment
+                                            and coherence across evolving systems and contexts</li>
+                                        <li><strong>Enabling a cohesive design:</strong> Break down silos by connecting
+                                            specialized views in a shared semantic space</li>
+                                        <li><em>Semantic cartography as a foundation for resilient, integrated
+                                                information systems engineering</em></li>
+                                    </ul>
+                                </section>
+                            </section>
 
                             <!-- Partie 1 : Introduction à la notion de sens -->
                             <section>
                                 <section>
 
                                     <ol style="list-style-type:none; ">
-                                        <li>Introduction to the nature of the meaning
+                                        <li <li style="counter-reset: main 1;">Introduction to the nature of the meaning
                                             <p>To understand semantic, before to deal with technological
                                                 aspect introduced by computers, it is necessary to define meaning,
                                                 explore theories of meaning, and understand
@@ -476,8 +576,8 @@
                                             <ol>
                                                 <li>The main theoritical concepts</li>
                                                 <li>From a single concept to conceptual graphs</li>
-                                                <li>Extension to computing</li>
-                                                <li>The Semantic Triangle: Beyond Text</li>
+                                                <li>From human knowledge to machine processing</li>
+                                                <li>The semantic triangle: beyond text</li>
                                                 <li>Conclusion</li>
 
                                             </ol>
@@ -490,7 +590,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;text-transform: none;">A.1 The main theoritical
+                                        <h3 style="font-size: 0.8em;text-transform: none;">B.1 The main theoritical
                                             concepts</h3>
                                     </div>
                                     <div style="display: flex; gap: 2em;">
@@ -669,7 +769,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;text-transform: none;">A.2 From a single concept to
+                                        <h3 style="font-size: 0.8em;text-transform: none;">B.2 From a single concept to
                                             conceptual graphs</h3>
                                     </div>
                                     <div style="display: flex; gap: 2em;">
@@ -782,7 +882,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">A.3 From Human Knowledge to Machine Processing
+                                        <h3 style="font-size: 0.8em;">B.3 From Human Knowledge to Machine Processing
                                         </h3>
                                     </div>
                                     <div class="fragment fade-in" data-fragment-index="1">
@@ -848,102 +948,107 @@
 
                                     </div>
                                 </section>
-                                <section>
-                                    <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">A.4 The Semantic Triangle: Beyond Text
-                                        </h3>
-                                    </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-
-                                            <p style="font-size: 0.5em; text-align: left;">
-                                                The triangle applies to symbols in many domains:
-                                            </p>
-                                            <ul style="font-size: 0.4em;">
-                                                <li>
-                                                    <strong>Ideograms</strong> in Asian languages:
-                                                    <br /><code>水</code> (water in Chinese/Japanese) → 💧 → actual water
-                                                </li>
-                                                <li>
-                                                    <strong>Road safety signs:</strong>
-                                                    <br />🔺 with 👷 → "Work Zone" → real construction site
-                                                </li>
-                                                <li>
-                                                    <strong>Lean Management icons:</strong>
-                                                    <br />🧯 (fire extinguisher) → fire safety station
-                                                </li>
-                                                <li>
-                                                    <strong>Technical drawing symbols:</strong>
-                                                    <br />⌀ → diameter → real cylindrical object
-                                                </li>
-                                            </ul>
-
-                                            <blockquote>
-                                                <p style="font-size: 0.4em; text-align: left;"><em>“Visual symbols are
-                                                        not just pictograms —
-                                                        they point to concepts and real-world references.”</em></p>
-                                            </blockquote>
-                                        </div>
-                                        <div class="image-zone">
-                                            <img src="./img/semantictrianglebeyondtext.png"
-                                                alt="Semantic triangle beyond text"
-                                                style="max-width: 100%; height: auto;" />
-                                        </div>
-                                    </div>
-                                </section>
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">A.4 The Semantic Triangle: Beyond Text
+                                        <h3 style="font-size: 0.8em;">B.4 The semantic triangle: beyond text
                                         </h3>
                                     </div>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-
-                                            <p style="font-size: 0.5em; text-align: left;">
-                                                Visual Syntax >> Combining Symbols into Meaning:
-                                            </p>
-                                            <ul style="font-size: 0.4em; text-align: left;">
-                                                <li>Symbols can be <strong>combined</strong> into <strong>structured
-                                                        diagrams</strong></li>
-                                                <li>Spatial and connective rules form a <strong>visual
-                                                        syntax</strong><br>
-                                                    &nbsp; &nbsp;Examples: UML, BPMN, ArchiMate, subway maps</li>
-                                                <li><strong>Structure carries meaning</strong>, just like sentence
-                                                    grammar</li>
-                                            </ul>
-                                            <blockquote>
-                                                <p style="font-size: 0.4em; text-align: left;"><em>“Visual languages are
-                                                        not decoration — they are structured systems of meaning.”</em>
+                                    <div class="fragment fade-in-then-out" data-fragment-index="1"
+                                        style="position: absolute; top: 100px; left: 0; width: 100%; text-align: center;">
+                                        <div class="content-zone">
+                                            <div class="text-zone">
+                                                <p style="font-size: 0.5em; text-align: left;">
+                                                    The triangle applies to symbols in many domains:
                                                 </p>
-                                            </blockquote>
-                                            </p>
-                                        </div>
-                                        <div class="image-zone">
-                                            <img src="./img/visualsyntax.png" alt="Visual Syntax"
-                                                style="max-width: 100%; height: auto;" />
+                                                <ul style="font-size: 0.4em;">
+                                                    <li>
+                                                        <strong>Ideograms</strong> in Asian languages:
+                                                        <br /><code>水</code> (water in Chinese/Japanese) → 💧 → actual
+                                                        water
+                                                    </li>
+                                                    <li>
+                                                        <strong>Road safety signs:</strong>
+                                                        <br />🔺 with 👷 → "Work Zone" → real construction site
+                                                    </li>
+                                                    <li>
+                                                        <strong>Lean Management icons:</strong>
+                                                        <br />🧯 (fire extinguisher) → fire safety station
+                                                    </li>
+                                                    <li>
+                                                        <strong>Technical drawing symbols:</strong>
+                                                        <br />⌀ → diameter → real cylindrical object
+                                                    </li>
+                                                </ul>
+
+                                                <blockquote>
+                                                    <p style="font-size: 0.4em; text-align: left;"><em>“Visual symbols
+                                                            are
+                                                            not just pictograms —
+                                                            they point to concepts and real-world references.”</em></p>
+                                                </blockquote>
+                                            </div>
+                                            <div class="image-zone">
+                                                <img src="./img/semantictrianglebeyondtext.png"
+                                                    alt="Semantic triangle beyond text"
+                                                    style="max-width: 100%; height: auto;" />
+                                            </div>
                                         </div>
                                     </div>
-                                </section>
-                                <section>
-                                    <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">A.4 The Semantic Triangle: Beyond Text
-                                        </h3>
+
+                                    <div class="fragment fade-in-then-out" data-fragment-index="2"
+                                        style="position: absolute; top: 100px; left: 0; width: 100%; text-align: center;">
+                                        <div class="content-zone">
+                                            <div class="text-zone">
+                                                <p style="font-size: 0.5em; text-align: left;">
+                                                    Visual Syntax >> Combining Symbols into Meaning:
+                                                </p>
+                                                <ul style="font-size: 0.4em; text-align: left;">
+                                                    <li>Symbols can be <strong>combined</strong> into
+                                                        <strong>structured
+                                                            diagrams</strong>
+                                                    </li>
+                                                    <li>Spatial and connective rules form a <strong>visual
+                                                            syntax</strong><br>
+                                                        &nbsp; &nbsp;Examples: UML, BPMN, ArchiMate, subway maps
+                                                    </li>
+                                                    <li><strong>Structure carries meaning</strong>, just like
+                                                        sentence
+                                                        grammar</li>
+                                                </ul>
+                                                <blockquote>
+                                                    <p style="font-size: 0.4em; text-align: left;"><em>“Visual
+                                                            languages
+                                                            are
+                                                            not decoration — they are structured systems of
+                                                            meaning.”</em>
+                                                    </p>
+                                                </blockquote>
+                                                </p>
+                                            </div>
+                                            <div class="image-zone">
+                                                <img src="./img/visualsyntax.png" alt="Visual Syntax"
+                                                    style="max-width: 100%; height: auto;" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fragment fade-in-then-out" data-fragment-index="3"
+                                        style="position: absolute; top: 100px; left: 0; width: 100%; text-align: center;">
+
                                         <p style="font-size: 0.7em;">Multi modal representations</p>
                                         <p>Draw me a car. A car?</p>
-                                    </div>
-                                    <div class="content-zone">
 
                                         <div class="image-zone">
                                             <img src="./img/drawmeacar.jpeg" alt="Draw me a car"
                                                 style="max-width: 100%; height: auto;" />
                                         </div>
-
                                     </div>
+
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 1em;">Conclusion</h3>
+                                        <h3 style="font-size: 1em;">B.5 Conclusion</h3>
                                     </div>
 
                                     <p style="font-size: 0.6em; text-align: left;">
@@ -970,7 +1075,7 @@
                                 <section>
                                     <ol style="list-style-type:none; ">
 
-                                        <li style="counter-reset: main 1;">Knowledge, Information, and Data
+                                        <li style="counter-reset: main 2;">Knowledge, Information, and Data
                                             <p style="text-align: left;">
                                                 Semantic interoperability in knowledge and information management
                                                 systems requires an understanding of what knowledge, information, and
@@ -993,7 +1098,7 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.9em;">B.1 What Is Knowledge?</h3>
+                                        <h3 style="font-size: 0.9em;">C.1 What Is Knowledge?</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -1015,7 +1120,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.9em;">B.2 What Is Information?</h3>
+                                        <h3 style="font-size: 0.9em;">C.2 What Is Information?</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -1045,7 +1150,7 @@
                                 </section>
 
                                 <section>
-                                    <h3 style="font-size: 1em;">B.3 What is data?</h3>
+                                    <h3 style="font-size: 1em;">C.3 What is data?</h3>
 
                                     <ul style="font-size: 0.5em;">
                                         <li><b>In the philosophical conception of knowledge</b><br>
@@ -1065,7 +1170,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">B.4 Data from the Perspective of Information
+                                        <h3 style="font-size: 0.8em;">C.4 Data from the Perspective of Information
                                             Systems</h3>
                                     </div>
                                     <div class="content-zone">
@@ -1088,7 +1193,7 @@
 
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">B.4 Data in the Context of Knowledge</h3>
+                                        <h3 style="font-size: 0.8em;">C.5 Data in the Context of Knowledge</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
