@@ -97,38 +97,49 @@
             display: none;
         }
 
-        /* Liste principale avec numérotation en chiffres */
+        /* Liste principale avec numérotation en lettres majuscules */
         ol {
             counter-reset: main;
+            /* Reset du compteur pour la première liste */
             list-style-type: none;
+            /* Désactive la numérotation automatique */
         }
 
-        ol>li {
+        ol li {
             counter-increment: main;
+            /* Incrémentation du compteur pour chaque élément */
             list-style-type: none;
+
         }
 
-        ol>li::before {
-            content: counter(main, decimal) ". ";
+        ol li::before {
+            content: counter(main, upper-alpha) ". ";
+            /* Affiche la numérotation en lettres majuscules (A, B, C) */
         }
 
-        /* Liste imbriquée, également en chiffres */
+        /* Liste imbriquée, numérotation en lettres minuscules */
         ol ol {
             counter-reset: sub;
+            /* Réinitialisation du compteur pour sous-liste */
             list-style-type: none;
+            /* Désactive la numérotation automatique des sous-listes */
             margin-left: 20px;
+
         }
 
-        ol ol>li {
+        ol ol li {
             counter-increment: sub;
+            /* Incrémentation du compteur pour les sous-listes */
             list-style-type: none;
             font-size: 0.7em;
+
         }
 
-        ol ol>li::before {
-            content: counter(main, decimal) "." counter(sub, decimal) " ";
+        ol ol li::before {
+            content: counter(main, upper-alpha) "." counter(sub, decimal) " ";
+            /* Affiche la numérotation en lettres minuscules pour les sous-listes */
+            list-style-type: none;
         }
-
 
         body {
             margin: 0;
@@ -498,168 +509,85 @@
                                 <section>
                                     <ol style="list-style-type:none; ">
 
-                                        <li style="counter-reset: main 0;">Introduction
+                                        <li style="counter-reset: main 0;">Research Context
                                             <p style="text-align: left;">
-                                                Research context and motivation for Semantic Cartography.
+                                                It is important to undertand the research context
+                                                and motivation for Semantic Cartography.
                                             </p>
                                             <ol>
                                                 <li>Bridging Silos in Information System Engineering</li>
-                                                <li>Bridging Silos Visually</li>
-                                                <li>From Drawings to Semantic Visual Representations</li>
-                                                <li>Meaningful Symbols: Visuals as Semiotic Bridges</li>
-                                                <li>Visual Syntax: Combining Symbols into Meaning</li>
-                                                <li>Usual Communication Problems</li>
+                                                <li>Semantic & System Cartography: Bridging Silos Visually</li>
                                             </ol>
                                         </li>
-
+                                        <p style="text-align: left;">
+                                            Then we can start the masterclass about Semantic Cartography.
+                                        </p>
 
                                     </ol>
                                 </section>
 
 
                                 <section>
-                                    <h3 style="font-size: 0.8em;text-transform: none;">1.1 Bridging Silos in Information
+                                    <h3 style="font-size: 0.8em;text-transform: none;">A.1 Bridging Silos in Information
                                         Systems Engineering</h2>
-                                        <ul style="font-size: 0.5em;">
+                                        <ul style="font-size: 0.4em;">
                                             <li><strong>Real-world systems</strong> span human, organizational,
                                                 economic,
                                                 societal & technological dimensions</li>
-                                            <li><strong>Disruptive Evolution and Fragmentation
-                                                </strong> Rapid, often disruptive, evolution drives the continual
-                                                emergence of silos.</li>
+                                            <li><strong>Diverse contexts:</strong> which domains of knowledge or
+                                                practice do you belongs to? Needs for cross domain
+                                                collaboration?</strong>
+                                                <ul style="font-size: 0.8em;">
+                                                    <li>Business Process Modeling,</li>
+                                                    <li>Geographic Information Systems,</li>
+                                                    <li>Digital Twins and Threads, </li>
+                                                    <li>Lifecycle Management,</li>
+                                                    <li>Sustainability,</li>
+                                                    <li>Emerging
+                                                        Disruptive Technologies (Large Language Models, blockchains,
+                                                        process
+                                                        mining)...</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Rapid evolution</strong> creates continuously new specialized
+                                                sub-disciplines and
+                                                research silos</li>
                                             <li><strong>Risk:</strong> Fragmentation threatens coherent system design
                                                 and
                                                 interoperability</li>
-                                            <li><strong>Critical challenge:</strong> Building <em>continuous digital operational
-                                                    interoperability</em> for secured collaborations</li>
+                                            <li><strong>Critical challenge:</strong> Building <em>continuous operational
+                                                    interoperability</em> in enterprises, especially for PLM</li>
                                             <li><strong>Need:</strong> Holistic approaches that unify diverse aspects
-                                                and support ongoing adaptation</li>
+                                                and
+                                                support ongoing adaptation</li>
                                         </ul>
-                                        <blockquote>
-                                            <p style="font-size: 0.6em; text-align: center;"><em
-                                                    style="display: inline-block; padding: 0.5em 0.5em;">“We must tackle
-                                                    the
-                                                    complexity of ever-changing, <br>multi-disciplinary systems of
-                                                    systems
-                                                    <br>that defy static, siloed approaches.”</em></p>
-                                        </blockquote>
                                 </section>
                                 <section>
-                                    <h3 style="font-size: 0.8em;text-transform: none;">1.2 Bridging Silos Visually</h2>
+                                    <h3 style="font-size: 0.8em;text-transform: none;">A.2 Semantic & System
+                                        Cartography: Bridging Silos Visually</h2>
                                         <ul style="font-size: 0.4em;">
-                                            <li><strong>Visual thinking is key:</strong> To grasp complexity, we need
-                                                visual representations our minds can process.</li>
-                                            <li><strong>See structure and context:</strong> Visual maps help reveal how
-                                                systems are built in modular layers and how components relate to each
-                                                other.</li>
-                                            <li><strong>Beyond lists and trees:</strong> Only graphical views can truly
-                                                expose the interconnected nature of complex environments.</li>
-                                            <li><strong>Interactive, not static:</strong> We don’t need printed sets of
-                                                isolated diagrams, but interactive compound graphs we can explore in
-                                                depth.</li>
-                                            <li><strong>From silos to systems:</strong> Cartographic views connect
-                                                isolated models into an integrated whole.</li>
-                                            <li><strong>Cognition through composition:</strong> Compositional and
-                                                contextual views support human understanding and decision-making.</li>
+                                            <li><strong>Maps, not silos:</strong> A layered, navigable cartography
+                                                spanning
+                                                data, processes, semantics, and organizational contexts</li>
+                                            <li><strong>Inspired by GIS/GPS:</strong> Provides a living, zoomable,
+                                                context-aware representation for architects and engineers</li>
+                                            <li><strong>Bridging formal & practical:</strong> Combines ontologies,
+                                                logic,
+                                                and visual notations to support pragmatic interoperability</li>
+                                            <li><strong>Supporting continuous transformation:</strong> Preserve
+                                                alignment
+                                                and coherence across evolving systems and contexts</li>
+                                            <li><strong>Enabling a cohesive design:</strong> Break down silos by
+                                                connecting
+                                                specialized views in a shared semantic space</li>
                                         </ul>
                                         <blockquote>
-                                            <p style="font-size: 0.6em; text-align: center;"><em
-                                                    style="display: inline-block; padding: 0.5em 0.5em;">“Visual
-                                                    approaches are
-                                                    not
-                                                    optional — they are the cognitive gateway to understanding
-                                                    complexity.”</em></p>
+                                            <p style="font-size: 0.6em; text-align: center;"><em>“Semantic cartography
+                                                    as
+                                                    a foundation for resilient, integrated
+                                                    information systems engineering”</em></p>
                                         </blockquote>
 
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;">1.3 From Drawings to Semantic
-                                        Visual Representations</h3>
-                                    <ul style="font-size: 0.45em;">
-                                        <li><strong>More than drawings:</strong> Visuals should not just depict, but
-                                            formally represent knowledge and meaning.</li>
-                                        <li><strong>Semantics embedded in visuals:</strong> Each element and relation in
-                                            the view must carry explicit, interpretable meaning.</li>
-                                        <li><strong>Bridging human and machine understanding:</strong> Graph-based
-                                            representations connect visual cognition with formal semantics.</li>
-                                        <li><strong>Supporting reasoning and automation:</strong> Semantically grounded
-                                            views can be queried, validated, and transformed.</li>
-                                        <li><strong>Foundation for interoperability:</strong> Shared semantics enable
-                                            consistent interpretation across tools, disciplines, and domains.</li>
-                                    </ul>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;"><em
-                                                style="display: inline-block; padding: 0.5em 0.5em;">“Visual
-                                                representations
-                                                must evolve from informal diagrams to semantic models that both humans
-                                                and machines can navigate.”</em></p>
-                                    </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;">
-                                        1.4 Meaningful Symbols: Visuals as Semiotic Bridges
-                                    </h3>
-                                    <ul style="font-size: 0.45em;">
-                                        <li><strong>Visual symbols are signs:</strong> They stand for concepts, not just
-                                            images — and point beyond themselves.</li>
-                                        <li><strong>From icon to meaning:</strong> A symbol connects a shape to an idea
-                                            and ultimately to a real-world reference.</li>
-                                        <li><strong>Universal pattern:</strong> The triangle <em>(Sign – Concept –
-                                                Referent)</em> applies across domains and cultures.</li>
-                                        <li><strong>Examples:</strong>
-                                            <ul>
-                                                <li><code>水</code> → 💧 → actual water</li>
-                                                <li>🔺 + 👷 → “Work Zone” → real construction site</li>
-                                                <li>🧯 → fire safety station</li>
-                                                <li>⌀ → diameter → cylindrical part</li>
-                                            </ul>
-                                        </li>
-                                        <li><strong>Implication:</strong> In semantic cartography, each visual cue must
-                                            be linked to formal meaning and domain knowledge.</li>
-                                    </ul>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>“Visual symbols are not just pictograms — they are signs pointing to
-                                                shared concepts and real-world references.”</em>
-                                        </p>
-                                    </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;">
-                                        1.5 Visual Syntax: Combining Symbols into Meaning
-                                    </h3>
-                                    <ul style="font-size: 0.45em;">
-                                        <li><strong>Not isolated signs:</strong> Visual meaning arises from how symbols
-                                            connect and combine.</li>
-                                        <li><strong>Rules and structure:</strong> Spatial arrangements and connections
-                                            form a “visual syntax.”</li>
-                                        <li><strong>Examples of visual languages:</strong> UML, BPMN, ArchiMate, subway
-                                            maps — all use syntax to express complex ideas.</li>
-                                        <li><strong>Structure = meaning:</strong> Just like grammar in sentences, visual
-                                            syntax governs how meaning emerges.</li>
-                                        <li><strong>Visual languages empower:</strong> They enable precise, scalable
-                                            communication of complex systems.</li>
-                                    </ul>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>“Visual languages are not decoration — they are structured systems of
-                                                meaning.”</em>
-                                        </p>
-                                    </blockquote>
-                                </section>
-                                 <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;">
-                                        1.6 Usual Communication problems
-                                    </h3>
-                                    <ul style="font-size: 0.45em;">
-                                        
-                                    </ul>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>“Visual languages are not decoration — they are structured systems of
-                                                meaning.”</em>
-                                        </p>
-                                    </blockquote>
                                 </section>
                             </section>
 
@@ -776,13 +704,11 @@
                                                 </p>
                                                 <p
                                                     style="font-size: 0.5em;margin-left: -450px;text-align: left;margin-top: 0px;margin-bottom: 5px;">
-                                                    &nbsp;&nbsp;&nbsp;It determines how words and expressions can be
-                                                    combined to form
+                                                    &nbsp;&nbsp;&nbsp;It determines how words and expressions can be combined to form
                                                     correct statements.</p>
                                                 <p
                                                     style="font-size: 0.5em;margin-left: -450px;text-align: left;margin-top: 0px;margin-bottom: 5px;">
-                                                    &nbsp;&nbsp;&nbsp;It does not concern itself with the meaning of
-                                                    words, but with
+                                                    &nbsp;&nbsp;&nbsp;It does not concern itself with the meaning of words, but with
                                                     their grammatical arrangement.</p>
                                                 <p
                                                     style="font-size: 0.5em;margin-left: -450px;text-align: left;margin-top: 0px;margin-bottom: 5px;">
@@ -1334,8 +1260,9 @@
 
                                             <p>This section explores:</p>
                                             <ol>
-                                                <li><strong>Limits of natural languages and drawings</strong>
+                                                <li><strong>Limits of natural languages and data repositories</strong>
                                                 </li>
+                                                <li><strong>Typical ambiguities in technical contexts</strong></li>
                                                 <li><strong>How semantic cartography helps</strong></li>
                                             </ol>
                                         </li>
@@ -1344,7 +1271,8 @@
                                 </section>
                                 <section>
                                     <div class="title-zone">
-                                        <h3 style="font-size: 0.8em;">C.1 Limits of Natural Languages and drawings</h3>
+                                        <h3 style="font-size: 0.8em;">C.1 Limits of Natural Languages and data
+                                            repositories</h3>
                                     </div>
                                     <div class="content-zone">
                                         <div class="text-zone">
@@ -1395,8 +1323,7 @@
                                     <h3>From Ambiguity to Interoperability</h3>
                                     <p><strong>Semantic Cartography</strong> enables:</p>
                                     <ul>
-                                        <li><strong>Disambiguation:</strong> precise visual symbols linked to shared
-                                            concepts
+                                        <li><strong>Disambiguation:</strong> precise visual symbols linked to shared concepts
                                         </li>
                                         <li><strong>Knowledge integration:</strong> across systems and organizations
                                         </li>
@@ -1407,6 +1334,194 @@
                                 </section>
 
 
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.2 Other sources of confusion</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="font-size: 0.6em;text-align: left;">1. Cultural and linguistic
+                                                complexities</p>
+                                            <ul style="font-size: 0.5em;">
+                                                <li><b>Regional variations:</b> Lexical differences depending on the
+                                                    region (e.g. "pain au chocolat" vs "chocolatine").</li>
+                                                <li><b>Cultural polysemy:</b> Concepts loaded with meanings specific to
+                                                    a culture (e.g. "freedom").</li>
+                                                <li><b>Linguistic evolution:</b> Words changing meaning over time (e.g.
+                                                    "passion": suffering vs enthusiasm).</li>
+                                            </ul>
+
+                                            <p style="font-size: 0.6em;text-align: left;">2. Expression issues</p>
+                                            <ul style="font-size: 0.5em;">
+                                                <li><b>Metaphors and idioms:</b> Non-literal expressions (e.g. "to have
+                                                    one's feet on the ground").</li>
+                                                <li><b>Jargon:</b> Technical or specialized language incomprehensible to
+                                                    outsiders (e.g. "API").</li>
+                                                <li><b>Unspoken elements:</b> Implicatures or taboos making the message
+                                                    implicit (e.g. "He is not very efficient").</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.3 The common case of homonymy</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="text-align: left;font-size: 0.5em;">Due to homonymy, do not
+                                                confuse the term and the concept, which is linked to the referent in the
+                                                real world, unlike the term (which has no direct link).</p>
+                                            <p style="text-align: left;font-size: 0.5em;">In natural language, there are
+                                                many other interpretation problems...</p>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/TankHumour.png" alt="TankHumour"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.4 Issues purely related to data</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Format heterogeneity</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Multiplicity of standards (CSV, XML, JSON, etc.).</li>
+                                                        <li>Difficulty unifying data sources.</li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Lack of context</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Data isolated from their origin or purpose.</li>
+                                                        <li>e.g.: A date without specifying whether it is a start or end
+                                                            date.</li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Variable data quality</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Incomplete, incorrect, or outdated data.</li>
+                                                        <li>e.g.: Customer databases not synchronized between two
+                                                            systems.</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/DataNonQuality.jpg" alt="DIKW"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.5 Issues related to information</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Semantic inconsistencies</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Terminology differences between organizations.</li>
+                                                        <li>e.g.: Does "product" refer to a good or a service?</li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Fragmentation</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Information scattered across systems or departments.</li>
+                                                        <li>e.g.: A CRM system and an ERP database not sharing the same
+                                                            customer data.</li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Lack of a common structure</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>No shared model to organize information.</li>
+                                                        <li>e.g.: Two companies define the same KPIs differently.</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/istockphoto-165954847-612x612.jpg" alt="Information Issues"
+                                                style="max-width: 100%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.6 Issues related to knowledge</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <ul>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Capturing tacit knowledge</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Critical know-how often remains informal or undocumented.
+                                                        </li>
+                                                        <li>e.g.: An expert has key information inaccessible to
+                                                            colleagues.</li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Loss of know-how</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Employee departures or lack of knowledge transfer.</li>
+                                                        <li>e.g.: A proprietary method lost after an expert leaves.</li>
+                                                    </ul>
+                                                </li>
+                                                <li style="font-size: 1em;">
+                                                    <strong>Cultural incompatibilities</strong>
+                                                    <ul style="font-size: 0.8em;">
+                                                        <li>Differences in how organizations interpret and use
+                                                            knowledge.</li>
+                                                        <li>e.g.: "Short-term" vs. "long-term" views in sharing
+                                                            strategies.</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="image-zone">
+                                            <img src="./img/knowledge-transfer.jpeg" alt="Knowledge Issues"
+                                                style="max-width: 70%; height: auto;" />
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section>
+                                    <div class="title-zone">
+                                        <h3 style="font-size: 0.8em;">C.7 Conclusion</h3>
+                                    </div>
+                                    <div class="content-zone">
+                                        <div class="text-zone">
+                                            <p style="text-align: left;">When it comes to sharing meaning, many issues
+                                                are linked to natural language and data.</p>
+                                            <ul>
+                                                <li style="text-align: left;">The mentioned problems hinder the sharing
+                                                    of meaning between application systems and knowledge management
+                                                    systems.</li>
+                                                <li style="text-align: left;">This leads to technological, application,
+                                                    or organizational silos between communities.</li>
+                                                <li style="text-align: left;">These issues must be resolved for both
+                                                    humans and machines.</li>
+                                            </ul>
+                                            <p style="text-align: left;">This is what ontologies aim to address.</p>
+                                        </div>
+                                    </div>
+                                </section>
                             </section>
 
                             <section>
