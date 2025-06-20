@@ -408,7 +408,7 @@
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Semantic Interoperability Masterclass</title>
+                    <title style="color: blue;">Semantic Interoperability Masterclass</title>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
                     <link rel="stylesheet"
                         href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
@@ -420,1108 +420,1161 @@
                     <div class="reveal">
                         <div class="slides">
                             <!-- Introduction -->
-                            <section data-background-image="img/ImageFondLiris.png" data-background-size="cover">
-                                <section>
-                                    <h1 style="font-size: 1em;text-transform: none;">Semantic Interoperability
+
+                            <section>
+                                <h1 style="font-size: 1em;text-transform: none;color: #3366cc;"">Semantic Interoperability
                                         Masterclass</h1>
                                     <p>From Foundational Principles to Interactive Knowledge Cartography</p>
                                     <p>Presented by Dr Nicolas Figay and Pr Parisa Ghodous</p>
-                                    <div class="image-zone">
-                                        <img src="./img/Réunion technologique futuriste en multidimension.png"
-                                            alt="Semantic triangle beyond text" style="max-width: 30%; height: auto;" />
-                                    </div>
+                                    <div class=" image-zone">
+                                    <img src="./img/Réunion technologique futuriste en multidimension.png"
+                                        alt="Semantic triangle beyond text" style="max-width: 30%; height: auto;" />
+                        </div>
 
 
-                                </section>
-                            </section>
+                        </section>
+                        </section>
+                        <section>
                             <section>
-                                <section>
-                                    <h2 style="text-transform: none;font-size: 1em;color: #3366cc">Resources for the
-                                        MasterClass</h2>
-                                    <p>
-                                        You can access the presentation at
-                                        <a href="https://nfigay.github.io/training/SemanticCartography.html"
-                                            target="_blank">
-                                            <strong>nfigay.github.io/training/SemanticCartography.html</strong>
-                                        </a>.
-                                    </p>
-                                    <p>
-                                        You can access ArchiCG prototypes at
-                                        <a href="https://nfigay.github.io/ArchiCG/" target="_blank">
-                                            <strong>https://nfigay.github.io/ArchiCG/</strong>
-                                        </a>.
-                                    </p>
+                                <h2 style="text-transform: none;font-size: 1em;color: #3366cc">Resources for the
+                                    MasterClass</h2>
+                                <p>
+                                    You can access the presentation at
+                                    <a href="https://nfigay.github.io/training/SemanticCartography.html"
+                                        target="_blank">
+                                        <strong>nfigay.github.io/training/SemanticCartography.html</strong>
+                                    </a>.
+                                </p>
+                                <p>
+                                    You can access ArchiCG prototypes at
+                                    <a href="https://nfigay.github.io/ArchiCG/" target="_blank">
+                                        <strong>https://nfigay.github.io/ArchiCG/</strong>
+                                    </a>.
+                                </p>
 
-                                </section>
                             </section>
+                        </section>
+                        <section>
                             <section>
-                                <section>
-                                    <h2 style="text-transform: none;font-size: 1em;color: #3366cc;">Masterclass Plan
-                                    </h2>
-                                    <ol style="list-style-type:none;font-size: 0.6em;color: #3366cc">
-                                        <li>
-                                            Research Context: Continuous Operational
-                                            Interoperability
-                                        </li>
-                                        <li>
-                                            Semantic Graphs State of the Art and limits
-                                        </li>
-                                        <li>
-                                            Proposed Approach: Semantizing Interactive Compound Graphs
-                                        </li>
-                                        <li>
-                                            Demonstration: Implementation and Usage with ArchiCG
-                                        </li>
-                                        <li>
-                                            Conclusion: Limitations, Future Perspectives, and Call to Action
-                                        </li>
-                                    </ol>
-                                </section>
+                                <h2 style="text-transform: none;font-size: 1em;color: #3366cc;">Masterclass Plan
+                                </h2>
+                                <ol style="list-style-type:none;font-size: 0.6em;color: black">
+                                    <li>
+                                        Research Context: Continuous Operational
+                                        Interoperability
+                                    </li>
+                                    <li>
+                                        Semantic Graphs State of the Art and limits
+                                    </li>
+                                    <li>
+                                        Proposed Approach: Semantizing Interactive Compound Graphs
+                                    </li>
+                                    <li>
+                                        Demonstration: Implementation and Usage with ArchiCG
+                                    </li>
+                                    <li>
+                                        Conclusion: Limitations, Perspectives, and Call to Action
+                                    </li>
+                                </ol>
                             </section>
+                        </section>
+                        <section>
                             <section>
-                                <section>
-                                    <ol style="list-style-type:none; ">
+                                <ol style="list-style-type:none; ">
 
-                                        <li
-                                            style="counter-reset: main 0;font-size: 0.8em;text-transform: none;color: #3366cc;">
-                                            <strong>Research Context: Continuous Operational Interoperability</strong>
-                                            <ol style="font-size: 1em;text-transform: none;color: #3366cc;">
-                                                <li>Bridging Silos in Information System Engineering</li>
-                                                <li>Bridging Silos Visually</li>
-                                                <li>From semantic data to visual structures</li>
-                                                <li>Key Challenges</li>
-
-
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </section>
+                                    <li
+                                        style="counter-reset: main 0;font-size: 0.8em;text-transform: none;color: #3366cc;">
+                                        <strong>Research Context: Continuous Operational Interoperability</strong>
+                                        <ol style="font-size: 1em;text-transform: none;color: black;">
+                                            <li>Bridging Silos in Information System Engineering</li>
+                                            <li>Bridging Silos Visually</li>
+                                            <li>From semantic data to visual structures</li>
+                                            <li>Key Challenges</li>
 
 
-                                <section>
-                                    <h3 style="font-size: 0.8em;text-transform: none;color: #3366cc;">1.1 Bridging Silos
-                                        in Information
-                                        Systems Engineering</h2>
-                                        <div class="content-zone">
-                                            <div class="text-zone">
-                                                <table border="1" cellpadding="8" cellspacing="0"
-                                                    style="width:100%; border-collapse: collapse; font-size: 0.9em;">
-                                                    <thead style="font-size: 0.4em;text-align: left;">
-                                                        <tr>
-                                                            <th>Key Aspect</th>
-                                                            <th>Explanation</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="font-size: 0.4em;text-align: left;">
-                                                        <tr>
-                                                            <td><strong>Real-world systems</strong></td>
-                                                            <td>Span human, organizational, economic, societal, and
-                                                                technological dimensions</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Disruptive Evolution and Fragmentation</strong>
-                                                            </td>
-                                                            <td>Rapid, often disruptive, evolution drives the continual
-                                                                emergence of silos</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Risk</strong></td>
-                                                            <td>Fragmentation threatens coherent system design and
-                                                                interoperability</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Critical Challenge</strong> for architects</td>
-                                                            <td>Building <a href="https://hal.science/tel-04413469v2"
-                                                                    target="_blank"><em>Continuous Operational
-                                                                        Interoperability</em></a> for
-                                                                secured digital collaborations</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Need</strong></td>
-                                                            <td>Holistic approaches that unify diverse aspects and
-                                                                support ongoing adaptation (FIGAY, 2021)</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </section>
 
-                                            </div>
-                                            <div class="image-zone">
-                                                <img src="./img/Pont entre Systèmes Fragmentés.png"
-                                                    alt="Semantic triangle beyond text"
-                                                    style="max-width: 50%; height: auto;" />
-                                            </div>
-                                        </div>
-                                        <blockquote style="width:100%">
-                                            <p style="font-size: 0.55em; text-align: center;"><em
-                                                    style="display: inline-block; padding: 0.1em 0.1em;width:100%">Architects
-                                                    must tackle the complexity of ever-changing and multi-disciplinary
-                                                    systems of systems
-                                                    that defy static, siloed approaches.</em></p>
-                                        </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em;text-transform: none;color: #3366cc;">1.2 Bridging Silos
-                                        Visually</h2>
-                                        <div class="content-zone">
-                                            <div class="text-zone">
-                                                <ul style="font-size: 0.45em;">
 
-                                                    <li>Visuals help us grasp complexity (Moody, 2009).</li>
-                                                    <li>Maps reveal modular layers and connections (Bertin, 1983).</li>
-                                                    <li>Only graphics show the full web of relationships.</li>
-                                                    <li>Interactive graphs beat static diagrams for deep exploration.
-                                                    </li>
-                                                    <li>Cartography links separate models into integrated systems.</li>
-                                                    <li>Composed views improve understanding and decision-making
-                                                        (Bertin, 1983).
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                            <div class="image-zone">
-                                                <img src="./img/whyarchitectsmustthinvisuallyfirst.jpeg"
-                                                    alt="Semantic triangle beyond text"
-                                                    style="max-width: 50%; height: auto;" />
-                                            </div>
-                                        </div>
-                                        <blockquote>
-                                            <p style="font-size: 0.55em; text-align: center;"><em
-                                                    style="display: inline-block; padding: 0.2em 0.2em;">“Visual
-                                                    approaches are not
-                                                    optional — they are the cognitive gateway to understanding
-                                                    complexity.”</em></p>
-                                        </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">1.3 From semantic
-                                        data to visual structures
-                                    </h3>
+                            <section>
+                                <h3 style="font-size: 0.8em;text-transform: none;color: #3366cc;">1.1 Bridging Silos
+                                    in Information
+                                    Systems Engineering</h2>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <p>From Gutemberg to Digital Age</p>
-
-                                            <table border="1" cellpadding="8" cellspacing="0">
+                                            <table border="1" cellpadding="8" cellspacing="0"
+                                                style="width:100%; border-collapse: collapse; font-size: 0.9em;">
                                                 <thead style="font-size: 0.4em;text-align: left;">
                                                     <tr>
-                                                        <th>From</th>
-                                                        <th>To</th>
+                                                        <th>Key Aspect</th>
+                                                        <th>Explanation</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style="font-size: 0.4em;text-align: left;">
                                                     <tr>
-                                                        <td>Paper-based drawings</td>
-                                                        <td>Live, queryable models</td>
+                                                        <td><strong>Real-world systems</strong></td>
+                                                        <td>Span human, organizational, economic, societal, and
+                                                            technological dimensions</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Static views</td>
-                                                        <td>Dynamic, user-centered navigation</td>
+                                                        <td><strong>Disruptive Evolution and Fragmentation</strong>
+                                                        </td>
+                                                        <td>Rapid, often disruptive, evolution drives the continual
+                                                            emergence of silos</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Manual drawing</td>
-                                                        <td>Automated layouting</td>
+                                                        <td><strong>Risk</strong></td>
+                                                        <td>Fragmentation threatens coherent system design and
+                                                            interoperability</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Visual guesses</td>
-                                                        <td>Semantically validated structures</td>
+                                                        <td><strong>Critical Challenge</strong> for architects</td>
+                                                        <td>Building <a href="https://hal.science/tel-04413469v2"
+                                                                target="_blank"><em>Continuous Operational
+                                                                    Interoperability</em></a> for
+                                                            secured digital collaborations</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Isolated diagrams</td>
-                                                        <td>Interoperable knowledge graphs</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Descriptive models</td>
-                                                        <td>Decision-support systems</td>
+                                                        <td><strong>Need</strong></td>
+                                                        <td>Holistic approaches that unify diverse aspects and
+                                                            support ongoing adaptation (FIGAY, 2021)</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/FromGutenbergToDigitalAge.jpeg" alt="Visual Structure"
-                                                style="max-width: 100%; height: auto;" />
 
                                         </div>
-                                    </div>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em><strong>Semantic
-                                                    Cartography</strong> is to knowledge<br> what <strong>GPS</strong>
-                                                is to
-                                                geography.
-                                            </em>
-                                        </p>
-
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">1.4 Key
-                                        Challenges</h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p style="font-size: 0.5em;text-align: left;">Architects Navigating,
-                                                Structuring, and
-                                                Engaging with Composite Graphs</p>
-                                            <ul style="font-size: 0.45em;">
-                                                <li><strong>Navigation:</strong> Understanding
-                                                    position, context, and relationships in large graph structures</li>
-                                                <li><strong>Structuring:</strong> Capturing
-                                                    multi-scale, layered, and modular logic across domains</li>
-                                                <li><strong>Engagement:</strong> Making complexity
-                                                    usable—both for human insight and machine processing</li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.1em;">
-                                            <img src="./img/SemanticCartography.png" alt="Visual Structure"
-                                                style="max-width: 80%; height: auto;" />
+                                        <div class="image-zone">
+                                            <img src="./img/Pont entre Systèmes Fragmentés.png"
+                                                alt="Semantic triangle beyond text"
+                                                style="max-width: 50%; height: auto;" />
                                         </div>
                                     </div>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>“Semantic cartography for architects is about
-                                                making complexity navigable, structure comprehensible, and meaning
-                                                actionable."
-                                            </em>
-                                        </p>
+                                    <blockquote style="width:100%">
+                                        <p style="font-size: 0.55em; text-align: center;"><em
+                                                style="display: inline-block; padding: 0.1em 0.1em;width:100%">Architects
+                                                must tackle the complexity of ever-changing and multi-disciplinary
+                                                systems of systems
+                                                that defy static, siloed approaches.</em></p>
                                     </blockquote>
-                                </section>
-
-
                             </section>
                             <section>
-                                <section>
-                                    <ol style="list-style-type:none; ">
-                                        <li
-                                            style="counter-reset: main 1;font-size: 0.8em;text-transform: none;color: #3366cc;">
-                                            <strong>Semantic Graphs State of the Art and limits</strong>
-                                            <p style="text-align: left;">
-                                                A visual approach to structuring, navigating, and reasoning over
-                                                complexity<br>
-                                                Powered by semantic models, rendered as dynamic composite graphs.
-                                            </p>
-                                            <ol>
-                                                <li>From Drawings to Semantic Visual Representations</li>
-                                                <li>Giving Meaning to Symbol</li>
-                                                <li>Challenges in Visual Communication & Interoperability</li>
-                                                <li>Automatic layout of compound graphs</li>
-
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </section>
-
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">2.1 From Drawings
-                                        to Semantic
-                                        Visual Representations</h3>
+                                <h3 style="font-size: 0.8em;text-transform: none;color: #3366cc;">1.2 Bridging Silos
+                                    Visually</h2>
                                     <div class="content-zone">
                                         <div class="text-zone">
-                                            <ul style="font-size: 0.5em;">
-                                                <li>Visuals should formally represent knowledge and meaning (Moody,
-                                                    2009).</li>
-                                                <li>Each visual element must carry clear, interpretable semantics
-                                                    (Bertin,
-                                                    1983).</li>
-                                                <li>Graphs link how humans see and how machines understand data.</li>
-                                                <li>Semantic views support queries, validation, and automation.</li>
-                                                <li>Shared semantics enable interoperability across tools and domains.
+                                            <ul style="font-size: 0.45em;">
+
+                                                <li>Visuals help us grasp complexity (Moody, 2009).</li>
+                                                <li>Maps reveal modular layers and connections (Bertin, 1983).</li>
+                                                <li>Only graphics show the full web of relationships.</li>
+                                                <li>Interactive graphs beat static diagrams for deep exploration.
                                                 </li>
+                                                <li>Cartography links separate models into integrated systems.</li>
+                                                <li>Composed views improve understanding and decision-making
+                                                    (Bertin, 1983).
+                                                </li>
+
                                             </ul>
                                         </div>
                                         <div class="image-zone">
-                                            <img src="./img/fromDrawingToSemanticRepresentation.png"
+                                            <img src="./img/whyarchitectsmustthinvisuallyfirst.jpeg"
                                                 alt="Semantic triangle beyond text"
                                                 style="max-width: 50%; height: auto;" />
-
                                         </div>
                                     </div>
                                     <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;"><em
-                                                style="display: inline-block; padding: 0.5em 0.5em;">“Visual
-                                                representations
-                                                must evolve from informal diagrams to semantic models that both humans
-                                                and machines can navigate.”</em></p>
+                                        <p style="font-size: 0.55em; text-align: center;"><em
+                                                style="display: inline-block; padding: 0.2em 0.2em;">“Visual
+                                                approaches are not
+                                                optional — they are the cognitive gateway to understanding
+                                                complexity.”</em></p>
                                     </blockquote>
-                                </section>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">1.3 From semantic
+                                    data to visual structures
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <p>From Gutemberg to Digital Age</p>
 
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">
-                                        2.2 Giving Meaning to Symbols<br> <span
-                                            style="font-size: 0.8em;color: green;">Combining Symbols into Meaning</span>
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <ul style="font-size: 0.45em;">
-                                                <li><strong>Meaning emerges from structure:</strong>Visual notations are
-                                                    not mere icons — they derive
-                                                    meaning from how symbols are <em>arranged and connected (Bertin,
-                                                        Moody)</em>.</li>
-
-                                                <li><strong>Visual syntax governs comprehension:</strong> Similar to
-                                                    linguistic grammar, <em>spatial arrangements, alignment, and
-                                                        linkage</em> define a visual syntax, which
-                                                    enables correct interpretation.</li>
-
-                                                <li><strong>Formal visual languages:</strong> Diagrams like UML, BPMN,
-                                                    and ArchiMate use <em>well-defined syntactic rules</em> to express
-                                                    complex systems</li>
-
-                                                <li><strong>Structure conveys semantics:</strong>
-                                                    <em>Position, shape, and size</em> are not aesthetic — they
-                                                    systematically encode meaning.
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/VisualStructure.png" alt="Visual Structure"
-                                                style="max-width: 80%; height: auto;" />
-                                        </div>
+                                        <table border="1" cellpadding="8" cellspacing="0">
+                                            <thead style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <td>Paper-based drawings</td>
+                                                    <td>Live, queryable models</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Static views</td>
+                                                    <td>Dynamic, user-centered navigation</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Manual drawing</td>
+                                                    <td>Automated layouting</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Visual guesses</td>
+                                                    <td>Semantically validated structures</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Isolated diagrams</td>
+                                                    <td>Interoperable knowledge graphs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Descriptive models</td>
+                                                    <td>Decision-support systems</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <blockquote style="margin-top: 0;padding-top :0">
-                                        <p style="font-size: 0.6em; text-align: center;margin-top: 0;padding-top :0">
-                                            <em>“When aligned with
-                                                perceptual principles, visual languages enable <em>precise,
-                                                    scalable, and cognitively efficient</em> communication of
-                                                complexity.”</em>
-                                        </p>
-                                    </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">2.2 Giving
-                                        Meaning to Symbols<br><span style="font-size: 0.8em;color: green;">
-                                            Visual Variables Infographic</span>
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <ul style="font-size: 0.45em;">
-                                                <li><strong>Beyond Symbols:</strong> Diagrams communicate meaning not
-                                                    just
-                                                    through shapes or icons, but via a rich set of visual features
-                                                    tailored to
-                                                    human perception.</li>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/FromGutenbergToDigitalAge.jpeg" alt="Visual Structure"
+                                            style="max-width: 100%; height: auto;" />
 
-                                                <li><strong>Jacques Bertin</strong> (1967) identified key <em>visual
-                                                        variables</em> used in diagrammatic representations:
-
-                                                </li>
-
-                                                <li><strong>Daniel Moody</strong> (2009) extended this foundation with
-                                                    cognitive
-                                                    principles for designing effective visual notations:
-                                                    <ul style="font-size: 0.9em;">
-                                                        <li>His principle of <strong>visual expressiveness</strong>
-                                                            suggests
-                                                            using as many visual variables as the data requires.</li>
-                                                        <li><strong>Graphic economy</strong> and <strong>perceptual
-                                                                discriminability</strong> help balance clarity and
-                                                            cognitive
-                                                            load.</li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone" style="margin-top: 0em;">
-                                            <img src="./img/Variables visuelles et principes de Moody.png"
-                                                alt="Visual Structure" style="max-width: 80%; height: auto;" />
-                                        </div>
                                     </div>
-                                    <blockquote style="margin-top: 0;padding-top :0">
-                                        <p style="font-size: 0.5em; text-align: center;margin-top: 0;padding :0">
-                                            <em>These theories help explain why good infographics are not just
-                                                “pretty pictures” but structured systems of meaning <br>much like formal
-                                                languages.</em>
-                                        </p>
-                                    </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">
-                                        2.3 Challenges in Visual Communication & Interoperability
-                                    </h3>
-                                    <ul style="font-size: 0.5em;">
-                                        <li>Standard languages (UML, BPMN, ArchiMate) are used for static diagrams —
-                                            made for printed views and monolithic processes, not dynamic exploration.
-                                        </li>
-                                        <li>Visual models often lack interactive ways to explore meaning.</li>
-                                        <li>Colors, nesting, links hold meaning but are rarely formalized.</li>
-                                        <li>Semantic data and visuals are often disconnected.</li>
-                                        <li>Few tools mix nesting, links, and typing for rich views.</li>
-                                        <li>Tools and data live in silos, hard to combine smoothly.</li>
-                                        <li>Costly software and scattered data block easy access and fusion.</li>
-                                    </ul>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>Considering both State of the art and state of the practice, nothing
-                                                exist
-                                                considering simultaneously the combination of visual, dynamic, compound
-                                                and semantic</em>
-                                        </p>
-                                    </blockquote>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">2.4 <a
-                                            href="https://js.cytoscape.org/">Automatic layout of compound graphs</a>
-                                        as the starting point</h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p style="font-size: 0.5em;text-align: left;">
-                                                <a
-                                                    href="https://www.linkedin.com/pulse/some-advanced-visualization-technics-embracing-complexity-figay/">Advanced
-                                                    visualization technics continuous survey and assessment</a>
-                                            </p>
-                                            <table border="1" cellpadding="8" cellspacing="0">
-                                                <thead style="font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <th>Feature</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="font-size: 0.3em;text-align: left;">
-                                                    <tr>
-                                                        <td>Compound Nodes</td>
-                                                        <td>Structure complex graphs hierarchically with
-                                                            parent-child grouping</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Collapse/Expand Plugin (Dogrusoz 2018)</td>
-                                                        <td>Interactively hide/show nested nodes and edges for
-                                                            clarity</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>CSS-like Styling</td>
-                                                        <td>Define custom visual notation for nodes, edges, and
-                                                            groups</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dynamic Updates</td>
-                                                        <td>Add, remove, or update elements interacting with the
-                                                            diagram</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Event-Driven Interaction</td>
-                                                        <td>Respond to user input with custom behaviors</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Plugin Ecosystem</td>
-                                                        <td>Layouts, context menus, undo/redo, edge tools, and more
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Automatic Layouts</td>
-                                                        <td>Support for compound graphs</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Cross-Browser Support</td>
-                                                        <td>Lightweight, performant, and runs in any modern browser
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <p style="font-size: 0.4em;text-align: left;">A fully featured
-                                                <strong>COMPOUND graph library</strong> written in
-                                                pure JS
-                                            </p>
-                                            <p style="font-size: 0.3em;text-align: left;">
-                                                Note: Cytoscape.js is just one technical solution. Other alternatives
-                                                are being assessed.
-                                            </p>
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <iframe
-                                                src="https://ivis-at-bilkent.github.io/cytoscape.js-expand-collapse/demo/demo-compounds-collapsed.html  "
-                                                width="100%" height="450" style="border:1px solid #ccc;">
-                                            </iframe>
-
-                                        </div>
-                                    </div>
-                                    <blockquote style="width: 95%;"">
-                                        <p style=" font-size: 0.6em; text-align: center;margin: 0 0;">
-                                        <em style="width:max-content">Compound collapsible/expandable auto-layouted
-                                            interactive graphs<br>
-                                            One of the main trigger for semantic cartography concept development
+                                </div>
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em><strong>Semantic
+                                                Cartography</strong> is to knowledge<br> what <strong>GPS</strong>
+                                            is to
+                                            geography.
                                         </em>
-                                        </p>
-                                    </blockquote>
-                                </section>
-                            </section>
-                            <section>
-                                <section>
-                                    <ol style="list-style-type:none; ">
-                                        <li
-                                            style="counter-reset: main 2;font-size: 0.8em;text-transform: none;color: #3366cc;">
-                                            <strong>Proposed Approach: Semantizing Interactive
-                                                Compound Graphs</strong>
-                                            <p style="text-align: left;">
-                                                An approach for producing semantic models, rendered as dynamic composite
-                                                graphs.
-                                            </p>
-                                            <ol>
-                                                <li>From Graph Theory to Semantized Compound Graphs</li>
-                                                <li>Semantic Cartography: Definition model and method</li>
-                                                <li>Summary</li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </section>
-
-
-
-
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">3.1
-                                        From Graph Theory to Semantized Compound Graphs</h3>
-                                    <div class="content-zone">
-
-                                        <div class="text-zone">
-                                            <table border="1" cellpadding="8" cellspacing="0"
-                                                style="width:100%; border-collapse: collapse;">
-                                                <thead style="font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <th colspan="2">Graph Structure Evolution</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <td>Usual Graphs (Graph Theory)</td>
-                                                        <td>Id and Labels as data properties for nodes and edges; edges
-                                                            link nodes via source and target object properties</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Cytoscape Graphs (Franz M)</td>
-                                                        <td>Support for parent object property on nodes (compound
-                                                            structure) </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="2">Our Contribution to the State of the Art</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Semantization of Graphs</td>
-                                                        <td>Use of a <code>type</code> data property for nodes and edges
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Semantized Compound Graphs</td>
-                                                        <td>Introduction of <code>parentRelationId</code> as an object
-                                                            property</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/FromGraphToSemanticCarto.png"
-                                                alt="From Graphs to Semantic Cartography"
-                                                style="max-width: 70%; height: auto;" />
-
-                                        </div>
-                                    </div>
-
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>We propose the Semantized Compound Graph Paradigm
-                                            </em>
-                                        </p>
-                                    </blockquote>
-
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">3.2 Semantic
-                                        Cartography: Definition model and method</h3>
-                                    <div class="content-zone">
-
-                                        <div class="text-zone">
-                                            <table border="1" cellpadding="6" cellspacing="0"
-                                                style="border-collapse: collapse; width: 100%; font-size: 0.9em;">
-                                                <thead
-                                                    style="background-color: #f0f0f0;font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <th>Definition Model</th>
-                                                        <th>Method (Tasks)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <td><strong>Domain Conceptual Metamodel</strong>: abstract types
-                                                            and relations</td>
-                                                        <td>T1 – Formalize textual value for the types</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Textual structure and terms</strong> (Concrete
-                                                            Syntax 1)</td>
-                                                        <td>T2 – Formalize Visual symbols for the type</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>visual representation and symbols </strong>
-                                                            (Concrete Syntax 2)</td>
-                                                        <td>T3 – Formalizing the mapping by mean of Cytoscape engine
-                                                            selectors and styles. The notation must exist. If not, T50.
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Mapping</strong>: aligns textual & visual syntax to
-                                                            conceptual types</td>
-                                                        <td>T50 – Defining a visual notation when non existing or non
-                                                            complete(e.g. OWL)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Selectors</strong>: define what elements are
-                                                            targeted (e.g., node[type='X'])</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Styles</strong>: control visual rendering (shape,
-                                                            color, icon)</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Cytoscape Rendering Engine</strong>: Realisation
-                                                            component for mapping execution</td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/GraphTextual2Visual.png"
-                                                alt="From Graphs to Semantic Cartography"
-                                                style="max-width: 100%; height: auto;" />
-
-                                        </div>
-                                    </div>
-
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em>We propose a definition model and a method for semantizing
-                                                compound graphs for such or such a language
-                                            </em>
-                                        </p>
-                                    </blockquote>
-
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">3.3 Summary
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-
-                                            <p style="font-size: 0.45em;text-align: left;">When having to deal with
-                                                interoperability, Architects face a growing complexity and
-                                                a faster pace of change.<br>We identified through the State of the Art a
-                                                lack for
-                                                addressing visual dynamic and interactive compound graphs.</p>
-
-                                            <p style="font-size: 0.5em;text-align: left;">
-                                            <ul style="font-size: 0.4em;text-align: left;">
-                                                <li>For this we introduce a new paradigm: <strong>Semantized Interactive
-                                                        Compound
-                                                        Graphs</strong></li>
-
-                                                <li>We produced a Definition Model to build semantic cartographies</li>
-                                                <li>We proposed a method for semantizing graphs with such or such visual
-                                                    language</li>
-                                                <li>We should be able then to switch from static, Gutenberg-style media
-                                                    to dynamic, digital
-                                                    graphs in order to support Architects to build operational
-                                                    inteoperabily.</li>
-                                            </ul>
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/semantizedcartography.png" alt="Semantized Cartography"
-                                                style="max-width: 80%; height: auto;" />
-                                        </div>
-                                    </div>
-
-                                    <blockquote>
-                                        <p style="font-size: 0.5em; text-align: center;">
-                                            <em>Let's now present and demonstrate this approach on top of a produced
-                                                demonstrator,
-                                                <strong>ArchiCG</strong>
-                                            </em>
-                                        </p>
-                                    </blockquote>
-                                </section>
+                                    </p>
 
                             </section>
                             <section>
-                                <section>
-                                    <ol style="list-style-type:none; ">
-                                        <li
-                                            style="counter-reset: main 3;font-size: 0.8em;text-transform: none;color: #3366cc;">
-                                            <strong>Demo: ArchiCG prototype & use cases</strong>
-                                            <p style="text-align: left;">
-                                                ArchiCG is an open initiative aiming at exploring Semantized Interactive
-                                                Compound
-                                                Graphs usage, but also the name of an open source tool constituing an
-                                                experimental platform.
-                                            </p>
-                                            <ol>
-                                                <li>Architectural Principles for openess & interoperability</li>
-                                                <li>General Business Case: building Interoperability with open
-                                                    standards </li>
-                                                <li>Specific Business Cases </li>
-                                                <ol>
-                                                    <li>
-                                                        .1 Enterprise Landscape with ArchiMate</li>
-                                                    <li>.2 Knowledge landscape with
-                                                        OWL visualisation</li>
-                                                    <li>.3 Product landscape with
-                                                        ISO STEP</li>
-                                                    <li>.4 Blockchain Digital
-                                                        Business Ecossytem landscape</li>
-                                                </ol>
-                                                <li>Conclusion related to the prototyping</li>
-
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.1 Architectural
-                                        Principles for openess & interoperability</h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-                                            <p style="font-size: 0.5em; text-align: left;">Aggregator for siloed
-                                                enterprise data distributed in heterogenesous enterprise
-                                                repositories:<br>
-
-                                            </p>
-                                            <table style="width: 100%; font-size: 0.9em;">
-                                                <thead style="font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <th style="text-align: left;">Principle</th>
-                                                        <th style="text-align: left;">Description</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="font-size: 0.4em;text-align: left;">
-                                                    <tr>
-                                                        <td><strong>Web-native Architecture</strong></td>
-                                                        <td>Runs entirely in the browser — no server required, enabling
-                                                            simple
-                                                            deployment and access anywhere</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Open Technologies</strong></td>
-                                                        <td>Built on vanilla JavaScript and SVG, using open formats
-                                                            (JSON, RDF,
-                                                            SVG) to maximize compatibility</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Modular Design</strong></td>
-                                                        <td>Activatable components and palettes allow integration of
-                                                            multiple
-                                                            modeling languages (ArchiMate, OWL,ISO STEP P21, etc.)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Silo Independence</strong></td>
-                                                        <td>Usable offline or across networks, without relying on
-                                                            centralized
-                                                            platforms or locked ecosystems</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Local Data only and no referential</strong></td>
-                                                        <td>For security constraints and for preventing one more
-                                                            database to maintain</td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/consolidationheterogeneousrepositories.png"
-                                                alt="Consolidation de données d'entreprise"
-                                                style="max-width: 50%; height: auto;" />
-                                            <div style="font-size: 0.35em; text-align: left">
-                                                <strong>BMS</strong>: Business Management System,
-                                                <strong>PLM</strong>:Product Lifecycle Management Systems,
-                                                <strong>MBSE</strong> Based System Engineering model repositories,
-                                                <strong>CMDB:</strong> Configuration
-                                                Management DataBase
-                                            </div>
-
-                                        </div>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">1.4 Key
+                                    Challenges</h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <p style="font-size: 0.5em;text-align: left;">Architects Navigating,
+                                            Structuring, and
+                                            Engaging with Composite Graphs</p>
+                                        <ul style="font-size: 0.45em;">
+                                            <li><strong>Navigation:</strong> Understanding
+                                                position, context, and relationships in large graph structures</li>
+                                            <li><strong>Structuring:</strong> Capturing
+                                                multi-scale, layered, and modular logic across domains</li>
+                                            <li><strong>Engagement:</strong> Making complexity
+                                                usable—both for human insight and machine processing</li>
+                                        </ul>
                                     </div>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.7em; text-transform: none;color: #3366cc;">4.2 General
-                                        Business
-                                        Case: Building Interoperability with open standard
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/GlobalCollaboration.png"
-                                                alt="Consolidation de données d'entreprise"
-                                                style="max-width: 80%; height: auto;" />
-                                            <p style="font-size: 0.5em;text-align: left;">All the import and export are
-                                                based on Open De Facto Standards with semantization aligned with
-                                                comprehensible structure.</p>
-                                        </div>
+                                    <div class="image-zone" style="margin-bottom: 0.1em;">
+                                        <img src="./img/SemanticCartography.png" alt="Visual Structure"
+                                            style="max-width: 80%; height: auto;" />
                                     </div>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.3.2 Specific
-                                        Use Cases</h3>
-                                    <table style="width: 100%; border-collapse: collapse; font-size: 90%;">
-                                        <thead style="font-size: 0.4em;text-align: left;">
-                                            <tr style="background-color: #f0f0f0;">
-                                                <th style="padding: 8px; border: 1px solid #ccc;">Test Case</th>
-                                                <th style="padding: 8px; border: 1px solid #ccc;">Domain</th>
-                                                <th style="padding: 8px; border: 1px solid #ccc;">Standard / Language
-                                                </th>
-                                                <th style="padding: 8px; border: 1px solid #ccc;">Purpose</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody style="font-size: 0.4em;text-align: left;">
-                                            <tr>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Enterprise Landscape
-                                                </td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Enterprise
-                                                    Architecture</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">ArchiMate and
-                                                    associated Open Exchange Format</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Demonstrate semantic
-                                                    structuring of enterprise models using a standardized EA Visual
-                                                    Architectural Description Language, for
-                                                    which an <a
-                                                        href="https://pubs.opengroup.org/architecture/archimate3-doc/">open
-                                                        notation specification</a> exists.</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Knowledge Landscape
-                                                </td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Ontologies and
-                                                    Knowledge Graphs</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Ontology Web Language
-                                                    and associated Serialization Syntaxes</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Visualize and explore
-                                                    ontological structures with semantic clarity. No standardized
-                                                    notation exists for OWL, so a current effort was initiated to
-                                                    propose one having in mind semantization of compound graphs. Cf. <a
-                                                        target="_blank"
-                                                        ;"https://www.linkedin.com/pulse/exploring-owl-ontologies-visually-paradigm-shift-nicolas-figay-telxe/">Exploring
-                                                        OWL Ontologies Visually: A Paradigm Shift in Understanding</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Product Data Landscape
-                                                </td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Product Lifecycle and
-                                                    Engineering Data</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">ISO STEP (AP242) and
-                                                    associated Syntaxe and Schema Definition language</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Navigate complex
-                                                    product definitions and contexts using semantic links</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Digital Business
-                                                    Ecosystem</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Distributed Business
-                                                    Processes</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Blockchain (no formal
-                                                    language)</td>
-                                                <td style="padding: 8px; border: 1px solid #ccc;">Show feasibility of
-                                                    semantic cartography even without a modeling standard</td>
-                                            </tr>
-                                        </tbody>
-                                        <caption
-                                            style="caption-side: bottom; font-style: italic; padding-top: 10px;font-size: 0.6em;text-align: left;">
-                                        </caption>
-                                    </table>
-                                    <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em> All test cases aim to demonstrate the applicability and value of
-                                                semantized compound graphs across diverse domains and standards.
+                                </div>
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em>“Semantic cartography for architects is about
+                                            making complexity navigable, structure comprehensible, and meaning
+                                            actionable."
+                                        </em>
+                                    </p>
+                                </blockquote>
+                            </section>
 
-                                            </em>
+
+                        </section>
+                        <section>
+                            <section>
+                                <ol style="list-style-type:none; ">
+                                    <li
+                                        style="counter-reset: main 1;font-size: 0.8em;text-transform: none;color: #3366cc;">
+                                        <strong>Semantic Graphs state of the art and limits</strong>
+                                        <p style="text-align: left;color:black">
+                                            A visual approach to structuring, navigating, and reasoning over
+                                            complexity<br>
+                                            Powered by semantic models, rendered as dynamic composite graphs.
                                         </p>
-                                    </blockquote>
-                                </section>
-                                <section>
+                                        <ol style="color:black">
+                                            <li>From Drawings to Semantic Visual Representations</li>
+                                            <li>Giving Meaning to Symbol</li>
+                                            <li>Challenges in Visual Communication & Interoperability</li>
+                                            <li>Automatic layout of compound graphs</li>
 
-                                    <h3 style="font-size: 0.8em;text-transform: none;color: #3366cc;">4.3.1 Enterprise
-                                        Landscape with ArchiMate</h3>
-                                    <iframe
-                                        src="https://nfigay.github.io/ArchiCG/ArchiCG%20Viewer%20and%20Analyzer.html"
-                                        width="100%" height="600" style="border: none;"></iframe>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </section>
 
-                                </section>
-                                <section data-graph="Graph_1">
-                                    <h3 style="font-size: 0.7em; text-transform: none;color: #3366cc;">4.3.2 Knowledge
-                                        landscape with OWL visualisation</h3>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">2.1 From Drawings
+                                    to Semantic
+                                    Visual Representations</h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <ul style="font-size: 0.5em;">
+                                            <li>Visuals should formally represent knowledge and meaning (Moody,
+                                                2009).</li>
+                                            <li>Each visual element must carry clear, interpretable semantics
+                                                (Bertin,
+                                                1983).</li>
+                                            <li>Graphs link how humans see and how machines understand data.</li>
+                                            <li>Semantic views support queries, validation, and automation.</li>
+                                            <li>Shared semantics enable interoperability across tools and domains.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="image-zone">
+                                        <img src="./img/fromDrawingToSemanticRepresentation.png"
+                                            alt="Semantic triangle beyond text" style="max-width: 50%; height: auto;" />
 
-                                    <div
-                                        style="display: flex; justify-content: center; align-items: center; height: 100%; font-size: 15px;">
-                                        <div style="display: flex; gap: 30px;">
-                                            <!-- Left Action Panel -->
-                                            <div>
-                                                Expand <span class="clickable-action" data-action="expand"
-                                                    data-target="all">nodes</span>
-                                                <span class="clickable-action" data-action="expandedges"
-                                                    data-target="all">edges</span><br />
-                                                Collapse <span class="clickable-action" data-action="collapse"
-                                                    data-target="all">nodes</span>
-                                                <span class="clickable-action" data-action="collapseedges"
-                                                    data-target="all">edges</span>.<br />
-                                                Selection Expand
-                                                <span class="clickable-action" data-action="expand"
-                                                    data-target="selection">nodes</span>
-                                                <span class="clickable-action" data-action="expand"
-                                                    data-target="edges">edges</span><br />
-                                                Collapse <span class="clickable-action" data-action="collapse"
-                                                    data-target="selection">nodes</span>
-                                                <span class="clickable-action" data-action="collapse"
-                                                    data-target="edges">edges</span>.<br>
+                                    </div>
+                                </div>
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;"><em
+                                            style="display: inline-block; padding: 0.5em 0.5em;">“Visual
+                                            representations
+                                            must evolve from informal diagrams to semantic models that both humans
+                                            and machines can navigate.”</em></p>
+                                </blockquote>
+                            </section>
 
-                                            </div>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">
+                                    2.2 Giving Meaning to Symbols<br> <span
+                                        style="font-size: 0.8em;color: green;">Combining Symbols into Meaning</span>
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <ul style="font-size: 0.45em;">
+                                            <li><strong>Meaning emerges from structure:</strong>Visual notations are
+                                                not mere icons — they derive
+                                                meaning from how symbols are <em>arranged and connected (Bertin,
+                                                    Moody)</em>.</li>
+
+                                            <li><strong>Visual syntax governs comprehension:</strong> Similar to
+                                                linguistic grammar, <em>spatial arrangements, alignment, and
+                                                    linkage</em> define a visual syntax, which
+                                                enables correct interpretation.</li>
+
+                                            <li><strong>Formal visual languages:</strong> Diagrams like UML, BPMN,
+                                                and ArchiMate use <em>well-defined syntactic rules</em> to express
+                                                complex systems</li>
+
+                                            <li><strong>Structure conveys semantics:</strong>
+                                                <em>Position, shape, and size</em> are not aesthetic — they
+                                                systematically encode meaning.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/VisualStructure.png" alt="Visual Structure"
+                                            style="max-width: 80%; height: auto;" />
+                                    </div>
+                                </div>
+                                <blockquote style="margin-top: 0;padding-top :0">
+                                    <p style="font-size: 0.6em; text-align: center;margin-top: 0;padding-top :0">
+                                        <em>“When aligned with
+                                            perceptual principles, visual languages enable <em>precise,
+                                                scalable, and cognitively efficient</em> communication of
+                                            complexity.”</em>
+                                    </p>
+                                </blockquote>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">2.2 Giving
+                                    Meaning to Symbols<br><span style="font-size: 0.8em;color: green;">
+                                        Visual Variables Infographic</span>
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <ul style="font-size: 0.45em;">
+                                            <li><strong>Beyond Symbols:</strong> Diagrams communicate meaning not
+                                                just
+                                                through shapes or icons, but via a rich set of visual features
+                                                tailored to
+                                                human perception.</li>
+
+                                            <li><strong>Jacques Bertin</strong> (1967) identified key <em>visual
+                                                    variables</em> used in diagrammatic representations:
+
+                                            </li>
+
+                                            <li><strong>Daniel Moody</strong> (2009) extended this foundation with
+                                                cognitive
+                                                principles for designing effective visual notations:
+                                                <ul style="font-size: 0.9em;">
+                                                    <li>His principle of <strong>visual expressiveness</strong>
+                                                        suggests
+                                                        using as many visual variables as the data requires.</li>
+                                                    <li><strong>Graphic economy</strong> and <strong>perceptual
+                                                            discriminability</strong> help balance clarity and
+                                                        cognitive
+                                                        load.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="image-zone" style="margin-top: 0em;">
+                                        <img src="./img/Variables visuelles et principes de Moody.png"
+                                            alt="Visual Structure" style="max-width: 80%; height: auto;" />
+                                    </div>
+                                </div>
+                                <blockquote style="margin-top: 0;padding-top :0">
+                                    <p style="font-size: 0.5em; text-align: center;margin-top: 0;padding :0">
+                                        <em>These theories help explain why good infographics are not just
+                                            “pretty pictures” but structured systems of meaning <br>much like formal
+                                            languages.</em>
+                                    </p>
+                                </blockquote>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">
+                                    2.3 Challenges in Visual Communication & Interoperability
+                                </h3>
+                                <ul style="font-size: 0.5em;">
+                                    <li>Standard languages (UML, BPMN, ArchiMate) are used for static diagrams —
+                                        made for printed views and monolithic processes, not dynamic exploration.
+                                    </li>
+                                    <li>Visual models often lack interactive ways to explore meaning.</li>
+                                    <li>Colors, nesting, links hold meaning but are rarely formalized.</li>
+                                    <li>Semantic data and visuals are often disconnected.</li>
+                                    <li>Few tools mix nesting, links, and typing for rich views.</li>
+                                    <li>Tools and data live in silos, hard to combine smoothly.</li>
+                                    <li>Costly software and scattered data block easy access and fusion.</li>
+                                </ul>
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em>Considering both State of the art and state of the practice, nothing
+                                            exist
+                                            considering simultaneously the combination of visual, dynamic, compound
+                                            and semantic</em>
+                                    </p>
+                                </blockquote>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">2.4 <a
+                                        href="https://js.cytoscape.org/">Automatic layout of compound graphs</a>
+                                    as the starting point</h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <p style="font-size: 0.5em;text-align: left;">
+                                            <a
+                                                href="https://www.linkedin.com/pulse/some-advanced-visualization-technics-embracing-complexity-figay/">Advanced
+                                                visualization technics continuous survey and assessment</a>
+                                        </p>
+                                        <table border="1" cellpadding="8" cellspacing="0">
+                                            <thead style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <th>Feature</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.3em;text-align: left;">
+                                                <tr>
+                                                    <td>Compound Nodes</td>
+                                                    <td>Structure complex graphs hierarchically with
+                                                        parent-child grouping</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Collapse/Expand Plugin (Dogrusoz 2018)</td>
+                                                    <td>Interactively hide/show nested nodes and edges for
+                                                        clarity</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CSS-like Styling</td>
+                                                    <td>Define custom visual notation for nodes, edges, and
+                                                        groups</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dynamic Updates</td>
+                                                    <td>Add, remove, or update elements interacting with the
+                                                        diagram</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Event-Driven Interaction</td>
+                                                    <td>Respond to user input with custom behaviors</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Plugin Ecosystem</td>
+                                                    <td>Layouts, context menus, undo/redo, edge tools, and more
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Automatic Layouts</td>
+                                                    <td>Support for compound graphs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cross-Browser Support</td>
+                                                    <td>Lightweight, performant, and runs in any modern browser
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p style="font-size: 0.4em;text-align: left;">A fully featured
+                                            <strong>COMPOUND graph library</strong> written in
+                                            pure JS
+                                        </p>
+                                        <p style="font-size: 0.3em;text-align: left;">
+                                            Note: Cytoscape.js is just one technical solution. Other alternatives
+                                            are being assessed.
+                                        </p>
+                                    </div>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <iframe
+                                            src="https://ivis-at-bilkent.github.io/cytoscape.js-expand-collapse/demo/demo-compounds-collapsed.html  "
+                                            width="100%" height="450" style="border:1px solid #ccc;">
+                                        </iframe>
+
+                                    </div>
+                                </div>
+                                <blockquote style="width: 95%;"">
+                                        <p style=" font-size: 0.6em; text-align: center;margin: 0 0;">
+                                    <em style="width:max-content">Compound collapsible/expandable auto-layouted
+                                        interactive graphs<br>
+                                        One of the main trigger for semantic cartography concept development
+                                    </em>
+                                    </p>
+                                </blockquote>
+                            </section>
+                        </section>
+                        <section>
+                            <section>
+                                <ol style="list-style-type:none; ">
+                                    <li
+                                        style="counter-reset: main 2;font-size: 0.8em;text-transform: none;color: #3366cc;">
+                                        <strong>Proposed Approach: Semantizing Interactive
+                                            Compound Graphs</strong>
+                                        <p style="text-align: left;color:black">
+                                            An approach for producing semantic models, rendered as dynamic composite
+                                            graphs.
+                                        </p>
+                                        <ol style="color:black">
+                                            <li>From Graph Theory to Semantized Compound Graphs</li>
+                                            <li>Semantic Cartography: Definition model and Method</li>
+                                            <li>Summary</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </section>
 
 
-                                            <!-- Right Creation Panel -->
-                                            <div
-                                                style="border-left: 1px solid #ccc; padding-left: 15px; font-size: 14px; display:none">
-                                                <span class="clickable-action" data-action="create"
-                                                    data-target="element">Create Element</span><br>
-                                                <label for="element-label">Label:</label>
-                                                <input type="text" id="element-label" placeholder="e.g., SensorData"
-                                                    style="width: 120px;"><br />
 
-                                                <label for="element-type">Type:</label>
-                                                <select id="element-type" style="width: 130px;">
-                                                    <option value="class">Class</option>
-                                                    <option value="individual">Individual</option>
-                                                    <option value="dataProperty">Data Property</option>
-                                                    <option value="objectProperty">Object Property</option>
-                                                    <option value="annotation">Annotation</option>
-                                                </select><br />
 
-                                                <label for="element-iri">IRI:</label>
-                                                <input type="text" id="element-iri"
-                                                    placeholder="e.g., http://ex.org#SensorData"
-                                                    style="width: 200px;"><br /><br />
-                                            </div>
-                                            <!-- New Info Panel -->
-                                            <div id="info-panel"
-                                                style="border-left: 1px solid #ccc; padding-left: 15px; 
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">3.1
+                                    From Graph Theory to Semantized Compound Graphs</h3>
+                                <div class="content-zone">
+
+                                    <div class="text-zone">
+                                        <table border="1" cellpadding="8" cellspacing="0"
+                                            style="width:100%; border-collapse: collapse;">
+                                            <thead style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <th colspan="2">Graph Structure Evolution</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <td>Usual Graphs (Graph Theory)</td>
+                                                    <td>Id and Labels as data properties for nodes and edges; edges
+                                                        link nodes via source and target object properties</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cytoscape Graphs (Franz M)</td>
+                                                    <td>Support for parent object property on nodes (compound
+                                                        structure) </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Our Contribution to the State of the Art</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Semantization of Graphs</td>
+                                                    <td>Use of a <code>type</code> data property for nodes and edges
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Semantized Compound Graphs</td>
+                                                    <td>Introduction of <code>parentRelationId</code> as an object
+                                                        property</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/FromGraphToSemanticCarto.png"
+                                            alt="From Graphs to Semantic Cartography"
+                                            style="max-width: 70%; height: auto;" />
+
+                                    </div>
+                                </div>
+
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em>We propose the Semantized Compound Graph Paradigm
+                                        </em>
+                                    </p>
+                                </blockquote>
+
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">3.2 Semantic
+                                    Cartography: Definition model and method</h3>
+                                <div class="content-zone">
+
+                                    <div class="text-zone">
+                                        <table border="1" cellpadding="6" cellspacing="0"
+                                            style="border-collapse: collapse; width: 100%; font-size: 0.9em;">
+                                            <thead style="background-color: #f0f0f0;font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <th>Definition Model</th>
+                                                    <th>Method (Tasks)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <td><strong>Domain Conceptual Metamodel</strong>: abstract types
+                                                        and relations</td>
+                                                    <td>T1 – Formalize textual value for the types</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Textual structure and terms</strong> (Concrete
+                                                        Syntax 1)</td>
+                                                    <td>T2 – Formalize Visual symbols for the type</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>visual representation and symbols </strong>
+                                                        (Concrete Syntax 2)</td>
+                                                    <td>T3 – Formalizing the mapping by mean of Cytoscape engine
+                                                        selectors and styles. The notation must exist. If not, T50.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Mapping</strong>: aligns textual & visual syntax to
+                                                        conceptual types</td>
+                                                    <td>T50 – Defining a visual notation when non existing or non
+                                                        complete(e.g. OWL)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Selectors</strong>: define what elements are
+                                                        targeted (e.g., node[type='X'])</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Styles</strong>: control visual rendering (shape,
+                                                        color, icon)</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Cytoscape Rendering Engine</strong>: Realisation
+                                                        component for mapping execution</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/GraphTextual2Visual.png"
+                                            alt="From Graphs to Semantic Cartography"
+                                            style="max-width: 100%; height: auto;" />
+
+                                    </div>
+                                </div>
+
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em>We propose a definition model and a method for semantizing
+                                            compound graphs for such or such a language
+                                        </em>
+                                    </p>
+                                </blockquote>
+
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">3.3 Summary
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+
+                                        <p style="font-size: 0.45em;text-align: left;">When having to deal with
+                                            interoperability, Architects face a growing complexity and
+                                            a faster pace of change.<br>We identified through the State of the Art a
+                                            lack for
+                                            addressing visual dynamic and interactive compound graphs.</p>
+
+                                        <p style="font-size: 0.5em;text-align: left;">
+                                        <ul style="font-size: 0.4em;text-align: left;">
+                                            <li>For this we introduce a new paradigm: <strong>Semantized Interactive
+                                                    Compound
+                                                    Graphs</strong></li>
+
+                                            <li>We produced a Definition Model to build semantic cartographies</li>
+                                            <li>We proposed a method for semantizing graphs with such or such visual
+                                                language</li>
+                                            <li>We should be able then to switch from static, Gutenberg-style media
+                                                to dynamic, digital
+                                                graphs in order to support Architects to build operational
+                                                inteoperabily.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/semantizedcartography.png" alt="Semantized Cartography"
+                                            style="max-width: 80%; height: auto;" />
+                                    </div>
+                                </div>
+
+                                <blockquote>
+                                    <p style="font-size: 0.5em; text-align: center;">
+                                        <em>Let's now present and demonstrate this approach on top of a produced
+                                            demonstrator,
+                                            <strong>ArchiCG</strong>
+                                        </em>
+                                    </p>
+                                </blockquote>
+                            </section>
+
+                        </section>
+                        <section>
+                            <section>
+                                <ol style="list-style-type:none; ">
+                                    <li
+                                        style="counter-reset: main 3;font-size: 0.8em;text-transform: none;color: #3366cc;">
+                                        <strong>Demo: ArchiCG prototype & use cases</strong>
+                                        <p style="text-align: left;color:black">
+                                            ArchiCG is an open initiative aiming at exploring Semantized Interactive
+                                            Compound
+                                            Graphs usage, but also the name of an open source tool constituing an
+                                            experimental platform.
+                                        </p>
+                                        <ol style="color:black">
+                                            <li>Architectural Principles for openess & interoperability</li>
+                                            <li>General Business Case: building Interoperability with open
+                                                standards </li>
+                                            <li>Specific Business Cases </li>
+                                            <ol>
+                                                <li>
+                                                    .1 Enterprise Landscape with ArchiMate</li>
+                                                <li>.2 Knowledge landscape with
+                                                    OWL visualisation</li>
+                                                <li>.3 Product landscape with
+                                                    ISO STEP</li>
+                                                <li>.4 Blockchain Digital
+                                                    Business Ecosystem landscape</li>
+                                            </ol>
+                                            <li>Summary</li>
+
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.1 Architectural
+                                    Principles for openess & interoperability</h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <p style="font-size: 0.5em; text-align: left;">Aggregator for siloed
+                                            enterprise data distributed in heterogenesous enterprise
+                                            repositories:<br>
+
+                                        </p>
+                                        <table style="width: 100%; font-size: 0.9em;">
+                                            <thead style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <th style="text-align: left;">Principle</th>
+                                                    <th style="text-align: left;">Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.4em;text-align: left;">
+                                                <tr>
+                                                    <td><strong>Web-native Architecture</strong></td>
+                                                    <td>Runs entirely in the browser — no server required, enabling
+                                                        simple
+                                                        deployment and access anywhere</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Open Technologies</strong></td>
+                                                    <td>Built on vanilla JavaScript and SVG, using open formats
+                                                        (JSON, RDF,
+                                                        SVG) to maximize compatibility</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Modular Design</strong></td>
+                                                    <td>Activatable components and palettes allow integration of
+                                                        multiple
+                                                        modeling languages (ArchiMate, OWL,ISO STEP P21, etc.)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Silo Independence</strong></td>
+                                                    <td>Usable offline or across networks, without relying on
+                                                        centralized
+                                                        platforms or locked ecosystems</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Local Data only and no referential</strong></td>
+                                                    <td>For security constraints and for preventing one more
+                                                        database to maintain</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/consolidationheterogeneousrepositories.png"
+                                            alt="Consolidation de données d'entreprise"
+                                            style="max-width: 50%; height: auto;" />
+                                        <div style="font-size: 0.35em; text-align: left">
+                                            <strong>BMS</strong>: Business Management System,
+                                            <strong>PLM</strong>:Product Lifecycle Management Systems,
+                                            <strong>MBSE</strong> Based System Engineering model repositories,
+                                            <strong>CMDB:</strong> Configuration
+                                            Management DataBase
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.7em; text-transform: none;color: #3366cc;">4.2 General
+                                    Business
+                                    Case: Building Interoperability with open standard
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/GlobalCollaboration.png"
+                                            alt="Consolidation de données d'entreprise"
+                                            style="max-width: 80%; height: auto;" />
+                                        <p style="font-size: 0.5em;text-align: left;">All the import and export are
+                                            based on Open De Facto Standards with semantization aligned with
+                                            comprehensible structure.</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.3 Specific
+                                    Use Cases</h3>
+                                <table style="width: 100%; border-collapse: collapse; font-size: 90%;">
+                                    <thead style="font-size: 0.4em;text-align: left;">
+                                        <tr style="background-color: #f0f0f0;">
+                                            <th style="padding: 8px; border: 1px solid #ccc;">Test Case</th>
+                                            <th style="padding: 8px; border: 1px solid #ccc;">Domain</th>
+                                            <th style="padding: 8px; border: 1px solid #ccc;">Standard / Language
+                                            </th>
+                                            <th style="padding: 8px; border: 1px solid #ccc;">Purpose</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size: 0.4em;text-align: left;">
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Enterprise Landscape
+                                            </td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Enterprise
+                                                Architecture</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">ArchiMate and
+                                                associated Open Exchange Format</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Demonstrate semantic
+                                                structuring of enterprise models using a standardized EA Visual
+                                                Architectural Description Language, for
+                                                which an <a
+                                                    href="https://pubs.opengroup.org/architecture/archimate3-doc/">open
+                                                    notation specification</a> exists.</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Knowledge Landscape
+                                            </td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Ontologies and
+                                                Knowledge Graphs</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Ontology Web Language
+                                                and associated Serialization Syntaxes</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Visualize and explore
+                                                ontological structures with semantic clarity. No standardized
+                                                notation exists for OWL, so a current effort was initiated to
+                                                propose one having in mind semantization of compound graphs. Cf. <a
+                                                    target="_blank"
+                                                    ;"https://www.linkedin.com/pulse/exploring-owl-ontologies-visually-paradigm-shift-nicolas-figay-telxe/">Exploring
+                                                    OWL Ontologies Visually: A Paradigm Shift in Understanding</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Product Data Landscape
+                                            </td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Product Lifecycle and
+                                                Engineering Data</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">ISO STEP (AP242) and
+                                                associated Syntaxe and Schema Definition language</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Navigate complex
+                                                product definitions and contexts using semantic links</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Digital Business
+                                                Ecosystem</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Distributed Business
+                                                Processes</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Blockchain (no formal
+                                                language)</td>
+                                            <td style="padding: 8px; border: 1px solid #ccc;">Show feasibility of
+                                                semantic cartography even without a modeling standard</td>
+                                        </tr>
+                                    </tbody>
+                                    <caption
+                                        style="caption-side: bottom; font-style: italic; padding-top: 10px;font-size: 0.6em;text-align: left;">
+                                    </caption>
+                                </table>
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em> All test cases aim to demonstrate the applicability and value of
+                                            semantized compound graphs across diverse domains and standards.
+
+                                        </em>
+                                    </p>
+                                </blockquote>
+                            </section>
+                            <section>
+
+                                <h3 style="font-size: 0.8em;text-transform: none;color: #3366cc;">4.3.1 Enterprise
+                                    Landscape with ArchiMate</h3>
+                                <iframe src="https://nfigay.github.io/ArchiCG/ArchiCG%20Viewer%20and%20Analyzer.html"
+                                    width="100%" height="600" style="border: none;"></iframe>
+
+                            </section>
+                            <section data-graph="Graph_1">
+                                <h3 style="font-size: 0.7em; text-transform: none;color: #3366cc;">4.3.2 Knowledge
+                                    landscape with OWL visualisation</h3>
+
+                                <div
+                                    style="display: flex; justify-content: center; align-items: center; height: 100%; font-size: 15px;">
+                                    <div style="display: flex; gap: 30px;">
+                                        <!-- Left Action Panel -->
+                                        <div>
+                                            Expand <span class="clickable-action" data-action="expand"
+                                                data-target="all">nodes</span>
+                                            <span class="clickable-action" data-action="expandedges"
+                                                data-target="all">edges</span><br />
+                                            Collapse <span class="clickable-action" data-action="collapse"
+                                                data-target="all">nodes</span>
+                                            <span class="clickable-action" data-action="collapseedges"
+                                                data-target="all">edges</span>.<br />
+                                            Selection Expand
+                                            <span class="clickable-action" data-action="expand"
+                                                data-target="selection">nodes</span>
+                                            <span class="clickable-action" data-action="expand"
+                                                data-target="edges">edges</span><br />
+                                            Collapse <span class="clickable-action" data-action="collapse"
+                                                data-target="selection">nodes</span>
+                                            <span class="clickable-action" data-action="collapse"
+                                                data-target="edges">edges</span>.<br>
+
+                                        </div>
+
+
+                                        <!-- Right Creation Panel -->
+                                        <div
+                                            style="border-left: 1px solid #ccc; padding-left: 15px; font-size: 14px; display:none">
+                                            <span class="clickable-action" data-action="create"
+                                                data-target="element">Create Element</span><br>
+                                            <label for="element-label">Label:</label>
+                                            <input type="text" id="element-label" placeholder="e.g., SensorData"
+                                                style="width: 120px;"><br />
+
+                                            <label for="element-type">Type:</label>
+                                            <select id="element-type" style="width: 130px;">
+                                                <option value="class">Class</option>
+                                                <option value="individual">Individual</option>
+                                                <option value="dataProperty">Data Property</option>
+                                                <option value="objectProperty">Object Property</option>
+                                                <option value="annotation">Annotation</option>
+                                            </select><br />
+
+                                            <label for="element-iri">IRI:</label>
+                                            <input type="text" id="element-iri"
+                                                placeholder="e.g., http://ex.org#SensorData"
+                                                style="width: 200px;"><br /><br />
+                                        </div>
+                                        <!-- New Info Panel -->
+                                        <div id="info-panel"
+                                            style="border-left: 1px solid #ccc; padding-left: 15px; 
                                                 margin-left: 20px; font-size: 10px; min-width: 250px; text-align: left;">
 
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="content-zone">
-                                        <div class="image-zone"></div> <!-- Image zone for Graph 1 -->
-                                    </div>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.3.3 Product
-                                        Landscape with ISO STEP</h3>
-                                    <div class="content-zone">
-
-
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/StepCartography.png" alt="STEP Cartography"
-                                                style="max-width: 70%; height: auto;" />
-
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.3.4 Blockchain
-                                        Digital Business Ecossytem landscape</h3>
-                                    <div class="content-zone">
-
-
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/Blockchain Landscape.png" alt="Blockchain Landscape"
-                                                style="max-width: 80%; height: auto;" />
-
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.4 Conclusion
-                                        related to the prototyping
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-
-                                            <table>
-                                                <thead style="font-size: 0.45em; text-transform: none;color: #3366cc;">
-                                                    <tr>
-                                                        <th>Aspect</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="font-size: 0.45em; text-transform: none;color: #3366cc;">
-                                                    <tr>
-                                                        <td><strong>Applicability</strong></td>
-                                                        <td>Useful across many technologies and domain language via
-                                                            semantization of dynamic
-                                                            compound interactive graphs. </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Platform Role</strong></td>
-                                                        <td>Experimental environment for architecture exploration and
-                                                            interoperability studies<br>Just as in
-                                                            geographic systems, we can can use a base map of a system to spatially organize
-                                                            and contextualize information coming from various stakeholders and domains</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Target Domains</strong></td>
-                                                        <td>Semantic, structural, organizational, and process
-                                                            interoperability.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Extended Hypermodels</strong></td>
-                                                        <td>Supports multiple views of the same concept for different
-                                                            purposes.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Limitations</strong></td>
-                                                        <td>Some constraints as a research platform.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Opportunities</strong></td>
-                                                        <td>Open to extensions and innovative usage patterns.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <blockquote>
-                                                <p style="font-size: 0.6em; text-align: center;">
-                                                    <em> Let's explore limitations and opportunities
-                                                    </em>
-                                                </p>
-                                            </blockquote>
-                                        </div>
-
-                                    </div>
-
-
-                                </section>
+                                </div>
+                                <div class="content-zone">
+                                    <div class="image-zone"></div> <!-- Image zone for Graph 1 -->
+                                </div>
                             </section>
                             <section>
-                                <section>
-                                    <ol style="list-style-type:none; ">
-                                        <li
-                                            style="counter-reset: main 4;font-size: 0.8em;text-transform: none;color: #3366cc;">
-                                            <strong>Conclusion: Limitations, Future Perspectives,
-                                                and Call to Action</strong>
-                                            <p style="text-align: left;">
-                                                Limitation of our research, outcomes and future perspectives
-                                            </p>
-                                            <ol>
-                                                <li>Limitations: integrating the component paradigm,...</li>
-                                                <li>Outcomes: identified Interoperability issues to be adressed</li>
-                                                <li>Future perpectives</li>
-                                                <li>Call to action</li>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.3.3 Product
+                                    Landscape with ISO STEP</h3>
+                                <div class="content-zone">
 
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.1 Limitations:
-                                        integrating the component paradigm,...
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
+
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/StepCartography.png" alt="STEP Cartography"
+                                            style="max-width: 70%; height: auto;" />
+
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.3.4 Blockchain
+                                    Digital Business Ecossytem landscape</h3>
+                                <div class="content-zone">
+
+
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/Blockchain Landscape.png" alt="Blockchain Landscape"
+                                            style="max-width: 80%; height: auto;" />
+
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">4.4 Summary
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+
+                                        <table>
+                                            <thead style="font-size: 0.45em; text-transform: none;color: #3366cc;">
+                                                <tr>
+                                                    <th>Aspect</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.45em; text-transform: none;color: #3366cc;">
+                                                <tr>
+                                                    <td><strong>Applicability</strong></td>
+                                                    <td>Useful across many technologies and domain language via
+                                                        semantization of dynamic
+                                                        compound interactive graphs. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Platform Role</strong></td>
+                                                    <td>Experimental environment for architecture exploration and
+                                                        interoperability studies<br>Just as in
+                                                        geographic systems, we can can use a base map of a system to
+                                                        spatially organize
+                                                        and contextualize information coming from various stakeholders
+                                                        and domains</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Target Domains</strong></td>
+                                                    <td>Semantic, structural, organizational, and process
+                                                        interoperability.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Extended Hypermodels</strong></td>
+                                                    <td>Supports multiple views of the same concept for different
+                                                        purposes.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Limitations</strong></td>
+                                                    <td>Some constraints as a research platform.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Opportunities</strong></td>
+                                                    <td>Open to extensions and innovative usage patterns.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <blockquote>
+                                            <p style="font-size: 0.6em; text-align: center;">
+                                                <em> Let's explore limitations and opportunities
+                                                </em>
+                                            </p>
+                                        </blockquote>
+                                    </div>
+
+                                </div>
+
+
+                            </section>
+                        </section>
+                        <section>
+                            <section>
+                                <ol style="list-style-type:none; ">
+                                    <li
+                                        style="counter-reset: main 4;font-size: 0.8em;text-transform: none;color: #3366cc;">
+                                        <strong>Conclusion: Limitations, Perspectives and Call to Action</strong>
+                                        <br><br>
+
+                                        <ol style="color:black">
+                                            <li>Limitations: integrating the component paradigm,...</li>
+                                            <li>Outcomes: identified Interoperability issues to be adressed</li>
+                                            <li>Perpectives</li>
+                                            <li>Call to action</li>
+
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.1 Limitations:
+                                    integrating the component paradigm,...
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+                                        <table>
+                                            <thead style="font-size: 0.4em; text-transform: none;color: #3366cc;">
+                                                <tr>
+                                                    <th>Aspect</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size: 0.4em; text-transform: none;color: #3366cc;">
+                                                <tr>
+                                                    <td><strong>Component Paradigm</strong></td>
+                                                    <td>UML2 and SysML define "ports" as interface points located on the
+                                                        boundary of components, highlighting the principle of
+                                                        encapsulation.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Visual Representation</strong></td>
+                                                    <td>Ports are usually supported in visual modeling tools and in
+                                                        some auto-layout generators like PlantUML.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Interactive Graph Limitation</strong></td>
+                                                    <td>Dynamic interactive graphs with auto-layout do not yet
+                                                        support port-level boundary visualization; research is
+                                                        needed.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Structural Limitation</strong></td>
+                                                    <td>Graph libraries typically cannot model a relation involving
+                                                        another relation (e.g., in UML or ArchiMate).</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Workaround</strong></td>
+                                                    <td>Introducing <strong>n-ary relationships</strong> could allow
+                                                        richer expressiveness and compatibility with such
+                                                        constructs.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/portsOnBoundaries.jpeg" alt="Ports on boundaries"
+                                            style="max-width: 100%; height: auto;" />
+                                    </div>
+                                </div>
+
+
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.2 Outcomes:
+                                    identified Interoperability issues to be adressed
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
+
+                                        <section>
+
                                             <table>
                                                 <thead style="font-size: 0.4em; text-transform: none;color: #3366cc;">
                                                     <tr>
@@ -1531,351 +1584,293 @@
                                                 </thead>
                                                 <tbody style="font-size: 0.4em; text-transform: none;color: #3366cc;">
                                                     <tr>
-                                                        <td><strong>Component Paradigm</strong></td>
-                                                        <td>UML2 and SysML define "ports" as interface points on the
-                                                            boundary of components, emphasizing encapsulation.</td>
+                                                        <td><strong>Unsupported Constructs</strong></td>
+                                                        <td>ArchiMate and UML allow relations to link other
+                                                            relations and nodes, which cannot be properly
+                                                            represented in standard graph models.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Visual Representation</strong></td>
-                                                        <td>Ports are usually supported in visual modeling tools and in
-                                                            some auto-layout generators like PlantUML.</td>
+                                                        <td><strong>Formalization Barrier</strong></td>
+                                                        <td>Such structures cannot be formalized using graph theory
+                                                            libraries like Cytoscape.js, and thus can't be directly
+                                                            imported.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Interactive Graph Limitation</strong></td>
-                                                        <td>Dynamic interactive graphs with auto-layout do not yet
-                                                            support port-level boundary visualization; research is
-                                                            needed.</td>
+                                                        <td><strong>Example</strong></td>
+                                                        <td>Cases like conveyed objects represented by a flow
+                                                            pointing to a relation illustrate this
+                                                            limitation—visualization and manipulation are not
+                                                            feasible.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Structural Limitation</strong></td>
-                                                        <td>Graph libraries typically cannot model a relation involving
-                                                            another relation (e.g., in UML or ArchiMate).</td>
+                                                        <td><strong>Port Modeling Limitation</strong></td>
+                                                        <td>Similar limitations apply to port constructs in UML and
+                                                            SysML when requiring precise boundary semantics and
+                                                            inter-relation handling.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Workaround</strong></td>
-                                                        <td>Introducing <strong>n-ary relationships</strong> could allow
-                                                            richer expressiveness and compatibility with such
-                                                            constructs.</td>
+                                                        <td><strong>Recommendation</strong></td>
+                                                        <td>Avoid using such complex constructs when aiming for
+                                                            interoperability or exchange with tools based on graph
+                                                            theory.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/portsOnBoundaries.jpeg" alt="Ports on boundaries"
-                                                style="max-width: 100%; height: auto;" />
-                                        </div>
+                                        </section>
                                     </div>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/ISA95 ArchiMate ConveyedObject.webp" alt="Illustration"
+                                            style="max-width: 100%; height: auto;" />
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.3 Perpectives
+                                </h3>
+                                <div class="content-zone">
+                                    <div class="text-zone">
 
+                                        <p style="font-size: 0.5em;text-align: left;">Many complementary advanced
+                                            visualization and analytics features</p>
 
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.2 Outcomes:
-                                        identified Interoperability issues to be adressed
-                                    </h3>
+                                        <ul style="font-size: 0.4em;">
+                                            <li>Compound interactive matrix for representing compound interactif
+                                                graphs with various kind of data or complex objects.
+                                            </li>
+                                            <li>Cross categorization compound table, pivot tables...
+                                            </li>
+                                            <li>Interaction with compound timelines (cf.figure)
+                                            </li>
+                                            </li>
+                                            <li>and many others: cf. ArchiCG documentation and github where many
+                                                research topics are provided.
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="image-zone" style="margin-bottom: 0.2em;">
+                                        <img src="./img/ArchiCGCompoundTimelines.jpeg" alt="Compound timeline"
+                                            style="max-width: 100%; height: auto;" />
+                                    </div>
+                                </div>
+                                <blockquote>
+                                    <p style="font-size: 0.6em; text-align: center;">
+                                        <em> So many topics that any collaboration will be welcome.
+
+                                        </em>
+                                    </p>
+                                </blockquote>
+
+                            </section>
+                            <section>
+                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.4 Call to
+                                    actions
                                     <div class="content-zone">
                                         <div class="text-zone">
 
-                                            <section>
+                                            <p style="font-size: 0.6em;text-align: left;color:black">Many kind of
+                                                collaboration
+                                                could be envisaged and welcome</p>
 
-                                                <table>
-                                                    <thead
-                                                        style="font-size: 0.4em; text-transform: none;color: #3366cc;">
-                                                        <tr>
-                                                            <th>Aspect</th>
-                                                            <th>Description</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody
-                                                        style="font-size: 0.4em; text-transform: none;color: #3366cc;">
-                                                        <tr>
-                                                            <td><strong>Unsupported Constructs</strong></td>
-                                                            <td>ArchiMate and UML allow relations to link other
-                                                                relations and nodes, which cannot be properly
-                                                                represented in standard graph models.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Formalization Barrier</strong></td>
-                                                            <td>Such structures cannot be formalized using graph theory
-                                                                libraries like Cytoscape.js, and thus can't be directly
-                                                                imported.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Example</strong></td>
-                                                            <td>Cases like conveyed objects represented by a flow
-                                                                pointing to a relation illustrate this
-                                                                limitation—visualization and manipulation are not
-                                                                feasible.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Port Modeling Limitation</strong></td>
-                                                            <td>Similar limitations apply to port constructs in UML and
-                                                                SysML when requiring precise boundary semantics and
-                                                                inter-relation handling.</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Recommendation</strong></td>
-                                                            <td>Avoid using such complex constructs when aiming for
-                                                                interoperability or exchange with tools based on graph
-                                                                theory.</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </section>
-                                        </div>
-                                        <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/ISA95 ArchiMate ConveyedObject.webp" alt="Illustration"
-                                                style="max-width: 100%; height: auto;" />
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.3 Future
-                                        perpectives
-                                    </h3>
-                                    <div class="content-zone">
-                                        <div class="text-zone">
-
-                                            <p style="font-size: 0.5em;text-align: left;">Many complementary advanced
-                                                visualization and analytics features</p>
-
-                                            <ul style="font-size: 0.4em;">
-                                                <li>Compound interactive matrix for representing compound interactif
-                                                    graphs with various kind of data or complex objects.
+                                            <ul style="font-size: 0.4em;color:black">
+                                                <li>ArchiCG as research experimental platform for many topics
                                                 </li>
-                                                <li>Cross categorization compound table, pivot tables...
+                                                <li>ArchiCG for education
                                                 </li>
-                                                <li>Interaction with compound timelines (cf.figure)
+                                                <li>REX by consultants
                                                 </li>
                                                 </li>
-                                                <li>and many others: cf. ArchiCG documentation and github where many
-                                                    research topics are provided.
+                                                <li>Development and Improvement of modules/features
                                                 </li>
+                                                <p>Contacts<br> <span style="font-size: 0.8em;"><a
+                                                            href="nicolas.figay@gmail.com">nicolas.figay@gmail.com</a><br>
+                                                        <a
+                                                            href="parisa.ghodous@univ-lyon1.fr">parisa.ghodous@univ-lyon1.fr</a></span>
+                                                </p>
+                                                <p>Github: <a href="https://github.com/nfigay/ArchiCG/">here</a></p>
+                                                <p>LinkedIn Community: <a
+                                                        href="https://www.linkedin.com/groups/13164530/">here</a>
+                                                </p>
                                             </ul>
 
                                         </div>
                                         <div class="image-zone" style="margin-bottom: 0.2em;">
-                                            <img src="./img/ArchiCGCompoundTimelines.jpeg" alt="Compound timeline"
-                                                style="max-width: 100%; height: auto;" />
+                                            <img src="./img/collaboration style 21.png" alt="Illustration"
+                                                style="max-width: 80%; height: auto;" />
                                         </div>
                                     </div>
                                     <blockquote>
-                                        <p style="font-size: 0.6em; text-align: center;">
-                                            <em> So many topics that any collaboration will be welcome.
+                                        <p style="font-size: 0.6em; text-align: center;color:blue">
+                                            <em> A good way to break silos ;)
 
                                             </em>
                                         </p>
                                     </blockquote>
 
-                                </section>
-                                <section>
-                                    <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">5.4 Call for
-                                        actions
-                                        <div class="content-zone">
-                                            <div class="text-zone">
-
-                                                <p style="font-size: 0.6em;text-align: left;">Many kind of collaboration
-                                                    could be envisaged and welcome</p>
-
-                                                <ul style="font-size: 0.4em;">
-                                                    <li>ArchiCG as research experimental platform for many topics
-                                                    </li>
-                                                    <li>ArchiCG for education
-                                                    </li>
-                                                    <li>REX by consultants
-                                                    </li>
-                                                    </li>
-                                                    <li>Development and Improvement of modules/features
-                                                    </li>
-                                                    <p>Contacts<br> <span style="font-size: 0.8em;"><a
-                                                                href="nicolas.figay@gmail.com">nicolas.figay@gmail.com</a><br>
-                                                            <a
-                                                                href="parisa.ghodous@univ-lyon1.fr">parisa.ghodous@univ-lyon1.fr</a></span>
-                                                    </p>
-                                                    <p>Github: <a href="https://github.com/nfigay/ArchiCG/">here</a></p>
-                                                    <p>LinkedIn Community: <a
-                                                            href="https://www.linkedin.com/groups/13164530/">here</a>
-                                                    </p>
-                                                </ul>
-
-                                            </div>
-                                            <div class="image-zone" style="margin-bottom: 0.2em;">
-                                                <img src="./img/collaboration style 21.png" alt="Illustration"
-                                                    style="max-width: 80%; height: auto;" />
-                                            </div>
-                                        </div>
-                                        <blockquote>
-                                            <p style="font-size: 0.6em; text-align: center;">
-                                                <em> A good way to break silos ;)
-
-                                                </em>
-                                            </p>
-                                        </blockquote>
-
-                                </section>
                             </section>
-                            <section>
-                                <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">References</h3>
-                                <ul style="font-size: 0.4em;">
-                                    <li>Figay Nicolas (2021) <a href="">Continuous Operational Interoperability.</a>
-                                        Computer Science [cs].
-                                        Université Claude Bernard Lyon 1; LIRIS UMR 5205 CNRS/INSA de Lyon/Université
-                                        Claude Bernard Lyon 1/Université Lumière Lyon 2/École Centrale de Lyon.
-                                        ⟨tel-04413469v2⟩</li>
-                                    <li>
-                                        Moody, D. L. (2009). <em>The ‘physics’ of notations: Toward a
-                                            scientific
-                                            basis for constructing visual notations in software
-                                            engineering</em>.
-                                        IEEE Transactions on Software Engineering, 35(6), 756–779. <a
-                                            href="https://doi.org/10.1109/TSE.2009.67" target="_blank">DOI</a>
-                                    </li>
-                                    <li>
-                                        Bertin, J. (1983). <em>Semiology of Graphics: Diagrams, Networks,
-                                            Maps</em>.
-                                        University of Wisconsin Press. (Originally published in French,
-                                        1967)
-                                    </li>
+                        </section>
+                        <section>
+                            <h3 style="font-size: 0.8em; text-transform: none;color: #3366cc;">References</h3>
+                            <ul style="font-size: 0.4em;">
+                                <li>Figay Nicolas (2021) <a href="">Continuous Operational Interoperability.</a>
+                                    Computer Science [cs].
+                                    Université Claude Bernard Lyon 1; LIRIS UMR 5205 CNRS/INSA de Lyon/Université
+                                    Claude Bernard Lyon 1/Université Lumière Lyon 2/École Centrale de Lyon.
+                                    ⟨tel-04413469v2⟩</li>
+                                <li>
+                                    Moody, D. L. (2009). <em>The ‘physics’ of notations: Toward a
+                                        scientific
+                                        basis for constructing visual notations in software
+                                        engineering</em>.
+                                    IEEE Transactions on Software Engineering, 35(6), 756–779. <a
+                                        href="https://doi.org/10.1109/TSE.2009.67" target="_blank">DOI</a>
+                                </li>
+                                <li>
+                                    Bertin, J. (1983). <em>Semiology of Graphics: Diagrams, Networks,
+                                        Maps</em>.
+                                    University of Wisconsin Press. (Originally published in French,
+                                    1967)
+                                </li>
 
-                                    <li>Cytoscape.js: a graph theory library for visualisation and analysis
+                                <li>Cytoscape.js: a graph theory library for visualisation and analysis
 
-                                        Franz M, Lopes CT, Huck G, Dong Y, Sumer O, Bader GD</li>
-                                    <li>
-                                        U. Dogrusoz , A. Karacelik, I. Safarli, H. Balci, L. Dervishi, and M.C. Siper,
-                                        "Efficient methods and readily customizable libraries for managing complexity of
-                                        large networks", PLoS ONE, 13(5): e0197238, 2018.
-                                    </li>
-                                    <li>The Open Group. (2022). ArchiMate® 3.2 Specification (Doc No. C22C). The Open
-                                        Group. https://pubs.opengroup.org/architecture/archimate32-doc/</li>
-                                    <li>W3C OWL Working Group. (2012). OWL 2 Web Ontology Language Document Overview
-                                        (Second Edition). World Wide Web Consortium (W3C).
-                                        https://www.w3.org/TR/owl2-overview/</li>
-                                    <li>International Organization for Standardization. (1994–). ISO 10303 – Industrial
-                                        automation systems and integration — Product data representation and exchange
-                                        (STEP). Geneva, Switzerland: ISO. https://www.iso.org/standard/63141.html</li>
-
-
-                                </ul>
-                            </section>
+                                    Franz M, Lopes CT, Huck G, Dong Y, Sumer O, Bader GD</li>
+                                <li>
+                                    U. Dogrusoz , A. Karacelik, I. Safarli, H. Balci, L. Dervishi, and M.C. Siper,
+                                    "Efficient methods and readily customizable libraries for managing complexity of
+                                    large networks", PLoS ONE, 13(5): e0197238, 2018.
+                                </li>
+                                <li>The Open Group. (2022). ArchiMate® 3.2 Specification (Doc No. C22C). The Open
+                                    Group. https://pubs.opengroup.org/architecture/archimate32-doc/</li>
+                                <li>W3C OWL Working Group. (2012). OWL 2 Web Ontology Language Document Overview
+                                    (Second Edition). World Wide Web Consortium (W3C).
+                                    https://www.w3.org/TR/owl2-overview/</li>
+                                <li>International Organization for Standardization. (1994–). ISO 10303 – Industrial
+                                    automation systems and integration — Product data representation and exchange
+                                    (STEP). Geneva, Switzerland: ISO. https://www.iso.org/standard/63141.html</li>
 
 
-                            </section>
-                        </div>
+                            </ul>
+                        </section>
+
+
+                        </section>
                     </div>
             </div>
         </div>
+    </div>
 
-        <script src="dist/reveal.js"></script>
-        <script src="lib/cytoscape.min.js"></script>
-        <script src="lib/layout-base.js"></script>
-        <script src="lib/cose-base.js"></script>
-        <script src="lib/cytoscape-fcose.js"></script>
-        <script src="lib/cytoscape-undo-redo.js"></script>
-        <script src="lib/cytoscape-expand-collapse.js"></script>
-        <script src="lib/layout-base.js"></script>
-        <script src="lib/cola.min.js"></script>
-        <script src="lib/cytoscape-cola.js"></script>
-        <!-- Dagre.js (Required for cytoscape-dagre) -->
-        <script src="lib/dagre.min.js"></script>
-        <!-- Cytoscape-Dagre Extension -->
-        <script src="lib/cytoscape-dagre.js"></script>
-        <script src="plugin/zoom/zoom.js"></script>
-        <script src="plugin/notes/notes.js"></script>
-        <script src="plugin/search/search.js"></script>
-        <script src="plugin/markdown/markdown.js"></script>
-        <script src="plugin/highlight/highlight.js"></script>
-        <script src="plugin/menu/menu.js"></script>
-        <script src="lib/i18next.min.js"></script>
-        <script defer src="js/cytoscape/predefinedGraphs.js"></script>
-        <script defer src="js/cytoscape/OntologyViewerStyle.js"></script>
-        <script defer src="js/cytoscape/displayer.js"></script> <!-- Your script -->
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <script>
-            function speakText(text, language = "en", voiceName = "Alex", rate = 0.6) {
-                const synth = window.speechSynthesis;
-                const utterance = new SpeechSynthesisUtterance(text);
+    <script src="dist/reveal.js"></script>
+    <script src="lib/cytoscape.min.js"></script>
+    <script src="lib/layout-base.js"></script>
+    <script src="lib/cose-base.js"></script>
+    <script src="lib/cytoscape-fcose.js"></script>
+    <script src="lib/cytoscape-undo-redo.js"></script>
+    <script src="lib/cytoscape-expand-collapse.js"></script>
+    <script src="lib/layout-base.js"></script>
+    <script src="lib/cola.min.js"></script>
+    <script src="lib/cytoscape-cola.js"></script>
+    <!-- Dagre.js (Required for cytoscape-dagre) -->
+    <script src="lib/dagre.min.js"></script>
+    <!-- Cytoscape-Dagre Extension -->
+    <script src="lib/cytoscape-dagre.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/menu/menu.js"></script>
+    <script src="lib/i18next.min.js"></script>
+    <script defer src="js/cytoscape/predefinedGraphs.js"></script>
+    <script defer src="js/cytoscape/OntologyViewerStyle.js"></script>
+    <script defer src="js/cytoscape/displayer.js"></script> <!-- Your script -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        function speakText(text, language = "en", voiceName = "Alex", rate = 0.6) {
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(text);
 
-                // Sélectionner la voix
-                const voices = synth.getVoices();
-                const selectedVoice = voices.find(voice => voice.name === voiceName && voice.lang === language);
-                if (selectedVoice) {
+            // Sélectionner la voix
+            const voices = synth.getVoices();
+            const selectedVoice = voices.find(voice => voice.name === voiceName && voice.lang === language);
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            } else {
+                // Si la voix spécifique n'est pas trouvée, prendre la première voix disponible
+                utterance.voice = voices[0];
+            }
+
+            // Vitesse plus lente (0.8 est plus lent que la vitesse normale de 1.0)
+            utterance.rate = rate;
+
+            // Ajouter des pauses entre les bullet points
+            // Diviser le texte en éléments de liste et les prononcer un par un
+            const bulletPoints = text.split("\n").map(point => point.trim()).filter(Boolean);
+
+            // Créer une séquence pour prononcer chaque bullet point avec une pause
+            let currentIndex = 0;
+            function speakNextBullet() {
+                if (currentIndex < bulletPoints.length) {
+                    const bulletText = bulletPoints[currentIndex];
+                    const utterance = new SpeechSynthesisUtterance(bulletText);
                     utterance.voice = selectedVoice;
-                } else {
-                    // Si la voix spécifique n'est pas trouvée, prendre la première voix disponible
-                    utterance.voice = voices[0];
+                    utterance.rate = rate;
+
+                    utterance.onend = () => {
+                        currentIndex++;
+                        speakNextBullet();  // Passer au suivant après une pause naturelle
+                    };
+
+                    synth.speak(utterance);
                 }
-
-                // Vitesse plus lente (0.8 est plus lent que la vitesse normale de 1.0)
-                utterance.rate = rate;
-
-                // Ajouter des pauses entre les bullet points
-                // Diviser le texte en éléments de liste et les prononcer un par un
-                const bulletPoints = text.split("\n").map(point => point.trim()).filter(Boolean);
-
-                // Créer une séquence pour prononcer chaque bullet point avec une pause
-                let currentIndex = 0;
-                function speakNextBullet() {
-                    if (currentIndex < bulletPoints.length) {
-                        const bulletText = bulletPoints[currentIndex];
-                        const utterance = new SpeechSynthesisUtterance(bulletText);
-                        utterance.voice = selectedVoice;
-                        utterance.rate = rate;
-
-                        utterance.onend = () => {
-                            currentIndex++;
-                            speakNextBullet();  // Passer au suivant après une pause naturelle
-                        };
-
-                        synth.speak(utterance);
-                    }
-                }
-
-                speakNextBullet();  // Commencer la lecture
             }
 
-            // Exemple pour un texte français lent avec pauses
-            //   document.addEventListener("slidechanged", (event) => {
-            //       const text = event.currentSlide.innerText;
-            //       speakText(text, "fr-FR", "Audrey", 0.8);  // Voix "Thomas" en français avec un débit lent
-            //  });
+            speakNextBullet();  // Commencer la lecture
+        }
+
+        // Exemple pour un texte français lent avec pauses
+        //   document.addEventListener("slidechanged", (event) => {
+        //       const text = event.currentSlide.innerText;
+        //       speakText(text, "fr-FR", "Audrey", 0.8);  // Voix "Thomas" en français avec un débit lent
+        //  });
 
 
-            // Also available as an ES module, see:
-            // https://revealjs.com/initialization/
-            Reveal.initialize({
-                disableLayout: false,
-                controls: true,
-                progress: true,
-                center: true,
-                hash: true,
-                history: true,
-                slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
-                notes: true,
-                menu: {
-                    titleSelector: 'h1, h2,h3',
-                    hideMissingTitles: true,
-                    transitions: true,
-                    // Adds a menu button to the slides to open the menu panel.
-                    // Set to 'false' to hide the button.
-                    openButton: true,
-                    sticky: true,
-                },
+        // Also available as an ES module, see:
+        // https://revealjs.com/initialization/
+        Reveal.initialize({
+            disableLayout: false,
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            history: true,
+            slideNumber: 'c/t',  // Affiche le numéro de la diapositive au format "X/Y" (actuelle / totale),
+            notes: true,
+            menu: {
+                titleSelector: 'h1, h2,h3',
+                hideMissingTitles: true,
+                transitions: true,
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+                sticky: true,
+            },
 
-                // Learn about plugins: https://revealjs.com/plugins/
-                plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
+        });
+
+        // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+        var header = $('#header').html();
+        if (window.location.search.match(/print-pdf/gi)) {
+            Reveal.addEventListener('ready', function (event) {
+                $('.slide-background').append(header);
             });
-
-            // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
-            var header = $('#header').html();
-            if (window.location.search.match(/print-pdf/gi)) {
-                Reveal.addEventListener('ready', function (event) {
-                    $('.slide-background').append(header);
-                });
-            }
-            else {
-                $('div.slides').append(header);
-            }
-        </script>
+        }
+        else {
+            $('div.slides').append(header);
+        }
+    </script>
     </div>
 </body>
 
