@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formation UML - Initiation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css">
+    <style>
+        svg { border: 1px solid #ccc; margin-top: 10px; }
+        .diagram { width: 90%; height: 120px; }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <!-- Slide 1 : Titre -->
+        <section>
+            <h1>Introduction à UML et modélisation systémique</h1>
+            <p>Principes, concepts abstraits et langages visuels</p>
+        </section>
+
+        <!-- Slide 2 : Systémique -->
+        <section>
+            <h2>La systémique : penser les systèmes dans leur ensemble</h2>
+            <ul>
+                <li>Approche centrée sur interactions et composants</li>
+                <li>Hiérarchie, composition et flux d’information</li>
+                <li>Systèmes complexes et hétérogènes</li>
+            </ul>
+            <p><em>Exemple de système :</em></p>
+            <svg class="diagram">
+                <rect x="10" y="10" width="80" height="40" fill="#b3d9ff"/>
+                <rect x="120" y="10" width="80" height="40" fill="#b3d9ff"/>
+                <rect x="230" y="10" width="80" height="40" fill="#b3d9ff"/>
+                <line x1="90" y1="30" x2="120" y2="30" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+                <line x1="200" y1="30" x2="230" y2="30" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+                    </marker>
+                </defs>
+            </svg>
+        </section>
+
+        <!-- Slide 3 : Paradigmes -->
+        <section>
+            <h2>Évolution des paradigmes</h2>
+            <ul>
+                <li><strong>Objet :</strong> classes, héritage, réutilisation limitée</li>
+                <li><strong>Composant :</strong> composants, interfaces, ports</li>
+                <li>Introduction des containers et policies</li>
+            </ul>
+            <p><em>Mini-diagramme :</em></p>
+            <svg class="diagram">
+                <rect x="10" y="10" width="60" height="40" fill="#ffd699"/>
+                <text x="15" y="35" font-size="12">Classe A</text>
+                <rect x="90" y="10" width="60" height="40" fill="#b3ffb3"/>
+                <text x="95" y="35" font-size="12">Composant C</text>
+                <rect x="170" y="10" width="80" height="40" fill="#ffb3b3"/>
+                <text x="175" y="35" font-size="12">Container</text>
+            </svg>
+        </section>
+
+        <!-- Slide 4 : Concepts UML -->
+        <section>
+            <h2>UML : langage de concepts abstraits</h2>
+            <ul>
+                <li>Classes, composants, ports, relations, activités…</li>
+                <li>Règles et contraintes</li>
+                <li>Diagrammes = vues partielles</li>
+            </ul>
+        </section>
+
+        <!-- Slide 5 : Modèle abstrait -->
+        <section>
+            <h2>Modèle abstrait vs diagrammes</h2>
+            <svg class="diagram">
+                <rect x="10" y="10" width="120" height="50" fill="#e0e0e0"/>
+                <text x="15" y="35" font-size="12">Modèle abstrait</text>
+                <rect x="150" y="10" width="120" height="50" fill="#b3d9ff"/>
+                <text x="155" y="35" font-size="12">Diagramme de classes</text>
+                <rect x="290" y="10" width="120" height="50" fill="#b3d9ff"/>
+                <text x="295" y="35" font-size="12">Diagramme composite</text>
+                <line x1="130" y1="35" x2="150" y2="35" stroke="#000" stroke-width="2" marker-end="url(#arrow2)"/>
+                <line x1="270" y1="35" x2="290" y2="35" stroke="#000" stroke-width="2" marker-end="url(#arrow2)"/>
+                <defs>
+                    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+                    </marker>
+                </defs>
+            </svg>
+        </section>
+
+        <!-- Slide 6 : Langage visuel -->
+        <section>
+            <h2>Langage visuel et syntaxe</h2>
+            <ul>
+                <li>Symboles = mots</li>
+                <li>Compositions = phrases</li>
+                <li>Diagrammes = paragraphes</li>
+                <li>Grammaire = règles de combinaison</li>
+            </ul>
+            <p><em>Mini-diagramme composite avec ports :</em></p>
+            <svg class="diagram">
+                <rect x="10" y="10" width="80" height="40" fill="#ffd699"/>
+                <text x="15" y="35" font-size="12">Comp A</text>
+                <circle cx="100" cy="30" r="5" fill="#000"/>
+                <line x1="100" y1="30" x2="150" y2="30" stroke="#000" stroke-width="2" marker-end="url(#arrow3)"/>
+                <rect x="150" y="10" width="80" height="40" fill="#b3ffb3"/>
+                <text x="155" y="35" font-size="12">Comp B</text>
+                <defs>
+                    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+                    </marker>
+                </defs>
+            </svg>
+        </section>
+
+        <!-- Slide 7 : Containers -->
+        <section>
+            <h2>Containers et deployment de la logique métier</h2>
+            <ul>
+                <li>Composants autonomes avec ports et interfaces</li>
+                <li>Containers hébergent la logique métier</li>
+                <li>Application de policies techniques</li>
+            </ul>
+            <svg class="diagram">
+                <rect x="10" y="10" width="200" height="80" fill="#ffb3b3"/>
+                <text x="15" y="35" font-size="12">Container</text>
+                <rect x="20" y="50" width="80" height="30" fill="#ffd699"/>
+                <text x="25" y="70" font-size="12">Comp A</text>
+                <rect x="110" y="50" width="80" height="30" fill="#b3ffb3"/>
+                <text x="115" y="70" font-size="12">Comp B</text>
+            </svg>
+        </section>
+
+        <!-- Slide 8 : Outils -->
+        <section>
+            <h2>Outils UML</h2>
+            <table border="1" cellpadding="5">
+                <tr><th>Type</th><th>Focus</th><th>Exemple</th></tr>
+                <tr><td>Dessin manuel</td><td>Diagrammes graphiques</td><td>Draw.io, Visio</td></tr>
+                <tr><td>Texte → diagramme</td><td>Génération automatique</td><td>PlantUML, Mermaid</td></tr>
+                <tr><td>Atelier de modélisation</td><td>Manipulation du modèle abstrait</td><td>MagicDraw, EA</td></tr>
+            </table>
+        </section>
+
+        <!-- Slide 9 : Métaphore -->
+        <section>
+            <h2>Métaphore pédagogique</h2>
+            <p>“Un diagramme UML est une phrase dans un langage visuel : les symboles sont les mots, les compositions sont les phrases, et la grammaire garantit que le sens est clair et correct.”</p>
+        </section>
+
+        <!-- Slide 10 : Résumé -->
+        <section>
+            <h2>Résumé et liens</h2>
+            <ul>
+                <li>UML = concepts abstraits, contraintes et relations</li>
+                <li>Diagrammes = vues concrètes respectant syntaxe et règles</li>
+                <li>Paradigme objet → composant → container</li>
+                <li>Outils différents = différentes projections du même modèle</li>
+            </ul>
+            <p><em>Schéma final :</em></p>
+            <svg class="diagram">
+                <rect x="10" y="10" width="120" height="40" fill="#e0e0e0"/>
+                <text x="15" y="35" font-size="12">Modèle abstrait</text>
+                <rect x="150" y="10" width="120" height="40" fill="#b3d9ff"/>
+                <text x="155" y="35" font-size="12">Vues / Diagrammes</text>
+                <rect x="290" y="10" width="120" height="40" fill="#ffd699"/>
+                <text x="295" y="35" font-size="12">Containers / Deployment</text>
+                <line x1="130" y1="30" x2="150" y2="30" stroke="#000" stroke-width="2" marker-end="url(#arrow4)"/>
+                <line x1="270" y1="30" x2="290" y2="30" stroke="#000" stroke-width="2" marker-end="url(#arrow4)"/>
+                <defs>
+                    <marker id="arrow4" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+                    </marker>
+                </defs>
+            </svg>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script>
+    Reveal.initialize({ hash:true, slideNumber:true });
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FDIC CSV Viewer with Full Search + Export</title>
+  <link rel="stylesheet" type="text/css" href="css/w2ui-2.0.min.css" />
+  <script src="lib/papaparse.js"></script>
+  <script src="lib/w2ui-2.0.min.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    #grid { height: 600px; margin-top: 20px; }
+    #exportBtn { margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>FDIC CSV Viewer with Filters and Export</h1>
+<input type="file" id="csvFile" accept=".csv" />
+<button id="exportBtn" style="display:none;">Export Filtered as CSV</button>
+<div id="grid"></div>
+
+<script>
+let fullRecords = [];
+
+document.getElementById('csvFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  Papa.parse(file, {
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const data = results.data;
+      fullRecords = data;
+      const headers = results.meta.fields;
+
+      const columns = headers.map(h => ({
+        field: h,
+        text: h,
+        size: '100px'
+      }));
+
+      const valueSets = {};
+      headers.forEach(h => valueSets[h] = new Set());
+      data.forEach(row => {
+        headers.forEach(h => valueSets[h].add(row[h] || ''));
+      });
+
+      const searches = headers.map(h => ({
+        field: h,
+        label: h,
+        type: 'list',
+        options: {
+          items: Array.from(valueSets[h]).map(v => ({ id: v, text: v }))
+        }
+      }));
+
+      const records = data.map((row, i) => ({
+        recid: row.UNINUM || i,
+        ...row
+      }));
+
+      if (w2ui.fdicGrid) w2ui.fdicGrid.destroy();
+
+      new w2grid({
+        name: 'fdicGrid',
+        box: '#grid',
+        header: 'FDIC Branch Data (All Fields Filterable)',
+        reorderRows: false,
+        multiSearch: true,
+        show: {
+          header: true,
+          footer: true,
+          toolbar: true,
+          lineNumbers: true,
+          searchLogic: false
+        },
+        columns,
+        searches,
+        records
+      });
+
+      document.getElementById('exportBtn').style.display = 'inline-block';
+    }
+  });
+});
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const grid = w2ui.fdicGrid;
+  const filtered = grid.records.filter(rec => !rec.hidden);
+  const headers = grid.columns.map(c => c.field);
+
+  const csvData = [headers.join(",")].concat(
+    filtered.map(row =>
+      headers.map(h => `"${(row[h] || "").toString().replace(/"/g, '""')}"`).join(",")
+    )
+  ).join("\\n");
+
+  const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'filtered-fdic.csv';
+  a.click();
+});
+</script>
+
+</body>
+</html>

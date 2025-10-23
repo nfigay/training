@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWL Validation</title>
+    <title>genericApplicationTemplate</title>
     <link rel="stylesheet" type="text/css" href="css/w2ui-2.0.min.css">
     <link rel="stylesheet" href="css/backdrop.css">
     <link rel="stylesheet" href="css/all.min.css" />
@@ -203,7 +203,7 @@
                         language: "Language",
                         fr: "🇫🇷 French",
                         en: "🇬🇧 English",
-                        owl: "OWL File",
+                        file: "File",
                         open: "Open",
                         importinferred: "Import inferred axioms as ontology",
                         savegraph: "Save Graph",
@@ -330,7 +330,7 @@
                         language: "Langage",
                         fr: "🇫🇷 Français",
                         en: "🇬🇧 English",
-                        owl: "Fichier OWL",
+                        file: "Fichier",
                         open: "Ouvrir",
                         importinferred: "Import des axiomes inférré de l'ontologie",
                         savegraph: "Sauve Graphe",
@@ -927,7 +927,7 @@
         function getMenuItems() {
             return [
                 {
-                    type: "menu", id: "owl", text: i18next.t("menu.owl"), icon: "fa fa-folder-open",
+                    type: "menu", id: "file", text: i18next.t("menu.file"), icon: "fa fa-folder-open",
                     items: [
                         { id: "open", text: i18next.t("menu.open") },
                         { id: "importinferred", text: i18next.t("menu.importinferred") },

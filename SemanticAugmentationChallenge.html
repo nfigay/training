@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWL Validation</title>
+    <title>Semantic Augmentation Challenge</title>
     <link rel="stylesheet" type="text/css" href="css/w2ui-2.0.min.css">
     <link rel="stylesheet" href="css/backdrop.css">
     <link rel="stylesheet" href="css/all.min.css" />
@@ -30,6 +30,7 @@
     <!-- Cytoscape-Dagre Extension -->
     <script src="lib/cytoscape-dagre.js"></script>
     <script src="lib/i18next.min.js"></script>
+    <script src="lib/papaparse.js"></script>
 
 
     <style>
@@ -203,7 +204,7 @@
                         language: "Language",
                         fr: "🇫🇷 French",
                         en: "🇬🇧 English",
-                        owl: "OWL File",
+                        file: "File",
                         open: "Open",
                         importinferred: "Import inferred axioms as ontology",
                         savegraph: "Save Graph",
@@ -330,7 +331,7 @@
                         language: "Langage",
                         fr: "🇫🇷 Français",
                         en: "🇬🇧 English",
-                        owl: "Fichier OWL",
+                        file: "Fichier",
                         open: "Ouvrir",
                         importinferred: "Import des axiomes inférré de l'ontologie",
                         savegraph: "Sauve Graphe",
@@ -927,7 +928,7 @@
         function getMenuItems() {
             return [
                 {
-                    type: "menu", id: "owl", text: i18next.t("menu.owl"), icon: "fa fa-folder-open",
+                    type: "menu", id: "file", text: i18next.t("menu.file"), icon: "fa fa-folder-open",
                     items: [
                         { id: "open", text: i18next.t("menu.open") },
                         { id: "importinferred", text: i18next.t("menu.importinferred") },
@@ -994,7 +995,7 @@
                             id: 'showhide', text: i18next.t("menu.showhide"),
                             items: [
                                 { id: 'hideselected', text: i18next.t("menu.hideselected") },
-                                { id: 'hidenonselected', ttext: i18next.t("menu.hidenonselected") },
+                                { id: 'hidenonselected', text: i18next.t("menu.hidenonselected") },
                                 { id: 'unhideall', text: i18next.t("menu.unhideall") },
                             ]
                         },
@@ -1102,25 +1103,25 @@
                 case "view.edgeRendering":
                     console.log("createEdgeRenderingSubMenu();")
                     break;
-                case 'owl:open':
+                case 'file:open':
                     const file = document.getElementById('inputfile');
                     file.value = '';
                     file.click();
                     break;
-                case 'owl:importinferred':
+                case 'file:importinferred':
                     const file2 = document.getElementById('inputinferred')
                     file2.value = '';
                     file2.click();
                     break;
-                case 'owl:loadgraph':
+                case 'file:loadgraph':
                     const el = document.getElementById('load-from-inp');
                     el.value = '';
                     el.click();
                     break;
-                case 'owl:exportjson':
+                case 'file:exportjson':
                     exportVisibleGraphToFile(cy);
                     break;
-                case 'owl:savegraph':
+                case 'file:savegraph':
                     if (typeof cy === 'undefined' || !cy) {
                         console.warn("Cytoscape instance (cy) is not initialized.");
                         w2alert("Graph non initialisé. Impossible de sauvegarder.");
