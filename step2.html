@@ -70,7 +70,7 @@
 
     <div id="container">
         <div id="cy"></div>
-        <div id="sidebar">Click a node to see details here.</div>
+        <div id="sidebar">Click a node or edge to see details here.</div>
     </div>
 
     <script>
@@ -82,9 +82,7 @@
             "NEXT_ASSEMBLY_USAGE_OCCURRENCE",
             "APPLICATION_CONTEXT",
             "APPLICATION_PROTOCOL_DEFINITION",
-            "PRODUCT_DEFINITION",
-            "PRODUCT",
-            "PRODUCT_DEFINITION_FORMATION_WITH_SPECIFIED_SOURCE"
+            "PRODUCT_DEFINITION"
         ]);
         const fileInput = document.getElementById('fileInput');
         const maxNodesInput = document.getElementById('maxNodes');
@@ -97,43 +95,95 @@
             // Reset data
             const nodesMap = new Map();
             const edges = [];
-            
+            const nauoEntities = new Map();
 
-            // Regex to extract entities (e.g. #12=ENTITYNAME(...);)
+            // Regex to extract entities
             const entityRegex = /#(\d+)\s*=\s*([A-Z0-9_]+)\s*\(([^;]*)\);/gi;
             let match;
 
+            // Première passe: collecter toutes les entités
             while ((match = entityRegex.exec(content)) !== null) {
                 const id = match[1];
                 const type = match[2];
                 const attrStr = match[3].trim();
-                //types.add(type);
+                
                 if (!productEntities.has(type)) {
-                    continue; // retourne au début de la boucle
-                }
-                if (!nodesMap.has(id)) {
-                    nodesMap.set(id, { data: { id, label: type, type } });
-                } else {
-                    // Update label/type if needed
-                    nodesMap.get(id).data.label = type;
-                    nodesMap.get(id).data.type = type;
+                    continue;
                 }
 
-                // Parse attributes (comma separated, may include vectors)
-                // Assign attributes named by position (attr0, attr1, ...)
+                // Parse attributes
                 const attrs = splitAttributes(attrStr);
-                attrs.forEach((attr, i) => {
-                    // Store both raw and parsed values
-                    nodesMap.get(id).data['attr' + i] = attr;
-                });
+
+                if (type === 'NEXT_ASSEMBLY_USAGE_OCCURRENCE') {
+                    // Stocker les NAUO pour traitement ultérieur
+                    nauoEntities.set(id, {
+                        id: id,
+                        type: type,
+                        attrs: attrs
+                    });
+                } else {
+                    // Créer un nœud normal avec le type comme label par défaut
+                    if (!nodesMap.has(id)) {
+                        nodesMap.set(id, { data: { id: id, label: type, type: type } });
+                    } else {
+                        nodesMap.get(id).data.label = type;
+                        nodesMap.get(id).data.type = type;
+                    }
+
+                    // Stocker les attributs
+                    attrs.forEach((attr, i) => {
+                        nodesMap.get(id).data['attr' + i] = attr;
+                    });
+                }
             }
 
-            // After creating nodes, create edges for attributes that reference other entities
-            // We consider references like #12 inside attribute values
+            // Traiter les NEXT_ASSEMBLY_USAGE_OCCURRENCE comme des edges
+            nauoEntities.forEach((nauo) => {
+                const refs = [];
+                nauo.attrs.forEach((attr) => {
+                    const matches = attr.match(/#\d+/g);
+                    if (matches) {
+                        refs.push(...matches.map(ref => ref.substring(1)));
+                    }
+                });
+
+                // Si on a au moins 2 références, créer un edge
+                if (refs.length >= 2) {
+                    const sourceId = refs[0];
+                    const targetId = refs[1];
+                    
+                    // Mettre à jour le label du nœud cible avec attr2
+                    if (nodesMap.has(targetId) && nauo.attrs[2]) {
+                        // Extraire le label de attr2 (enlever les quotes si présentes)
+                        let labelText = nauo.attrs[2].replace(/^'|'$/g, '');
+                        nodesMap.get(targetId).data.label = labelText;
+                    }
+
+                    // Créer l'edge si les deux nœuds existent
+                    if (nodesMap.has(sourceId) && nodesMap.has(targetId)) {
+                        const edgeData = {
+                            id: 'nauo-' + nauo.id,
+                            source: sourceId,
+                            target: targetId,
+                            label: 'NAUO',
+                            nauoId: nauo.id,
+                            type: 'NEXT_ASSEMBLY_USAGE_OCCURRENCE'
+                        };
+                        
+                        // Ajouter tous les attributs du NAUO
+                        nauo.attrs.forEach((attr, i) => {
+                            edgeData['attr' + i] = attr;
+                        });
+                        
+                        edges.push({ data: edgeData });
+                    }
+                }
+            });
+
+            // Créer des edges pour les autres attributs qui référencent d'autres entités
             nodesMap.forEach((node) => {
                 Object.entries(node.data).forEach(([key, val]) => {
-                    if (typeof val === 'string') {
-                        // Find all references like #number
+                    if (typeof val === 'string' && key.startsWith('attr')) {
                         const refs = val.match(/#\d+/g);
                         if (refs) {
                             refs.forEach((ref) => {
@@ -141,7 +191,7 @@
                                 if (nodesMap.has(targetId)) {
                                     edges.push({
                                         data: {
-                                            id: `${node.data.id}->${targetId}-${key}`,
+                                            id: node.data.id + '->' + targetId + '-' + key,
                                             source: node.data.id,
                                             target: targetId,
                                             label: key
@@ -165,7 +215,6 @@
         }
 
         // Split attributes by commas, respecting nested parentheses and quotes
-        // To avoid splitting commas inside vectors or strings
         function splitAttributes(attrStr) {
             const attrs = [];
             let current = '';
@@ -208,7 +257,6 @@
 
             // Extract all types for filter options
             const typesSet = new Set(graph.nodes.map(n => n.data.type));
-            //  populateTypeFilter(Array.from(typesSet).sort());
 
             // Apply filter on nodes and edges
             const filteredGraph = filterGraph(graph, currentFilter);
@@ -221,12 +269,11 @@
                         selector: 'node',
                         style: {
                             label: 'data(label)',
-
                             'background-color': ele => nodeColor(ele.data('type')),
-                            color: '#000',             // black label text
-                            'text-valign': 'top',      // label above the node
-                            'text-halign': 'center',   // centered horizontally
-                            'text-margin-y': -10,      // move label up a bit
+                            color: '#000',
+                            'text-valign': 'top',
+                            'text-halign': 'center',
+                            'text-margin-y': -10,
                             'width': '40',
                             'height': '40',
                             'font-size': 10,
@@ -247,6 +294,16 @@
                         }
                     },
                     {
+                        selector: 'edge[label="NAUO"]',
+                        style: {
+                            'line-color': '#FF4136',
+                            'target-arrow-color': '#FF4136',
+                            width: 3,
+                            'font-size': 10,
+                            'font-weight': 'bold'
+                        }
+                    },
+                    {
                         selector: 'node:selected',
                         style: {
                             'border-width': 3,
@@ -263,16 +320,20 @@
                 displayNodeData(node.data());
             });
 
+            cy.on('tap', 'edge', evt => {
+                const edge = evt.target;
+                displayEdgeData(edge.data());
+            });
+
             // Clear sidebar if click on background
             cy.on('tap', evt => {
                 if (evt.target === cy) {
-                    sidebar.textContent = 'Click a node to see details here.';
+                    sidebar.textContent = 'Click a node or edge to see details here.';
                 }
             });
         }
 
         function populateTypeFilter(types) {
-            // Preserve selection if possible
             const selected = new Set([...typeFilterSelect.selectedOptions].map(opt => opt.value));
             typeFilterSelect.innerHTML = '';
             types.forEach(t => {
@@ -288,19 +349,27 @@
             if (!filterSet || filterSet.size === 0) {
                 return graph;
             }
-            // Filter nodes by type
             const filteredNodes = graph.nodes.filter(n => filterSet.has(n.data.type));
             const allowedIds = new Set(filteredNodes.map(n => n.data.id));
-            // Filter edges with source and target in filtered nodes
             const filteredEdges = graph.edges.filter(e => allowedIds.has(e.data.source) && allowedIds.has(e.data.target));
             return { nodes: filteredNodes, edges: filteredEdges };
         }
 
         function displayNodeData(data) {
-            // Show data key-values, one per line
-            let html = '';
+            let html = '<h3>Node Details</h3>';
             Object.entries(data).forEach(([k, v]) => {
-                html += `<strong>${k}:</strong> ${escapeHtml(v)}\n`;
+                html += '<strong>' + escapeHtml(k) + ':</strong> ' + escapeHtml(v) + '\n';
+            });
+            sidebar.innerHTML = html;
+        }
+
+        function displayEdgeData(data) {
+            let html = '<h3>Edge Details</h3>';
+            Object.entries(data).forEach(([k, v]) => {
+                // Skip internal cytoscape properties
+                if (!k.startsWith('$')) {
+                    html += '<strong>' + escapeHtml(k) + ':</strong> ' + escapeHtml(v) + '\n';
+                }
             });
             sidebar.innerHTML = html;
         }
@@ -319,7 +388,6 @@
             });
         }
 
-        // Simple color generator for node types
         const typeColorMap = {};
         const colors = ['#0074D9', '#2ECC40', '#FF4136', '#FF851B', '#B10DC9', '#FFDC00', '#39CCCC', '#F012BE'];
         function nodeColor(type) {
@@ -329,7 +397,6 @@
             return typeColorMap[type];
         }
 
-        // Event handlers
         fileInput.addEventListener('change', e => {
             if (!e.target.files || e.target.files.length === 0) return;
             const file = e.target.files[0];
@@ -341,7 +408,7 @@
                 const typesArray = Array.from(typesSet).sort();
                 populateTypeFilter(typesArray);
                 renderGraph(fullGraph);
-                sidebar.textContent = `Loaded ${fullGraph.nodes.length} nodes and ${fullGraph.edges.length} edges. Click a node to see details.`;
+                sidebar.textContent = 'Loaded ' + fullGraph.nodes.length + ' nodes and ' + fullGraph.edges.length + ' edges. Click a node or edge to see details.';
             };
             reader.readAsText(file);
         });
@@ -363,17 +430,16 @@
             currentFilter = new Set([...typeFilterSelect.selectedOptions].map(opt => opt.value));
             const filteredGraph = filterGraph(fullGraph, currentFilter);
             renderGraph(filteredGraph);
-            sidebar.textContent = `Showing ${filteredGraph.nodes.length} nodes and ${filteredGraph.edges.length} edges filtered by type.`;
+            sidebar.textContent = 'Showing ' + filteredGraph.nodes.length + ' nodes and ' + filteredGraph.edges.length + ' edges filtered by type.';
         });
 
         clearFilterBtn.addEventListener('click', () => {
             currentFilter.clear();
-            // Clear selection in select box
             for (const option of typeFilterSelect.options) {
                 option.selected = false;
             }
             renderGraph(fullGraph);
-            sidebar.textContent = `Showing all ${fullGraph.nodes.length} nodes and ${fullGraph.edges.length} edges.`;
+            sidebar.textContent = 'Showing all ' + fullGraph.nodes.length + ' nodes and ' + fullGraph.edges.length + ' edges.';
         });
 
     </script>
