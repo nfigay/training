@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Webinar Interopérabilité et IA</title>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css">
+  <style>
+    .diagram { font-family: monospace; white-space: pre; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { border: 1px solid #ccc; padding: 0.5em; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Slide 1 -->
+      <section>
+        <h2>Interopérabilité sémantique et raisonnement automatisé</h2>
+        <h3>pour les systèmes d’information de l’entreprise étendue</h3>
+        <ul>
+          <li>Présenté par Nicolas, spécialiste interopérabilité et ontologies</li>
+          <li>Objectifs : interopérabilité, DL/OWL, cas industriels</li>
+        </ul>
+      </section>
+
+      <!-- Slide 2 -->
+      <section>
+        <h3>Contexte et enjeux</h3>
+        <ul>
+          <li>Multiplicité des systèmes et modèles</li>
+          <li>Collaboration, coordination, communication</li>
+          <li>Confusions fréquentes : graphe, raisonnement, humain vs automate</li>
+          <li>Distinction : connaissance métier / ontologies vs données opérationnelles</li>
+        </ul>
+      </section>
+
+      <!-- Slide 3 -->
+      <section>
+        <h3>Types de raisonnement et familles d’IA</h3>
+        <ul>
+          <li>Humain : intuitif (S1) et analytique (S2)</li>
+          <li>Machine : symbolique, probabiliste, DL, hybride</li>
+          <li>Familles d’IA : symbolique vs stochastique/LLM</li>
+        </ul>
+        <div class="diagram">
+Humain
+  ↘ Symbolique / DL → Ontologies → Cohérence
+   ↘ Probabiliste / LLM → Synthèse / Exploration
+        </div>
+      </section>
+
+      <!-- Slide 4 -->
+      <section>
+        <h3>Ontologies industrielles et normes ISO</h3>
+        <ul>
+          <li>PLCS (ISO 10303-239), POSC CAESAR / ISO 15926, MOF</li>
+          <li>Structuration et standardisation pour interopérabilité</li>
+          <li>Ontologies ≠ vocabulaire contrôlé, KG ≠ ontologies first</li>
+        </ul>
+      </section>
+
+      <!-- Slide 5 -->
+      <section>
+        <h3>Divers types d'ontologies et cas d’usage</h3>
+        <ul>
+          <li>Types : métier, applicative, entreprise, domaine</li>
+          <li>Cas d’usage : construction interopérabilité, préparation interopérabilité continue</li>
+          <li>Plusieurs ontologies coordonnées = cohérence et évolutivité</li>
+        </ul>
+        <div class="diagram">
+Ontologie de domaine   ↔ Ontologie métier ↔ Ontologie entreprise ↔ Ontologie applicative
+                       \                                       /
+                        \--- Interopérabilité opérationnelle ---/
+        </div>
+      </section>
+
+      <!-- Slide 6 -->
+      <section>
+        <h3>Ontologies comme assets activables et maintenables</h3>
+        <ul>
+          <li>Actifs stratégiques, réutilisables, activables dans SI</li>
+          <li>Maintenance, versioning et suivi des évolutions</li>
+          <li>Valeur : validation, cohérence, pivot pour MBSE et SI</li>
+        </ul>
+        <div class="diagram">
+Ontologie (Métier / Applicative / Entreprise / Domaine)
+      |
+      |---> Activable / Exécutable dans SI
+      |---> Maintenue / Versionnée
+      |---> Réutilisable / Valorisable
+        </div>
+      </section>
+
+      <!-- Slide 7 -->
+      <section>
+        <h3>Représentations multiples / Hypermodel polyglotte</h3>
+        <div class="diagram">
+        +-----------+
+        |   CAD     |
+        +-----------+
+              |
+              v
+        +-----------+
+        |   MBSE    |
+        +-----------+
+              |
+              v
+        +-----------+
+        | Ontologies|
+        +-----------+
+              |
+              v
+        +-----------+
+        |    SI     |
+        +-----------+
+              |
+              v
+        +-----------+
+        | Partenaire|
+        +-----------+
+        </div>
+      </section>
+
+      <!-- Slide 8 -->
+      <section>
+        <h3>Cartographie sémantique</h3>
+        <div class="diagram">
+Ontologie A (Partenaire 1)   ↔   Ontologie B (Partenaire 2)
+       +---------+                 +---------+
+       | Concept |                 | Concept |
+       +---------+                 +---------+
+           | Mapping ↔ Correspondance |
+           +-------------------------+
+        </div>
+      </section>
+
+      <!-- Slide 9 -->
+      <section>
+        <h3>Raisonnement DL et OWL</h3>
+        <ul>
+          <li>DL : raisonnement décidable, cohérence garantie</li>
+          <li>OWL : langage pour représenter ontologies industrielles</li>
+          <li>Avantages : validation automatique, interopérabilité</li>
+          <li>Limites : modèles complexes MBSE nécessitent supervision humaine</li>
+        </ul>
+      </section>
+
+      <!-- Slide 10 -->
+      <section>
+        <h3>Limites des ontologies et DL pour MBSE</h3>
+        <ul>
+          <li>Restrictions : hiérarchies profondes, règles trop expressives, contraintes multi-niveaux</li>
+          <li>Implications : supervision humaine indispensable, ontologies = pivot structuré</li>
+        </ul>
+      </section>
+
+      <!-- Slide 11 -->
+      <section>
+        <h3>Approche pratique pour industriels</h3>
+        <ul>
+          <li>Identifier priorités métier et zones critiques</li>
+          <li>Démarrer avec ontologies existantes et standards</li>
+          <li>Prioriser ontologies first</li>
+          <li>Intégrer progressivement DL pour validation</li>
+          <li>Boucles de feedback pour maximiser valeur et pertinence</li>
+        </ul>
+      </section>
+
+      <!-- Slide 12 -->
+      <section>
+        <h3>Cas concrets : échanges de modèles industriels</h3>
+        <ul>
+          <li>PLCS / ISO 15926 → validation DL + supervision humaine</li>
+          <li>Coordination multi-systèmes MBSE → ontologies pivot, KG pour visualisation</li>
+        </ul>
+      </section>
+
+      <!-- Slide 13 -->
+      <section>
+        <h3>Bonnes pratiques</h3>
+        <ul>
+          <li>Séparation stricte : connaissances métier / ontologies vs données opérationnelles</li>
+          <li>Supervision humaine obligatoire</li>
+          <li>Déploiement progressif + boucles de feedback</li>
+          <li>Priorité : ontologies first</li>
+        </ul>
+      </section>
+
+      <!-- Slide 14 -->
+      <section>
+        <h3>Synthèse et messages clés</h3>
+        <ul>
+          <li>DL + ontologies = base fiable pour interopérabilité industrielle</li>
+          <li>LLM / IA stochastiques = synthèse ou exploration</li>
+          <li>Supervision humaine indispensable</li>
+          <li>Traduction pratique des concepts des deux autres webinars</li>
+        </ul>
+      </section>
+
+      <!-- Slide 15 -->
+      <section>
+        <h3>Comparatif DL vs LLM</h3>
+        <table>
+          <thead>
+            <tr><th>Aspect</th><th>DL (Décidable)</th><th>LLM / Stochastique</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cohérence</td><td>Garantie</td><td>Non garantie</td></tr>
+            <tr><td>Vérification</td><td>Automatique</td><td>Non déterministe</td></tr>
+            <tr><td>Usage principal</td><td>Validation, interopérabilité</td><td>Synthèse, exploration</td></tr>
+            <tr><td>Supervision humaine</td><td>Souvent nécessaire pour MBSE</td><td>Indispensable</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Slide 16 -->
+      <section>
+        <h3>Questions / échanges</h3>
+        <ul>
+          <li>Invitation à poser des questions</li>
+          <li>Mini-cas pour illustration si nécessaire</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      plugins: [ RevealNotes ]
+    });
+  </script>
+</body>
+</html>

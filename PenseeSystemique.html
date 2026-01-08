@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Systémique, Objet et Composant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Chargement de Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <!-- Thème sombre et moderne -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css" id="theme">
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Styles personnalisés pour améliorer l'intégration et la lisibilité */
+        .reveal {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            font-weight: 700;
+        }
+
+        .reveal .slides section p,
+        .reveal .slides section li {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+    </style>
+    <script>
+        // Configuration Tailwind pour des couleurs spécifiques
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#4c74f5', /* Une couleur vive pour les titres */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: TITRE -->
+            <section>
+                <section>
+                    <h1 class="text-6xl font-extrabold text-primary-blue mb-4" style="font-size: 1.5em;">La Pensée
+                        Systémique</h1>
+                    <h2 class="text-4xl" style="font-size: 1.1em;">Du Modèle Objet au Paradigme Composant</h2>
+                    <p class="mt-12 text-gray-400" style="font-size: 0.8em;">Analyse épistémologique et évolution de
+                        l'ingénierie logicielle</p>
+                </section>
+                <!-- Slide 2 : Objectifs de la section -->
+                <section>
+                    <h2 style="font-size: 1.5em;">Objectifs de la section</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li>Clarifier ce qu'est la systèmique</li>
+                        <li>Clarifier paradigmes objets et composants en lien avec la systémique</li>
+                        <li>Expliquer pourquoi on passe de l'objet au composant</li>
+                        <li>Clarifier la terminologie</li>
+                    </ul>
+                </section>
+
+                <!-- SLIDE 3: QU'EST-CE QUE LA SYSTÉMIQUE ? (1) -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8" style="font-size: 1.1em;">1. Qu'est-ce que la Systémique ?</h2>
+                    <p class="text-xl mb-6" style="font-size: 0.8em;">La systémique est une **épistémologie** : une
+                        manière de concevoir et
+                        d’analyser le réel, centrée sur les **relations**.</p>
+                    <div class="bg-primary-blue/20 p-6 rounded-xl shadow-xl border border-primary-blue/50">
+                        <h3 class="text-3xl font-semibold mb-4 text-primary-blue" style="font-size: 1em;">Définition
+                            Générale</h3>
+                        <p class="text-2xl font-light italic" style="font-size: 0.7em;">
+                            Un système est un ensemble d’éléments en **interaction dynamique**, organisé en fonction
+                            d’un **but ou d’une finalité**.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4: SYSTÉMIQUE VS ANALYTIQUE -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8" style="font-size: 1.1em;">Systémique vs. Pensée Analytique</h2>
+                    <div class="grid grid-cols-2 gap-8 text-left">
+                        <div class="bg-gray-800 p-6 rounded-xl border border-red-500/50">
+                            <h3 class="text-3xl font-semibold text-red-400 mb-4" style="font-size: 0.8em;">Pensée
+                                Analytique (Réductionnisme)</h3>
+                            <ul class="list-none space-y-3 text-lg" style="font-size: 0.7em;">
+                                <li class="flex items-center"><span class="text-red-400 mr-3 text-2xl">✂️</span>
+                                    Décompose pour étudier les morceaux.</li>
+                                <li class="flex items-center"><span class="text-red-400 mr-3 text-2xl">➡️</span> Cherche
+                                    les causes (Lien Linéaire).</li>
+                                <li class="flex items-center"><span class="text-red-400 mr-3 text-2xl">🔮</span> Vise la
+                                    prédiction.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 p-6 rounded-xl border border-green-500/50">
+                            <h3 class="text-3xl font-semibold text-green-400 mb-4" style="font-size: 0.8em;">Pensée
+                                Systémique (Holistique)</h3>
+                            <ul class="list-none space-y-3 text-lg" style="font-size: 0.7em;">
+                                <li class="flex items-center"><span class="text-green-400 mr-3 text-2xl">🔗</span> Relie
+                                    et étudie les interactions.</li>
+                                <li class="flex items-center"><span class="text-green-400 mr-3 text-2xl">🔄</span>
+                                    Observe la dynamique (Lien Circulaire).</li>
+                                <li class="flex items-center"><span class="text-green-400 mr-3 text-2xl">🌱</span> Vise
+                                    l'adaptation.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-xl font-light italic text-primary-blue" style="font-size: 0.8em;">
+                        Principe de Totalité : le tout est plus que la somme des parties.
+                    </p>
+                </section>
+
+                <!-- SLIDE 5: ORIGINES & PRINCIPES CLÉS -->
+
+                <section>
+                    <h2 class="text-5xl font-bold mb-8" style="font-size: 1.1em;">Origines Historiques</h2>
+                    <div class="grid grid-cols-3 gap-6 text-left">
+                        <div class="p-4 bg-gray-800 rounded-lg border border-primary-blue/50">
+                            <h3 class="text-2xl font-semibold text-primary-blue" style="font-size: 0.8em;">Ludwig von
+                                Bertalanffy</h3>
+                            <p class="text-lg" style="font-size: 0.6em;">Théorie Générale des Systèmes (TGS) : principes
+                                universels (années
+                                1950).</p>
+                        </div>
+                        <div class="p-4 bg-gray-800 rounded-lg border border-primary-blue/50">
+                            <h3 class="text-2xl font-semibold text-primary-blue" style="font-size: 0.8em;">Norbert
+                                Wiener</h3>
+                            <p class="text-lg" style="font-size: 0.6em;">Cybernétique : centré sur la régulation et le
+                                contrôle par
+                                **Rétroaction**.</p>
+                        </div>
+                        <div class="p-4 bg-gray-800 rounded-lg border border-primary-blue/50">
+                            <h3 class="text-2xl font-semibold text-primary-blue" style="font-size: 0.8em;">Bateson, von
+                                Foerster</h3>
+                            <p class="text-lg" style="font-size: 0.6em;">Systémique Complexe : domaines sociaux,
+                                cognitifs et écologiques
+                                (années 1970).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-5xl font-bold mb-8" style="font-size: 1.1em;">Six Principes Clés de la Systémique
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4 text-left text-lg" style="font-size: 0.7em;">
+                        <ul class="list-none space-y-2">
+                            <li><strong class="text-primary-blue">Totalité :</strong> Le système comme un ensemble
+                                indivisible.</li>
+                            <li><strong class="text-primary-blue">Interaction :</strong> Les liens sont essentiels.
+                            </li>
+                            <li><strong class="text-primary-blue">Rétroaction (Feedback) :</strong> Boucles
+                                d'influence.</li>
+                        </ul>
+                        <ul class="list-none space-y-2">
+                            <li><strong class="text-primary-blue">Organisation :</strong> La structure des relations
+                                définit le comportement.</li>
+                            <li><strong class="text-primary-blue">Finalité :</strong> Le système est orienté vers un
+                                but (téléologie).</li>
+                            <li><strong class="text-primary-blue">Émergence :</strong> Propriétés nouvelles
+                                impossibles à déduire des composants.</li>
+                        </ul>
+                    </div>
+                </section>
+
+
+
+                <!-- SLIDE 5: TYPES DE SYSTÉMIQUES -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8" style="font-size: 1.1em;">Types d'Approches Systémiques</h2>
+                    <table class="w-full text-left border-collapse rounded-xl overflow-hidden text-lg"
+                        style="font-size: 0.6em;">
+                        <thead>
+                            <tr class="bg-primary-blue text-white">
+                                <th class="p-4 border border-gray-700">Type</th>
+                                <th class="p-4 border border-gray-700">Description</th>
+                                <th class="p-4 border border-gray-700">Exemples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-4 border border-gray-700 font-semibold text-yellow-300"
+                                    style="font-size: 0.8em;">"Dure"</td>
+                                <td class="p-4 border border-gray-700">Modélisation mathématique et ingénierie (systèmes
+                                    techniques).</td>
+                                <td class="p-4 border border-gray-700">Systèmes de production, modèles de simulation.
+                                </td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-4 border border-gray-700 font-semibold text-green-300">"Molle"</td>
+                                <td class="p-4 border border-gray-700">Approche socio-technique, centré sur la
+                                    perception humaine.</td>
+                                <td class="p-4 border border-gray-700">Management, accompagnement du changement.</td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-4 border border-gray-700 font-semibold text-red-300">Complexe</td>
+                                <td class="p-4 border border-gray-700">Systèmes adaptatifs, théorie du chaos.</td>
+                                <td class="p-4 border border-gray-700">Écosystèmes, économie, cognition.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- SLIDE 6: PARADIGME OBJET ET SYSTÉMIQUE (2) -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1em;">2. Le Paradigme Objet
+                        :
+                        Une Traduction</h2>
+                    <p class="text-2xl mb-6 italic" style="font-size: 0.7em;">Le Paradigme Objet (POO) transpose <br>les
+                        concepts systémiques au
+                        domaine du logiciel.</p>
+
+                    <div class="bg-gray-800 p-6 rounded-xl mt-8">
+                        <h3 class="text-3xl font-semibold mb-4 text-green-400" style="font-size: 0.7em;">Correspondance
+                            des Concepts</h3>
+                        <div class="grid grid-cols-2 gap-4 text-left" style="font-size: 0.5em;">
+                            <ul class="list-none space-y-2">
+                                <li class="font-semibold text-lg"><span class="text-primary-blue">Système</span> ➡️
+                                    Objet / Classe</li>
+                                <li class="font-semibold text-lg"><span class="text-primary-blue">Structure
+                                        interne</span> ➡️ Attributs (état)</li>
+                                <li class="font-semibold text-lg"><span class="text-primary-blue">Comportement</span> ➡️
+                                    Méthodes</li>
+                            </ul>
+                            <ul class="list-none space-y-2">
+                                <li class="font-semibold text-lg"><span class="text-primary-blue">Frontière</span> ➡️
+                                    Interface publique (**Encapsulation**)</li>
+                                <li class="font-semibold text-lg"><span class="text-primary-blue">Interaction</span> ➡️
+                                    Messages (appels de méthodes)</li>
+                                <li class="font-semibold text-lg"><span class="text-primary-blue">Composition</span> ➡️
+                                    Agrégation d'objets (sous-systèmes)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-xl" style="font-size: 0.7em;">L'Objet est une unité autonome dotée d’un état
+                        interne et d’un comportement,
+                        comme un système.</p>
+                </section>
+
+                <!-- SLIDE 7: LIMITES DU POO (3) -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-red-400" style="font-size: 1.1em;">3. Les Limites de la
+                        Systémique "Fermée" (POO)</h2>
+                    <p class="text-2xl mb-8 italic" style="font-size: 0.8em;">Le POO est excellent pour la conception
+                        interne, mais faible pour
+                        l'intégration et l'évolution à grande échelle.</p>
+
+                    <div class="text-left space-y-4">
+                        <ul class="list-none space-y-3 text-lg bg-gray-900 p-4 rounded-lg" style="font-size: 0.6em;">
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1 text-2xl">❌</span>
+                                **Granularité trop fine :** Objets (micro-systèmes) difficiles à réutiliser hors
+                                contexte.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1 text-2xl">❌</span>
+                                **Couplage Fort :** Dépendance au code, au langage et au runtime.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1 text-2xl">❌</span>
+                                **Contrat Implicite :** Les interactions ne sont pas standardisées (pas de description
+                                d'assemblage).</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-xl mt-8 font-light italic" style="font-size: 0.8em;">Le besoin d'une **Systémique
+                        Ouverte et Interopérable** a
+                        fait émerger le Paradigme Composant.</p>
+                </section>
+
+                <!-- SLIDE 8: PARADIGME COMPOSANT (3) -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1em;">Paradigme Composant :
+                        L'Écosystème Systémique
+                    </h2>
+                    <p class="text-xl mb-6" style="font-size: 0.7em;">Le Composant corrige le POO en déplaçant le centre
+                        de gravité vers
+                        l'**interopérabilité contractuelle**.</p>
+
+                    <table class="w-full text-left border-collapse rounded-xl overflow-hidden text-lg"
+                        style="font-size: 0.7em;">
+                        <thead>
+                            <tr class="bg-primary-blue text-white">
+                                <th class="p-3 border border-gray-700">Aspect</th>
+                                <th class="p-3 border border-gray-700">POO (Fermé)</th>
+                                <th class="p-3 border border-gray-700">Composant (Ouvert)</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 0.8em;">
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">Unité de base</td>
+                                <td class="p-3 border border-gray-700">Objet (Instance d'une classe)</td>
+                                <td class="p-3 border border-gray-700">Composant (Ensemble d'objets)</td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">Vision</td>
+                                <td class="p-3 border border-gray-700">Système clos d'interactions internes</td>
+                                <td class="p-3 border border-gray-700">Système ouvert, inter-applications</td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">Couplage</td>
+                                <td class="p-3 border border-gray-700 text-red-400">Fort (Références directes)</td>
+                                <td class="p-3 border border-gray-700 text-green-400">Faible (Interfaces et Contrats)
+                                </td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">Interopérabilité</td>
+                                <td class="p-3 border border-gray-700">Locale (Même langage/runtime)</td>
+                                <td class="p-3 border border-gray-700">Hétérogène (Multi-langages/Plateformes)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- SLIDE 9: LA LIMITATION DE L'HÉRITAGE (4) -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-red-400" style="font-size: 1.1em;">4. Le Piège de l'Héritage
+                        Objet</h2>
+                    <p class="text-2xl mb-8 italic" style="font-size: 0.8em;">L’héritage est l'une des principales
+                        sources de **rigidité** et de
+                        **couplage fort**, contredisant l'autonomie systémique.</p>
+
+                    <div class="grid grid-cols-2 gap-6 text-left" style="font-size: 0.7em;">
+                        <div class="bg-gray-800 p-4 rounded-lg border border-red-500/50">
+                            <h3 class="text-3xl font-semibold text-red-400 mb-2">Problème de l'Héritage</h3>
+                            <ul class="list-none space-y-3 text-lg" style="font-size: 0.8em;">
+                                <li class="flex items-start"><span class="text-red-400 mr-3 text-2xl">📉</span> Viole
+                                    l'autonomie des sous-systèmes.</li>
+                                <li class="flex items-start"><span class="text-red-400 mr-3 text-2xl">⛓️</span> Couplage
+                                    vertical figé (modifie le parent, casse l'enfant).</li>
+                                <li class="flex items-start"><span class="text-red-400 mr-3 text-2xl">⛓️</span> confus
+                                    Confond la Taxonomie ("est-un") avec la
+                                    Composition ("fait partie de").
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg border border-primary-blue/50">
+                            <h3 class="text-3xl font-semibold text-primary-blue mb-2">Vision Systémique (Idéale)</h3>
+                            <ul class="list-none space-y-3 text-lg" style="font-size: 0.8em;">
+                                <li class="flex items-start"><span class="text-primary-blue mr-3 text-2xl">✨</span>
+                                    Modularité.</li>
+                                <li class="flex items-start"><span class="text-primary-blue mr-3 text-2xl">✨</span>
+                                    Composition de sous-systèmes autonomes.</li>
+                                <li class="flex items-start"><span class="text-primary-blue mr-3 text-2xl">✨</span>
+                                    Souplesse des interactions (liens dynamiques).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 10: CORRECTION HÉRITAGE -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1.1em;">La Correction : Du
+                        Type
+                        à l'Interaction</h2>
+
+                    <div class="text-left mt-6" style="font-size: 0.8em;">
+                        <p class="text-xl italic mb-6">Le Composant remplace l'héritage par la **Composition** et la
+                            **Substitution** via les **Contrats**.</p>
+                    </div>
+
+                    <table class="w-full text-left border-collapse rounded-xl overflow-hidden text-lg"
+                        style="font-size: 0.6em;">
+                        <thead>
+                            <tr class="bg-primary-blue text-white">
+                                <th class="p-3 border border-gray-700">Principe</th>
+                                <th class="p-3 border border-gray-700">Héritage (POO)</th>
+                                <th class="p-3 border border-gray-700">Contrat (Composant)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">Nature de la relation</td>
+                                <td class="p-3 border border-gray-700">Relation d'essence (statique)</td>
+                                <td class="p-3 border border-gray-700">Relation fonctionnelle (dynamique)</td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">But</td>
+                                <td class="p-3 border border-gray-700">Réutilisation du Code</td>
+                                <td class="p-3 border border-gray-700">Réutilisation du Service / Module</td>
+                            </tr>
+                            <tr class="even:bg-gray-800 odd:bg-gray-700">
+                                <td class="p-3 border border-gray-700 font-semibold">Conséquence</td>
+                                <td class="p-3 border border-gray-700 text-red-400">Rigidité, Couplage Fort</td>
+                                <td class="p-3 border border-gray-700 text-green-400">Flexibilité, Assemblage
+                                    Reconfigurable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <img src="paradigmesObjetComposant.png" >
+                </section>
+
+                <!-- SLIDE 11: CONCLUSION / SYNTHÈSE -->
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1.1em;">Synthèse : De la
+                        Taxonomie à l'Écosystème</h2>
+
+                    <div class="bg-primary-blue/20 p-8 rounded-xl shadow-xl border border-primary-blue/50 mt-10">
+                        <p class="text-3xl font-extralight italic" style="font-size: 0.6em;">
+                            Le paradigme composant a libéré la systémique de sa logique d’héritage hiérarchique
+                            (ontologique) en la transposant dans une logique de **coopération contractuelle et
+                            dynamique**.
+                        </p>
+                    </div>
+
+                    <p class="mt-8 text-xl font-light" style="font-size: 0.8em;">On ne modélise plus le système interne,
+                        mais l'**orchestration**
+                        de l'écosystème de systèmes autonomes.</p>
+                         
+                </section>
+                <section>
+                    <h2 class="text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1em;">Glossaire 1/4</h2>
+                    <ul style="font-size: 0.5em;"">
+                        <li>Systémique
+                            <ul>
+                            <li>Définition : Approche scientifique et épistémologique qui étudie les systèmes
+                            comme des ensembles d’éléments en interaction.</li>
+                            <li>Contexte : Née dans les années 1950 avec Ludwig von Bertalanffy (théorie générale des
+                            systèmes).</li>
+                            <li>Idée clé : Comprendre un tout à travers les relations entre ses parties, plutôt que
+                            l’analyse isolée de chaque élément.</li>
+                            </ul>
+                        </li>
+                        <li>Système
+                            <ul>
+                            <li>Définition : Ensemble organisé d’éléments interdépendants formant une totalité
+                            cohérente, en interaction avec un environnement.</li>
+                            <li>Contexte : Concept central en systémique, repris en ingénierie, biologie, sociologie,
+                            informatique.</li>
+                            <li>Exemple : Un organisme vivant, une entreprise, un logiciel modulaire.</li>
+                            </ul>
+                        </li>
+                        <li>Paradigme
+                            <ul>
+                            <li>Définition : Ensemble cohérent de principes, de modèles et de représentations qui
+                            orientent la manière de penser ou d’agir dans une discipline.</li>
+                            <li>Contexte : Terme popularisé par Thomas Kuhn dans La structure des révolutions
+                            scientifiques (1962).</li>
+                            <li>Exemple : Le paradigme objet a remplacé le paradigme procédural.</li>
+                            </ul>
+                        </li>
+                        <li>Paradigme objet
+                            <ul>
+                            <li>Définition : Modèle de programmation et de modélisation qui conçoit un système comme un
+                            ensemble d’objets interagissant, chacun possédant un état (attributs) et un comportement
+                            (méthodes).</li>
+                            <li>Contexte : Héritier direct de la pensée systémique et du réalisme philosophique.</li>
+                            <li>Exemple : Langages Java, C++, Python (en partie).</li>
+                            </ul>
+                        </li>
+                        <li>Paradigme composant
+                            <ul>
+                            <li>Définition : Évolution du paradigme objet où les unités de construction sont des
+                            composants réutilisables, indépendants et faiblement couplés.</li>
+                            <li>Contexte : Apparu pour surmonter les limites du paradigme objet, notamment l’héritage
+                            rigide.</li>
+                            <li>Exemple : JavaBeans, CORBA, .NET, ou architectures microservices.</li>
+                            </ul>
+                        </li>
+              
+                    </ul>
+                </section>
+                <section>
+                    <h2 class=" text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1em;">Glossaire 2/4</h2>
+                        <ul style="font-size: 0.5em;"">
+                        <li>Héritage
+                            <ul>
+                            <li>Définition : Mécanisme de réutilisation de code en programmation objet qui permet à une
+                            classe de dériver d’une autre et d’en hériter les propriétés et méthodes.</li>
+                            <li>Contexte : Inspiré de la hiérarchie des espèces et des classifications logiques.</li>
+                            <li>Limite : L’héritage fort crée des dépendances structurelles rigides et freine
+                            l’évolution du code.</li>
+                            </ul>
+                        </li>    
+                        <li>Encapsulation
+                            <ul>
+                            <li>Définition : Principe selon lequel un objet masque son état interne et n’expose qu’une
+                            interface publique pour interagir avec lui.</li>
+                            <li>Contexte : Fondement de la modularité et de la cohésion en POO (Programmation Orientée
+                            Objet).</li>
+                            </ul>
+                        </li>
+                        <li>Couplage
+                            <ul>
+                            <li>Définition : Degré de dépendance entre deux composants ou objets.</li>
+                            <li>Contexte : Un faible couplage est souhaitable pour assurer la flexibilité et la
+                            réutilisabilité.</li>
+                            </ul>
+                        </li>
+                        <li>Cohésion
+                            <ul>
+                            <li>Définition : Degré de solidarité entre les éléments internes d’un module ou d’un
+                            composant.</li>
+                            <li>Contexte : Une forte cohésion indique que le composant a une responsabilité bien
+                            délimitée.</li>
+                            </ul>
+                        </li>
+                        <li>Abstraction
+                            <ul>
+                            <li>Définition : Processus de sélection des caractéristiques essentielles d’un objet ou
+                            système, en ignorant les détails non pertinents.</li>
+                            <li>Contexte : Outil conceptuel fondamental dans la modélisation et l’architecture
+                            logicielle.</li>
+                            </ul>
+                        </li>
+                        <li>Réutilisabilité
+                            <ul>
+                            <li>Définition : Capacité d’un élément logiciel (classe, composant, service) à être utilisé
+                            dans différents contextes sans modification majeure.</li>
+                            <li>Contexte : Objectif central des paradigmes objet et composant.</li>
+                            </ul>
+                        </li>
+                      
+                    </ul>
+                </section>
+                <section>
+                    <h2 class=" text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1em;">Glossaire 3/4</h2>
+                            <ul style="font-size: 0.5em;"">
+                          <li>Interopérabilité
+                            <ul>
+                            <li>>Définition : Aptitude de systèmes différents à échanger et comprendre mutuellement des
+                            informations.</li
+                            <li>Contexte : En ingénierie logicielle, la compositionalité favorise l’interopérabilité
+                            entre composants.</li>
+                            </ul>
+                        </li>
+                        <li>Composant logiciel
+                            <ul>
+                            <li>Définition : Élément autonome fournissant un ensemble de services via une interface bien
+                            définie, et pouvant être assemblé avec d’autres pour former un système.</li>
+                            <li>Contexte : Notion clé de l’ingénierie logicielle moderne et des architectures orientées
+                            services.</li>
+                            </ul>
+                        </li>
+                        <li>Hiérarchie (en programmation)
+                            <ul>
+                            <li>Définition : Organisation des classes ou des types selon des relations d’héritage,
+                            formant souvent un arbre.</li>
+                            <li>Contexte : Très utilisée en POO, mais parfois trop rigide pour les systèmes évolutifs.</li>
+                            </ul>
+                        </li>
+                        <li>Polymorphisme
+                            <ul>
+                            <li>Définition : Capacité d’un objet à prendre plusieurs formes selon le contexte
+                            d’exécution, typiquement via une interface commune.</li>
+                            <li>Contexte : Permet la substitution d’un type par un autre compatible, mais peut être mal
+                            maîtrisé dans des hiérarchies complexes.</li>
+                            </ul>
+                        </li>
+                                <li>Composition
+                                    <ul>
+                            <li>Définition : Principe d’assemblage d’objets ou de composants pour former un système,
+                            sans dépendre d’une relation d’héritage.</li>
+                            </ul>
+                        </li>
+                        <li>Ségrégation des responsabilités
+                            <ul>
+                            <li>Définition : Principe consistant à découper un système en unités spécialisées dans un
+                            rôle unique.</li>
+                            <li>Contexte : Hérité de la pensée systémique, formalisé en ingénierie logicielle par les
+                            principes SOLID.</li>
+                            </ul>
+                        </li>
+                            </ul>
+                </section>
+                <section>
+                    <h2 class=" text-5xl font-bold mb-8 text-primary-blue" style="font-size: 1em;">Glossaire 4/4</h2>
+                                <ul style="font-size: 0.5em;"">
+                        <li>Sémantique
+                            <ul>
+                            <li>Définition : Étude du sens ou de la signification des structures, qu’elles soient
+                            linguistiques, logiques ou informatiques.</li>
+                            <li>Contexte : En programmation, désigne la signification exacte d’une construction
+                            (exécution, effets, etc.).</li>
+                            </ul>
+                        </li>
+                        <li>Émergence
+                            <ul>
+                            <li>Définition : Propriété d’un système global qui ne peut être réduite à la somme de ses
+                            parties.</li>
+                            <li>Contexte : Notion systémique essentielle, reprise en modélisation complexe et en
+                            conception logicielle.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </section>
+            </section>
+            <!-- Slide 1 : Titre -->
+            <section>
+                <section>
+                    <h1 style=" font-size: 1.5em;">UML et modélisation systémique</h1>
+                                    <p>Principes, concepts abstraits et langages visuels</p>
+                </section>
+
+                <!-- Slide 2 : Objectifs du cours -->
+                <section>
+                    <h2 style="font-size: 1.5em;">Objectifs de la section</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li>Comprendre UML comme langage de concepts</li>
+                        <li>Distinguer modèle abstrait et diagrammes</li>
+                        <li>Découvrir l’évolution paradigme objet → composant → containers</li>
+                        <li>Pratiquer la modélisation systémique avec différents diagrammes</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 3 : Pourquoi modéliser -->
+                <section>
+                    <h2 style="font-size: 1.5em;">Pourquoi modéliser ?</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li>Complexité des systèmes</li>
+                        <li>Communication entre acteurs et équipes</li>
+                        <li>Réutilisation et maintenance</li>
+                        <li>Validation et cohérence des conceptions</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 4 : Notion de systémique -->
+                <section>
+                    <h2 style="font-size: 1.5em;">La systémique</h2>
+                    <h3 style="font-size: 1em;">Penser les systèmes dans leur ensemble</h3>
+                    <ul style="font-size: 0.8em;">
+                        <li>Composants, interactions, hiérarchie</li>
+                        <li>Flux d’information et dépendances</li>
+                        <li>Systèmes complexes et hétérogènes</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 5 : Évolution paradigmes -->
+                <section>
+                    <h2 style="font-size: 1em;">Évolution des paradigmes</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li><strong>Objet :</strong> classes, héritage, réutilisation limitée</li>
+                        <li><strong>Composant :</strong> composants, interfaces, ports</li>
+                        <li>Containers et policies techniques pour héberger logique métier</li>
+                    </ul>
+
+                </section>
+
+                <!-- Slide 6 : Concepts UML -->
+                <section>
+                    <h2 style="font-size: 1em;">UML : concepts abstraits</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li>Classes, composants, ports, relations, activités</li>
+                        <li>Contraintes et cohérence</li>
+                        <li>Diagrammes = vues partielles du modèle abstrait</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 7 : Modèle abstrait vs diagrammes -->
+               
+
+                <!-- Slide 8 : Langage visuel UML -->
+                <section>
+                    <h2 style="font-size: 1em;">Langage visuel et syntaxe</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li>Symboles = mots</li>
+                        <li>Compositions = phrases</li>
+                        <li>Diagrammes = paragraphes</li>
+                        <li>Grammaire = règles de combinaison et compatibilité</li>
+                    </ul>
+
+                </section>
+
+                <!-- Slide 9 : Containers -->
+                <section>
+                    <h2 style="font-size: 1em;">Containers et déploiement</h2>
+                    <ul style="font-size: 0.8em;">
+                        <li>Hébergent composants avec logique métier</li>
+                        <li>Ports, interfaces et communication</li>
+                        <li>Application de policies techniques</li>
+                    </ul>
+
+                </section>
+
+                <!-- Slide 10 : Outils UML -->
+                <section>
+                    <h2 style="font-size: 1em;">Outils UML</h2>
+                    <table border="1" cellpadding="5" style="font-size: 0.6em;">
+                        <tr>
+                            <th>Type</th>
+                            <th>Focus</th>
+                            <th>Exemple</th>
+                        </tr>
+                        <tr>
+                            <td>Dessin manuel</td>
+                            <td>Diagrammes graphiques</td>
+                            <td>Draw.io, Visio, Yed</td>
+                        </tr>
+                        <tr>
+                            <td>Texte → diagramme</td>
+                            <td>Génération automatique</td>
+                            <td>PlantUML, Mermaid</td>
+                        </tr>
+                        <tr>
+                            <td>Atelier de modélisation</td>
+                            <td>Manipulation du modèle abstrait</td>
+                            <td>MagicDraw, Sparx EA, Papyrus, Modelio, Magic Draw</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- Slide 11 : Diagramme de classes simple -->
+                <section>
+                    <h2 style="font-size: 1em;">Exemple : diagramme de classes</h2>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        contentStyleType="text/css" data-diagram-type="CLASS" height="317px" preserveAspectRatio="none"
+                        style="width:368px;height:317px;background:#FFFFFF;" version="1.1" viewBox="0 0 368 317"
+                        width="368px" zoomAndPan="magnify">
+                        <defs />
+                        <g><!--class Personne-->
+                            <g class="entity" data-entity="Personne" data-source-line="3" data-uid="ent0002"
+                                id="entity_Personne">
+                                <rect fill="#F1F1F1" height="96.8906" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="206.8447" x="68.5" y="7" />
+                                <ellipse cx="135.1572" cy="23" fill="#ADD1B2" rx="11" ry="11"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <path
+                                    d="M138.126,28.6406 Q137.5479,28.9375 136.9072,29.0781 Q136.2666,29.2344 135.5635,29.2344 Q133.0635,29.2344 131.7354,27.5938 Q130.4229,25.9375 130.4229,22.8125 Q130.4229,19.6875 131.7354,18.0313 Q133.0635,16.375 135.5635,16.375 Q136.2666,16.375 136.9072,16.5313 Q137.5635,16.6875 138.126,16.9844 L138.126,19.7031 Q137.501,19.125 136.9072,18.8594 Q136.3135,18.5781 135.6885,18.5781 Q134.3447,18.5781 133.6572,19.6563 Q132.9697,20.7188 132.9697,22.8125 Q132.9697,24.9063 133.6572,25.9844 Q134.3447,27.0469 135.6885,27.0469 Q136.3135,27.0469 136.9072,26.7813 Q137.501,26.5 138.126,25.9219 L138.126,28.6406 Z "
+                                    fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="65.0303" x="155.6572" y="27.8467">Personne</text>
+                                <line style="stroke:#181818;stroke-width:0.5;" x1="69.5" x2="274.3447" y1="39"
+                                    y2="39" />
+                                <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1;" width="6" x="76.5"
+                                    y="49.6484" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="86.4746" x="88.5" y="55.9951">nom : String</text>
+                                <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1;" width="6" x="76.5"
+                                    y="65.9453" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="109.7305" x="88.5" y="72.292">prenom :
+                                    String</text>
+                                <line style="stroke:#181818;stroke-width:0.5;" x1="69.5" x2="274.3447" y1="79.5938"
+                                    y2="79.5938" />
+                                <ellipse cx="79.5" cy="93.2422" fill="#84BE84" rx="3" ry="3"
+                                    style="stroke:#038048;stroke-width:1;" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="180.8447"
+                                    x="88.5" y="96.5889">getNomComplet() : String</text>
+                            </g><!--class Voiture-->
+                            <g class="entity" data-entity="Voiture" data-source-line="9" data-uid="ent0003"
+                                id="entity_Voiture">
+                                <rect fill="#F1F1F1" height="129.4844" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="135.7441" x="7" y="181" />
+                                <ellipse cx="45.8412" cy="197" fill="#ADD1B2" rx="11" ry="11"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <path
+                                    d="M48.81,202.6406 Q48.2318,202.9375 47.5912,203.0781 Q46.9506,203.2344 46.2475,203.2344 Q43.7475,203.2344 42.4193,201.5938 Q41.1068,199.9375 41.1068,196.8125 Q41.1068,193.6875 42.4193,192.0313 Q43.7475,190.375 46.2475,190.375 Q46.9506,190.375 47.5912,190.5313 Q48.2475,190.6875 48.81,190.9844 L48.81,193.7031 Q48.185,193.125 47.5912,192.8594 Q46.9975,192.5781 46.3725,192.5781 Q45.0287,192.5781 44.3412,193.6563 Q43.6537,194.7188 43.6537,196.8125 Q43.6537,198.9063 44.3412,199.9844 Q45.0287,201.0469 46.3725,201.0469 Q46.9975,201.0469 47.5912,200.7813 Q48.185,200.5 48.81,199.9219 L48.81,202.6406 Z "
+                                    fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="50.7637" x="65.1393" y="201.8467">Voiture</text>
+                                <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="141.7441" y1="213" y2="213" />
+                                <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1;" width="6" x="15"
+                                    y="223.6484" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="109.7441" x="27" y="229.9951">marque :
+                                    String</text>
+                                <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1;" width="6" x="15"
+                                    y="239.9453" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="107.6045" x="27" y="246.292">modele :
+                                    String</text>
+                                <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1;" width="6" x="15"
+                                    y="256.2422" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="107.5293" x="27" y="262.5889">annee :
+                                    Integer</text>
+                                <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="141.7441" y1="269.8906"
+                                    y2="269.8906" />
+                                <ellipse cx="18" cy="283.5391" fill="#84BE84" rx="3" ry="3"
+                                    style="stroke:#038048;stroke-width:1;" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76.5215"
+                                    x="27" y="286.8857">demarrer()</text>
+                                <ellipse cx="18" cy="299.8359" fill="#84BE84" rx="3" ry="3"
+                                    style="stroke:#038048;stroke-width:1;" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.4863"
+                                    x="27" y="303.1826">arreter()</text>
+                            </g><!--class Conducteur-->
+                            <g class="entity" data-entity="Conducteur" data-source-line="23" data-uid="ent0005"
+                                id="entity_Conducteur">
+                                <rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="183.3496" x="178.5" y="213.5" />
+                                <ellipse cx="225.2236" cy="229.5" fill="#ADD1B2" rx="11" ry="11"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <path
+                                    d="M228.1924,235.1406 Q227.6143,235.4375 226.9736,235.5781 Q226.333,235.7344 225.6299,235.7344 Q223.1299,235.7344 221.8018,234.0938 Q220.4893,232.4375 220.4893,229.3125 Q220.4893,226.1875 221.8018,224.5313 Q223.1299,222.875 225.6299,222.875 Q226.333,222.875 226.9736,223.0313 Q227.6299,223.1875 228.1924,223.4844 L228.1924,226.2031 Q227.5674,225.625 226.9736,225.3594 Q226.3799,225.0781 225.7549,225.0781 Q224.4111,225.0781 223.7236,226.1563 Q223.0361,227.2188 223.0361,229.3125 Q223.0361,231.4063 223.7236,232.4844 Q224.4111,233.5469 225.7549,233.5469 Q226.3799,233.5469 226.9736,233.2813 Q227.5674,233 228.1924,232.4219 L228.1924,235.1406 Z "
+                                    fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="81.4023" x="245.7236"
+                                    y="234.3467">Conducteur</text>
+                                <line style="stroke:#181818;stroke-width:0.5;" x1="179.5" x2="360.8496" y1="245.5"
+                                    y2="245.5" />
+                                <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1;" width="6" x="186.5"
+                                    y="256.1484" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="157.3496" x="198.5" y="262.4951">numeroPermis :
+                                    String</text>
+                                <line style="stroke:#181818;stroke-width:0.5;" x1="179.5" x2="360.8496" y1="269.7969"
+                                    y2="269.7969" />
+                            </g><!--reverse link Personne to Voiture-->
+                            <g class="link" data-entity-1="Personne" data-entity-2="Voiture" data-source-line="20"
+                                data-uid="lnk4" id="link_Personne_Voiture">
+                                <path codeLine="20" d="M141.7695,115.0951 C129.8195,138.2651 120.8,155.73 107.92,180.69"
+                                    fill="none" id="Personne-backto-Voiture" style="stroke:#181818;stroke-width:1;" />
+                                <polygon fill="none"
+                                    points="147.27,104.43,140.9647,107.929,141.7695,115.0951,148.0748,111.5961,147.27,104.43"
+                                    style="stroke:#181818;stroke-width:1;" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53.9995"
+                                    x="131" y="147.0669">poss&#232;de</text><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271"
+                                    x="135.438" y="124.0959">1</text><text fill="#000000" font-family="sans-serif"
+                                    font-size="13" lengthAdjust="spacing" textLength="8.271" x="103.1119"
+                                    y="169.8288">1</text>
+                            </g><!--reverse link Personne to Conducteur-->
+                            <g class="link" data-entity-1="Personne" data-entity-2="Conducteur" data-source-line="24"
+                                data-uid="lnk6" id="link_Personne_Conducteur">
+                                <path d="M205.3025,120.3904 C223.1725,154.6604 238.37,183.82 253.82,213.47" fill="none"
+                                    id="Personne-backto-Conducteur" style="stroke:#181818;stroke-width:1;" />
+                                <polygon fill="none"
+                                    points="196.98,104.43,199.9824,123.1646,210.6227,117.6163,196.98,104.43"
+                                    style="stroke:#181818;stroke-width:1;" />
+                            </g>
+                            <!--SRC=[PL6xJiGm4Epp5QjhaWXIfBtsQ6WG4eBUEY_6aktDhTSI4k9VACbtvCTm30vmLtbdrZFxQk5ccPzji68fWCO8HwTYnDWq9O1xv4WX8Bmr00C4yh271s4RJ24cnZFk2WpA7Va3-ScXTFrlyhswFf6LnDNKApub_E_hIQCxurJkOwLkWw11BhKqPZKZTts1Qom5vLhjnN2CJgqWhid7FDKstaGnBfyQ8MLGs-kKuMKsHNAzYM64vGF6ljd4kt47D0pbhThzPbbhgIIP_zvlJYO6wroAcMHmxSioinLby6T51mew7GNpDtmL3Fho5iaZKoQzZNzs_0K0]-->
+                        </g>
+                    </svg>
+
+                </section>
+
+                <!-- Slide 12 : Diagramme composite -->
+                <section>
+                    <h2 style="font-size: 1em;">Diagramme composite avec ports typés</h2>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        contentStyleType="text/css" data-diagram-type="DESCRIPTION" height="515px"
+                        preserveAspectRatio="none" style="width:743px;height:515px;background:#FFFFFF;" version="1.1"
+                        viewBox="0 0 743 515" width="743px" zoomAndPan="magnify">
+                        <defs />
+                        <g><!--cluster NavSystem-->
+                            <g class="cluster" data-entity="NavSystem" data-source-line="2" data-uid="ent0002"
+                                id="cluster_NavSystem">
+                                <rect fill="none" height="467" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1;"
+                                    width="661.5" x="76.35" y="42.0986" />
+                                <rect fill="none" height="10" style="stroke:#181818;stroke-width:1;" width="15"
+                                    x="717.85" y="47.0986" />
+                                <rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="715.85"
+                                    y="49.0986" />
+                                <rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="715.85"
+                                    y="53.0986" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    font-weight="bold" lengthAdjust="spacing" textLength="182.7109" x="315.7445"
+                                    y="68.0938">Syst&#232;me de Navigation</text>
+                            </g><!--cluster GPS-->
+                            <g class="cluster" data-entity="GPS" data-source-line="9" data-uid="ent0005"
+                                id="cluster_GPS">
+                                <rect fill="none" height="129.5" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:1;" width="126" x="293.85" y="260.0986" />
+                                <rect fill="none" height="10" style="stroke:#181818;stroke-width:1;" width="15"
+                                    x="399.85" y="265.0986" />
+                                <rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="397.85"
+                                    y="267.0986" />
+                                <rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="397.85"
+                                    y="271.0986" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    font-weight="bold" lengthAdjust="spacing" textLength="99.5107" x="307.0946"
+                                    y="286.0938">Capteur GPS</text>
+                            </g><!--cluster Processor-->
+                            <g class="cluster" data-entity="Processor" data-source-line="14" data-uid="ent0007"
+                                id="cluster_Processor">
+                                <rect fill="none" height="121" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1;"
+                                    width="169" x="481.85" y="356.0986" />
+                                <rect fill="none" height="10" style="stroke:#181818;stroke-width:1;" width="15"
+                                    x="630.85" y="361.0986" />
+                                <rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="628.85"
+                                    y="363.0986" />
+                                <rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="628.85"
+                                    y="367.0986" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    font-weight="bold" lengthAdjust="spacing" textLength="159.2158" x="486.7421"
+                                    y="382.0938">Unit&#233; de Traitement</text>
+                            </g>
+                            <g class="entity" data-entity="P_IN" data-source-line="5" data-uid="ent0003"
+                                id="entity_P_IN"><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="112.2529" x="38.2235" y="20.7969">Donn&#233;es
+                                    Entr&#233;e</text>
+                                <rect fill="#F1F1F1" height="12" style="stroke:#181818;stroke-width:1.5;" width="12"
+                                    x="88.35" y="36.0986" />
+                            </g>
+                            <g class="entity" data-entity="P_OUT" data-source-line="6" data-uid="ent0004"
+                                id="entity_P_OUT"><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="111.624" x="161.538" y="20.7969">Affichage
+                                    Sortie</text>
+                                <rect fill="#F1F1F1" height="12" style="stroke:#181818;stroke-width:1.5;" width="12"
+                                    x="211.35" y="36.0986" />
+                            </g>
+                            <g class="entity" data-entity="GPS_P_OUT" data-source-line="10" data-uid="ent0006"
+                                id="entity_GPS_P_OUT"><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="84.8408" x="359.4296" y="238.7969">Position
+                                    Out</text>
+                                <rect fill="#F1F1F1" height="12" style="stroke:#181818;stroke-width:1.5;" width="12"
+                                    x="395.85" y="254.0986" />
+                            </g>
+                            <g class="entity" data-entity="PROC_P_IN" data-source-line="15" data-uid="ent0008"
+                                id="entity_PROC_P_IN"><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="79.0645" x="481.8178" y="334.7969">Donn&#233;es
+                                    In</text>
+                                <rect fill="#F1F1F1" height="12" style="stroke:#181818;stroke-width:1.5;" width="12"
+                                    x="515.35" y="350.0986" />
+                            </g>
+                            <g class="entity" data-entity="PROC_P_OUT" data-source-line="16" data-uid="ent0009"
+                                id="entity_PROC_P_OUT"><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="69.583" x="575.0585" y="334.7969">&#201;cran
+                                    Out</text>
+                                <rect fill="#F1F1F1" height="12" style="stroke:#181818;stroke-width:1.5;" width="12"
+                                    x="603.85" y="350.0986" />
+                            </g><!--link GPS_P_OUT to PROC_P_IN-->
+                            <g class="link" data-entity-1="GPS_P_OUT" data-entity-2="PROC_P_IN" data-source-line="22"
+                                data-uid="lnk10" id="link_GPS_P_OUT_PROC_P_IN">
+                                <path d="M407.97,265.8886 C428.41,281.8986 489.527,329.7782 510.587,346.2782"
+                                    fill="none" id="GPS_P_OUT-to-PROC_P_IN" style="stroke:#181818;stroke-width:1;" />
+                                <polygon fill="#181818"
+                                    points="515.31,349.9786,510.6924,341.2794,511.3741,346.895,505.7585,347.5767,515.31,349.9786"
+                                    style="stroke:#181818;stroke-width:1;" />
+                            </g><!--link P_IN to GPS-->
+                            <g class="link" data-entity-1="P_IN" data-entity-2="GPS" data-source-line="26"
+                                data-uid="lnk11" id="link_P_IN_GPS">
+                                <path
+                                    d="M91.74,48.2686 C75.78,75.5386 6,204.2286 63.85,278.0986 C79.35,297.8936 122.6075,313.2936 172.1562,324.9399 C196.9306,330.763 223.2778,335.6477 248.5145,339.6741 C261.1329,341.6873 273.4736,343.4859 285.2013,345.08 C286.6673,345.2793 288.1237,345.4753 289.5698,345.6682 C290.2929,345.7647 291.0134,345.8603 291.7313,345.9552 C292.0903,346.0026 286.4998,345.2674 286.8574,345.3145"
+                                    fill="none" id="P_IN-to-GPS"
+                                    style="stroke:#181818;stroke-width:1;stroke-dasharray:7.0,7.0;" />
+                                <polygon fill="#181818"
+                                    points="292.8061,346.0969,284.4046,340.9574,287.8488,345.4449,283.3614,348.8891,292.8061,346.0969"
+                                    style="stroke:#181818;stroke-width:1;" />
+                            </g><!--link Processor to P_OUT-->
+                            <g class="link" data-entity-1="Processor" data-entity-2="P_OUT" data-source-line="30"
+                                data-uid="lnk12" id="link_Processor_P_OUT">
+                                <path
+                                    d="M650.9174,414.9825 C652.882,413.3134 654.7714,411.5592 656.5591,409.7175 C660.1344,406.0343 663.3025,402.0011 665.85,397.5986 C696.25,345.0486 670.85,321.8086 670.85,261.0986 C670.85,181.0986 670.85,181.0986 670.85,181.0986 C670.85,82.8486 282.0007,48.2499 229.5607,44.0299"
+                                    fill="none" id="Processor-to-P_OUT"
+                                    style="stroke:#181818;stroke-width:1;stroke-dasharray:7.0,7.0;" />
+                                <polygon fill="#181818"
+                                    points="223.58,43.5486,232.2301,48.2577,228.5639,43.9497,232.8719,40.2834,223.58,43.5486"
+                                    style="stroke:#181818;stroke-width:1;" />
+                            </g>
+                            <!--link NavSystem to P_IN--><!--link NavSystem to P_OUT--><!--SRC=[XPJDYjim4CVlVeeX5oVG1DhU5vRiKXQs6zDiJgK4hQKa0aSoahoqb3v0twB7kg-X5-kCPFbZDxIdsF9y_EO_VoM76zyUf99EQWMyWLAVQssPSb0RgKfPioeBPqhWsMpxpJh_-oo02tXWp_B8A746pD8hVHLd-9vb0Fcqih1GQECit7vrmYXydNCjdwce_-EC0EOSAq- -jS0QUDA6JsWMMB76V9ZTQALyY_ctoXby2BsB_Tr37t5zECZon8u2jlWkKyHcztYPgszYGQe4Lp1AjTHtDFwQrKuq1ZuKsr0LVt5QWDIwq3RMtJGk1UnZQmhAuLvSZ1JMfTuqFcPX_8zisdo7pBubvHyDaoWqdiRPZ2w5jTfCM7gXxk9-Ya-RzRuJAiNudwLX0sqNCiQr8TA-A2TUv5gjt20UJj0ZfJboUBk2DTOGPL2GvzVMYlDJHNkQuoHeWUhoCXPPfnofVT2DGHr2B4z8d5Jjz1oQOnlCx3S0o-NLI8HGzDsKIP0tAjz6LwC9IAJEi43PmHIeG3X9N2CGqPkRUYoYBZpMR484uerC1FCwbfH3ISg4rUegk22qUFyVoWbLu1nnz-hXPR5DvPYZYpL8z0eXc75W9k9W5fwp_cBDWwA1jlSU8KVluC9pI0PNmQVXeaKd3HhLk4ieAbpsxkFz6oX5nO19dC__0dmiAmJpxI8R_bcMdq-ISw6-67aykMMyz__wZ3X_0G00]-->
+                        </g>
+                    </svg>
+
+                </section>
+
+                <!-- Slide 13 : Diagramme de séquence -->
+                <section>
+                    <h2 style="font-size: 1em;">Diagramme de séquence</h2>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        contentStyleType="text/css" data-diagram-type="SEQUENCE" height="715px"
+                        preserveAspectRatio="none" style="width:900px;height:600px;background:#FFFFFF;" version="1.1"
+                        viewBox="0 0 995 715" width="995px" zoomAndPan="magnify">
+                        <title>S&#233;quence de Connexion Utilisateur</title>
+                        <defs />
+                        <g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold"
+                                lengthAdjust="spacing" textLength="276.9922" x="360.2747" y="27.9951">S&#233;quence de
+                                Connexion Utilisateur</text>
+                            <g>
+                                <title>Interface Utilisateur</title>
+                                <rect fill="#FFFFFF" height="433.3359" style="stroke:#181818;stroke-width:1;" width="10"
+                                    x="372.689" y="149.7266" />
+                            </g>
+                            <g>
+                                <title>Contr&#244;leur de Connexion</title>
+                                <rect fill="#FFFFFF" height="404.2031" style="stroke:#181818;stroke-width:1;" width="10"
+                                    x="619.9468" y="178.8594" />
+                            </g>
+                            <g>
+                                <title>Base de Donn&#233;es (BDD)</title>
+                                <rect fill="#FFFFFF" height="375.0703" style="stroke:#181818;stroke-width:1;" width="10"
+                                    x="886.2202" y="207.9922" />
+                            </g>
+                            <rect fill="none" height="353.0703" style="stroke:#000000;stroke-width:1.5;"
+                                width="978.5415" x="10" y="222.9922" />
+                            <rect fill="none" height="148.4688" style="stroke:#000000;stroke-width:1.5;"
+                                width="709.3818" x="20" y="318.3906" />
+                            <g>
+                                <title>Utilisateur</title>
+                                <rect fill="#000000" fill-opacity="0.00000" height="516.6016" width="8" x="65.0049"
+                                    y="118.5938" />
+                                <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="69" x2="69"
+                                    y1="118.5938" y2="635.1953" />
+                            </g>
+                            <g>
+                                <title>Interface Utilisateur</title>
+                                <rect fill="#000000" fill-opacity="0.00000" height="516.6016" width="8" x="373.689"
+                                    y="118.5938" />
+                                <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="377.1196"
+                                    x2="377.1196" y1="118.5938" y2="635.1953" />
+                            </g>
+                            <g>
+                                <title>Contr&#244;leur de Connexion</title>
+                                <rect fill="#000000" fill-opacity="0.00000" height="516.6016" width="8" x="620.9468"
+                                    y="118.5938" />
+                                <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="624.5117"
+                                    x2="624.5117" y1="118.5938" y2="635.1953" />
+                            </g>
+                            <g>
+                                <title>Base de Donn&#233;es (BDD)</title>
+                                <rect fill="#000000" fill-opacity="0.00000" height="516.6016" width="8" x="887.2202"
+                                    y="118.5938" />
+                                <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="890.8989"
+                                    x2="890.8989" y1="118.5938" y2="635.1953" />
+                            </g>
+                            <g class="participant participant-head" data-participant="Utilisateur"><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.0098"
+                                    x="30" y="115.292">Utilisateur</text>
+                                <ellipse cx="69.0049" cy="50.7969" fill="#E2E2F0" rx="8" ry="8"
+                                    style="stroke:#181818;stroke-width:0.5;" />
+                                <path
+                                    d="M69.0049,58.7969 L69.0049,85.7969 M56.0049,66.7969 L82.0049,66.7969 M69.0049,85.7969 L56.0049,100.7969 M69.0049,85.7969 L82.0049,100.7969"
+                                    fill="none" style="stroke:#181818;stroke-width:0.5;" />
+                            </g>
+                            <g class="participant participant-tail" data-participant="Utilisateur"><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.0098"
+                                    x="30" y="647.1904">Utilisateur</text>
+                                <ellipse cx="69.0049" cy="658.9922" fill="#E2E2F0" rx="8" ry="8"
+                                    style="stroke:#181818;stroke-width:0.5;" />
+                                <path
+                                    d="M69.0049,666.9922 L69.0049,693.9922 M56.0049,674.9922 L82.0049,674.9922 M69.0049,693.9922 L56.0049,708.9922 M69.0049,693.9922 L82.0049,708.9922"
+                                    fill="none" style="stroke:#181818;stroke-width:0.5;" />
+                            </g>
+                            <g class="participant participant-head" data-participant="UI">
+                                <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="153.1387" x="301.1196"
+                                    y="87.2969" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="139.1387" x="308.1196" y="107.292">Interface
+                                    Utilisateur</text>
+                            </g>
+                            <g class="participant participant-tail" data-participant="UI">
+                                <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="153.1387" x="301.1196"
+                                    y="634.1953" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="139.1387" x="308.1196" y="654.1904">Interface
+                                    Utilisateur</text>
+                            </g>
+                            <g class="participant participant-head" data-participant="Controller">
+                                <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="188.8701" x="530.5117"
+                                    y="87.2969" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="174.8701" x="537.5117"
+                                    y="107.292">Contr&#244;leur de Connexion</text>
+                            </g>
+                            <g class="participant participant-tail" data-participant="Controller">
+                                <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5"
+                                    style="stroke:#181818;stroke-width:0.5;" width="188.8701" x="530.5117"
+                                    y="634.1953" /><text fill="#000000" font-family="sans-serif" font-size="14"
+                                    lengthAdjust="spacing" textLength="174.8701" x="537.5117"
+                                    y="654.1904">Contr&#244;leur de Connexion</text>
+                            </g>
+                            <g class="participant participant-head" data-participant="DB"><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168.6426"
+                                    x="803.8989" y="115.292">Base de Donn&#233;es (BDD)</text>
+                                <path
+                                    d="M873.2202,66.2969 C873.2202,56.2969 891.2202,56.2969 891.2202,56.2969 C891.2202,56.2969 909.2202,56.2969 909.2202,66.2969 L909.2202,92.2969 C909.2202,102.2969 891.2202,102.2969 891.2202,102.2969 C891.2202,102.2969 873.2202,102.2969 873.2202,92.2969 L873.2202,66.2969"
+                                    fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;" />
+                                <path
+                                    d="M873.2202,66.2969 C873.2202,76.2969 891.2202,76.2969 891.2202,76.2969 C891.2202,76.2969 909.2202,76.2969 909.2202,66.2969"
+                                    fill="none" style="stroke:#181818;stroke-width:1.5;" />
+                            </g>
+                            <g class="participant participant-tail" data-participant="DB"><text fill="#000000"
+                                    font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168.6426"
+                                    x="803.8989" y="647.1904">Base de Donn&#233;es (BDD)</text>
+                                <path
+                                    d="M873.2202,660.4922 C873.2202,650.4922 891.2202,650.4922 891.2202,650.4922 C891.2202,650.4922 909.2202,650.4922 909.2202,660.4922 L909.2202,686.4922 C909.2202,696.4922 891.2202,696.4922 891.2202,696.4922 C891.2202,696.4922 873.2202,696.4922 873.2202,686.4922 L873.2202,660.4922"
+                                    fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;" />
+                                <path
+                                    d="M873.2202,660.4922 C873.2202,670.4922 891.2202,670.4922 891.2202,670.4922 C891.2202,670.4922 909.2202,670.4922 909.2202,660.4922"
+                                    fill="none" style="stroke:#181818;stroke-width:1.5;" />
+                            </g>
+                            <g>
+                                <title>Interface Utilisateur</title>
+                                <rect fill="#FFFFFF" height="433.3359" style="stroke:#181818;stroke-width:1;" width="10"
+                                    x="372.689" y="149.7266" />
+                            </g>
+                            <g>
+                                <title>Contr&#244;leur de Connexion</title>
+                                <rect fill="#FFFFFF" height="404.2031" style="stroke:#181818;stroke-width:1;" width="10"
+                                    x="619.9468" y="178.8594" />
+                            </g>
+                            <g>
+                                <title>Base de Donn&#233;es (BDD)</title>
+                                <rect fill="#FFFFFF" height="375.0703" style="stroke:#181818;stroke-width:1;" width="10"
+                                    x="886.2202" y="207.9922" />
+                            </g>
+                            <g class="message" data-participant-1="Utilisateur" data-participant-2="UI">
+                                <polygon fill="#181818"
+                                    points="360.689,145.7266,370.689,149.7266,360.689,153.7266,364.689,149.7266"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="69.0049" x2="366.689" y1="149.7266"
+                                    y2="149.7266" /><text fill="#000000" font-family="sans-serif" font-size="13"
+                                    lengthAdjust="spacing" textLength="135.5352" x="76.0049" y="144.6606">1.
+                                    Saisir(Identifiants)</text>
+                            </g>
+                            <g class="message" data-participant-1="UI" data-participant-2="Controller">
+                                <polygon fill="#181818"
+                                    points="607.9468,174.8594,617.9468,178.8594,607.9468,182.8594,611.9468,178.8594"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="382.689" x2="613.9468" y1="178.8594"
+                                    y2="178.8594" /><text fill="#000000" font-family="sans-serif" font-size="13"
+                                    lengthAdjust="spacing" textLength="218.2578" x="389.689" y="173.7935">2.
+                                    Demander(Valider Identifiants)</text>
+                            </g>
+                            <g class="message" data-participant-1="Controller" data-participant-2="DB">
+                                <polygon fill="#181818"
+                                    points="874.2202,203.9922,884.2202,207.9922,874.2202,211.9922,878.2202,207.9922"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="629.9468" x2="880.2202" y1="207.9922"
+                                    y2="207.9922" /><text fill="#000000" font-family="sans-serif" font-size="13"
+                                    lengthAdjust="spacing" textLength="152.9341" x="636.9468" y="202.9263">3.
+                                    Chercher(Utilisateur)</text>
+                            </g>
+                            <path
+                                d="M10,222.9922 L74.4429,222.9922 L74.4429,230.125 L64.4429,240.125 L10,240.125 L10,222.9922"
+                                fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;" />
+                            <rect fill="none" height="353.0703" style="stroke:#000000;stroke-width:1.5;"
+                                width="978.5415" x="10" y="222.9922" /><text fill="#000000" font-family="sans-serif"
+                                font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="25"
+                                y="236.0591">alt</text><text fill="#000000" font-family="sans-serif" font-size="11"
+                                font-weight="bold" lengthAdjust="spacing" textLength="120.0332" x="89.4429"
+                                y="235.2026">[Utilisateur trouv&#233;]</text>
+                            <g class="message" data-participant-1="DB" data-participant-2="Controller">
+                                <polygon fill="#181818"
+                                    points="640.9468,257.2578,630.9468,261.2578,640.9468,265.2578,636.9468,261.2578"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="634.9468"
+                                    x2="885.2202" y1="261.2578" y2="261.2578" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="232.2734"
+                                    x="646.9468" y="256.1919">4. Renvoyer(Hash du Mot de Passe)</text>
+                            </g>
+                            <g class="message" data-participant-1="Controller" data-participant-2="Controller">
+                                <line style="stroke:#181818;stroke-width:1;" x1="629.9468" x2="671.9468" y1="290.3906"
+                                    y2="290.3906" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="671.9468" x2="671.9468" y1="290.3906"
+                                    y2="303.3906" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="630.9468" x2="671.9468" y1="303.3906"
+                                    y2="303.3906" />
+                                <polygon fill="#181818"
+                                    points="640.9468,299.3906,630.9468,303.3906,640.9468,307.3906,636.9468,303.3906"
+                                    style="stroke:#181818;stroke-width:1;" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="212.1006"
+                                    x="636.9468" y="285.3247">5. V&#233;rifier(Hash + Mot de Passe)</text>
+                            </g>
+                            <path
+                                d="M20,318.3906 L84.4429,318.3906 L84.4429,325.5234 L74.4429,335.5234 L20,335.5234 L20,318.3906"
+                                fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;" />
+                            <rect fill="none" height="148.4688" style="stroke:#000000;stroke-width:1.5;"
+                                width="709.3818" x="20" y="318.3906" /><text fill="#000000" font-family="sans-serif"
+                                font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35"
+                                y="331.4575">alt</text><text fill="#000000" font-family="sans-serif" font-size="11"
+                                font-weight="bold" lengthAdjust="spacing" textLength="140.6582" x="99.4429"
+                                y="330.6011">[Mot de passe correct]</text>
+                            <g class="message" data-participant-1="Controller" data-participant-2="UI">
+                                <polygon fill="#181818"
+                                    points="393.689,352.6563,383.689,356.6563,393.689,360.6563,389.689,356.6563"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="387.689"
+                                    x2="618.9468" y1="356.6563" y2="356.6563" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134.1895"
+                                    x="399.689" y="351.5903">6. Renvoyer(Succ&#232;s)</text>
+                            </g>
+                            <g class="message" data-participant-1="UI" data-participant-2="Utilisateur">
+                                <polygon fill="#181818"
+                                    points="80.0049,381.7891,70.0049,385.7891,80.0049,389.7891,76.0049,385.7891"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="74.0049" x2="371.689" y1="385.7891"
+                                    y2="385.7891" /><text fill="#000000" font-family="sans-serif" font-size="13"
+                                    lengthAdjust="spacing" textLength="208.9014" x="86.0049" y="380.7231">7.
+                                    Afficher("Connexion r&#233;ussie")</text>
+                            </g>
+                            <line style="stroke:#000000;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="20" x2="729.3818"
+                                y1="394.7891" y2="394.7891" /><text fill="#000000" font-family="sans-serif"
+                                font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="152.2598" x="25"
+                                y="404.9995">[Mot de passe incorrect]</text>
+                            <g class="message" data-participant-1="Controller" data-participant-2="UI">
+                                <polygon fill="#181818"
+                                    points="393.689,425.7266,383.689,429.7266,393.689,433.7266,389.689,429.7266"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="387.689"
+                                    x2="618.9468" y1="429.7266" y2="429.7266" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127.3784"
+                                    x="399.689" y="424.6606">6. Renvoyer(&#201;chec)</text>
+                            </g>
+                            <g class="message" data-participant-1="UI" data-participant-2="Utilisateur">
+                                <polygon fill="#181818"
+                                    points="80.0049,454.8594,70.0049,458.8594,80.0049,462.8594,76.0049,458.8594"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="74.0049" x2="371.689" y1="458.8594"
+                                    y2="458.8594" /><text fill="#000000" font-family="sans-serif" font-size="13"
+                                    lengthAdjust="spacing" textLength="279.6841" x="86.0049" y="453.7935">7.
+                                    Afficher("Erreur: Mot de passe invalide")</text>
+                            </g>
+                            <line style="stroke:#000000;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="10" x2="988.5415"
+                                y1="474.8594" y2="474.8594" /><text fill="#000000" font-family="sans-serif"
+                                font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="147.082" x="15"
+                                y="485.0698">[Utilisateur non trouv&#233;]</text>
+                            <g class="message" data-participant-1="DB" data-participant-2="Controller">
+                                <polygon fill="#181818"
+                                    points="640.9468,505.7969,630.9468,509.7969,640.9468,513.7969,636.9468,509.7969"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="634.9468"
+                                    x2="885.2202" y1="509.7969" y2="509.7969" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="224.1802"
+                                    x="646.9468" y="504.731">4. Renvoyer(Utilisateur Inexistant)</text>
+                            </g>
+                            <g class="message" data-participant-1="Controller" data-participant-2="UI">
+                                <polygon fill="#181818"
+                                    points="393.689,534.9297,383.689,538.9297,393.689,542.9297,389.689,538.9297"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;stroke-dasharray:2.0,2.0;" x1="387.689"
+                                    x2="618.9468" y1="538.9297" y2="538.9297" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127.3784"
+                                    x="399.689" y="533.8638">6. Renvoyer(&#201;chec)</text>
+                            </g>
+                            <g class="message" data-participant-1="UI" data-participant-2="Utilisateur">
+                                <polygon fill="#181818"
+                                    points="80.0049,564.0625,70.0049,568.0625,80.0049,572.0625,76.0049,568.0625"
+                                    style="stroke:#181818;stroke-width:1;" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="74.0049" x2="371.689" y1="568.0625"
+                                    y2="568.0625" /><text fill="#000000" font-family="sans-serif" font-size="13"
+                                    lengthAdjust="spacing" textLength="260.6919" x="86.0049" y="562.9966">7.
+                                    Afficher("Erreur: Utilisateur inconnu")</text>
+                            </g>
+                            <g class="message" data-participant-1="Controller" data-participant-2="Controller">
+                                <line style="stroke:#181818;stroke-width:1;" x1="624.9468" x2="666.9468" y1="604.1953"
+                                    y2="604.1953" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="666.9468" x2="666.9468" y1="604.1953"
+                                    y2="617.1953" />
+                                <line style="stroke:#181818;stroke-width:1;" x1="625.9468" x2="666.9468" y1="617.1953"
+                                    y2="617.1953" />
+                                <polygon fill="#181818"
+                                    points="635.9468,613.1953,625.9468,617.1953,635.9468,621.1953,631.9468,617.1953"
+                                    style="stroke:#181818;stroke-width:1;" /><text fill="#000000"
+                                    font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="215.8647"
+                                    x="631.9468" y="599.1294">8. Enregistrer(Log de Connexion)</text>
+                            </g>
+                            <!--SRC=[bLDBRjim4Dtp50DjOg68W7vJU16WZWBKG0iKDPmzIuri0lJG9IaZEK9k4krx0rwiGoLkABTDOW6I8CwRD- -DPe8E1c4H-vyTaa9e42ui4LvhIx0CscWl0tPEY1EeOzzgqY656lImbIvefRUIWXTI1Uj66LaOYZa5TAta2Xca0EbXEHyZkNnmyPVX-4ZD01w2rXXqef51_f0UePYb9qDhXiQUXKrcTLqE-7gMX2zKx4awRKU48bC2f-Si1ARmkeA5r5wxoRn12hhLoLqfaZ-zOspIoqZ6FshXl3SLrBYHrA2RN4cZ-Gt_OyXCP1pCMC-OwMq55sjqYkz9fZ0dO5VIXBoJm2pTBlO2-6AQqqDzxohuZhIpDypwMVerD1ryjI4rv9lq7iiXSondHF2-WglOExQpPtZr3u8aw-5qcqv1MUTGXI5uM67Vym-PjaMdLBppvP-4-rxdLgTmLi6djjL3Yuh7SNMnxxpNMDnde-7w8p6QZfKJRxc8EaBD9VDtRdfOTpUCn5uODM8Gb_CG6pZc9-QvyzG07tZE_lwDpxbwiQCSaXf9rB6Vv4Kqc8zczfMlA-ORn4kv9DYWztA5lAWtfDRE4ZVCChqvmMlSR0sA9mRoOmMNv735nXth_69Ne-qkVmC0]-->
+                        </g>
+                    </svg>
+
+                </section>
+
+                <!-- Slide 14 : Diagramme d’activités -->
+                <section>
+                    <h2 style="font-size: 1em;">Diagramme d’activités</h2>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        contentStyleType="text/css" data-diagram-type="ACTIVITY" height="667px"
+                        preserveAspectRatio="none" style="width:500px;height:500px;background:#FFFFFF;" version="1.1"
+                        viewBox="0 0 569 667" width="569px" zoomAndPan="magnify">
+                        <title>Processus de Gestion de Commande</title>
+                        <defs />
+                        <g>
+                            <g class="title" data-source-line="1"><text fill="#000000" font-family="sans-serif"
+                                    font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="286.4668"
+                                    x="140.0146" y="32.9951">Processus de Gestion de Commande</text></g>
+                            <ellipse cx="310.3652" cy="57.2969" fill="#222222" rx="10" ry="10"
+                                style="stroke:#222222;stroke-width:1;" />
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="172.2559" x="224.2373" y="87.2969" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="152.2559" x="234.2373" y="108.4355">Enregistrer la commande</text>
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="153.0254" x="233.8525" y="141.2656" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="133.0254" x="243.8525" y="162.4043">V&#233;rifier l'&#233;tat du
+                                stock</text>
+                            <polygon fill="#F1F1F1"
+                                points="260.5698,195.2344,360.1606,195.2344,372.1606,207.2344,360.1606,219.2344,260.5698,219.2344,248.5698,207.2344,260.5698,195.2344"
+                                style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif"
+                                font-size="11" lengthAdjust="spacing" textLength="99.5908" x="260.5698"
+                                y="211.0425">Stock disponible ?</text><text fill="#000000" font-family="sans-serif"
+                                font-size="11" lengthAdjust="spacing" textLength="16.7578" x="231.812"
+                                y="204.6401">oui</text><text fill="#000000" font-family="sans-serif" font-size="11"
+                                lengthAdjust="spacing" textLength="20.6733" x="372.1606" y="204.6401">non</text>
+                            <rect fill="#555555" height="6" rx="2.5" ry="2.5" style="stroke:#555555;stroke-width:1;"
+                                width="315.9824" x="11" y="229.2344" />
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="140.2637" x="23" y="255.2344" /><text
+                                fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="120.2637" x="33" y="276.373">Pr&#233;parer les articles</text>
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="121.7188" x="191.2637" y="255.2344" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="101.7188" x="201.2637" y="276.373">Facturer le client</text>
+                            <rect fill="#555555" height="6" rx="2.5" ry="2.5" style="stroke:#555555;stroke-width:1;"
+                                width="315.9824" x="11" y="309.2031" />
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="158.5449" x="88.7188" y="350.2031" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="138.5449" x="98.7188" y="371.3418">Exp&#233;dier la commande</text>
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="184.209" x="75.8867" y="452.5742" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="164.209" x="85.8867" y="473.7129">Envoyer le num&#233;ro de suivi</text>
+                            <polygon fill="#F1F1F1"
+                                points="98.8813,404.1719,237.1011,404.1719,249.1011,416.1719,237.1011,428.1719,98.8813,428.1719,86.8813,416.1719,98.8813,404.1719"
+                                style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif"
+                                font-size="11" lengthAdjust="spacing" textLength="16.7578" x="171.9912"
+                                y="438.3823">oui</text><text fill="#000000" font-family="sans-serif" font-size="11"
+                                lengthAdjust="spacing" textLength="138.2197" x="98.8813" y="419.98">Client souhaite un
+                                suivi ?</text><text fill="#000000" font-family="sans-serif" font-size="11"
+                                lengthAdjust="spacing" textLength="20.6733" x="249.1011" y="413.5776">non</text>
+                            <polygon fill="#F1F1F1"
+                                points="167.9912,506.543,179.9912,518.543,167.9912,530.543,155.9912,518.543,167.9912,506.543"
+                                style="stroke:#181818;stroke-width:0.5;" />
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="156.7344" x="89.624" y="550.543" /><text
+                                fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="136.7344" x="99.624" y="571.6816">Terminer le traitement</text>
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="167.4102" x="369.0342" y="229.2344" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="147.4102" x="379.0342" y="250.373">Notifier le client du d&#233;lai</text>
+                            <rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5"
+                                style="stroke:#181818;stroke-width:0.5;" width="211.5137" x="346.9824" y="298.2031" />
+                            <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing"
+                                textLength="191.5137" x="356.9824" y="319.3418">Mettre la commande en attente</text>
+                            <polygon fill="#F1F1F1"
+                                points="310.3652,590.5117,322.3652,602.5117,310.3652,614.5117,298.3652,602.5117,310.3652,590.5117"
+                                style="stroke:#181818;stroke-width:0.5;" />
+                            <ellipse cx="310.3652" cy="645.5117" fill="none" rx="11" ry="11"
+                                style="stroke:#222222;stroke-width:1;" />
+                            <ellipse cx="310.3652" cy="645.5117" fill="#222222" rx="6" ry="6"
+                                style="stroke:#222222;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="310.3652" x2="310.3652" y1="67.2969"
+                                y2="87.2969" />
+                            <polygon fill="#181818"
+                                points="306.3652,77.2969,310.3652,87.2969,314.3652,77.2969,310.3652,81.2969"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="310.3652" x2="310.3652" y1="121.2656"
+                                y2="141.2656" />
+                            <polygon fill="#181818"
+                                points="306.3652,131.2656,310.3652,141.2656,314.3652,131.2656,310.3652,135.2656"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="93.1318" x2="93.1318" y1="235.2344"
+                                y2="255.2344" />
+                            <polygon fill="#181818"
+                                points="89.1318,245.2344,93.1318,255.2344,97.1318,245.2344,93.1318,249.2344"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="252.123" x2="252.123" y1="235.2344"
+                                y2="255.2344" />
+                            <polygon fill="#181818"
+                                points="248.123,245.2344,252.123,255.2344,256.123,245.2344,252.123,249.2344"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="93.1318" x2="93.1318" y1="289.2031"
+                                y2="309.2031" />
+                            <polygon fill="#181818"
+                                points="89.1318,299.2031,93.1318,309.2031,97.1318,299.2031,93.1318,303.2031"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="252.123" x2="252.123" y1="289.2031"
+                                y2="309.2031" />
+                            <polygon fill="#181818"
+                                points="248.123,299.2031,252.123,309.2031,256.123,299.2031,252.123,303.2031"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="315.2031"
+                                y2="350.2031" />
+                            <polygon fill="#181818"
+                                points="163.9912,340.2031,167.9912,350.2031,171.9912,340.2031,167.9912,344.2031"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="428.1719"
+                                y2="452.5742" />
+                            <polygon fill="#181818"
+                                points="163.9912,442.5742,167.9912,452.5742,171.9912,442.5742,167.9912,446.5742"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="249.1011" x2="270.0957" y1="416.1719"
+                                y2="416.1719" />
+                            <polygon fill="#181818"
+                                points="266.0957,459.5586,270.0957,469.5586,274.0957,459.5586,270.0957,463.5586"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="270.0957" x2="270.0957" y1="416.1719"
+                                y2="518.543" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="270.0957" x2="179.9912" y1="518.543"
+                                y2="518.543" />
+                            <polygon fill="#181818"
+                                points="189.9912,514.543,179.9912,518.543,189.9912,522.543,185.9912,518.543"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="486.543"
+                                y2="506.543" />
+                            <polygon fill="#181818"
+                                points="163.9912,496.543,167.9912,506.543,171.9912,496.543,167.9912,500.543"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="384.1719"
+                                y2="404.1719" />
+                            <polygon fill="#181818"
+                                points="163.9912,394.1719,167.9912,404.1719,171.9912,394.1719,167.9912,398.1719"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="530.543"
+                                y2="550.543" />
+                            <polygon fill="#181818"
+                                points="163.9912,540.543,167.9912,550.543,171.9912,540.543,167.9912,544.543"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="452.7393" x2="452.7393" y1="263.2031"
+                                y2="298.2031" />
+                            <polygon fill="#181818"
+                                points="448.7393,288.2031,452.7393,298.2031,456.7393,288.2031,452.7393,292.2031"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="248.5698" x2="167.9912" y1="207.2344"
+                                y2="207.2344" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="207.2344"
+                                y2="229.2344" />
+                            <polygon fill="#181818"
+                                points="163.9912,219.2344,167.9912,229.2344,171.9912,219.2344,167.9912,223.2344"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="372.1606" x2="452.7393" y1="207.2344"
+                                y2="207.2344" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="452.7393" x2="452.7393" y1="207.2344"
+                                y2="229.2344" />
+                            <polygon fill="#181818"
+                                points="448.7393,219.2344,452.7393,229.2344,456.7393,219.2344,452.7393,223.2344"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="167.9912" y1="584.5117"
+                                y2="602.5117" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="167.9912" x2="298.3652" y1="602.5117"
+                                y2="602.5117" />
+                            <polygon fill="#181818"
+                                points="288.3652,598.5117,298.3652,602.5117,288.3652,606.5117,292.3652,602.5117"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="452.7393" x2="452.7393" y1="332.1719"
+                                y2="602.5117" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="452.7393" x2="322.3652" y1="602.5117"
+                                y2="602.5117" />
+                            <polygon fill="#181818"
+                                points="332.3652,598.5117,322.3652,602.5117,332.3652,606.5117,328.3652,602.5117"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="310.3652" x2="310.3652" y1="175.2344"
+                                y2="195.2344" />
+                            <polygon fill="#181818"
+                                points="306.3652,185.2344,310.3652,195.2344,314.3652,185.2344,310.3652,189.2344"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <line style="stroke:#181818;stroke-width:1;" x1="310.3652" x2="310.3652" y1="614.5117"
+                                y2="634.5117" />
+                            <polygon fill="#181818"
+                                points="306.3652,624.5117,310.3652,634.5117,314.3652,624.5117,310.3652,628.5117"
+                                style="stroke:#181818;stroke-width:1;" />
+                            <!--SRC=[PLF1Rjim3BtxAtYpSrYATZivXw7BcW43MWJ8iBjcCmbHMV8aAcY_OpynVuUn_neffLtNNcoPUkHxVAIPs29iW-ymnXIXH_Y2aSaxFQxzC1ZNOrNLSBc4hIV76k_dQJI1gyZwbCkh9LntJ2VYUOeGQHWjHcW2Za42w2Gitv8ZsKgI7jwDMYmkglR61JnGv801h87kpBcgsk_p56XF6g_dYOrm9uZik_kLahvVmjsVNwbNHP_dgQEeiXlQmmNm4Psyq4PSL19fTfe6FSNHE_eXFNzS553Z4oqgW1e-cH2oEjWzkkuO11XDjgBP-70lvNQZ9LRmNhxb1T1kG_P2DKgks46T75Pd39Y38LUG6zDnAa3eB8afYaBNFrNB8fuxUgFXgnWc6cun7B08lcQMz83mCs6cLsF1_1k423FMph_rBdgb1COmaDDnL5AZlNaOvwcdrzQ_5lDixyKc5PVD2JiucD1dBUhmElSaFEbeY16IWvX4oHkdbTQT_6EnmgL1nkoL9SEpAJ8sQ9nt1Lv3ONK2CIxc3hrM7qSxJuEm6WfOpAHz4Tz-ouqM3WwgQCYML_yLhs5zHC61iUAC4wirlxtpV5wyfrdfwidQMvC5jhV8ih0lJHDoC3eG5l-A4DdH3o_-chriWcpl-1S0]-->
+                        </g>
+                    </svg>
+
+                </section>
+
+                <!-- Slide 15 : Projection modèle → vues -->
+                <section>
+                    <h2 style="font-size: 1em;">Projection du modèle abstrait sur plusieurs vues</h2>
+
+                </section>
+
+                <!-- Slide 16 : Sérialisation et code -->
+                <section>
+                    <h2 style="font-size: 1em;">Sérialisation des modèles UML</h2>
+                    <ul style="font-size: 0.7em;">
+                        <li>XMI, JSON pour échange et persistance</li>
+                        <li>Génération de code à partir du modèle</li>
+                        <li>Alignement entre diagrammes, modèle et code</li>
+                    </ul>
+
+                </section>
+
+                <!-- Slide 17 : Synthèse et métaphore -->
+                <section>
+                    <h2 style="font-size: 1.1em;">Métaphore pédagogique finale</h2>
+                    <p style="font-size: 0.7em;">“Un diagramme UML est une phrase dans un langage visuel :
+                        les symboles sont les mots, les compositions sont les phrases,
+                        et la grammaire garantit que le sens est correct et compréhensible.”</p>
+                </section>
+
+                <!-- Slide 18 : Résumé général -->
+                <section>
+                    <h2 style="font-size: 1em;">Résumé des concepts clés</h2>
+                    <ul style="font-size: 0.7em;">
+                        <li>UML = concepts abstraits + contraintes + relations</li>
+                        <li>Diagrammes = vues concrètes respectant syntaxe et règles</li>
+                        <li>Paradigme objet → composant → container</li>
+                        <li>Outils différents = projections différentes du même modèle</li>
+                    </ul>
+                </section>
+            </section>
+
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        // Initialisation de Reveal.js
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            // Configuration des transitions
+            transition: 'slide',
+            // Plugins recommandés (pas strictement nécessaires mais améliorent l'expérience)
+            plugins: []
+        });
+    </script>
+</body>
+
+</html>

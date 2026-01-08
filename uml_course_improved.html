@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction à UML - Contenu Détaillé des sessions du cours</title>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fcfcfc;
+            color: #343a40;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #013243;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: #013243;
+            font-size: 2.8em;
+            margin: 0 0 10px 0;
+        }
+
+        header .subtitle {
+            font-size: 1.3em;
+            color: #495057;
+            margin: 10px 0;
+        }
+
+        header .course-info {
+            background-color: #f6f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        header .course-info strong {
+            color: #013243;
+        }
+
+        /* Table des matières */
+        .toc {
+            background: linear-gradient(135deg, #f6f9f9 0%, #e9ecef 100%);
+            border: 2px solid #537989;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            color: #013243;
+            margin-top: 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #537989;
+            padding-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin: 12px 0;
+        }
+
+        .toc a {
+            color: #537989;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .toc a:hover {
+            background-color: #ffffff;
+            border-left-color: #013243;
+            padding-left: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Glossaire */
+        .glossary {
+            background: linear-gradient(to right, #fff9e6, #fffcf0);
+            border-left: 5px solid #bb9f5a;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .glossary h3 {
+            color: #013243;
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+
+        .glossary dl {
+            margin: 0;
+        }
+
+        .glossary dt {
+            font-weight: bold;
+            color: #34495e;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .glossary dd {
+            margin-left: 25px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Sections de cours */
+        .course-section {
+            margin-bottom: 60px;
+            padding: 30px;
+            border-left: 6px solid #537989;
+            background-color: #f6f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .session-title {
+            font-size: 2.2em;
+            color: #212529;
+            margin-top: 0;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #ced4da;
+        }
+
+        /* Objectifs d'apprentissage */
+        .learning-objectives {
+            background: linear-gradient(to right, #e8f4f8, #f0f8fb);
+            border-left: 5px solid #013243;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .learning-objectives h4 {
+            color: #013243;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        .learning-objectives ul {
+            margin-bottom: 0;
+        }
+
+        .learning-objectives li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        /* Contenu du cours */
+        .course-content h3 {
+            color: #34495e;
+            font-size: 1.6em;
+            margin-top: 35px;
+            border-bottom: 2px solid #ced4da;
+            padding-bottom: 8px;
+        }
+
+        .course-content h4 {
+            color: #537989;
+            font-size: 1.3em;
+            margin-top: 25px;
+        }
+
+        .course-content h5 {
+            color: #6c757d;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .course-content p,
+        .course-content ul,
+        .course-content li {
+            font-size: 1.05em;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .course-content ul {
+            padding-left: 25px;
+        }
+
+        /* Points clés */
+        .key-takeaway {
+            background: linear-gradient(to right, #fefefe, #f9f9f9);
+            border-left: 5px solid #bb9f5a;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Tableaux */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #dee2e6;
+        }
+
+        table th {
+            background-color: #495057;
+            color: white;
+            font-weight: 600;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        table tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Encadré d'avertissement */
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        /* Encadré d'information */
+        .info-box {
+            background-color: #d1ecf1;
+            border-left: 5px solid #0c5460;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .info-box h4 {
+            color: #0c5460;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        /* Références */
+        .references {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            border: 1px dashed #ced4da;
+        }
+
+        .references h4 {
+            color: #013243;
+            margin-top: 0;
+            border-bottom: 1px dotted #a8b0bd;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .references a {
+            color: #537989;
+            text-decoration: none;
+        }
+
+        .references a:hover {
+            text-decoration: underline;
+            color: #013243;
+        }
+
+        /* Vidéos */
+        .video-embed {
+            margin-top: 30px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .video-embed img {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #537989;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .video-embed img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Schéma récapitulatif */
+        .visual-summary {
+            background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .visual-summary h3 {
+            color: #013243;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .progression-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .progression-step {
+            background-color: white;
+            border: 3px solid #537989;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            min-width: 160px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .progression-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .progression-step h4 {
+            color: #013243;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .progression-step p {
+            margin: 0;
+            font-size: 0.95em;
+            color: #6c757d;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #537989;
+            font-weight: bold;
+        }
+
+        /* FAQ */
+        .faq {
+            background-color: #f1f3f5;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 50px 0;
+        }
+
+        .faq h2 {
+            color: #013243;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .faq-answer {
+            margin-left: 20px;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 3px solid #dee2e6;
+            color: #6c757d;
+        }
+
+        footer a {
+            color: #537989;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #013243;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .progression-diagram {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .session-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Introduction à UML</h1>
+            <p class="subtitle">Contenu Détaillé des Sessions - Université Lyon 1</p>
+            
+            <div class="course-info">
+                <p><strong>Organisation :</strong> Université Lyon 1</p>
+                <p><strong>Objectifs :</strong> Comprendre les origines d'UML et ses usages pour supporter le développement d'un système</p>
+                <p><strong>Compétences visées :</strong></p>
+                <ul>
+                    <li>Comprendre pourquoi UML a été créé, à quoi il sert et à qui il sert</li>
+                    <li>Maîtriser le langage, les concepts sous-jacents et leurs constructions</li>
+                    <li>Faire le lien avec le développement d'un système informatisé selon les rôles et phases du projet</li>
+                    <li>Identifier les modèles nécessaires pour les tâches associées à chaque rôle</li>
+                    <li>Savoir choisir les outils, diagrammes et types d'éléments appropriés</li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Table des matières -->
+        <nav class="toc">
+            <h2>📋 Table des Matières</h2>
+            <ul>
+                <li><a href="#glossary">📖 Glossaire des Concepts Clés</a></li>
+                <li><a href="#visual-summary">🗺️ Vue d'Ensemble de la Progression Pédagogique</a></li>
+                <li><a href="#session01">Session 01 & 02 : Introduction et Fondamentaux</a></li>
+                <li><a href="#faq">❓ Questions auxquelles il faut savoir répondre</a></li>
+                <li><a href="#session03">Session 03 : Pensée Systémique et Paradigme Composant</a></li>
+                <li><a href="#session04">Session 04 : Ingénierie par les Modèles (MDA)</a></li>
+                <li><a href="#session05">Session 05 : Outils de Modélisation et Technologies Avancées</a></li>
+                <li><a href="#session06">Session 06 : Découverte Pratique de Papyrus</a></li>
+                <li><a href="#tools-comparison">🔧 Tableau Comparatif des Outils</a></li>
+                <li><a href="#evaluation">📝 Modalités d'Évaluation</a></li>           
+                <li><a href="#references">🔗 Références Officielles</a></li>
+            </ul>
+        </nav>
+
+        <!-- Glossaire -->
+        <div id="glossary" class="glossary">
+            <h3>📖 Glossaire des Concepts Clés</h3>
+            <dl>
+                <dt>UML (Unified Modeling Language)</dt>
+                <dd>Langage visuel standardisé pour modéliser les systèmes logiciels. UML est un langage, pas une méthode.</dd>
+                
+                <dt>MDA (Model Driven Architecture)</dt>
+                <dd>Architecture dirigée par les modèles, approche de développement logiciel basée sur la transformation de modèles à différents niveaux d'abstraction.</dd>
+                
+                <dt>CIM (Computation Independent Model)</dt>
+                <dd>Modèle indépendant de l'informatique qui décrit le domaine métier sans considération technique. Répond aux questions : Qui ? Quoi ? Quelles activités ?</dd>
+                
+                <dt>PIM (Platform Independent Model)</dt>
+                <dd>Modèle indépendant de la plateforme qui représente la logique de la solution avec des éléments techniques (UUID, opérations) sans choix technologique spécifique.</dd>
+                
+                <dt>PSM (Platform Specific Model)</dt>
+                <dd>Modèle spécifique à une plateforme qui adapte le PIM à une technologie concrète (PostgreSQL, Java, Docker, etc.).</dd>
+                
+                <dt>XMI (XML Metadata Interchange)</dt>
+                <dd>Format d'échange standard XML pour les modèles UML, permettant l'interopérabilité entre outils de modélisation professionnels.</dd>
+                
+                <dt>MBE (Model-Based Engineering)</dt>
+                <dd>Ingénierie basée sur les modèles, approche où les modèles sémantiques sont la source unique de vérité pour le développement.</dd>
+                
+                <dt>PlantUML</dt>
+                <dd>Outil de génération de diagrammes à partir de syntaxe textuelle. <strong>Important :</strong> génère des dessins (images), pas des modèles sémantiques exploitables.</dd>
+                
+                <dt>Paradigme Objet</dt>
+                <dd>Approche de modélisation basée sur les classes, l'encapsulation, l'héritage et le polymorphisme. Définit la structure (attributs) et le comportement (opérations).</dd>
+                
+                <dt>Paradigme Composant</dt>
+                <dd>Évolution du paradigme objet pour les systèmes distribués. Met l'accent sur la séparation des préoccupations, la modularité, l'interopérabilité et les interfaces contractuelles.</dd>
+                
+                <dt>Pensée Systémique</dt>
+                <dd>Approche holistique pour comprendre les systèmes complexes basée sur 6 principes : intégrité, interaction, rétroaction, conditions initiales, émergence et adaptation.</dd>
+            </dl>
+        </div>
+
+        <!-- Vue d'ensemble visuelle -->
+        <div id="visual-summary" class="visual-summary">
+            <h3>🗺️ Vue d'Ensemble de la Progression Pédagogique</h3>
+            <div class="progression-diagram">
+                <div class="progression-step">
+                    <h4>Sessions 1-2</h4>
+                    <p>Enjeux et vue d'ensemble</p>
+                </div>
+                <span class="arrow">→</span>
+                <div class="progression-step">
+                    <h4>Session 3</h4>
+                    <p>Fondements théoriques (systémique)</p>
+                </div>
+                <span class="arrow">→</span>
+                <div class="progression-step">
+                    <h4>Session 4</h4>
+                    <p>MDA : Modéliser ≠ Dessiner</p>
+                </div>
+                <span class="arrow">→</span>
+                <div class="progression-step">
+                    <h4>Session 5</h4>
+                    <p>Comparatif des outils</p>
+                </div>
+                <span class="arrow">→</span>
+                <div class="progression-step">
+                    <h4>Session 6</h4>
+                    <p>Pratique avec Papyrus</p>
+                </div>
+                <span class="arrow">→</span>
+                <div class="progression-step">
+                    <h4>Session 7</h4>
+                    <p>Produire un CIM - Entités et Relations Métier</p>
+                </div>                
+            </div>
+            <p style="margin-top: 25px; color: #495057; font-size: 1.1em;"><strong>Fil conducteur :</strong> Comprendre la différence fondamentale entre dessiner (représentation visuelle statique) et modéliser (structure sémantique exploitable par la machine), ainsi que l'apport de la modélisation dans une approche d'industrialisation de systèmes logiciels</p>
+
+        </div>
+                <div class="learning-objectives">
+                <h4>🎯 Objectifs d'apprentissage</h4>
+                <ul>
+                    <li>Comprendre les enjeux de la modélisation visuelle dans les systèmes complexes</li>
+                    <li>Identifier les différences entre dessin et modélisation sémantique</li>
+                    <li>Connaître le panorama des outils et approches UML</li>
+                    <li>Situer UML dans le contexte de l'industrialisation et de la standardisation</li>
+                </ul>
+            </div>
+               <!-- FAQ -->
+        <div id="faq" class="faq">
+            <h2>❓ Questions auxquelles il faut savoir répondre</h2>
+
+            <div class="faq-item">
+                <p class="faq-question">Q1 : Puis-je utiliser uniquement PlantUML pour mon projet final ?</p>
+                <p class="faq-answer">
+                    PlantUML est <strong>excellent pour la phase d'exploration initiale</strong> et la génération rapide du CIM avec l'aide de ChatGPT. Cependant, pour le PIM et pour une évaluation sérieuse, il est <strong>fortement recommandé</strong> de passer à Papyrus pour bénéficier de la validation automatique, de la cohérence multi-diagrammes et de la génération de code. 
+                    <br><br>
+                    <strong>Approche recommandée :</strong> Prototypage en PlantUML → Validation et enrichissement en Papyrus → Soumission du modèle Papyrus (XMI) + documentation PlantUML complémentaire.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q2 : Quelle est la différence concrète entre CIM et PIM ?</p>
+                <p class="faq-answer">
+                    <strong>CIM (Computation Independent Model) :</strong> Décrit "QUOI" - le métier pur sans considération technique.
+                    <ul>
+                        <li>Acteurs métier (Client, Fournisseur)</li>
+                        <li>Objets conceptuels (Commande, Facture)</li>
+                        <li>Processus métier (passer une commande)</li>
+                        <li>Informations échangées (montant, date)</li>
+                        <li><strong>Pas d'UUID, pas d'opérations informatiques</strong></li>
+                    </ul>
+                    
+                    <strong>PIM (Platform Independent Model) :</strong> Décrit "COMMENT logiquement" - l'architecture logicielle abstraite.
+                    <ul>
+                        <li>Classes logiques (ClientEntity, CommandeEntity)</li>
+                        <li>Identifiants techniques (uuid:UUID, version:int)</li>
+                        <li>Opérations logicielles (validate():boolean, save():void)</li>
+                        <li>Architecture en couches (Présentation, Métier, Données)</li>
+                        <li><strong>Pas encore de technologie spécifique (pas de PostgreSQL, Java, etc.)</strong></li>
+                    </ul>
+                    
+                    <strong>Exemple concret :</strong>
+                    <ul>
+                        <li><strong>CIM :</strong> Classe "Client" avec attribut "nom"</li>
+                        <li><strong>PIM :</strong> Classe "ClientEntity" avec "uuid:UUID", "nom:String", "email:String", "createdAt:DateTime", méthode "validate():boolean"</li>
+                        <li><strong>PSM :</strong> Table PostgreSQL "clients" avec colonnes spécifiques + contraintes SQL</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q3 : Le paradigme composant remplace-t-il l'approche objet ?</p>
+                <p class="faq-answer">
+                    <strong>Non, il la complète et l'étend.</strong> L'approche objet reste <strong>valide et pertinente</strong> pour la structure interne des composants (encapsulation, héritage local, polymorphisme).
+                    <br><br>
+                    Le paradigme composant s'applique au <strong>niveau architectural</strong> pour :
+                    <ul>
+                        <li>Gérer les systèmes distribués multi-fournisseurs</li>
+                        <li>Assurer l'interopérabilité via interfaces contractuelles</li>
+                        <li>Permettre la reconfigurabilité dynamique</li>
+                        <li>Éviter le couplage fort de l'héritage au niveau système</li>
+                    </ul>
+                    
+                    <strong>En pratique :</strong> Vous utilisez des objets (classes) <strong>À L'INTÉRIEUR</strong> de vos composants, et des composants pour structurer votre architecture globale. C'est complémentaire, pas exclusif.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q4 : Papyrus est-il obligatoire ou puis-je utiliser un autre outil ?</p>
+                <p class="faq-answer">
+                    Papyrus est <strong>recommandé</strong> car il est gratuit, open source et crée de vrais modèles XMI formels. Vous pouvez utiliser d'autres ateliers professionnels si vous y avez accès :
+                    <ul>
+                        <li>✅ <strong>Modelio</strong> (alternative open source)</li>
+                        <li>✅ <strong>Enterprise Architect</strong> (si licence disponible)</li>
+                        <li>✅ <strong>MagicDraw/Cameo</strong> (si licence disponible)</li>
+                    </ul>
+                    
+                    <strong>L'important</strong> est d'utiliser un outil qui manipule des <strong>modèles sémantiques</strong> (format XMI), pas juste des dessins. Si vous utilisez un autre outil, assurez-vous de pouvoir :
+                    <ul>
+                        <li>Exporter en XMI pour interopérabilité</li>
+                        <li>Valider automatiquement le modèle</li>
+                        <li>Générer du code depuis le modèle</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q5 : Quels diagrammes UML dois-je absolument maîtriser ?</p>
+                <p class="faq-answer">
+                    Pour ce cours, concentrez-vous sur les <strong>diagrammes essentiels</strong> :
+                    
+                    <p><strong>Obligatoires (maîtrise requise) :</strong></p>
+                    <ul>
+                        <li><strong>Diagramme de classes :</strong> Structure statique (CIM et PIM). Le plus important.</li>
+                        <li><strong>Diagramme de séquence :</strong> Comportements dynamiques, chronologie des interactions.</li>
+                    </ul>
+                    
+                    <p><strong>Recommandés (selon domaine) :</strong></p>
+                    <ul>
+                        <li><strong>Diagramme de composants :</strong> Architecture modulaire (PIM). Utile pour comprendre le paradigme composant.</li>
+                        <li><strong>Diagramme de cas d'utilisation :</strong> Exigences fonctionnelles (CIM). Bon pour le contexte.</li>
+                    </ul>
+                    
+                    <p><strong>Optionnels (approfondissement) :</strong></p>
+                    <ul>
+                        <li>Diagramme d'activité (workflows)</li>
+                        <li>Diagramme d'états (machines à états)</li>
+                        <li>Diagramme de déploiement (PSM infrastructure)</li>
+                    </ul>
+                    
+                    <strong>Conseil :</strong> Mieux vaut bien maîtriser classes + séquence que survoler tous les types de diagrammes.
+                </p>
+            </div>
+
+
+            <div class="faq-item">
+                <p class="faq-question">Q6 : ChatGPT peut-il faire le travail à ma place ?</p>
+                <p class="faq-answer">
+                    <strong>Non, absolument pas.</strong> ChatGPT est un <strong>assistant pour catalyser</strong> l'extraction du vocabulaire et générer une première itération, mais :
+                    
+                    <p><strong>Vous devez impérativement :</strong></p>
+                    <ul>
+                        <li>✅ <strong>Valider</strong> la pertinence des concepts extraits (l'IA peut inventer)</li>
+                        <li>✅ <strong>Corriger</strong> les erreurs et imprécisions nombreuses</li>
+                        <li>✅ <strong>Enrichir</strong> le modèle avec votre connaissance métier approfondie</li>
+                        <li>✅ <strong>Critiquer</strong> et améliorer substantiellement les propositions</li>
+                        <li>✅ <strong>Justifier</strong> vos choix de modélisation (ça, l'IA ne peut pas le faire)</li>
+                    </ul>
+                    
+                    <p><strong>Limites critiques de l'IA :</strong></p>
+                    <ul>
+                        <li>❌ Hallucine fréquemment (invente des concepts inexistants)</li>
+                        <li>❌ N'a pas la compréhension fine du contexte métier réel</li>
+                        <li>❌ Ne peut pas valider la pertinence opérationnelle</li>    
+                        <li>❌ Génère souvent des erreurs de syntaxe PlantUML</li>
+                        <li>❌ Ne comprend pas les enjeux organisationnels</li>
+                    </ul>
+                    
+                    <strong>Votre valeur ajoutée irremplaçable :</strong> Vous êtes l'<strong>expert métier</strong>, garant de la validité du modèle. L'IA est un <strong>copilote</strong>, pas un pilote. C'est VOTRE expertise qui crée de la valeur et qui sera évaluée dans l'entreprise, la connaissance et le savoir faire acquis à l'université.
+                    
+                    <br><br>
+                    <strong>En évaluation :</strong> Nous vérifierons la profondeur de compréhension et la capacité à justifier. Un modèle "copié-collé" de ChatGPT sans compréhension sera facilement détectable et mal noté.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q7 : Que faire si j'ai des problèmes d'installation avec Papyrus ?</p>
+                <p class="faq-answer">
+                    <strong>Solutions par plateforme :</strong>
+                    
+                    <p><strong>macOS (M1/M2/M3) :</strong></p>
+                    <ul>
+                        <li>Problème de compatibilité ARM connu</li>
+                        <li>Solution 1 : Utiliser la version Intel avec Rosetta</li>
+                        <li>Solution 2 : Attendre version native ARM (à venir)</li>
+                        <li>Solution 3 : Utiliser Modelio (alternative) ou machine virtuelle Linux</li>
+                    </ul>
+                    
+                    <p><strong>Windows 11 :</strong></p>
+                    <ul>
+                        <li>Vérifier Java : <code>java -version</code> doit afficher JRE 11+</li>
+                        <li>Si absent : installer OpenJDK depuis <a href="https://adoptium.net/" target="_blank">adoptium.net</a></li>
+                        <li>Relancer Papyrus après installation Java</li>
+                        <li>Si lenteur : allouer plus de RAM (éditer papyrus.ini, augmenter -Xmx)</li>
+                    </ul>
+                    
+                    <p><strong>Linux :</strong></p>
+                    <ul>
+                        <li>Installer via gestionnaire : <code>sudo apt install openjdk-11-jre</code></li>
+                        <li>Vérifier permissions exécution : <code>chmod +x papyrus</code></li>
+                        <li>En général excellent support Linux</li>
+                    </ul>
+                    
+                    <p><strong>Alternative universelle :</strong></p>
+                    <ul>
+                        <li>Essayer <strong>Modelio</strong> (autre outil open source MDA)</li>
+                        <li>Ou utiliser Eclipse standard + installer plugin Papyrus</sli>
+                        <li>Ou utiliser une version antérieure plus stable (7.1 semble instable -> utiliser 6.7 si bloqué)</li>
+                    </ul>
+                    
+                    <strong>Support :</strong> Partager votre problème dans le chat du cours ou par email. La communauté peut aider.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q9 : Pourquoi insister autant sur "Modéliser ≠ Dessiner" ?</p>
+                <p class="faq-answer">
+                    Parce que c'est la <strong>distinction fondamentale</strong> qui différencie l'ingénierie professionnelle du bricolage, et c'est le cœur de ce cours.
+                    
+                    <p><strong>Impact concret :</strong></p>
+                    
+                    <p><strong>Avec du dessin (PlantUML, PowerPoint) :</strong></p>
+                    <ul>
+                        <li>❌ Modifier "Client" → chercher et corriger manuellement dans 15 fichiers</li>
+                        <li>❌ Ajouter attribut → risque d'oublier certains diagrammes → incohérence</li>
+                        <li>❌ Générer code → impossible ou manuel et très fragile</li>
+                        <li>❌ Vérifier cohérence → relecture humaine fastidieuse et sujette à erreurs</li>
+                        <li>❌ Faire évoluer → maintenance cauchemardesque</li>
+                    </ul>
+                    
+                    <p><strong>Avec un modèle formel (Papyrus, MagicDraw) :</strong></p>
+                    <ul>
+                        <li>✅ Modifier "Client" → propagation automatique dans TOUS les diagrammes</li>
+                        <li>✅ Ajouter attribut → visible partout immédiatement</li>
+                        <li>✅ Générer code → automatique, fiable, synchronisable</li>
+                        <li>✅ Vérifier cohérence → validation automatique en temps réel</li>
+                        <li>✅ Faire évoluer → maintenance simplifiée, refactoring sûr</li>
+                    </ul>
+                    
+                    <p><strong>Exemple industriel réel :</strong></p>
+                    <p>Dans l'aéronautique (Airbus, Boeing), un système comme le contrôle de vol peut avoir des <strong>centaines de classes</strong> et <strong>milliers de relations</strong>. Maintenir ça avec PowerPoint ou PlantUML serait tout simplement <strong>impossible</strong>. D'où l'utilisation obligatoire d'outils professionnels (MagicDraw, Rhapsody) avec modélisation formelle.</p>
+                    
+                    <br>
+                    <strong>Ce cours vous prépare à cette réalité industrielle.</strong> Comprendre la différence dessin/modélisation vous donne une compétence professionnelle valorisable.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Q10 : Où trouver de l'aide et des ressources complémentaires ?</p>
+                <p class="faq-answer">
+                    <strong>Ressources du cours :</strong>
+                    <ul>
+                        <li>📹 <strong>Enregistrements vidéo :</strong> Toutes les sessions sur YouTube (liens dans chaque section)</li>
+                        <li>📄 <strong>Supports PDF :</strong> Transparents et articles complémentaires</li>
+                        <li>💬 <strong>Chat du cours :</strong> Poser questions, partager difficultés</li>
+                        <li>📧 <strong>Email formateur :</strong> Pour questions personnelles</li>
+                    </ul>
+                    
+                    <strong>Documentation officielle :</strong>
+                    <ul>
+                        <li><strong>Spécification UML 2.5 :</strong> <a href="https://www.omg.org/spec/UML/" target="_blank">omg.org/spec/UML/</a></li>
+                        <li><strong>Papyrus documentation :</strong> <a href="https://www.eclipse.org/papyrus/" target="_blank">eclipse.org/papyrus/</a></li>
+                        <li><strong>PlantUML guide :</strong> <a href="https://plantuml.com/" target="_blank">plantuml.com</a></li>
+                    </ul>
+                    
+                    <strong>Livres recommandés :</strong>
+                    <ul>
+                        <li>"UML 2 - de l'apprentissage à la pratique" (Laurent Audibert)</li>
+                        <li>"UML 2.5 par la pratique" (Pascal Roques)</li>
+                        <li>"Applying UML and Patterns" (Craig Larman)</li>
+                    </ul>
+                    
+                    <strong>Communautés :</strong>
+                    <ul>
+                        <li>Stack Overflow (tags: uml, papyrus, plantuml)</li>
+                        <li>Eclipse Papyrus Forum</li>
+                        <li>Reddit : r/softwarearchitecture</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <!-- Session 01 & 02 -->
+        <div id="session01" class="course-section">
+            <h2 class="session-title">📅 Session 01 & 02 : Introduction et Fondamentaux</h2>
+
+            <div class="course-content">
+                <h3>Résumé</h3>
+                <p>Le cours a permis de préciser les objectifs, le mode de travail et les profils des participants. Les points importants qui seront abordés ont été cités : la <strong>modélisation visuelle</strong> en place du dessin, l'importance des <strong>langages visuels</strong> pour maîtriser la complexité, le rôle de la <strong>systémique</strong> ainsi que l'évolution des paradigmes de l'objet vers le composant.</p>
+                
+                <p>Les outils variés basés sur le dessin avec layout automatique, la génération de diagramme à partir de texte ou les <strong>ateliers de modélisation</strong> seront aussi abordés. Enfin, l'importance de la <strong>standardisation et des normes</strong> dans l'industrialisation a également été évoquée.</p>
+
+                <div class="key-takeaway">
+                    Points clés : UML n'est pas une méthode mais un <strong>langage</strong> standardisé. Son usage dépend du contexte, des rôles et des objectifs de communication entre acteurs d'un projet.
+                </div>
+
+                <div class="references">
+                    <h4>📚 Articles et supports complémentaires</h4>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/pulse/from-systems-thinking-component-architecture-forgotten-nicolas-figay-5gxoe/" target="_blank">From Systems Thinking to Component Architecture: A Forgotten Evolution</a></li>
+                        <li><a href="https://nfigay.github.io/archicg2/PenseeSystemique.html" target="_blank">La Pensée Systémique: Du Modèle Objet au Paradigme Composant</a></li>
+                        <li><a href="IntroductionUML.pdf" target="_blank">Transparent : Introduction à UML 2024 (PDF)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+ 
+
+        <!-- Références officielles -->
+        <div id="references" class="course-section" style="border-left-color: #6c757d; background-color: #f1f1f1;">
+            <h2 class="session-title" style="border-bottom-color: #6c757d; color: #6c757d;">🔗 Références Officielles et Normes</h2>
+            
+            <div class="references">
+                <h4>Standards UML et MDA</h4>
+                <ul>
+                    <li><a href="https://www.omg.org/spec/UML/2.5.1/About-UML" target="_blank">Spécification UML 2.5.1 (OMG) - Document de référence officiel</a></li>
+                    <li><a href="https://www.omg.org/mda/" target="_blank">Model Driven Architecture (MDA) Guide - OMG</a></li>
+                    <li><a href="https://www.omg.org/spec/XMI/" target="_blank">XML Metadata Interchange (XMI) - Format d'échange</a></li>
+                    <li><a href="https://www.iso.org/fr/standard/32624.html" target="_blank">ISO/IEC 19505-1:2012 - UML Partie 1: Infrastructure</a></li>
+                    <li><a href="https://www.iso.org/fr/standard/52854.html" target="_blank">ISO/IEC 19505-2:2012 - UML Partie 2: Superstructure</a></li>
+                </ul>
+
+                <h4>Outils de modélisation mentionnés</h4>
+                <ul>
+                    <li><a href="https://plantuml.com/" target="_blank">PlantUML - Générateur de diagrammes depuis syntaxe textuelle</a></li>
+                    <li><a href="https://mermaid.js.org/" target="_blank">Mermaid - Diagrammes dans Markdown</a></li>
+                    <li><a href="https://www.yworks.com/products/yed" target="_blank">yEd - Éditeur de graphes avec layouts automatiques</a></li>
+                    <li><a href="https://www.eclipse.org/papyrus/" target="_blank">Papyrus - Atelier de modélisation UML/SysML open source</a></li>
+                    <li><a href="https://www.modelio.org/" target="_blank">Modelio - Atelier de modélisation open source</a></li>
+                    <li><a href="https://www.sparxsystems.com/products/ea/" target="_blank">Enterprise Architect - Outil professionnel complet</a></li>
+                    <li><a href="https://www.3ds.com/products/catia/no-magic" target="_blank">MagicDraw/Cameo Systems Modeler - Référence industrie</a></li>
+                </ul>
+
+                <h4>Technologies de visualisation avancées</h4>
+                <ul>
+                    <li><a href="https://visjs.org/" target="_blank">Vis.js - Bibliothèque de visualisation de graphes dynamiques</a></li>
+                    <li><a href="https://js.cytoscape.org/" target="_blank">Cytoscape.js - Analyse et visualisation de graphes complexes</a></li>
+                    <li><a href="https://d3js.org/" target="_blank">D3.js - Visualisation de données interactives</a></li>
+                </ul>
+
+                <h4>Ressources complémentaires du cours</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/pulse/from-systems-thinking-component-architecture-forgotten-nicolas-figay-5gxoe/" target="_blank">Article : From Systems Thinking to Component Architecture</a></li>
+                    <li><a href="https://nfigay.github.io/archicg2/PenseeSystemique.html" target="_blank">La Pensée Systémique: Du Modèle Objet au Paradigme Composant</a></li>
+                    <li><a href="IntroductionUML.pdf" target="_blank">Transparents du cours (PDF)</a></li>
+                    <li><a href="https://youtube.com/playlist?list=PLxT3cRUflqnHPrixA_hsYidy2q8Nfdy31" target="_blank">Playlist YouTube - Enregistrements des sessions 2025</a></li>
+                </ul>
+
+                <h4>Normes ISO connexes</h4>
+                <ul>
+                    <li><a href="https://www.iso.org/fr/standard/35346.html" target="_blank">ISO/IEC 42010:2011 - Architecture de systèmes et logiciels</a></li>
+                    <li><a href="https://www.iso.org/fr/standard/63874.html" target="_blank">ISO/IEC/IEEE 29148:2018 - Ingénierie des exigences</a></li>
+                </ul>
+
+                <h4>Profils et extensions UML</h4>
+                <ul>
+                    <li><a href="https://www.omg.org/spec/SysML/" target="_blank">SysML - Systems Modeling Language (ingénierie système)</a></li>
+                    <li><a href="https://www.omg.org/spec/MARTE/" target="_blank">MARTE - Modeling and Analysis of Real-Time and Embedded systems</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p style="margin-top: 15px;">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">⬆️ Retour en haut</a>
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
+
+        <!-- Session 03 -->
+        <div id="session03" class="course-section">
+            <h2 class="session-title">📅 Session 03 : Pensée Systémique et Paradigme Composant</h2>
+            
+            <div class="learning-objectives">
+                <h4>🎯 Objectifs d'apprentissage</h4>
+                <ul>
+                    <li>Maîtriser les six principes de la théorie des systèmes</li>
+                    <li>Comprendre les limites de l'approche orientée objet pour les systèmes distribués</li>
+                    <li>Saisir les avantages du paradigme composant (séparation des préoccupations, modularité, interopérabilité)</li>
+                    <li>Appliquer la pensée systémique à la conception de systèmes complexes</li>
+                </ul>
+            </div>
+
+            <div class="course-content">
+                <h3>Résumé</h3>
+                <p>La session a introduit l'importance de la <strong>pensée systémique</strong> et de la <strong>modélisation</strong> pour traiter des systèmes complexes. Les principes clés de la théorie des systèmes ont été présentés, ainsi que l'évolution des paradigmes de développement logiciel, du modèle orienté objet vers les <strong>approches basées sur les composants</strong>, mises en avant pour leur flexibilité et leur reconfigurabilité dans les systèmes distribués.</p>
+
+                <h4>1. Fondamentaux de la pensée systémique</h4>
+                <p>L'intervenant a mis en évidence l'importance de la modélisation dans les activités d'ingénierie et a introduit la notion de pensée systémique, en la comparant à la pensée analytique. L'accent a été mis sur la valeur des <strong>approches holistiques</strong> pour appréhender la complexité des systèmes. Des exemples issus du domaine aéronautique ont illustré comment la modélisation contribue à réduire les coûts et accélérer la mise sur le marché.</p>
+
+                <h4>2. Les six principes clés de la théorie des systèmes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Principe</th>
+                            <th>Description</th>
+                            <th>Exemple</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intégrité</strong></td>
+                            <td>Le système fonctionne comme un tout cohérent</td>
+                            <td>Un avion n'est pas une somme de pièces mais un système intégré</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interaction</strong></td>
+                            <td>Les composants interagissent entre eux</td>
+                            <td>Les sous-systèmes communiquent via des interfaces</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rétroaction</strong></td>
+                            <td>Les sorties influencent les entrées (boucles de contrôle)</td>
+                            <td>Thermostat régulant la température</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conditions initiales</strong></td>
+                            <td>L'état initial détermine l'évolution du système</td>
+                            <td>Configuration de départ d'un projet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Émergence</strong></td>
+                            <td>Propriétés nouvelles apparaissent au niveau système</td>
+                            <td>La conscience émerge du cerveau</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adaptation</strong></td>
+                            <td>Le système évolue avec son environnement</td>
+                            <td>Systèmes auto-adaptatifs</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>3. Conception de systèmes avec rétroaction</h4>
+                <p>L'exploration a porté sur la conception de systèmes intégrant la rétroaction, le contrôle et le comportement. Le formateur a souligné la nécessité d'<strong>architectures alignées</strong> sur les performances attendues. Discussion sur la construction, la maintenance, le recyclage et la réduction d'impact énergétique. Une distinction a été faite entre approches systémiques dures (quantitatives, ingénierie) et souples (qualitatives, organisationnelles).</p>
+
+                <h4>4. Transition vers le développement logiciel basé sur des composants</h4>
+                <p>L'évolution des paradigmes logiciels a été abordée, insistant sur le passage de la programmation orientée objet aux approches à <strong>base de composants</strong>. Il a été montré que le paradigme objet devient limité pour les systèmes distribués, notamment en raison du <strong>couplage fort</strong> et des problèmes d'héritage.</p>
+
+                <div class="warning-box">
+                    <h4>⚠️ Limites de l'approche objet pour les systèmes distribués</h4>
+                    <ul>
+                        <li><strong>Couplage fort :</strong> L'héritage crée des dépendances rigides difficiles à faire évoluer</li>
+                        <li><strong>Fragile Base Class Problem :</strong> Modifier une classe mère casse les classes filles</li>
+                        <li><strong>Pas d'interopérabilité :</strong> Difficile d'intégrer des composants de fournisseurs différents</li>
+                        <li><strong>Complexité croissante :</strong> Les hiérarchies d'héritage deviennent ingérables</li>
+                    </ul>
+                </div>
+
+                <div class="key-takeaway">
+                    <strong>Avantages de l'approche composant :</strong> Séparation des préoccupations, modularité, interopérabilité via interfaces normalisées, reconfigurabilité dynamique et standardisation. Les composants sont développés indépendamment puis assemblés via des contrats d'interface.
+                </div>
+
+                <h4>5. Évolution vers des systèmes ouverts et interopérables</h4>
+                <p>La fin de la session a porté sur la transformation des systèmes fermés vers des <strong>systèmes ouverts et interopérables</strong>. Explication de la manière dont des composants peuvent être développés indépendamment puis intégrés grâce à des interfaces normalisées. Des analogies avec le bâtiment (prises électriques standardisées) ou l'aéronautique ont illustré la logique contractuelle de ces architectures.</p>
+            </div>
+
+            <div class="video-embed">
+                <p>🎥 Enregistrement vidéo de la session :</p>
+                <a href="https://youtube.com/playlist?list=PLxT3cRUflqnHPrixA_hsYidy2q8Nfdy31&si=o9hAkSDz5mI-cmXD" target="_blank">
+                    <img src="https://img.youtube.com/vi/v-9kt7MYvr8/hqdefault.jpg" alt="Session 03 - Pensée Systémique" width="560">
+                </a>
+            </div>
+        </div>
+
+        <!-- Session 04 -->
+        <div id="session04" class="course-section">
+            <h2 class="session-title">📅 Session 04 : Ingénierie par les Modèles (MDA) - Modéliser ≠ Dessiner</h2>
+            
+            <div class="learning-objectives">
+                <h4>🎯 Objectifs d'apprentissage</h4>
+                <ul>
+                    <li>Maîtriser les trois niveaux MDA : CIM, PIM, PSM et leur articulation</li>
+                    <li>Distinguer clairement modélisation sémantique et dessin graphique</li>
+                    <li>Utiliser les diagrammes de classes et de séquence à bon escient selon le niveau d'abstraction</li>
+                    <li>Comprendre le rôle et les limites strictes de PlantUML</li>
+                    <li>Positionner son rôle d'expert métier dans la chaîne de valeur du développement</li>
+                </ul>
+            </div>
+
+            <div class="course-content">
+                <h3>Vue d'ensemble</h3>
+                <p>Cette session constitue un <strong>tournant décisif</strong> dans l'enseignement de l'UML et de l'ingénierie par les modèles. Elle introduit l'<strong>Ingénierie par les Modèles (MDA)</strong> et l'utilisation d'UML, en soulignant la distinction fondamentale entre modéliser et simplement dessiner. L'approche s'organise selon trois niveaux essentiels qui structurent toute la démarche de développement.</p>
+
+                <h3>Les trois niveaux de modélisation MDA</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Niveau</th>
+                            <th>Description</th>
+                            <th>Contenu typique</th>
+                            <th>Acteur principal</th>
+                            <th>Questions clés</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CIM</strong><br>(Computation Independent Model)</td>
+                            <td>Vocabulaire et concepts métier purs</td>
+                            <td>Acteurs, artefacts métier, processus, informations échangées</td>
+                            <td>Expert métier</td>
+                            <td>Qui ? Quoi ? Quelles activités ? Quelles informations ?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PIM</strong><br>(Platform Independent Model)</td>
+                            <td>Architecture logique de la solution</td>
+                            <td>Classes avec UUID, opérations techniques, composants logiques, interfaces</td>
+                            <td>Architecte logiciel</td>
+                            <td>Comment (logiquement) ? Quel paradigme ? Quelle structure ?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PSM</strong><br>(Platform Specific Model)</td>
+                            <td>Implémentation technique ciblée</td>
+                            <td>Tables PostgreSQL, classes Java, conteneurs Docker, APIs REST</td>
+                            <td>Développeur / Architecte technique</td>
+                            <td>Avec quelle technologie ? Quel framework ? Quelle plateforme ?</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <h4>💡 Principe de séparation des préoccupations</h4>
+                    <p>Cette séparation stricte entre le <strong>"quoi"</strong> (CIM), le <strong>"comment logique"</strong> (PIM) et le <strong>"comment technique"</strong> (PSM) est le fondement d'une ingénierie logicielle robuste et maintenable. Elle permet :</p>
+                    <ul>
+                        <li>De faire évoluer la technologie sans remettre en cause le métier</li>
+                        <li>De réutiliser le PIM pour différentes plateformes (web, mobile, embarqué)</li>
+                        <li>De garantir la traçabilité des exigences métier vers l'implémentation</li>
+                        <li>De faciliter la communication entre experts de domaines différents</li>
+                    </ul>
+                </div>
+
+                <h3>Diagrammes UML : Dualité d'usage selon le niveau</h3>
+
+                <h4>Le Diagramme de Classes</h4>
+                <p>Le diagramme de classes illustre parfaitement la <strong>dualité d'usage</strong> d'un même type de diagramme :</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Utilisation</th>
+                            <th>Niveau</th>
+                            <th>Contenu</th>
+                            <th>Exemple</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vocabulaire métier</td>
+                            <td>CIM</td>
+                            <td>Classes conceptuelles, attributs métier, associations sémantiques</td>
+                            <td>Classe "Client" avec attribut "nom" (pas d'UUID, pas d'opérations techniques)</td>
+                        </tr>
+                        <tr>
+                            <td>Structure logicielle</td>
+                            <td>PIM</td>
+                            <td>Classes logiques avec UUID, version, opérations (validate(), execute())</td>
+                            <td>Classe "ClientEntity" avec uuid:UUID, opération validate():boolean</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>La différence réside dans le <strong>contenu sémantique</strong> des classes, non dans la syntaxe graphique. Un même diagramme de classes peut servir à deux usages totalement différents.</p>
+
+                <h4>Le Diagramme de Séquence</h4>
+                <p>Outil privilégié pour capturer les <strong>comportements dynamiques</strong>. Il impose un ordre chronologique (lecture de haut en bas) et matérialise les échanges de messages entre acteurs ou objets. Fonctionne comme une "recette de cuisine" où les flèches horizontales représentent les appels d'opérations.</p>
+                
+                <p><strong>Expressivité :</strong> Permet de modéliser des boucles, des conditions, des appels parallèles et même des sous-séquences. C'est un langage procédural complet qui peut être simulé.</p>
+
+                <h3>Outils : La distinction cruciale entre Dessin et Modèle Sémantique</h3>
+
+                <div class="warning-box">
+                    <h4>⚠️ CRUCIAL : PlantUML est un outil de DESSIN, pas de modélisation</h4>
+                    <p><strong>PlantUML génère des images</strong> (SVG, PNG), pas des modèles sémantiques exploitables par la machine.</p>
+                    
+                    <p><strong>Il est utile pour :</strong></p>
+                    <ul>
+                        <li>✅ Prototypage rapide et exploration initiale d'un domaine</li>
+                        <li>✅ Documentation visuelle statique intégrée au code (Markdown)</li>
+                        <li>✅ Communication informelle des concepts</li>
+                        <li>✅ Génération rapide avec l'aide de LLM (ChatGPT)</li>
+                        <li>✅ Versionnement avec Git (format texte)</li>
+                    </ul>
+                    
+                    <p><strong>Mais il ne permet PAS :</strong></p>
+                    <ul>
+                        <li>❌ Validation automatique de la cohérence du modèle</li>
+                        <li>❌ Vérification des règles UML</li>
+                        <li>❌ Génération de code fiable et maintenable</li>
+                        <li>❌ Navigation entre diagrammes liés</li>
+                        <li>❌ Manipulation sémantique des éléments (refactoring)</li>
+                        <li>❌ Traçabilité entre niveaux (CIM → PIM → PSM)</li>
+                        <li>❌ Cohérence multi-diagrammes garantie</li>
+                    </ul>
+                    
+                    <p><strong>Pourquoi ? </strong>Parce que le code SVG/PNG généré ne contient que des primitives graphiques (&lt;rect&gt;, &lt;text&gt;, &lt;line&gt;). L'ordinateur voit des rectangles, pas des concepts UML identifiés avec leurs propriétés et relations.</p>
+                    
+                    <p><strong>Recommandation pédagogique :</strong> Utilisez PlantUML pour démarrer rapidement et explorer vos idées, puis <strong>passez impérativement à un outil de modélisation professionnel</strong> (Papyrus, MagicDraw, Enterprise Architect) pour tout travail critique nécessitant validation, cohérence et génération.</p>
+                </div>
+
+                <h4>Outils Professionnels : La Vraie Modélisation</h4>
+                <p>Les outils professionnels (MagicDraw, Papyrus, Enterprise Architect, Modelio) manipulent des <strong>modèles sémantiques</strong> stockés en format <strong>XMI</strong> (XML Metadata Interchange). Chaque élément possède un identifiant unique et des métadonnées complètes.</p>
+
+                <p><strong>Capacités essentielles :</strong></p>
+                <ul>
+                    <li>Validation automatique des règles UML</li>
+                    <li>Cohérence garantie entre tous les diagrammes</li>
+                    <li>Refactoring automatique (renommer une classe met à jour toutes ses références)</li>
+                    <li>Génération de code vers multiples langages</li>
+                    <li>Reverse engineering (code → modèle)</li>
+                    <li>Simulation et vérification formelle</li>
+                    <li>Traçabilité complète (exigences → modèle → code)</li>
+                    <li>Gestion de versions du modèle</li>
+                </ul>
+
+                <h3>Rôle de l'IA et positionnement dans la chaîne de valeur</h3>
+
+                <h4>Les LLM comme assistants de formalisation</h4>
+                <p>L'originalité pédagogique de cette session réside dans l'utilisation des <strong>Large Language Models</strong> (ChatGPT, Claude) pour <strong>catalyser la formalisation</strong> du vocabulaire métier. Le processus recommandé :</p>
+
+                <ol>
+                    <li>Décrire son domaine métier en langage naturel au LLM</li>
+                    <li>Demander l'extraction du vocabulaire et des concepts principaux</li>
+                    <li>Faire générer un CIM en code PlantUML</li>
+                    <li>Critiquer et enrichir le résultat (l'IA peut se tromper !)</li>
+                    <li>Itérer jusqu'à obtenir un CIM satisfaisant</li>
+                    <li>Demander la génération du PIM correspondant</li>
+                    <li>Recréer le modèle dans un outil professionnel pour validation</li>
+                </ol>
+
+                <div class="warning-box">
+                    <h4>⚠️ Limites critiques de l'IA générative</h4>
+                    <p><strong>L'IA ne remplace PAS l'expertise humaine</strong></p>
+                    <ul>
+                        <li>Les LLM peuvent halluciner (inventer des concepts inexistants)</li>
+                        <li>Ils n'ont pas la compréhension fine du contexte métier</li>
+                        <li>Ils ne peuvent pas valider la pertinence opérationnelle</li>
+                        <li>Ils génèrent souvent des erreurs de syntaxe PlantUML</li>
+                    </ul>
+                    <p><strong>Votre rôle d'expert métier est irremplaçable :</strong> Vous êtes le garant de la validité du modèle, capable de critiquer, corriger et enrichir les propositions de l'IA. C'est VOTRE expertise qui crée de la valeur.</p>
+                </div>
+
+                <h4>Positionnement dans la chaîne de développement</h4>
+                <p>L'objectif pédagogique n'est <strong>pas</strong> de former des analystes professionnels, mais de rendre les futurs ingénieurs (hydrographes, automaticiens, etc.) capables de :</p>
+                <ul>
+                    <li><strong>Formaliser leur expertise métier</strong> en modèles compréhensibles</li>
+                    <li><strong>Dialoguer efficacement</strong> avec les analystes et concepteurs</li>
+                    <li><strong>Critiquer et valider</strong> les modèles proposés</li>
+                    <li><strong>Garantir</strong> que les applications répondent aux besoins opérationnels réels</li>
+                    <li><strong>Communiquer</strong> les besoins aux informaticiens sans ambiguïté</li>
+                </ul>
+
+                <div class="key-takeaway">
+                    Message central : <strong>"Modéliser n'est pas dessiner"</strong>. Un modèle est composé d'objets typés identifiés manipulables avec validation automatique, tandis qu'un dessin est une image statique sans sémantique exploitable par la machine. Cette distinction est le cœur de l'ingénierie par les modèles.
+                </div>
+
+                <h3>Exercice pratique demandé</h3>
+                <div class="info-box">
+                    <h4>📝 Travail à réaliser pour la prochaine session</h4>
+                    <ol>
+                        <li><strong>Choisir votre domaine métier</strong> (hydrographie, automatisme, gestion, etc.)</li>
+                        <li><strong>Utiliser ChatGPT</strong> pour extraire le vocabulaire métier</li>
+                        <li><strong>Produire un CIM</strong> (diagramme de classes métier en PlantUML)</li>
+                        <li><strong>Créer un PIM</strong> (architecture logique avec diagrammes de classes et composants)</li>
+                        <li><strong>Modéliser un comportement</strong> avec un diagramme de séquence</li>
+                        <li><strong>Documenter vos choix</strong> : pourquoi ces classes ? ces relations ?</li>
+                    </ol>
+                    <p><strong>Objectif :</strong> Expérimenter concrètement la différence entre CIM et PIM sur votre propre domaine. Ces travaux serviront de base pour l'analyse collective et l'exploration des outils professionnels.</p>
+                    <p><strong>Bonus :</strong> Les étudiants impliqués recevront 1-2 points supplémentaires. Les travaux anonymisés constitueront une bibliothèque de cas concrets pour les sessions suivantes.</p>
+                </div>
+
+                <h3>Retranscription - Points clés du cours</h3>
+
+                <h4>I. Contexte et enjeu pédagogique</h4>
+                <p>L'activité correspond au <strong>CIM</strong> dans l'approche MDA. Le but est d'extraire les besoins métier pour dériver un modèle d'application créant de la valeur. Le CIM décrit l'environnement métier avant toute considération informatique.</p>
+
+                <h4>II. Principe de Separation of Concerns</h4>
+                <p>L'approche composant impose de s'isoler du monde informatique pour se concentrer uniquement sur le métier. On décrit le domaine d'usage sans pollution technique. C'est le fondement de la séparation CIM/PIM/PSM.</p>
+
+                <h4>III. Démonstration pratique en direct</h4>
+                <p>Démonstration d'utilisation de ChatGPT pour générer :</p>
+                <ul>
+                    <li>Un <strong>CIM</strong> : graphe de concepts métier avec acteurs, artefacts, informations</li>
+                    <li>Un <strong>PIM</strong> : architecture multicouches avec classes logiques (UUID, opérations)</li>
+                </ul>
+                <p><strong>Critique fondamentale :</strong> PlantUML affiche des boîtes (graphisme), mais l'ordinateur ne voit pas des objets UML identifiés. Le SVG généré ne contient que des primitives géométriques sans sémantique.</p>
+
+                <h4>IV. Modéliser ≠ Dessiner : Tableau comparatif</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Caractéristique</th>
+                            <th>Dessin (PlantUML, PNG/SVG)</th>
+                            <th>Modèle (Papyrus, MagicDraw)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nature</td>
+                            <td>Image statique</td>
+                            <td>Structure de données sémantiques</td>
+                        </tr>
+                        <tr>
+                            <td>Éléments</td>
+                            <td>Primitives graphiques (rect, text)</td>
+                            <td>Objets typés UML (Class, Attribute, Operation)</td>
+                        </tr>
+                        <tr>
+                            <td>Validation</td>
+                            <td>Aucune (syntaxe visuelle libre)</td>
+                            <td>Automatique selon règles UML</td>
+                        </tr>
+                        <tr>
+                            <td>Cohérence</td>
+                            <td>Manuelle (risque d'incohérence)</td>
+                            <td>Garantie (source unique de vérité)</td>
+                        </tr>
+                        <tr>
+                            <td>Modification</td>
+                            <td>Répétitive dans chaque diagramme</td>
+                            <td>Propagation automatique partout</td>
+                        </tr>
+                        <tr>
+                            <td>Génération de code</td>
+                            <td>Impossible</td>
+                            <td>Automatique et fiable</td>
+                        </tr>
+                        <tr>
+                            <td>Traçabilité</td>
+                            <td>Manuelle</td>
+                            <td>Automatique (exigences → code)</td>
+                        </tr>
+                        <tr>
+                            <td>Format</td>
+                            <td>Image (SVG, PNG)</td>
+                            <td>XMI (interopérable)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>V. Passage au PIM : L'application logique</h4>
+                <p>Le passage au PIM introduit des <strong>données techniques</strong> (UUID, version, timestamp) et des <strong>opérations</strong> (execute(), validate(), save()) qui décrivent le comportement des représentations informatiques, et non des objets réels du métier.</p>
+
+                <p><strong>Différence cruciale CIM vs PIM :</strong></p>
+                <ul>
+                    <li><strong>CIM :</strong> "Client" avec "nom" (concept métier pur)</li>
+                    <li><strong>PIM :</strong> "ClientEntity" avec "uuid:UUID", "nom:String", "validate():boolean" (objet logiciel)</li>
+                </ul>
+
+                <h4>VI. Limites de PlantUML et perspectives</h4>
+                <p><strong>Inconvénients identifiés :</strong></p>
+                <ul>
+                    <li>Syntaxe non standard (pas d'interopérabilité)</li>
+                    <li>Mélange fond/forme dans le même fichier texte</li>
+                    <li>Pas de vérification sémantique automatique</li>
+                    <li>Pas d'identifiants uniques pour garantir cohérence</li>
+                    <li>Erreurs de syntaxe fréquentes générées par ChatGPT</li>
+                    <li>Modification laborieuse (une faute détruit les relations)</li>
+                </ul>
+
+                <p><strong>Prochaines études :</strong> Passage aux outils professionnels (MagicDraw, Enterprise Architect, Papyrus) pour manipulation formelle, vérification, cohérence et génération de code.</p>
+            </div>
+
+            <div class="video-embed">
+                <p>🎥 Enregistrement vidéo de la session :</p>
+                <a href="https://www.youtube.com/playlist?list=PLxT3cRUflqnEvjGbYJbUg46i29clhkTEB" target="_blank">
+                    <img src="https://i9.ytimg.com/vi/0gbVKEXN-0k/mqdefault.jpg?v=69219bae&sqp=CLS2hskG&rs=AOn4CLB8cZlLIKcdvPuCuHJpNQNU2M47Xw" alt="Session 04 - MDA" width="560">
+                </a>
+            </div>
+        </div>
+
+        <!-- Session 05 -->
+        <div id="session05" class="course-section">
+            <h2 class="session-title">📅 Session 05 : Outils de Modélisation et Technologies Avancées</h2>
+            
+            <div class="learning-objectives">
+                <h4>🎯 Objectifs d'apprentissage</h4>
+                <ul>
+                    <li>Comparer les différents types d'outils UML et identifier leurs cas d'usage optimaux</li>
+                    <li>Comprendre les critères de choix d'un outil de modélisation</li>
+                    <li>Maîtriser la distinction entre modèle formel (XMI) et dessin (SVG/GraphML)</li>
+                    <li>Découvrir les technologies avancées de visualisation pour systèmes complexes</li>
+                </ul>
+            </div>
+
+            <div class="course-content">
+                <h3>Vue d'ensemble</h3>
+                <p>La session porte sur la modélisation visuelle avec UML, en insistant sur la distinction fondamentale entre la <strong>modélisation formelle</strong> (interprétable par la machine, basée sur XMI) et le <strong>simple dessin</strong> (image statique sans sémantique exploitable). Un rappel du <strong>Paradigme Objet</strong> (classes, attributs, opérations, encapsulation, interfaces) permet de situer le cadre conceptuel.</p>
+
+                <h3>Comparatif détaillé des outils de représentation</h3>
+
+                <h4>1. Solutions Textuelles (PlantUML, Mermaid)</h4>
+                
+                <p><strong>Principe :</strong> Génération de diagrammes à partir de syntaxe textuelle avec layout automatique.</p>
+                
+                <p><strong>Avantages :</strong></p>
+                <ul>
+                    <li>✅ <strong>Rapidité :</strong> Génération quasi-instantanée</li>
+                    <li>✅ <strong>Layout automatique :</strong> Pas de positionnement manuel</li>
+                    <li>✅ <strong>Versionnement :</strong> Intégration parfaite avec Git</li>
+                    <li>✅ <strong>Documentation intégrée :</strong> Diagrammes dans le code Markdown</li>
+                    <li>✅ <strong>Assistance IA :</strong> Génération facile via LLM</li>
+                    <li>✅ <strong>Gratuit et open source</strong></li>
+                </ul>
+                
+                <p><strong>Limites critiques :</strong></p>
+                <ul>
+                    <li>❌ <strong>Syntaxe non-standard :</strong> Chaque outil a sa propre syntaxe</li>
+                    <li>❌ <strong>Modification laborieuse :</strong> Une faute de frappe sur un nom détruit toutes les relations</li>
+                    <li>❌ <strong>Absence d'interactivité :</strong> Impossible de filtrer dynamiquement</li>
+                    <li>❌ <strong>Pas de vérification sémantique :</strong> L'outil ne comprend pas UML</li>
+                    <li>❌ <strong>Manipule du code, pas un modèle formel</strong></li>
+                    <li>❌ <strong>Aucune cohérence multi-diagrammes garantie</strong></li>
+                </ul>
+                
+                <div class="info-box">
+                    <h4>💡 Problème concret de PlantUML</h4>
+                    <p>Si vous écrivez une classe "Transformation" et que vous faites une faute en l'appelant "Transformaton" dans une relation, PlantUML crée silencieusement une NOUVELLE classe. Vous devez corriger manuellement toutes les occurrences dans le texte. Un outil de modélisation professionnel aurait signalé l'erreur immédiatement.</p>
+                </div>
+                
+                <p><strong>Usage recommandé :</strong> Prototypage rapide, exploration initiale, documentation technique légère, communication informelle.</p>
+
+                <h4>2. Outils de Dessin avec Layout Automatique (yEd, Graphviz)</h4>
+                
+                <p><strong>Principe :</strong> Éditeurs graphiques avec algorithmes de mise en page sophistiqués.</p>
+                
+                <p><strong>Avantages :</strong></p>
+                <ul>
+                    <li>✅ <strong>Interface visuelle intuitive :</strong> Glisser-déposer direct</li>
+                    <li>✅ <strong>Algorithmes de layout puissants :</strong> Organique, hiérarchique, circulaire, orthogonal</li>
+                    <li>✅ <strong>Manipulation interactive :</strong> Colorisation, regroupement, filtrage visuel</li>
+                    <li>✅ <strong>Export multi-formats :</strong> PDF, PNG, SVG, GraphML</li>
+                    <li>✅ <strong>Gratuit</strong></li>
+                </ul>
+                
+                <p><strong>Limite majeure :</strong></p>
+                <ul>
+                    <li>❌ <strong>Format GraphML :</strong> Contient uniquement des primitives géométriques (&lt;node&gt;, &lt;edge&gt;)</li>
+                    <li>❌ <strong>Pas de concepts UML natifs :</strong> Pas de notion de Classe, Attribut, Opération</li>
+                    <li>❌ <strong>Validation humaine uniquement :</strong> L'ordinateur ne "comprend" pas le diagramme</li>
+                    <li>❌ <strong>C'est un outil de dessin</strong>, pas de modélisation</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Exemple : Analyse du code GraphML généré par yEd</h4>
+                    <p>Le fichier XML ne contient que :</p>
+                    <pre style="background:#f8f9fa; padding:15px; border-radius:5px; overflow-x:auto;"><code>&lt;node id="n1"&gt;
+  &lt;geometry x="100" y="50" width="120" height="80"/&gt;
+  &lt;fill color="#FFCC00"/&gt;
+  &lt;label&gt;Transformation&lt;/label&gt;
+&lt;/node&gt;</code></pre>
+                    <p>L'ordinateur voit un rectangle jaune avec du texte, PAS une classe UML avec ses propriétés et comportements. La sémantique existe uniquement dans l'interprétation humaine.</p>
+                </div>
+                
+                <p><strong>Usage recommandé :</strong> Diagrammes esthétiques pour présentations, graphes génériques, visualisation de données relationnelles.</p>
+
+                <h4>3. Ateliers de Modélisation Professionnels (MDA Tools)</h4>
+                
+                <p><strong>Outils :</strong> Enterprise Architect, MagicDraw/Cameo, Modelio, Papyrus, Rational Software Architect</p>
+                
+                <p><strong>Principe fondamental :</strong> Manipulation de <strong>modèles sémantiques formels</strong> stockés en format <strong>XMI</strong> (XML Metadata Interchange). Chaque élément UML possède un identifiant unique et des métadonnées complètes.</p>
+                
+                <p><strong>Capacités essentielles :</strong></p>
+                <ul>
+                    <li>✅ <strong>Modèle unique, vues multiples :</strong> Un seul modèle, N diagrammes comme projections</li>
+                    <li>✅ <strong>Cohérence automatique multi-diagrammes :</strong> Modifier un élément met à jour toutes ses vues</li>
+                    <li>✅ <strong>Validation automatique :</strong> Respect des règles et contraintes UML</li>
+                    <li>✅ <strong>Génération de code :</strong> Transformation modèle → code (Java, C++, Python, SQL...)</li>
+                    <li>✅ <strong>Reverse engineering :</strong> Code → modèle (synchronisation bidirectionnelle)</li>
+                    <li>✅ <strong>Refactoring sémantique :</strong> Renommer propage partout automatiquement</li>
+                    <li>✅ <strong>Simulation et vérification :</strong> Exécution de modèles pour validation</li>
+                    <li>✅ <strong>Traçabilité complète :</strong> Exigences → modèle → code</li>
+                    <li>✅ <strong>Gestion de versions du modèle :</strong> Diff et merge intelligents</li>
+                    <li>✅ <strong>Intégration ALM :</strong> Jira, Git, Jenkins, gestion d'exigences</li>
+                    <li>✅ <strong>Profils UML :</strong> Extension pour domaines spécifiques (SysML, MARTE...)</li>
+                    <li>✅ <strong>Interopérabilité :</strong> Import/export XMI entre outils</li>
+                </ul>
+                
+                <div class="key-takeaway">
+                    Le <strong>modèle</strong> est la source unique de vérité (structure de données arborescente). Le <strong>diagramme</strong> est une vue partielle pour la communication. Seuls les ateliers professionnels garantissent cette séparation et permettent l'ingénierie par les modèles (MBE).
+                </div>
+                
+                <p><strong>Comparaison commercial vs open source :</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Critère</th>
+                            <th>Commercial (EA, MagicDraw)</th>
+                            <th>Open Source (Papyrus, Modelio)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Coût</td>
+                            <td>€€€ (500-5000€/an/licence)</td>
+                            <td>Gratuit</td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td>Commercial professionnel</td>
+                            <td>Communauté</td>
+                        </tr>
+                        <tr>
+                            <td>Fonctionnalités</td>
+                            <td>Très complètes, intégration ALM</td>
+                            <td>Core UML solide</td>
+                        </tr>
+                        <tr>
+                            <td>Performance</td>
+                            <td>Excellente (gros modèles)</td>
+                            <td>Correcte (Eclipse parfois lourd)</td>
+                        </tr>
+                        <tr>
+                            <td>Courbe d'apprentissage</td>
+                            <td>Moyenne à élevée</td>
+                            <td>Élevée</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Usage recommandé :</strong> Projets industriels critiques, développement d'envergure, ingénierie système, projets académiques sérieux, tout contexte nécessitant validation formelle.</p>
+
+                <h3>Critères de choix d'un outil UML</h3>
+                
+                <p>Le choix doit se faire selon plusieurs dimensions :</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besoin</th>
+                            <th>Outil recommandé</th>
+                            <th>Justification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Documentation simple</td>
+                            <td>PowerPoint, Visio</td>
+                            <td>Dessin libre rapide</td>
+                        </tr>
+                        <tr>
+                            <td>Prototypage rapide</td>
+                            <td>PlantUML, Mermaid</td>
+                            <td>Génération instantanée, versionnement Git</td>
+                        </tr>
+                        <tr>
+                            <td>Présentation esthétique</td>
+                            <td>yEd, Graphviz</td>
+                            <td>Layouts sophistiqués</td>
+                        </tr>
+                        <tr>
+                            <td>Exploration pédagogique</td>
+                            <td>PlantUML + Papyrus</td>
+                            <td>Comprendre la différence dessin/modèle</td>
+                        </tr>
+                        <tr>
+                            <td>Projet académique sérieux</td>
+                            <td>Papyrus, Modelio</td>
+                            <td>Gratuit, modélisation formelle</td>
+                        </tr>
+                        <tr>
+                            <td>Projet industriel critique</td>
+                            <td>Enterprise Architect, MagicDraw</td>
+                            <td>Toutes capacités, support commercial</td>
+                        </tr>
+                        <tr>
+                            <td>Ingénierie système</td>
+                            <td>Cameo Systems Modeler, Papyrus</td>
+                            <td>Support SysML</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Technologies visuelles avancées</h3>
+                
+                <p>Pour gérer la <strong>complexité explosive</strong> des grands systèmes (centaines de classes, milliers de relations), des technologies émergentes permettent de dépasser l'effet "spaghetti" traditionnel :</p>
+
+                <h4>Vis.js : Graphes Physiques Interactifs</h4>
+                <ul>
+                    <li><strong>Principe :</strong> Simulation physique (forces d'attraction/répulsion)</li>
+                    <li><strong>Usage :</strong> Exploration dynamique de graphes denses</li>
+                    <li><strong>Fonctionnalités :</strong> Navigation fluide, clustering, filtrage temps réel</li>
+                </ul>
+
+                <h4>Cytoscape.js : Navigation Multi-Niveaux</h4>
+                <ul>
+                    <li><strong>Graphes composites :</strong> Nœuds contenant d'autres nœuds (collapse/expand)</li>
+                    <li><strong>Algorithmes avancés :</strong> Plus court chemin, centralité, clustering, détection de communautés</li>
+                    <li><strong>Matrices d'adjacence :</strong> Visualisation alternative pour patterns structurels</li>
+                    <li><strong>Cas d'usage :</strong> Analyse de dépendances, architecture logicielle, graphes de connaissances</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>💡 Contexte d'usage</h4>
+                    <p>Ces technologies ne <strong>remplacent pas</strong> UML mais le <strong>complètent</strong> pour la visualisation interactive de modèles très complexes. Elles peuvent être utilisées pour explorer des modèles XMI exportés depuis des outils professionnels.</p>
+                </div>
+
+                <h3>Synthèse : Modéliser ≠ Dessiner</h3>
+                
+                <div class="key-takeaway">
+                    <p><strong>Le modèle</strong> est la source unique de vérité structurée.</p>
+                    <p><strong>Le diagramme</strong> est une vue partielle pour la communication.</p>
+                    <p><strong>L'IA (LLM)</strong> peut expliquer un modèle existant, mais elle ne peut pas créer des modèles critiques fiables sans supervision humaine experte (risque d'hallucination).</p>
+                    <p><strong>Principe de choix :</strong> Adapter l'outil au besoin réel. PlantUML pour explorer, Papyrus/MagicDraw pour industrialiser.</p>
+                </div>
+
+                <h3>Retranscription - Points clés</h3>
+
+                <h4>I. Contexte : Modèle formel vs Dessin</h4>
+                <p>La distinction fondamentale repose sur la <strong>modélisation formelle</strong> (basée sur XMI, interprétable par la machine) versus le <strong>simple dessin</strong> (image statique). Le paradigme objet structure la pensée avec classes, encapsulation, héritage et polymorphisme.</p>
+
+                <h4>II. Limites fondamentales de PlantUML</h4>
+                <p><strong>Problème majeur :</strong> Une faute de frappe détruit toutes les relations associées, nécessitant corrections manuelles répétitives. Absence d'interactivité, de paramétrage dynamique, de vérification sémantique. Verdict : outil de <strong>génération</strong> rapide, pas de conception itérative.</p>
+
+                <h4>III. yEd : Dessin visuel évolué</h4>
+                <p>Puissant éditeur avec layout automatique, mais limite majeure : absence de sémantique UML. Le code GraphML ne contient que des primitives géométriques, l'ordinateur ne comprend pas le sens. C'est du dessin élaboré, pas de la modélisation.</p>
+
+                <h4>IV. Ateliers professionnels : La vraie modélisation</h4>
+                <p>Seuls à manipuler des modèles formels exploitables avec cohérence multi-diagrammes, validation automatique, génération de code, et intégration complète avec la gestion des exigences et le cycle ALM.</p>
+            </div>
+
+            <div class="video-embed">
+                <p>🎥 Enregistrement vidéo de la session :</p>
+                <a href="https://youtube.com/playlist?list=PLxT3cRUflqnHPrixA_hsYidy2q8Nfdy31&si=o9hAkSDz5mI-cmXD" target="_blank">
+                    <img src="https://i9.ytimg.com/vi/OC8qyAmsNb4/mqdefault.jpg?v=69219ed7&sqp=CLi9hskG&rs=AOn4CLBmvmJuUGYuw0GoGF0Uuushzzajjg" alt="Session 05 - Outils" width="560">
+                </a>
+            </div>
+        </div>
+
+        <!-- Session 06 -->
+        <div id="session06" class="course-section">
+            <h2 class="session-title">📅 Session 06 : Découverte Pratique de l'outil Papyrus</h2>
+            
+            <div class="learning-objectives">
+                <h4>🎯 Objectifs d'apprentissage</h4>
+                <ul>
+                    <li>Installer et configurer Papyrus sur différentes plateformes</li>
+                    <li>Comprendre l'interface : Model Explorer, Palette, Diagrammes, Properties</li>
+                    <li>Créer des éléments UML et gérer leur cohérence entre modèle et vues</li>
+                    <li>Distinguer clairement "Delete from Diagram" et "Delete from Model"</li>
+                    <li>Expérimenter concrètement la différence entre dessin et modélisation</li>
+                </ul>
+            </div>
+
+            <div class="course-content">
+                <h3>Vue d'ensemble</h3>
+                <p>Le formateur a présenté divers outils UML avant de guider l'installation de <strong>Papyrus</strong> (outil open source basé sur Eclipse) sur différentes plateformes. Il a insisté sur l'importance d'utiliser une version stable et d'harmoniser l'environnement. Des exercices pratiques de modélisation ont été lancés, soulignant la primauté de la <strong>pratique</strong> sur la théorie pure.</p>
+
+                <p>L'exploration des fonctionnalités de Papyrus a montré la forte <strong>interdépendance</strong> entre la représentation visuelle et les données du modèle sous-jacent. Le formateur a insisté sur la distinction cruciale entre la suppression d'un élément <strong>du diagramme</strong> (supprime la vue) et sa suppression <strong>du modèle</strong> (supprime la source unique de vérité).</p>
+
+                <h3>Philosophie : Un modèle unique, multiples vues</h3>
+                
+                <div class="info-box">
+                    <h4>💡 Principe fondamental de la modélisation visuelle</h4>
+                    <p>La <strong>modélisation visuelle</strong> est basée sur un <strong>modèle unique</strong> (structure de données arborescente contenant tous les éléments UML) dont les diagrammes multiples sont de simples <strong>vues</strong> (projections visuelles partielles).</p>
+                    
+                    <p><strong>Garanties offertes :</strong></p>
+                    <ul>
+                        <li>✅ <strong>Cohérence automatique :</strong> Modifier le nom d'une classe dans le modèle propage le changement dans TOUS les diagrammes automatiquement</li>
+                        <li>✅ <strong>Validation automatique :</strong> Respect des règles UML vérifié en temps réel</li>
+                        <li>✅ <strong>Génération de code :</strong> Depuis le modèle (source de vérité), pas depuis un diagramme particulier</li>
+                        <li>✅ <strong>Interopérabilité :</strong> Export/import en format XMI standard</li>
+                        <li>✅ <strong>Pas de duplication :</strong> Un élément existe une seule fois dans le modèle</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Conséquence du dessin statique</h4>
+                    <p>Avec PowerPoint ou PlantUML, si vous renommez une classe, vous devez :</p>
+                    <ul>
+                        <li>Modifier manuellement chaque diagramme où elle apparaît</li>
+                        <li>Risque élevé d'oublier des occurrences → incohérence</li>
+                        <li>Aucune validation automatique</li>
+                    </ul>
+                    <p>Avec Papyrus : <strong>une seule modification</strong> dans le modèle, propagation automatique partout.</p>
+                </div>
+
+                <h3>Installation et configuration</h3>
+
+                <h4>Pré-requis techniques</h4>
+                <ul>
+                    <li><strong>Java :</strong> JRE 11 ou supérieur (vérifier avec <code>java -version</code>)</li>
+                    <li><strong>Système :</strong> Windows, Linux, macOS</li>
+                    <li><strong>RAM :</strong> 4 Go minimum, 8 Go recommandé</li>
+                    <li><strong>Espace disque :</strong> ~500 Mo</li>
+                </ul>
+
+                <h4>Étapes d'installation</h4>
+                <ol>
+                    <li><strong>Télécharger Papyrus</strong> depuis <a href="https://www.eclipse.org/papyrus/" target="_blank">eclipse.org/papyrus</a></li>
+                    <li><strong>Version recommandée :</strong> Papyrus Desktop 7.0.0 (2024/2025) - versions plus récentes peuvent être instables</li>
+                    <li><strong>Décompresser</strong> l'archive dans un répertoire dédié</li>
+                    <li><strong>Lancer</strong> l'exécutable Papyrus</li>
+                    <li><strong>Choisir un workspace</strong> (espace de travail Eclipse)</li>
+                </ol>
+
+                <div class="warning-box">
+                    <h4>⚠️ Problèmes fréquents et solutions</h4>
+                    <ul>
+                        <li><strong>macOS récents (processeurs M1/M2) :</strong> Possibles problèmes de compatibilité. Essayer la version Intel avec Rosetta ou attendre version native ARM.</li>
+                        <li><strong>Windows 11 :</strong> Certains utilisateurs rapportent des problèmes de performance. Vérifier que Java est bien installé.</li>
+                        <li><strong>Linux :</strong> S'assurer d'avoir la bonne version de Java (OpenJDK 11+). Installer via gestionnaire de paquets si nécessaire.</li>
+                        <li><strong>Lenteur au démarrage :</strong> Eclipse charge de nombreux plugins. Patience au premier lancement.</li>
+                    </ul>
+                </div>
+
+                <h4>Premier projet Papyrus</h4>
+                <ol>
+                    <li><strong>File → New → Papyrus Project</strong></li>
+                    <li>Nommer le projet (ex: "MonDomaineCIM")</li>
+                    <li><strong>Obligatoire :</strong> Créer une <strong>View</strong> (Create View) - sans vue, impossible de créer des diagrammes</li>
+                    <li>Choisir le type de diagramme initial (Class Diagram recommandé)</li>
+                </ol>
+
+                <h3>Interface Papyrus : Les 4 zones clés</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Description</th>
+                            <th>Rôle et usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Project Explorer</strong><br>(en haut à gauche)</td>
+                            <td>Arborescence des fichiers du workspace</td>
+                            <td>Navigation dans les projets Eclipse. Voir les fichiers .di, .notation, .uml</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Model Explorer</strong><br>(à gauche, crucial)</td>
+                            <td>Structure arborescente du MODÈLE UML</td>
+                            <td>Visualiser et manipuler la hiérarchie des éléments (packages, classes, attributs, opérations). C'est la SOURCE DE VÉRITÉ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Diagram Editor</strong><br>(zone centrale)</td>
+                            <td>Éditeur visuel du diagramme actif</td>
+                            <td>Créer et disposer les représentations visuelles des éléments. C'est une VUE sur le modèle.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Palette</strong><br>(à droite du diagramme)</td>
+                            <td>Outils de création d'éléments UML</td>
+                            <td>Sélectionner le type d'élément à créer (Class, Association, Generalization, etc.)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Properties</strong><br>(en bas)</td>
+                            <td>Propriétés de l'élément sélectionné</td>
+                            <td>Éditer nom, visibilité, attributs, opérations, contraintes, documentation</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Création d'éléments : 2 méthodes</h3>
+
+                <h4>Méthode 1 : Depuis le Model Explorer (plus explicite)</h4>
+                <ol>
+                    <li>Clic droit sur le package dans le Model Explorer</li>
+                    <li>New Child → Class (ou autre type)</li>
+                    <li>L'élément est créé dans le <strong>modèle</strong></li>
+                    <li>Glisser-déposer l'élément depuis le Model Explorer vers le diagramme pour le visualiser</li>
+                </ol>
+                <p><strong>Avantage :</strong> Contrôle total, compréhension claire de la séparation modèle/vue.</p>
+
+                <h4>Méthode 2 : Depuis la Palette (plus rapide)</h4>
+                <ol>
+                    <li>Sélectionner l'outil "Class" dans la Palette</li>
+                    <li>Cliquer dans le diagramme</li>
+                    <li>L'élément est créé <strong>simultanément</strong> dans le modèle ET dans la vue</li>
+                </ol>
+                <p><strong>Avantage :</strong> Rapidité pour la modélisation itérative.</p>
+
+                <div class="info-box">
+                    <h4>💡 Recommandation pédagogique</h4>
+                    <p>Pour bien comprendre la distinction modèle/vue, commencez par la <strong>Méthode 1</strong>. Une fois le concept assimilé, passez à la Méthode 2 pour plus d'efficacité.</p>
+                </div>
+
+                <h3>Propriétés : Modèle vs Visuel</h3>
+
+                <div class="key-takeaway">
+                    <strong>Distinction fondamentale :</strong>
+                    <ul>
+                        <li><strong>Propriétés du MODÈLE</strong> (sémantiques) : Nom, attributs, opérations, visibilité, types, multiplicités, contraintes → <strong>Propagées automatiquement dans toutes les vues</strong></li>
+                        <li><strong>Propriétés VISUELLES</strong> (présentation) : Couleur, position, taille, police, affichage/masquage des sections → <strong>Spécifiques à chaque diagramme</strong></li>
+                    </ul>
+                </div>
+
+                <p><strong>Exemple pratique :</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Type</th>
+                            <th>Effet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Renommer la classe "Client" en "Customer"</td>
+                            <td>Propriété MODÈLE</td>
+                            <td>✅ Changement propagé dans TOUS les diagrammes automatiquement</td>
+                        </tr>
+                        <tr>
+                            <td>Ajouter un attribut "email:String"</td>
+                            <td>Propriété MODÈLE</td>
+                            <td>✅ Visible dans tous les diagrammes contenant cette classe</td>
+                        </tr>
+                        <tr>
+                            <td>Colorer la classe en jaune</td>
+                            <td>Propriété VISUELLE</td>
+                            <td>❌ Spécifique au diagramme actuel uniquement</td>
+                        </tr>
+                        <tr>
+                            <td>Masquer les opérations</td>
+                            <td>Propriété VISUELLE</td>
+                            <td>❌ N'affecte que la vue actuelle (les opérations restent dans le modèle)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Gestion des vues multiples</h3>
+
+                <p>Un même objet peut apparaître dans plusieurs diagrammes différents (vue architecture, vue détaillée, vue simplifiée, etc.). C'est une force majeure de la modélisation.</p>
+
+                <h4>Création de vues multiples</h4>
+                <ol>
+                    <li>Créer un nouveau diagramme : Clic droit sur le modèle → New Diagram → Class Diagram</li>
+                    <li>Glisser-déposer des éléments existants depuis le Model Explorer</li>
+                    <li>Les éléments apparaissent dans le nouveau diagramme</li>
+                    <li>Chaque diagramme peut avoir un layout et un style différents</li>
+                </ol>
+
+                <h4>CRITIQUE : Opérations de suppression</h4>
+
+                <div class="warning-box">
+                    <h4>⚠️ ATTENTION : Deux types de suppression totalement différents</h4>
+                    
+                    <p><strong>1. "Delete from Diagram" (Suppr ou Delete)</strong></p>
+                    <ul>
+                        <li>Supprime uniquement la <strong>représentation visuelle</strong> dans le diagramme actuel</li>
+                        <li>L'élément reste dans le <strong>modèle</strong></li>
+                        <li>Il reste visible dans les autres diagrammes</li>
+                        <li>Usage : Simplifier la vue, masquer temporairement</li>
+                    </ul>
+                    
+                    <p><strong>2. "Delete from Model" (Clic droit → Delete from Model)</strong></p>
+                    <ul>
+                        <li>Supprime l'objet du <strong>MODÈLE</strong> (source unique de vérité)</li>
+                        <li>Disparaît de <strong>TOUS</strong> les diagrammes automatiquement</li>
+                        <li>Disparaît du Model Explorer</li>
+                        <li>Action <strong>irréversible</strong> (sauf Undo)</li>
+                        <li>Usage : Supprimer définitivement un concept du modèle</li>
+                    </ul>
+                    
+                    <p><strong>Piège fréquent :</strong> Utiliser "Delete from Diagram" en pensant supprimer l'élément définitivement, alors qu'il reste dans le modèle et les autres vues.</p>
+                </div>
+
+                <h3>Fonctionnalités avancées (aperçu)</h3>
+
+                <h4>Génération de code</h4>
+                <ul>
+                    <li>Clic droit sur le modèle → Generate Code → Java/C++/Python</li>
+                    <li>Squelette de classes généré automatiquement</li>
+                    <li>Les attributs, opérations, visibilités sont traduits</li>
+                </ul>
+
+                <h4>Validation du modèle</h4>
+                <ul>
+                    <li>Validate → Vérifie les règles UML</li>
+                    <li>Signale les incohérences (associations sans nom, multiplicités invalides, etc.)</li>
+                </ul>
+
+                <h4>Export XMI</h4>
+                <ul>
+                    <li>File → Export → UML Model</li>
+                    <li>Format standard interopérable avec d'autres outils professionnels</li>
+                </ul>
+
+                <h4>Profils UML</h4>
+                <ul>
+                    <li>Papyrus supporte les profils (SysML, MARTE, etc.)</li>
+                    <li>Extension d'UML pour domaines spécifiques</li>
+                </ul>
+
+                <h3>Points clés à retenir</h3>
+
+                <div class="key-takeaway">
+                    <p><strong>Messages centraux :</strong></p>
+                    <ul>
+                        <li>✅ <strong>Dessiner ≠ Modéliser</strong> : Le dessin est une image, le modèle est une structure de données sémantique</li>
+                        <li>✅ <strong>Modèle ≠ Diagramme</strong> : Le modèle est unique, les diagrammes sont des vues multiples</li>
+                        <li>✅ <strong>Source unique de vérité</strong> : Le Model Explorer contient la réalité, les diagrammes sont des projections</li>
+                        <li>✅ <strong>Cohérence automatique</strong> : Modifier le modèle met à jour toutes les vues</li>
+                        <li>✅ <strong>Interopérabilité</strong> : Format XMI pour échanger entre outils professionnels</li>
+                        <li>✅ <strong>Validation automatique</strong> : L'outil vérifie les règles UML</li>
+                    </ul>
+                </div>
+
+                <h3>Exercice pratique</h3>
+
+                <div class="info-box">
+                    <h4>📝 Travail à réaliser</h4>
+                    <ol>
+                        <li><strong>Installer Papyrus</strong> et créer un premier projet</li>
+                        <li><strong>Recréer dans Papyrus</strong> les diagrammes PlantUML générés lors de la Session 04</li>
+                        <li><strong>Expérimenter</strong> :
+                            <ul>
+                                <li>Créer une classe depuis le Model Explorer, puis l'afficher dans le diagramme</li>
+                                <li>Créer une classe depuis la Palette</li>
+                                <li>Renommer une classe et observer la propagation automatique</li>
+                                <li>Créer un second diagramme et y afficher les mêmes éléments</li>
+                                <li>Tester "Delete from Diagram" vs "Delete from Model"</li>
+                                <li>Modifier les propriétés visuelles (couleur) et constater qu'elles sont spécifiques au diagramme</li>
+                            </ul>
+                        </li>
+                        <li><strong>Générer du code</strong> depuis votre modèle et analyser le résultat</li>
+                        <li><strong>Valider</strong> votre modèle pour détecter d'éventuelles incohérences</li>
+                    </ol>
+                    <p><strong>Objectif pédagogique :</strong> Comprendre <strong>concrètement</strong> la différence entre dessin (PlantUML) et modélisation sémantique (Papyrus). Expérimenter la puissance de la cohérence automatique et de la validation.</p>
+                </div>
+
+                <h3>Retranscription - Points clés du cours</h3>
+
+                <h4>I. Introduction : Typologie des outils</h4>
+                <p>Rappel de la nécessité de passer du "dessin" à la "modélisation visuelle". Les symboles UML possèdent une sémantique précise pour une communication claire entre acteurs. Papyrus se situe dans la catégorie des ateliers de modélisation professionnels.</p>
+
+                <h4>II. Philosophie : Modélisation vs Dessin</h4>
+                <p>La modélisation visuelle est basée sur un modèle unique (structure de données) dont les diagrammes sont des vues. Avantages : cohérence automatique, validation, génération de code. Inconvénients du dessin : modifications répétitives, incohérence, pas de validation.</p>
+
+                <h4>III. Installation et prise en main</h4>
+                <p>Papyrus est basé sur Eclipse, open source, multiplateforme. Configuration initiale : créer un Papyrus Project + obligatoirement une View pour les diagrammes. Interface en 4 zones clés : Project Explorer, Model Explorer (crucial), Zone de diagramme, Palette, Properties.</p>
+
+                <h4>IV. Pratique : Création et cohérence</h4>
+                <p>Deux méthodes de création : depuis Model Explorer (plus explicite) ou depuis Palette (plus rapide). Distinction propriétés MODÈLE (propagées partout) vs propriétés VISUELLES (spécifiques à chaque diagramme). Le Nom est une propriété du modèle, la Couleur une propriété visuelle.</p>
+
+                <h4>V. Gestion des vues multiples</h4>
+                <p>Différenciation cruciale : "Delete from Diagram" (supprime uniquement la vue) vs "Delete from Model" (supprime l'objet partout, car source unique de vérité). Un objet peut apparaître dans plusieurs diagrammes avec des styles différents.</p>
+
+                <h4>VI. Messages finaux</h4>
+                <p>L'interopérabilité est assurée par XMI. UML est extensible via profils pour domaines spécifiques. L'objectif est de pratiquer concrètement pour assimiler la différence dessin/modélisation et expérimenter les capacités (génération, validation) sur des cas personnalisés.</p>
+            </div>
+
+            <div class="video-embed">
+                <p>🎥 Enregistrement vidéo de la session :</p>
+                <a href="https://youtube.com/playlist?list=PLxT3cRUflqnE6ky3fmV9oOzECpov-O90x&si=NOeACUysPUvgXv--" target="_blank">
+                    <img src="https://i9.ytimg.com/vi/7OkAtCizlSM/mqdefault.jpg?v=6921a1ca&sqp=CJDChskG&rs=AOn4CLDoHqpN4HaYiYvUR3FufpTfTywrQw" alt="Session 06 - Papyrus" width="560">
+                </a>
+            </div>
+        </div>
+
+        <!-- Tableau comparatif des outils -->
+        <div id="tools-comparison" class="comparison-table course-section" style="border-left-color: #34495e;">
+            <h2 class="session-title" style="color: #34495e;">🔧 Tableau Comparatif Synthétique des Outils UML</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 12%;">Outil</th>
+                        <th style="width: 10%;">Type</th>
+                        <th style="width: 18%;">Avantages</th>
+                        <th style="width: 18%;">Limites</th>
+                        <th style="width: 22%;">Cas d'usage recommandé</th>
+                        <th style="width: 10%;">Coût</th>
+                        <th style="width: 10%;">Modélisation formelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PowerPoint / Visio</strong></td>
+                        <td>Dessin libre</td>
+                        <td>
+                            • Simplicité maximale<br>
+                            • Intégration Office<br>
+                            • Familier
+                        </td>
+                        <td>
+                            • Aucune sémantique UML<br>
+                            • Aucune validation<br>
+                            • Incohérence facile<br>
+                            • Maintenance pénible
+                        </td>
+                        <td>
+                            • Documentation rapide<br>
+                            • Présentations business<br>
+                            • Communication non technique
+                        </td>
+                        <td>€€</td>
+                        <td style="text-align: center; color: #dc3545;">❌</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PlantUML</strong></td>
+                        <td>Générateur textuel</td>
+                        <td>
+                            • Très rapide<br>
+                            • Layout automatique<br>
+                            • Versionnement Git<br>
+                            • LLM-friendly<br>
+                            • Gratuit
+                        </td>
+                        <td>
+                            • Pur dessin (pas de modèle)<br>
+                            • Syntaxe non-standard<br>
+                            • Modification laborieuse<br>
+                            • Aucune validation<br>
+                            • Pas de cohérence garantie
+                        </td>
+                        <td>
+                            • Prototypage rapide<br>
+                            • Exploration initiale<br>
+                            • Doc technique légère<br>
+                            • README/Wiki
+                        </td>
+                        <td>Gratuit</td>
+                        <td style="text-align: center; color: #dc3545;">❌</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mermaid</strong></td>
+                        <td>Générateur textuel</td>
+                        <td>
+                            • Intégration Markdown<br>
+                            • GitHub/GitLab natif<br>
+                            • Syntaxe simple<br>
+                            • Gratuit
+                        </td>
+                        <td>
+                            • Même limites que PlantUML<br>
+                            • Support UML incomplet<br>
+                            • Orienté diagrammes simples
+                        </td>
+                        <td>
+                            • Documentation dans dépôts<br>
+                            • Diagrammes légers<br>
+                            • Communication DevOps
+                        </td>
+                        <td>Gratuit</td>
+                        <td style="text-align: center; color: #dc3545;">❌</td>
+                    </tr>
+                    <tr>
+                        <td><strong>yEd</strong></td>
+                        <td>Éditeur graphique</td>
+                        <td>
+                            • Interface intuitive<br>
+                            • Layouts puissants<br>
+                            • Export multi-formats<br>
+                            • Gratuit
+                        </td>
+                        <td>
+                            • Format GraphML (pas UML)<br>
+                            • Validation manuelle<br>
+                            • Pas de génération code
+                        </td>
+                        <td>
+                            • Diagrammes de présentation<br>
+                            • Graphes esthétiques<br>
+                            • Visualisation de données
+                        </td>
+                        <td>Gratuit</td>
+                        <td style="text-align: center; color: #dc3545;">❌</td>
+                    </tr>
+                    <tr style="background-color: #e8f4f8;">
+                        <td><strong>Papyrus</strong></td>
+                        <td>Atelier MDA</td>
+                        <td>
+                            • Modèle XMI formel<br>
+                            • Validation automatique<br>
+                            • Cohérence multi-vues<br>
+                            • Génération de code<br>
+                            • Open source<br>
+                            • Profils (SysML)
+                        </td>
+                        <td>
+                            • Courbe d'apprentissage<br>
+                            • Interface Eclipse<br>
+                            • Performance (gros modèles)<br>
+                            • Complexité
+                        </td>
+                        <td>
+                            • Projets académiques<br>
+                            • Modélisation sérieuse<br>
+                            • Ingénierie système<br>
+                            • Apprentissage MDA
+                        </td>
+                        <td>Gratuit</td>
+                        <td style="text-align: center; color: #28a745;">✅</td>
+                    </tr>
+                    <tr style="background-color: #e8f4f8;">
+                        <td><strong>Modelio</strong></td>
+                        <td>Atelier MDA</td>
+                        <td>
+                            • Modèle XMI formel<br>
+                            • Interface moderne<br>
+                            • Module-based<br>
+                            • Open source (core)<br>
+                            • Documentation riche
+                        </td>
+                        <td>
+                            • Extensions payantes<br>
+                            • Communauté moyenne<br>
+                            • Moins adopté qu'EA
+                        </td>
+                        <td>
+                            • Alternative à Papyrus<br>
+                            • Projets académiques<br>
+                            • PME budget limité
+                        </td>
+                        <td>Gratuit<br>(+ modules €)</td>
+                        <td style="text-align: center; color: #28a745;">✅</td>
+                    </tr>
+                    <tr style="background-color: #fff9e6;">
+                        <td><strong>Enterprise Architect</strong></td>
+                        <td>Atelier pro</td>
+                        <td>
+                            • Toutes fonctionnalités<br>
+                            • Intégration ALM complète<br>
+                            • Performance excellente<br>
+                            • Support commercial<br>
+                            • Simulation avancée<br>
+                            • Largement adopté
+                        </td>
+                        <td>
+                            • Coût significatif<br>
+                            • Complexité élevée<br>
+                            • Courbe apprentissage<br>
+                            • Windows-centric
+                        </td>
+                        <td>
+                            • Projets industriels<br>
+                            • Systèmes critiques<br>
+                            • Grandes organisations<br>
+                            • Ingénierie complète
+                        </td>
+                        <td>€€€<br>(~300-500€/an)</td>
+                        <td style="text-align: center; color: #28a745;">✅</td>
+                    </tr>
+                    <tr style="background-color: #fff9e6;">
+                        <td><strong>MagicDraw / Cameo</strong></td>
+                        <td>Atelier pro</td>
+                        <td>
+                            • Référence industrie<br>
+                            • SysML expert<br>
+                            • Simulation poussée<br>
+                            • Team collaboration<br>
+                            • Plugins puissants
+                        </td>
+                        <td>
+                            • Coût très élevé<br>
+                            • Complexité maximale<br>
+                            • Ressources importantes
+                        </td>
+                        <td>
+                            • Aérospatial, défense<br>
+                            • Systèmes complexes<br>
+                            • Certification requise<br>
+                            • Grands projets
+                        </td>
+                        <td>€€€€<br>(~2000-5000€/an)</td>
+                        <td style="text-align: center; color: #28a745;">✅</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-takeaway" style="margin-top: 30px;">
+                <strong>Principe de sélection :</strong>
+                <ul>
+                    <li>🎯 <strong>Besoin :</strong> Adaptation outil ↔ objectif (documentation vs ingénierie critique)</li>
+                    <li>🔧 <strong>Modélisation formelle :</strong> Nécessaire dès que validation, cohérence et génération sont requis</li>
+                    <li>💰 <strong>Budget :</strong> Open source (Papyrus) parfaitement viable pour académique et PME</li>
+                    <li>⚡ <strong>Agilité :</strong> PlantUML excellent pour prototypage, puis migration vers outil formel</li>
+                    <li>📈 <strong>Échelle :</strong> Plus le projet est critique/complexe, plus l'outillage professionnel est indispensable</li>
+                </ul>
+            </div>
+                  <!-- Footer -->
+        <footer>
+            <p style="margin-top: 15px;">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">⬆️ Retour en haut</a>
+            </p>
+        </footer>
+        </div>
+
+ 
+
+      
+
+
+        

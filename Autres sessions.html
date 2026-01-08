@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UML — Sessions 04 à 06 (MDA, Outils, Papyrus)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css" id="theme">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .reveal { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    .lead { font-size: 1.05rem; }
+    .small { font-size: 0.9rem; }
+    .callout { background: rgba(76,116,245,0.08); border-left: 4px solid #4c74f5; padding: 0.6em; border-radius: 6px; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title -->
+      <section>
+        <h1>UML &amp; Ingénierie par les modèles (MDA)</h1>
+        <p class="lead">Sessions 04 → 06 — Modéliser ≠ Dessiner · Outils · Papyrus</p>
+        <p class="small">Complément des premières sessions (1–2). Supports originaux : <a href="/mnt/data/PenseeSystemique.html">PenseeSystemique.html</a></p>
+      </section>
+
+      <!-- Session 01 & 02: Introduction à UML -->
+      <section>
+        <h2>Sessions 01 &amp; 02 — Introduction à UML</h2>
+        <section>
+          <h3>Objectifs du cours</h3>
+          <ul>
+            <li>Comprendre pourquoi UML a été créé</li>
+            <li>Identifier ses usages et son intérêt pour le développement d'un système</li>
+            <li>Savoir à qui sert UML selon le rôle et la phase du projet</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Pourquoi UML&nbsp;?</h3>
+          <p>UML a été conçu pour répondre à un besoin industriel&nbsp;: maîtriser la complexité des systèmes logiciels en fournissant un langage visuel standardisé.</p>
+          <ul>
+            <li>Communiquer entre acteurs du développement</li>
+            <li>Décrire des systèmes de façon non ambigüe</li>
+            <li>Soutenir l’ingénierie et l’industrialisation</li>
+          </ul>
+        </section>
+        <section>
+          <h3>UML — À qui ça sert&nbsp;?</h3>
+          <ul>
+            <li><strong>Experts métier</strong> — formaliser le vocabulaire métier</li>
+            <li><strong>Analystes</strong> — structurer les besoins et les exigences</li>
+            <li><strong>Architectes</strong> — définir l’application et ses composants</li>
+            <li><strong>Développeurs</strong> — implémenter le système</li>
+          </ul>
+        </section>
+        <section>
+          <h3>UML ≠ Dessin — UML = Langage</h3>
+          <p>Les diagrammes ne sont pas décoratifs&nbsp;: ils transmettent une sémantique et servent à communiquer clairement.</p>
+          <blockquote>Modéliser un système n’est pas « dessiner un schéma » — c’est exprimer ce qu’un système doit être et faire.</blockquote>
+        </section>
+        <section>
+          <h3>Utilisation des modèles dans le cycle de vie</h3>
+          <ul>
+            <li>Expression des besoins</li>
+            <li>Conception et architecture</li>
+            <li>Développement</li>
+            <li>Tests et validation</li>
+            <li>Maintenance et évolution</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Quel diagramme pour quelle tâche&nbsp;?</h3>
+          <ul>
+            <li>Vocabulaire métier → <strong>Diagramme de classes (CIM)</strong></li>
+            <li>Structure logicielle → <strong>Diagramme de classes (PIM)</strong></li>
+            <li>Comportement → <strong>Diagramme de séquence</strong></li>
+            <li>Organisation du système → <strong>Diagramme de composants</strong></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Standardisation &amp; Normes</h3>
+          <p>UML est un standard maintenu par l’OMG, garantissant l’interopérabilité entre outils et organisations.</p>
+        </section>
+        <section>
+          <h3>Résumé — Sessions 01 &amp; 02</h3>
+          <ul>
+            <li>UML est un langage visuel pour maîtriser la complexité</li>
+            <li>Il s'adapte aux rôles et aux phases du projet</li>
+            <li>Il prépare aux approches système et composant</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Supports</h3>
+          <p>Supports de cours 2024&nbsp;: <em>Introduction à UML (PDF)</em></p>
+        </section>
+      </section>
+
+      <!-- Session 03: Pensée Systémique et Paradigme Composant -->
+      <section>
+        <h2>Session 03 — Pensée Systémique &amp; Paradigme Composant</h2>
+        <section>
+          <h3>Objectifs</h3>
+          <ul>
+            <li>Maîtriser les six principes de la théorie des systèmes</li>
+            <li>Comprendre les limites du paradigme objet pour les systèmes distribués</li>
+            <li>Saisir les bénéfices du paradigme composant et l'approche contractuelle</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Rappels : les 6 principes de la systémique</h3>
+          <ul>
+            <li><strong>Intégrité</strong> — le système est un tout cohérent</li>
+            <li><strong>Interaction</strong> — les composants interagissent via des interfaces</li>
+            <li><strong>Rétroaction</strong> — boucles qui modulent le comportement</li>
+            <li><strong>Conditions initiales</strong> — l'état de départ influence l'évolution</li>
+            <li><strong>Émergence</strong> — propriétés globales non triviales</li>
+            <li><strong>Adaptation</strong> — évolution en fonction de l'environnement</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Limites de l'approche objet pour les systèmes distribués</h3>
+          <ul>
+            <li>Couplage fort via l'héritage</li>
+            <li>Fragile Base Class Problem</li>
+            <li>Difficulté d'interopérabilité multi-fournisseurs</li>
+            <li>Gestion de l'évolution et de la reconfiguration limitée</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Paradigme composant — principes</h3>
+          <ul>
+            <li>Séparation des préoccupations et modularité</li>
+            <li>Interfaces contractuelles explicites</li>
+            <li>Interopérabilité et reconfigurabilité</li>
+            <li>Développement indépendant puis assemblage</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Applications et analogies</h3>
+          <p class="callout">Exemples : prise électrique standardisée, architecture avionique modulaire, microservices avec contrats REST/IDL.</p>
+        </section>
+
+        <section>
+          <h3>Exercice / Travaux</h3>
+          <ol>
+            <li>Illustrer les 6 principes par un exemple concret (hydrographie, automatisme, etc.)</li>
+            <li>Comparer, sur un cas simple, une architecture orientée objet et une architecture par composants</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Ressource associée</h3>
+          <p>Support complémentaire : <a href="/mnt/data/PenseeSystemique.html">PenseeSystemique.html</a> (fichier du cours fourni).</p>
+        </section>
+      </section>
+
+      <!-- Session 04: MDA overview -->
+      <section>
+        <h2>Session 04 — Ingénierie par les Modèles (MDA)</h2>
+        <section>
+          <h3>Objectifs</h3>
+          <ul>
+            <li>Comprendre CIM / PIM / PSM et leur articulation</li>
+            <li>Saisir la différence entre modélisation sémantique et dessin</li>
+            <li>Utiliser classes &amp; séquences suivant le niveau d'abstraction</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Rappels : 3 niveaux MDA</h3>
+          <ul>
+            <li><strong>CIM</strong> — métier, vocabulaire (Qui ? Quoi ? Activités?)</li>
+            <li><strong>PIM</strong> — architecture logique (UUID, opérations, composants)</li>
+            <li><strong>PSM</strong> — adaptation à une plateforme spécifique (Postgres, Java, Docker)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Diagrammes : même apparence, usages différents</h3>
+          <p class="callout">Ex. : un diagramme de classes en CIM porte des concepts métiers ; en PIM il contient des identifiants techniques et opérations.</p>
+          <ul>
+            <li>Classes : vocabulaire (CIM) vs. entités logiques (PIM)</li>
+            <li>Séquences : capturent les comportements à chaque niveau d'abstraction</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Exercice (à rendre)</h3>
+          <ol>
+            <li>Choisir un domaine métier</li>
+            <li>Extraire vocabulaire métier → générer CIM (PlantUML possible)</li>
+            <li>Construire un PIM minimal (classes + composants) et un diagramme de séquence</li>
+          </ol>
+        </section>
+      </section>
+
+      <!-- Session 05: Tools -->
+      <section>
+        <h2>Session 05 — Outils &amp; Technologies Avancées</h2>
+        <section>
+          <h3>Catégories d'outils</h3>
+          <ul>
+            <li><strong>Text-to-diagram</strong> (PlantUML, Mermaid) — rapide, versionnable, mais dessin uniquement</li>
+            <li><strong>Éditeurs graphiques</strong> (yEd, draw.io) — layout puissant, mais pas de sémantique UML</li>
+            <li><strong>Ateliers MDA</strong> (Papyrus, Modelio, MagicDraw, EA) — modèle sémantique, XMI, validation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Comparatif synthétique</h3>
+          <table style="width:100%;border-collapse:collapse;" class="small">
+            <tr><th>Besoin</th><th>Outil conseillé</th><th>Pourquoi</th></tr>
+            <tr><td>Prototypage rapide</td><td>PlantUML</td><td>Texte, Git, LLM-friendly</td></tr>
+            <tr><td>Documentation &amp; présentation</td><td>yEd / draw.io</td><td>Layouts esthétiques</td></tr>
+            <tr><td>Ingénierie formelle</td><td>Papyrus / Modelio</td><td>XMI, validation, génération</td></tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Limites pratiques de PlantUML &amp; dessinateurs</h3>
+          <ul>
+            <li>Faute de frappe = nouvelle entité sans alerte</li>
+            <li>PNG/SVG = primitives graphiques (pas d'identifiants sémantiques)</li>
+            <li>Impossibilité de validations multi-diagrammes automatisées</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Technos complémentaires</h3>
+          <ul>
+            <li>Vis.js / Cytoscape.js / D3 : exploration interactive de modèles volumineux</li>
+            <li>Export XMI → visualisation avancée</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Session 06: Papyrus hands-on -->
+      <section>
+        <h2>Session 06 — Découverte pratique : Papyrus</h2>
+
+        <section>
+          <h3>Objectifs</h3>
+          <ul>
+            <li>Installer &amp; configurer Papyrus (Java 11+, workspace)</li>
+            <li>Comprendre Model Explorer vs Diagram Editor vs Properties</li>
+            <li>Créer des éléments dans le modèle (Model Explorer) vs dans la vue (Palette)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Prise en main (pas-à-pas)</h3>
+          <ol>
+            <li>File → New → Papyrus Project → créer une View (package)</li>
+            <li>Créer une classe depuis Model Explorer (New Child → Class) puis glisser sur diagramme</li>
+            <li>Renommer la classe → observer propagation automatique</li>
+            <li>Tester Delete from Diagram vs Delete from Model</li>
+            <li>Validate → corriger erreurs signalées</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Exercice Papyrus (pratique en TP)</h3>
+          <ul>
+            <li>Recréer le CIM produit en Session 04 dans Papyrus</li>
+            <li>Transformer en PIM en ajoutant UUID, opérations, composant</li>
+            <li>Générer squelette Java (ou autre) et comparer</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Pièges &amp; astuces</h3>
+          <ul>
+            <li>Sur macOS ARM : préférer la version Intel + Rosetta si problèmes</li>
+            <li>Allouer plus de RAM si lenteurs (papyrus.ini -Xmx)</li>
+            <li>Privilégier création depuis Model Explorer pour comprendre modèle/vue</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Wrap-up & Resources -->
+      <section>
+        <h2>Récapitulatif &amp; Ressources</h2>
+        <section>
+          <h3>Messages à retenir</h3>
+          <ul>
+            <li><strong>Modéliser ≠ Dessiner</strong> — le modèle est la source de vérité</li>
+            <li>PlantUML → prototypage ; Papyrus/EA → industrialisation</li>
+            <li>CIM → PIM → PSM : séparer préoccupations pour maintenir traçabilité</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Liens &amp; supports</h3>
+          <ul>
+            <li>Spécification UML (OMG)</li>
+            <li>Papyrus documentation — <a href="https://www.eclipse.org/papyrus/">eclipse.org/papyrus</a></li>
+            <li>PlantUML — <a href="https://plantuml.com">plantuml.com</a></li>
+            <li>Fichier du cours (source et compléments) : <a href="/mnt/data/PenseeSystemique.html">/mnt/data/PenseeSystemique.html</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Devoirs (rappel)</h3>
+          <ol>
+            <li>Soumettre CIM PlantUML + capture PIM Papyrus (XMI exporté)</li>
+            <li>QCM de mi-décembre + TP fin décembre (voir modalités dans le syllabus)</li>
+          </ol>
+        </section>
+      </section>
+
+      <!-- Fin -->
+      <section>
+        <h2>Questions ?</h2>
+        <p class="small">Contact: Nicolas Figay — cours UML, Université Lyon 1</p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      history: true,
+      width: 1200,
+      height: 800,
+      transition: 'slide'
+    });
+  </script>
+</body>
+</html>

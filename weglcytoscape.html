@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Graph Visualizer - Cytoscape + Sigma WebGL</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology-layout-forceatlas2/0.10.1/graphology-layout-forceatlas2.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #111827;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1f2937;
+            border-bottom: 1px solid #374151;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .mode-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .mode-badge.cytoscape {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .mode-badge.sigma {
+            background: #22c55e;
+            color: white;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: #d1d5db;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .stat-value.edges {
+            color: #22c55e;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #2563eb;
+        }
+
+        .btn-success {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-success:hover:not(:disabled) {
+            background: #16a34a;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-warning:hover:not(:disabled) {
+            background: #d97706;
+        }
+
+        .btn-secondary {
+            background: #374151;
+            color: white;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #4b5563;
+        }
+
+        .mode-switcher {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.25rem;
+            background: #374151;
+            border-radius: 0.5rem;
+            margin-left: auto;
+        }
+
+        .mode-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            color: #9ca3af;
+        }
+
+        .mode-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .mode-btn.active.sigma-mode {
+            background: #22c55e;
+        }
+
+        .graph-container {
+            flex: 1;
+            position: relative;
+            background: #0f172a;
+        }
+
+        #cy-container, #sigma-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #cy-container {
+            z-index: 1;
+        }
+
+        #sigma-container {
+            z-index: 0;
+        }
+
+        .info-panel {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            min-width: 280px;
+            z-index: 100;
+        }
+
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .info-content {
+            font-size: 0.875rem;
+            color: #d1d5db;
+        }
+
+        .info-section {
+            margin: 0.75rem 0;
+            padding: 0.5rem;
+            background: #111827;
+            border-radius: 0.375rem;
+        }
+
+        .info-section-title {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-row {
+            margin: 0.25rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            color: #9ca3af;
+        }
+
+        .info-value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .recommendation {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #fef3c7;
+            color: #92400e;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .recommendation.good {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            z-index: 100;
+        }
+
+        .compound-indicator {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-weight: 600;
+            z-index: 100;
+        }
+
+        .performance-warning {
+            position: absolute;
+            top: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: #92400e;
+            font-weight: 500;
+            z-index: 100;
+            display: none;
+        }
+
+        .performance-warning.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="title-section">
+                <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <span class="title">Hybrid Graph Visualizer</span>
+                <span class="mode-badge cytoscape" id="modeBadge">Cytoscape Mode</span>
+            </div>
+            <div class="stats">
+                <div><span class="stat-value" id="nodeCount">20</span> nodes</div>
+                <div><span class="stat-value edges" id="edgeCount">0</span> edges</div>
+                <div><span class="stat-value" id="compoundCount">3</span> compounds</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="addNodes(10)">+ Add 10 Nodes</button>
+            <button class="btn btn-primary" onclick="addNodes(50)">Add 50 Nodes</button>
+            <button class="btn btn-warning" onclick="addNodes(500)">Add 500 Nodes</button>
+            <button class="btn btn-success" onclick="addCompoundNode()">+ Add Compound</button>
+            <button class="btn btn-secondary" onclick="runLayout()">Run Layout</button>
+            <button class="btn btn-secondary" onclick="fitGraph()">Fit</button>
+            
+            <div class="mode-switcher">
+                <button class="mode-btn active" id="cytoscapeBtn" onclick="switchMode('cytoscape')">
+                    Cytoscape
+                </button>
+                <button class="mode-btn" id="sigmaBtn" onclick="switchMode('sigma')">
+                    Sigma WebGL
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="graph-container">
+        <div id="cy-container"></div>
+        <div id="sigma-container"></div>
+        
+        <div class="compound-indicator" id="compoundIndicator">
+            Compound Nodes Enabled
+        </div>
+
+        <div class="performance-warning" id="perfWarning">
+            Performance may degrade with 1000+ nodes in Cytoscape. Consider switching to Sigma WebGL mode.
+        </div>
+        
+        <div class="info-panel">
+            <div class="info-title">Renderer Information</div>
+            <div class="info-content">
+                <div class="info-section">
+                    <div class="info-section-title">Current Mode</div>
+                    <div class="info-row">
+                        <span class="info-label">Renderer:</span>
+                        <span class="info-value" id="currentRenderer">Cytoscape.js</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Technology:</span>
+                        <span class="info-value" id="currentTech">Canvas 2D</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Compound Support:</span>
+                        <span class="info-value" id="compoundSupport">Yes</span>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">Performance</div>
+                    <div class="info-row">
+                        <span class="info-label">Optimal Range:</span>
+                        <span class="info-value" id="optimalRange">10-2000 nodes</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Max Recommended:</span>
+                        <span class="info-value" id="maxRecommended">5,000 nodes</span>
+                    </div>
+                </div>
+
+                <div class="recommendation good" id="recommendation">
+                    Current graph size is optimal for Cytoscape mode. You have full access to compound nodes and rich styling.
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            Cytoscape Mode: Compound nodes, rich styling, interactive editing<br>
+            Sigma Mode: WebGL performance, 10,000+ nodes, flattened view
+        </div>
+    </div>
+
+    <script>
+        var cy;
+        var sigma;
+        var graph;
+        var currentMode = 'cytoscape';
+        var nodeCounter = 0;
+        var compoundCounter = 0;
+
+        function createInitialArchitecture() {
+            var elements = [];
+            
+            var compounds = [
+                { id: 'frontend', label: 'Frontend Layer', color: '#3b82f6' },
+                { id: 'backend', label: 'Backend Layer', color: '#22c55e' },
+                { id: 'database', label: 'Data Layer', color: '#f59e0b' }
+            ];
+
+            for (var i = 0; i < compounds.length; i++) {
+                var c = compounds[i];
+                elements.push({ data: { id: c.id, label: c.label, color: c.color } });
+                compoundCounter++;
+            }
+
+            var nodes = [
+                { id: 'ui', parent: 'frontend', label: 'UI Components' },
+                { id: 'router', parent: 'frontend', label: 'Router' },
+                { id: 'state', parent: 'frontend', label: 'State Manager' },
+                { id: 'api', parent: 'backend', label: 'API Gateway' },
+                { id: 'auth', parent: 'backend', label: 'Auth Service' },
+                { id: 'business', parent: 'backend', label: 'Business Logic' },
+                { id: 'postgres', parent: 'database', label: 'PostgreSQL' },
+                { id: 'redis', parent: 'database', label: 'Redis Cache' },
+                { id: 'storage', parent: 'database', label: 'File Storage' }
+            ];
+
+            for (var j = 0; j < nodes.length; j++) {
+                elements.push({ data: nodes[j] });
+                nodeCounter++;
+            }
+
+            var edges = [
+                { source: 'ui', target: 'router' },
+                { source: 'router', target: 'api' },
+                { source: 'ui', target: 'state' },
+                { source: 'api', target: 'auth' },
+                { source: 'api', target: 'business' },
+                { source: 'business', target: 'postgres' },
+                { source: 'business', target: 'redis' },
+                { source: 'auth', target: 'postgres' }
+            ];
+
+            for (var k = 0; k < edges.length; k++) {
+                var e = edges[k];
+                elements.push({ 
+                    data: { 
+                        id: e.source + '-' + e.target, 
+                        source: e.source, 
+                        target: e.target 
+                    } 
+                });
+            }
+
+            return elements;
+        }
+
+        function initializeCytoscape() {
+            cy = cytoscape({
+                container: document.getElementById('cy-container'),
+                elements: createInitialArchitecture(),
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': 'data(color)',
+                            'label': 'data(label)',
+                            'color': '#fff',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'font-size': '12px',
+                            'width': 60,
+                            'height': 60,
+                            'border-width': 2,
+                            'border-color': '#1f2937'
+                        }
+                    },
+                    {
+                        selector: ':parent',
+                        style: {
+                            'background-opacity': 0.2,
+                            'background-color': 'data(color)',
+                            'border-width': 3,
+                            'border-color': 'data(color)',
+                            'label': 'data(label)',
+                            'text-valign': 'top',
+                            'text-halign': 'center',
+                            'font-size': '14px',
+                            'font-weight': 'bold',
+                            'padding': '20px'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 3,
+                            'line-color': '#64748b',
+                            'target-arrow-color': '#64748b',
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier'
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'preset'
+                }
+            });
+
+            var layoutOptions = {
+                name: 'cose',
+                animate: true,
+                padding: 50,
+                componentSpacing: 100,
+                nodeRepulsion: 400000
+            };
+            cy.layout(layoutOptions).run();
+
+            updateStats();
+        }
+
+        function initializeSigma() {
+            graph = new graphology.Graph();
+            syncToSigma();
+            sigma = new Sigma(graph, document.getElementById('sigma-container'), {
+                renderEdgeLabels: false,
+                labelSize: 14,
+                labelWeight: 'bold'
+            });
+        }
+
+        function syncToSigma() {
+            if (!graph) return;
+            graph.clear();
+            
+            cy.nodes().forEach(function(node) {
+                var pos = node.position();
+                var isParent = node.isParent();
+                
+                graph.addNode(node.id(), {
+                    x: pos.x / 10,
+                    y: pos.y / 10,
+                    size: isParent ? 15 : 8,
+                    label: node.data('label') || node.id(),
+                    color: node.data('color') || (isParent ? '#3b82f6' : '#22c55e')
+                });
+            });
+
+            cy.edges().forEach(function(edge) {
+                var source = edge.source().id();
+                var target = edge.target().id();
+                
+                if (graph.hasNode(source) && graph.hasNode(target)) {
+                    try {
+                        graph.addEdge(source, target, { size: 2, color: '#64748b' });
+                    } catch (e) {
+                        // Edge might already exist
+                    }
+                }
+            });
+        }
+
+        function switchMode(mode) {
+            if (mode === currentMode) return;
+
+            var cyContainer = document.getElementById('cy-container');
+            var sigmaContainer = document.getElementById('sigma-container');
+            var cytoscapeBtn = document.getElementById('cytoscapeBtn');
+            var sigmaBtn = document.getElementById('sigmaBtn');
+            var modeBadge = document.getElementById('modeBadge');
+            var compoundIndicator = document.getElementById('compoundIndicator');
+
+            if (mode === 'cytoscape') {
+                cyContainer.style.zIndex = '1';
+                sigmaContainer.style.zIndex = '0';
+                cytoscapeBtn.classList.add('active');
+                sigmaBtn.classList.remove('active', 'sigma-mode');
+                modeBadge.textContent = 'Cytoscape Mode';
+                modeBadge.className = 'mode-badge cytoscape';
+                compoundIndicator.style.display = 'block';
+                
+                document.getElementById('currentRenderer').textContent = 'Cytoscape.js';
+                document.getElementById('currentTech').textContent = 'Canvas 2D';
+                document.getElementById('compoundSupport').textContent = 'Yes';
+                document.getElementById('optimalRange').textContent = '10-2000 nodes';
+                document.getElementById('maxRecommended').textContent = '5,000 nodes';
+                
+            } else {
+                syncToSigma();
+                cyContainer.style.zIndex = '0';
+                sigmaContainer.style.zIndex = '1';
+                cytoscapeBtn.classList.remove('active');
+                sigmaBtn.classList.add('active', 'sigma-mode');
+                modeBadge.textContent = 'Sigma WebGL Mode';
+                modeBadge.className = 'mode-badge sigma';
+                compoundIndicator.style.display = 'none';
+                
+                document.getElementById('currentRenderer').textContent = 'Sigma.js';
+                document.getElementById('currentTech').textContent = 'WebGL';
+                document.getElementById('compoundSupport').textContent = 'No (Flattened)';
+                document.getElementById('optimalRange').textContent = '1000-100k nodes';
+                document.getElementById('maxRecommended').textContent = '100,000+ nodes';
+            }
+
+            currentMode = mode;
+            updateRecommendation();
+        }
+
+        function addNodes(count) {
+            var colors = ['#3b82f6', '#22c55e', '#f59e0b', '#ec4899', '#8b5cf6'];
+            
+            for (var i = 0; i < count; i++) {
+                var nodeId = 'n' + nodeCounter;
+                nodeCounter++;
+                
+                cy.add({
+                    data: {
+                        id: nodeId,
+                        label: nodeId,
+                        color: colors[Math.floor(Math.random() * colors.length)]
+                    },
+                    position: {
+                        x: Math.random() * 800,
+                        y: Math.random() * 600
+                    }
+                });
+
+                var existingNodes = cy.nodes().filter(function(n) { return !n.isParent(); });
+                if (existingNodes.length > 1) {
+                    var randomTarget = existingNodes[Math.floor(Math.random() * existingNodes.length)];
+                    if (randomTarget.id() !== nodeId) {
+                        cy.add({
+                            data: {
+                                id: nodeId + '-' + randomTarget.id(),
+                                source: nodeId,
+                                target: randomTarget.id()
+                            }
+                        });
+                    }
+                }
+            }
+
+            updateStats();
+            checkPerformance();
+            
+            if (currentMode === 'sigma') {
+                syncToSigma();
+            }
+        }
+
+        function addCompoundNode() {
+            var compoundId = 'compound' + compoundCounter;
+            compoundCounter++;
+            var colors = ['#3b82f6', '#22c55e', '#f59e0b', '#ec4899', '#8b5cf6'];
+            
+            cy.add({
+                data: {
+                    id: compoundId,
+                    label: 'Module ' + compoundCounter,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                }
+            });
+
+            for (var i = 0; i < 3; i++) {
+                var childId = 'n' + nodeCounter;
+                nodeCounter++;
+                cy.add({
+                    data: {
+                        id: childId,
+                        parent: compoundId,
+                        label: childId,
+                        color: colors[Math.floor(Math.random() * colors.length)]
+                    }
+                });
+            }
+
+            var layoutOpts = { name: 'cose', animate: true, padding: 50 };
+            cy.layout(layoutOpts).run();
+            updateStats();
+        }
+
+        function runLayout() {
+            if (currentMode === 'cytoscape') {
+                var opts = {
+                    name: 'cose',
+                    animate: true,
+                    padding: 50,
+                    componentSpacing: 100,
+                    nodeRepulsion: 400000
+                };
+                cy.layout(opts).run();
+            }
+        }
+
+        function fitGraph() {
+            if (currentMode === 'cytoscape') {
+                cy.fit(null, 50);
+            } else if (sigma) {
+                sigma.getCamera().setState({ x: 0.5, y: 0.5, ratio: 1 });
+            }
+        }
+
+        function updateStats() {
+            var totalNodes = cy.nodes().length;
+            var compoundNodes = cy.nodes().filter(function(n) { return n.isParent(); }).length;
+            
+            document.getElementById('nodeCount').textContent = totalNodes;
+            document.getElementById('edgeCount').textContent = cy.edges().length;
+            document.getElementById('compoundCount').textContent = compoundNodes;
+        }
+
+        function checkPerformance() {
+            var nodeCount = cy.nodes().length;
+            var perfWarning = document.getElementById('perfWarning');
+            
+            if (nodeCount > 1000 && currentMode === 'cytoscape') {
+                perfWarning.classList.add('visible');
+            } else {
+                perfWarning.classList.remove('visible');
+            }
+            
+            updateRecommendation();
+        }
+
+        function updateRecommendation() {
+            var nodeCount = cy.nodes().length;
+            var rec = document.getElementById('recommendation');
+            
+            if (currentMode === 'cytoscape') {
+                if (nodeCount < 500) {
+                    rec.className = 'recommendation good';
+                    rec.innerHTML = 'Current graph size is optimal for Cytoscape mode. You have full access to compound nodes and rich styling.';
+                } else if (nodeCount < 2000) {
+                    rec.className = 'recommendation';
+                    rec.innerHTML = 'Graph is getting large. Performance is still acceptable, but consider Sigma mode for better performance.';
+                } else {
+                    rec.className = 'recommendation';
+                    rec.innerHTML = 'Graph is large. Switch to Sigma WebGL mode for better performance. Note: compound nodes will be flattened.';
+                }
+            } else {
+                rec.className = 'recommendation good';
+                rec.innerHTML = 'Sigma WebGL mode provides excellent performance for large graphs. Compound structure is flattened for optimal rendering.';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            initializeCytoscape();
+            initializeSigma();
+            updateRecommendation();
+        });
+    </script>
+</body>
+</html>
