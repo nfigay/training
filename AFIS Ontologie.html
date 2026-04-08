@@ -15,6 +15,1446 @@
 <body>
   <div class="reveal">
     <div class="slides">
+      <!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI, Knowledge Management and Systems Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/plugin/highlight/monokai.css">
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI, Knowledge Management and Systems Engineering — AFIS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; }
+        .reveal blockquote { 
+            font-style: italic; 
+            background: #f0f0f0; 
+            padding: 1em;
+            border-left: 5px solid #2a76dd;
+        }
+        .reveal section img { border: none; box-shadow: none; }
+        .reveal .two-columns { display: flex; gap: 2em; }
+        .reveal .two-columns > div { flex: 1; }
+        .reveal table { font-size: 0.8em; }
+        .reveal .comparison-table th { background: #2a76dd; color: white; }
+        .reveal .comparison-table td.yes { color: green; font-weight: bold; }
+        .reveal .comparison-table td.no { color: red; font-weight: bold; }
+        .diagram-container { margin: 2em auto; }
+        .key-point { 
+            background: #fff3cd; 
+            padding: 1em; 
+            border-radius: 8px;
+            border-left: 5px solid #ffc107;
+        }
+        .warning-box {
+            background: #f8d7da;
+            padding: 1em;
+            border-radius: 8px;
+            border-left: 5px solid #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- TITLE SLIDE -->
+            <section>
+                <h2>AI, Knowledge Management<br/>and Systems Engineering</h2>
+                <h4>Assistance without abdication:<br/>Clarifying roles, limits, and responsibilities</h4>
+                <p style="margin-top:2em;">AFIS Working Group</p>
+                <p style="font-size:0.8em; margin-top:2em;">Why AI cannot be the System Engineer — and why that matters</p>
+                
+                <aside class="notes">
+                    Opening: "Let me start with a simple question. When a system fails, who is responsible?"
+                    [Pause]
+                    "Not which data was wrong. Not which model was incomplete. Not which AI gave a bad answer."
+                    [Pause]
+                    "Responsibility always points to a decision. And a decision only exists when uncertainty exists."
+                    "Today, AI systems are extremely good at producing answers. But answers are not decisions. And decisions cannot be automated without quietly removing responsibility."
+                </aside>
+            </section>
+
+            <!-- CONTEXT AND MOTIVATION -->
+            <section>
+                <section>
+                    <h3>Context and motivation</h3>
+                    <ul>
+                        <li class="fragment">AI is increasingly presented as <em>understanding</em>, <em>reasoning</em>, or <em>deciding</em></li>
+                        <li class="fragment">This creates epistemic and responsibility confusion</li>
+                        <li class="fragment">Critical for safety, certification, and governance</li>
+                    </ul>
+                    <blockquote class="fragment">The problem is not AI adoption.<br/>The problem is epistemic confusion.</blockquote>
+                    
+                    <aside class="notes">
+                        This is not an anti-AI talk. It's a talk about clarity.
+                        AFIS audiences need precision, not hype.
+                        We'll establish clear boundaries between tools and agents.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why this matters for Systems Engineering</h3>
+                    <ul>
+                        <li class="fragment">SE relies on traceability and accountability</li>
+                        <li class="fragment">Decisions must be justified and auditable</li>
+                        <li class="fragment">Responsibility cannot be automated away</li>
+                        <li class="fragment">Safety and certification require human decision-makers</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        Connect to AFIS concerns: certification, safety cases, V&V.
+                        This is about protecting SE rigor while integrating AI capabilities.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>What we're addressing today</h3>
+                    <div class="two-columns">
+                        <div>
+                            <h4>Not covered</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>AI hype or rejection</li>
+                                <li>Tool comparisons</li>
+                                <li>Technology predictions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Our focus</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Epistemic foundations</li>
+                                <li>Knowledge vs data vs decision</li>
+                                <li>Responsibility boundaries</li>
+                                <li>Integration patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- EPISTEMIC FOUNDATIONS -->
+            <section>
+                <section>
+                    <h3>From data to decision</h3>
+                    <div class="diagram-container">
+                        <svg width="600" height="300" viewBox="0 0 600 300" style="margin:auto; display:block;">
+                            <!-- Data box -->
+                            <rect x="50" y="50" width="100" height="60" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+                            <text x="100" y="85" text-anchor="middle" font-size="16" font-weight="bold">Data</text>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 150 80 L 200 80" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <text x="175" y="70" text-anchor="middle" font-size="12" fill="#666">context</text>
+                            
+                            <!-- Information box -->
+                            <rect x="200" y="50" width="100" height="60" fill="#fff9c4" stroke="#fbc02d" stroke-width="2"/>
+                            <text x="250" y="85" text-anchor="middle" font-size="16" font-weight="bold">Information</text>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 300 80 L 350 80" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <text x="325" y="70" text-anchor="middle" font-size="12" fill="#666">validation</text>
+                            
+                            <!-- Knowledge box -->
+                            <rect x="350" y="50" width="100" height="60" fill="#c8e6c9" stroke="#4caf50" stroke-width="2"/>
+                            <text x="400" y="85" text-anchor="middle" font-size="16" font-weight="bold">Knowledge</text>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 400 110 L 400 160" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <text x="420" y="140" font-size="12" fill="#666">uncertainty</text>
+                            
+                            <!-- Decision box -->
+                            <rect x="350" y="160" width="100" height="60" fill="#ffcdd2" stroke="#f44336" stroke-width="2"/>
+                            <text x="400" y="195" text-anchor="middle" font-size="16" font-weight="bold">Decision</text>
+                            
+                            <!-- Responsibility indicator -->
+                            <text x="400" y="240" text-anchor="middle" font-size="14" fill="#d32f2f" font-weight="bold">
+                                ⚠ Responsibility
+                            </text>
+                            
+                            <!-- Arrow marker definition -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                                </marker>
+                            </defs>
+                            
+                            <!-- Labels -->
+                            <text x="100" y="130" text-anchor="middle" font-size="12" fill="#666">traces, signals,</text>
+                            <text x="100" y="145" text-anchor="middle" font-size="12" fill="#666">records</text>
+                            
+                            <text x="250" y="130" text-anchor="middle" font-size="12" fill="#666">structured,</text>
+                            <text x="250" y="145" text-anchor="middle" font-size="12" fill="#666">contextualized</text>
+                            
+                            <text x="400" y="130" text-anchor="middle" font-size="12" fill="#666">validated, owned,</text>
+                            <text x="400" y="145" text-anchor="middle" font-size="12" fill="#666">meaningful</text>
+                        </svg>
+                    </div>
+                    <blockquote class="fragment">Only decisions carry responsibility.</blockquote>
+                    
+                    <aside class="notes">
+                        This is the foundational diagram. Everything else builds on this.
+                        Emphasize: this is not DIKW for academia — it's DIKW for engineering responsibility.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why data is not knowledge</h3>
+                    <ul>
+                        <li class="fragment">Data has no intrinsic meaning</li>
+                        <li class="fragment">Meaning arises from interpretation and validation</li>
+                        <li class="fragment">Context and intent are external to data</li>
+                        <li class="fragment">Data can be wrong, incomplete, or obsolete without "knowing" it</li>
+                    </ul>
+                    <div class="fragment key-point" style="margin-top:1.5em;">
+                        <strong>Example:</strong> A temperature reading (25°C) is data.<br/>
+                        It becomes information when you know it's from Sensor #3 in Room 402.<br/>
+                        It becomes knowledge when validated against expected range and declared fit-for-use.<br/>
+                        It becomes a decision when you choose to act on it.
+                    </div>
+                    
+                    <aside class="notes">
+                        Use the temperature example to ground this.
+                        Emphasize: AI operates on data and information, not knowledge.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why models are not knowledge</h3>
+                    <ul>
+                        <li class="fragment">Models are abstractions with explicit assumptions</li>
+                        <li class="fragment">They encode simplifications and boundaries</li>
+                        <li class="fragment">They require interpretation, validation, and contextualization</li>
+                        <li class="fragment">A model's validity is always conditional</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        Models support knowledge — they do not replace it.
+                    </p>
+                    
+                    <aside class="notes">
+                        Critical point: Many AI systems are models.
+                        They don't "know" — they compute under assumptions.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Decision implies responsibility</h3>
+                    <ul>
+                        <li class="fragment">No uncertainty → no decision (just execution)</li>
+                        <li class="fragment">No decision → no responsibility</li>
+                        <li class="fragment">Responsibility cannot be delegated to a tool</li>
+                        <li class="fragment">Automation does not eliminate decision — it displaces it</li>
+                    </ul>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        The biggest risk is not AI failure,<br/>
+                        but unrecognized delegation of responsibility.
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        This is where certification concerns enter.
+                        Who signs? Who validates? Who assumes liability?
+                        AI cannot answer these questions.
+                    </aside>
+                </section>
+            </section>
+
+            <!-- KNOWLEDGE IN SE -->
+            <section>
+                <section>
+                    <h3>Knowledge in Systems Engineering</h3>
+                    <p>Knowledge in SE is always:</p>
+                    <ul>
+                        <li class="fragment"><strong>Contextual</strong> — tied to system state, lifecycle phase, domain</li>
+                        <li class="fragment"><strong>Validated</strong> — reviewed, approved, baselined</li>
+                        <li class="fragment"><strong>Time-dependent</strong> — has validity periods, can become obsolete</li>
+                        <li class="fragment"><strong>Owned</strong> — someone is accountable for its correctness</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-style:italic;">
+                        Examples: requirements, architectures, interfaces, assumptions, margins, rationales
+                    </p>
+                    
+                    <aside class="notes">
+                        Connect to actual SE artifacts.
+                        This is not abstract — this is what engineers sign.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Tacit and explicit knowledge</h3>
+                    <div class="two-columns">
+                        <div>
+                            <h4>Explicit knowledge</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Documents</li>
+                                <li>Models</li>
+                                <li>Specifications</li>
+                                <li>Ontologies</li>
+                                <li>Databases</li>
+                            </ul>
+                            <p class="fragment" style="margin-top:1em; font-size:0.85em;">
+                                ✓ AI can process<br/>
+                                ✓ AI can navigate<br/>
+                                ✓ AI can rephrase
+                            </p>
+                        </div>
+                        <div>
+                            <h4>Tacit knowledge</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Experience</li>
+                                <li>Judgment</li>
+                                <li>Intuition</li>
+                                <li>Risk perception</li>
+                                <li>Expertise</li>
+                            </ul>
+                            <p class="fragment" style="margin-top:1em; font-size:0.85em;">
+                                ✗ AI does not possess<br/>
+                                ✓ AI may surface traces<br/>
+                                ✓ AI may simulate expression
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <aside class="notes">
+                        This is subtle and critical.
+                        LLMs reflect statistical echoes of tacit knowledge — they don't possess it.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why tacit knowledge cannot be "captured"</h3>
+                    <ul>
+                        <li class="fragment">Tacit knowledge is context-sensitive and embodied</li>
+                        <li class="fragment">It emerges from experience, not from documentation</li>
+                        <li class="fragment">Attempts to formalize it often destroy its value</li>
+                        <li class="fragment">Experts "know more than they can tell"</li>
+                    </ul>
+                    <div class="fragment warning-box" style="margin-top:1.5em;">
+                        <strong>Risk:</strong> LLMs appear to "have" tacit knowledge because they mimic expert expression.<br/>
+                        This is dangerous — it's performance without understanding.
+                    </div>
+                    
+                    <aside class="notes">
+                        This is one of your strongest points.
+                        LLMs trained on expert text can sound expert — but they're not.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Knowledge Management ≠ Content Management</h3>
+                    <p><strong>Knowledge Management</strong> is governance of:</p>
+                    <ul>
+                        <li class="fragment">Creation and capture</li>
+                        <li class="fragment">Validation and approval</li>
+                        <li class="fragment">Evolution and versioning</li>
+                        <li class="fragment">Obsolescence and archiving</li>
+                        <li class="fragment">Access and responsibility</li>
+                    </ul>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        Managing knowledge means managing<br/>
+                        who is allowed to say "this is true enough to act on".
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        KM is not SharePoint or Confluence.
+                        It's governance of epistemic authority.
+                        AI can assist — but cannot govern.
+                    </aside>
+                </section>
+            </section>
+
+            <!-- WHAT AI IS AND IS NOT -->
+            <section>
+                <section>
+                    <h3>What AI is and is not</h3>
+                    <p class="fragment">Before discussing how AI can help,<br/>we must be precise about what AI <em>is</em>.</p>
+                    <p class="fragment" style="margin-top:1.5em;">
+                        Otherwise, we will assign it roles it cannot fulfill.
+                    </p>
+                    
+                    <aside class="notes">
+                        Transition: from knowledge to AI.
+                        This clarification is not optional.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>AI: function, not agent</h3>
+                    <div class="two-columns">
+                        <div>
+                            <h4 style="color:#2e7d32;">What AI is ✓</h4>
+                            <ul style="font-size:0.85em;">
+                                <li class="fragment">A computational system</li>
+                                <li class="fragment">Performing statistical inference</li>
+                                <li class="fragment">Trained on human-produced artifacts</li>
+                                <li class="fragment">Optimized for plausibility</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color:#c62828;">What AI is not ✗</h4>
+                            <ul style="font-size:0.85em;">
+                                <li class="fragment">Not a cognitive subject</li>
+                                <li class="fragment">Not a knowledge owner</li>
+                                <li class="fragment">Not accountable</li>
+                                <li class="fragment">Not capable of intent or judgment</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        AI produces plausible answers, not accountable ones.
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        You're not attacking AI — you're placing it correctly.
+                        This prevents category errors.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>AI as Virtual Assistant, not Virtual Engineer</h3>
+                    <p><strong>A Virtual Assistant</strong> provides:</p>
+                    <ul>
+                        <li class="fragment">Retrieval and navigation</li>
+                        <li class="fragment">Synthesis and reformulation</li>
+                        <li class="fragment">Pattern suggestion</li>
+                        <li class="fragment">Support for exploration</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em;"><strong>But operates:</strong></p>
+                    <ul>
+                        <li class="fragment">On representations, not reality</li>
+                        <li class="fragment">Without autonomy of purpose</li>
+                        <li class="fragment">Without responsibility</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        "Virtual Assistant" is the right abstraction.
+                        It's respectful to AI capabilities without over-claiming.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Virtual Assistant vs Decision-Maker</h3>
+                    <table class="comparison-table" style="font-size:0.75em; margin-top:1em;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;">Function</th>
+                                <th style="text-align:center;">Human Engineer</th>
+                                <th style="text-align:center;">AI (Virtual Assistant)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment">
+                                <td>Define intent</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                                <td class="no" style="text-align:center;">✗</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Interpret context</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                                <td class="no" style="text-align:center;">✗</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Explore alternatives</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Validate assumptions</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                                <td class="no" style="text-align:center;">✗</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Decide under uncertainty</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                                <td class="no" style="text-align:center;">✗</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Assume responsibility</td>
+                                <td class="yes" style="text-align:center;">✓</td>
+                                <td class="no" style="text-align:center;">✗</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        AI may participate in engineering activities,<br/>
+                        but it cannot play the role of the engineer.
+                    </p>
+                    
+                    <aside class="notes">
+                        This table is powerful and memorable.
+                        It shows respect for AI while maintaining boundaries.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why "assistant" is not a downgrade</h3>
+                    <ul>
+                        <li class="fragment">Calculators did not downgrade engineers</li>
+                        <li class="fragment">CAD systems did not downgrade engineers</li>
+                        <li class="fragment">Solvers did not downgrade engineers</li>
+                        <li class="fragment">FEA tools did not downgrade engineers</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        AI belongs to the same lineage —<br/>
+                        more powerful, but not different in nature.
+                    </p>
+                    
+                    <aside class="notes">
+                        This reassures without minimizing.
+                        Historical perspective grounds AI in tool evolution.
+                    </aside>
+                </section>
+            </section>
+
+            <!-- FAMILIES OF AI -->
+            <section>
+                <section>
+                    <h3>Families of AI by engineering function</h3>
+                    <p>Not "symbolic vs sub-symbolic"<br/>
+                    but: <strong>what engineering problems they address</strong></p>
+                    <ol style="margin-top:1.5em;">
+                        <li class="fragment">Statistical / Predictive AI</li>
+                        <li class="fragment">Optimization and Search AI</li>
+                        <li class="fragment">Explainable AI (XAI)</li>
+                        <li class="fragment">Generative AI (LLMs, multimodal)</li>
+                    </ol>
+                    
+                    <aside class="notes">
+                        Functional classification, not academic.
+                        Each family has strengths, weaknesses, and SE relevance.
+                    </aside>
+                </section>
+
+                <!-- Statistical/Predictive AI -->
+                <section>
+                    <h3>1. Statistical / Predictive AI</h3>
+                    <p style="font-size:0.85em; font-style:italic;">
+                        Regression, classification, anomaly detection, forecasting
+                    </p>
+                    <div class="two-columns fragment">
+                        <div>
+                            <h4 style="color:#2e7d32;">Strengths ✓</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Good for pattern recognition</li>
+                                <li>Measurable performance</li>
+                                <li>Often verifiable statistically</li>
+                                <li>Well-established methods</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color:#c62828;">Weaknesses ✗</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Context-blind</li>
+                                <li>No semantic understanding</li>
+                                <li>No explanation of <em>why</em></li>
+                                <li>Vulnerable to distribution shift</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        <span style="color:#2e7d32;">✓ SE relevance:</span> Monitoring, diagnostics<br/>
+                        <span style="color:#c62828;">✗ SE limitation:</span> Decision justification
+                    </p>
+                    
+                    <aside class="notes">
+                        Classic ML — well understood, measurable.
+                        Good for technical monitoring, not for decisions.
+                    </aside>
+                </section>
+
+                <!-- Optimization AI -->
+                <section>
+                    <h3>2. Optimization and Search AI</h3>
+                    <p style="font-size:0.85em; font-style:italic;">
+                        Solvers, planners, constraint satisfaction, genetic algorithms
+                    </p>
+                    <div class="two-columns fragment">
+                        <div>
+                            <h4 style="color:#2e7d32;">Strengths ✓</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Excellent for trade studies</li>
+                                <li>Explicit objective functions</li>
+                                <li>Deterministic under assumptions</li>
+                                <li>Can prove optimality</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color:#c62828;">Weaknesses ✗</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Depends on model correctness</li>
+                                <li>Assumptions often hidden</li>
+                                <li>Objective function choice is subjective</li>
+                                <li>Can optimize the wrong thing perfectly</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        <span style="color:#2e7d32;">✓ SE relevance:</span> Design exploration, trade-offs<br/>
+                        <span style="color:#c62828;">✗ SE limitation:</span> Responsibility for assumptions
+                    </p>
+                    
+                    <aside class="notes">
+                        Very useful in SE — but model quality is critical.
+                        Garbage in, optimized garbage out.
+                    </aside>
+                </section>
+
+                <!-- Explainable AI -->
+                <section>
+                    <h3>3. Explainable AI (XAI)</h3>
+                    <p style="font-size:0.85em; font-style:italic;">
+                        Rule-based systems, decision trees, symbolic reasoning, some causal models
+                    </p>
+                    <div class="two-columns fragment">
+                        <div>
+                            <h4 style="color:#2e7d32;">Strengths ✓</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Traceability of reasoning</li>
+                                <li>Auditability</li>
+                                <li>Easier V&V alignment</li>
+                                <li>Can provide justifications</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color:#c62828;">Weaknesses ✗</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Limited scalability</li>
+                                <li>Knowledge acquisition bottleneck</li>
+                                <li>Often domain-specific</li>
+                                <li>Maintenance burden</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        <span style="color:#2e7d32;">✓ SE relevance:</span> Certification arguments, safety cases<br/>
+                        <span style="color:#2e7d32;">✓ SE relevance:</span> Critical decision support
+                    </p>
+                    
+                    <aside class="notes">
+                        This is the AI family closest to SE needs.
+                        Explainability is not optional for safety-critical systems.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>XAI and ontologies</h3>
+                    <p>Explainable AI benefits significantly from ontological foundations:</p>
+                    <ul>
+                        <li class="fragment">Ontologies provide explicit semantics for reasoning rules</li>
+                        <li class="fragment">They enable semantic validation of explanations</li>
+                        <li class="fragment">They support cross-domain explanation transfer</li>
+                        <li class="fragment">They make assumptions explicit and auditable</li>
+                    </ul>
+                    <div class="fragment key-point" style="margin-top:1.5em;">
+                        <strong>Key insight:</strong> Ontologies don't compete with XAI — they ground it.<br/>
+                        They define what is allowed to mean what.
+                    </div>
+                    
+                    <aside class="notes">
+                        This is where your ontology expertise shines.
+                        XAI without ontologies is just rule salad.
+                    </aside>
+                </section>
+
+                <!-- Generative AI -->
+                <section>
+                    <h3>4. Generative AI (LLMs, multimodal)</h3>
+                    <p style="font-size:0.85em; font-style:italic;">
+                        Large Language Models, text generation, code generation, image synthesis
+                    </p>
+                    <div class="two-columns fragment">
+                        <div>
+                            <h4 style="color:#2e7d32;">Strengths ✓</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Navigate large knowledge spaces</li>
+                                <li>Surface tacit knowledge traces</li>
+                                <li>Natural interaction</li>
+                                <li>Rapid synthesis</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color:#c62828;">Weaknesses ✗</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>No semantic grounding</li>
+                                <li>No truth commitment</li>
+                                <li>Non-determinism</li>
+                                <li>Hallucinations</li>
+                                <li>Training opacity</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        <span style="color:#2e7d32;">✓ SE relevance:</span> Exploration, documentation assistance<br/>
+                        <span style="color:#c62828;">✗ SE limitation:</span> Validation, certification, safety
+                    </p>
+                    
+                    <aside class="notes">
+                        This is where the hype lives — and the confusion.
+                        LLMs are powerful assistants, terrible authorities.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why LLMs create epistemic confusion</h3>
+                    <ul>
+                        <li class="fragment">They produce fluent, confident-sounding text</li>
+                        <li class="fragment">They mimic expert expression without expert understanding</li>
+                        <li class="fragment">They collapse data, knowledge, and judgment into plausible narrative</li>
+                        <li class="fragment">They make it easy to forget we need validation</li>
+                    </ul>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        When models disappear, hallucinations fill the gap.
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        This is the core problem with generative AI in SE.
+                        It's seductive — and that's dangerous.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Summary: AI families and SE integration</h3>
+                    <table style="font-size:0.7em; margin-top:1em;">
+                        <thead>
+                            <tr>
+                                <th>AI Family</th>
+                                <th>Best Use</th>
+                                <th>Critical Limit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Statistical/Predictive</td>
+                                <td>Monitoring, diagnostics</td>
+                                <td>No semantic reasoning</td>
+                            </tr>
+                            <tr>
+                                <td>Optimization</td>
+                                <td>Design exploration</td>
+                                <td>Assumes model is correct</td>
+                            </tr>
+                            <tr>
+                                <td>Explainable (XAI)</td>
+                                <td>Safety cases, justification</td>
+                                <td>Scalability limits</td>
+                            </tr>
+                            <tr>
+                                <td>Generative (LLMs)</td>
+                                <td>Exploration, synthesis</td>
+                                <td>No truth commitment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        Different AIs support different functions.<br/>
+                        None replace knowledge ownership or decision responsibility.
+                    </p>
+                </section>
+            </section>
+
+            <!-- MODELS AND ONTOLOGIES -->
+            <section>
+                <section>
+                    <h3>Models and ontologies are not obsolete</h3>
+                    <p class="fragment">Common misconception:</p>
+                    <blockquote class="fragment">
+                        "AI can learn from data directly —<br/>
+                        we don't need formal models anymore."
+                    </blockquote>
+                    <p class="fragment" style="margin-top:1.5em; color:#c62828; font-weight:bold;">
+                        This is fundamentally wrong.
+                    </p>
+                    
+                    <aside class="notes">
+                        Address the "models are dead" narrative directly.
+                        This is very important for AFIS audiences.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>What models provide</h3>
+                    <ul>
+                        <li class="fragment"><strong>Anchors of meaning</strong> — stabilize semantics across time and actors</li>
+                        <li class="fragment"><strong>Explicit assumptions</strong> — make limits and boundaries visible</li>
+                        <li class="fragment"><strong>Validation targets</strong> — define what "correct" means</li>
+                        <li class="fragment"><strong>Traceability foundations</strong> — connect decisions to rationale</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        AI without models consumes ambiguity.
+                    </p>
+                    
+                    <aside class="notes">
+                        Models are not constraints — they're clarity.
+                        Without them, you can't validate anything.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Ontologies: semantic infrastructure</h3>
+                    <p><strong>Ontologies</strong> provide:</p>
+                    <ul>
+                        <li class="fragment">Explicit, shared semantics</li>
+                        <li class="fragment">Stability of meaning across tool chains</li>
+                        <li class="fragment">Interoperability foundations</li>
+                        <li class="fragment">Governance of vocabulary evolution</li>
+                    </ul>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        Ontologies do not compete with AI — they constrain it.<br/>
+                        They define what is allowed to mean what.
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        This is your distinctive expertise.
+                        Ontologies are not "old AI" — they're semantic infrastructure.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Hypermodels and semantic cartography</h3>
+                    <p>Complex systems require <strong>multiple viewpoints</strong>:</p>
+                    <ul>
+                        <li class="fragment">No single "source of truth"</li>
+                        <li class="fragment">Multiple languages and formalisms</li>
+                        <li class="fragment">Explicit semantic mediation between views</li>
+                        <li class="fragment">Managed consistency, not enforced uniformity</li>
+                    </ul>
+                    <div class="fragment key-point" style="margin-top:1.5em;">
+                        <strong>Role of AI:</strong> AI can navigate these multiple viewpoints —<br/>
+                        but only if they are explicitly modeled.
+                    </div>
+                    
+                    <aside class="notes">
+                        This is where your PLM and interoperability experience shows.
+                        Hypermodels are not academic — they're industrial reality.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Integration pattern: Human–Model–AI</h3>
+                    <div class="diagram-container">
+                        <svg width="600" height="350" viewBox="0 0 600 350" style="margin:auto; display:block;">
+                            <!-- Human layer (top) -->
+                            <rect x="200" y="20" width="200" height="60" fill="#ffcdd2" stroke="#d32f2f" stroke-width="2" rx="8"/>
+                            <text x="300" y="45" text-anchor="middle" font-size="16" font-weight="bold">Human Engineer</text>
+                            <text x="300" y="65" text-anchor="middle" font-size="12">intent • responsibility • decision</text>
+                            
+                            <!-- Arrow down to Models -->
+                            <path d="M 300 80 L 300 120" stroke="#666" stroke-width="2" marker-end="url(#arrowhead2)"/>
+                            <text x="320" y="105" font-size="12" fill="#666">defines</text>
+                            
+                            <!-- Models layer (middle) -->
+                            <rect x="150" y="120" width="300" height="80" fill="#c8e6c9" stroke="#4caf50" stroke-width="2" rx="8"/>
+                            <text x="300" y="145" text-anchor="middle" font-size="16" font-weight="bold">Formal Artifacts</text>
+                            <text x="300" y="165" text-anchor="middle" font-size="12">models • ontologies • requirements</text>
+                            <text x="300" y="185" text-anchor="middle" font-size="12">specifications • architectures</text>
+                            
+                            <!-- Arrow down to AI -->
+                            <path d="M 300 200 L 300 240" stroke="#666" stroke-width="2" marker-end="url(#arrowhead2)"/>
+                            <text x="320" y="225" font-size="12" fill="#666">constrains</text>
+                            
+                            <!-- AI layer (bottom) -->
+                            <rect x="200" y="240" width="200" height="80" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="8"/>
+                            <text x="300" y="265" text-anchor="middle" font-size="16" font-weight="bold">AI Assistants</text>
+                            <text x="300" y="285" text-anchor="middle" font-size="12">exploration • synthesis</text>
+                            <text x="300" y="305" text-anchor="middle" font-size="12">navigation • suggestion</text>
+                            
+                            <!-- Feedback arrow -->
+                            <path d="M 400 280 Q 500 200 400 120" stroke="#ff9800" stroke-width="2" fill="none" 
+                                  marker-end="url(#arrowhead3)" stroke-dasharray="5,5"/>
+                            <text x="480" y="200" font-size="12" fill="#ff9800">feedback</text>
+                            
+                            <!-- Arrow definitions -->
+                            <defs>
+                                <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                                </marker>
+                                <marker id="arrowhead3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#ff9800"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                    <p class="fragment" style="margin-top:1em; font-weight:bold; text-align:center;">
+                        AI operates <em>within</em> the system, not above it.
+                    </p>
+                    
+                    <aside class="notes">
+                        This diagram is the architectural core of your talk.
+                        It shows hierarchy: human > model > AI.
+                    </aside>
+                </section>
+            </section>
+
+            <!-- VERIFICATION & VALIDATION -->
+            <section>
+                <section>
+                    <h3>Verification & Validation: the breaking point</h3>
+                    <p class="fragment">Classical V&V assumes:</p>
+                    <ul>
+                        <li class="fragment">Determinism (same input → same output)</li>
+                        <li class="fragment">Explicit requirements</li>
+                        <li class="fragment">Testable acceptance criteria</li>
+                        <li class="fragment">Traceable design decisions</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold; color:#c62828;">
+                        AI — especially generative AI — breaks all of these.
+                    </p>
+                    
+                    <aside class="notes">
+                        This is where AFIS people lean forward.
+                        V&V is foundational to SE — AI challenges it.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Why AI breaks classical V&V assumptions</h3>
+                    <ul>
+                        <li class="fragment"><strong>Non-determinism</strong> — LLMs don't give the same answer twice</li>
+                        <li class="fragment"><strong>Training opacity</strong> — you can't inspect what was learned</li>
+                        <li class="fragment"><strong>Context drift</strong> — behavior changes with input distribution</li>
+                        <li class="fragment"><strong>No acceptance criteria</strong> — what does "good enough" mean?</li>
+                        <li class="fragment"><strong>Emergent behavior</strong> — capabilities not explicitly programmed</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        Each of these is a V&V showstopper in safety-critical contexts.
+                        You can't certify what you can't validate.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>AI outputs as hypotheses, not facts</h3>
+                    <p class="fragment">The only safe stance:</p>
+                    <blockquote class="fragment">
+                        Treat all AI outputs as hypotheses requiring validation.
+                    </blockquote>
+                    <p class="fragment" style="margin-top:1.5em;">This means:</p>
+                    <ul>
+                        <li class="fragment">AI suggestions must be reviewed before use</li>
+                        <li class="fragment">Human validation is not optional</li>
+                        <li class="fragment">Traceability must capture who validated what</li>
+                        <li class="fragment">Responsibility remains with the human validator</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        This is the practical integration rule.
+                        AI accelerates hypothesis generation — humans validate.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>V&V for different AI families</h3>
+                    <table style="font-size:0.65em; margin-top:1em;">
+                        <thead>
+                            <tr>
+                                <th>AI Family</th>
+                                <th>V&V Approach</th>
+                                <th>Certification Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Statistical/Predictive</td>
+                                <td>Statistical validation, test sets, performance metrics</td>
+                                <td style="color:#4caf50;">Established methods exist</td>
+                            </tr>
+                            <tr>
+                                <td>Optimization</td>
+                                <td>Verify model, validate objectives, test corner cases</td>
+                                <td style="color:#4caf50;">Possible with care</td>
+                            </tr>
+                            <tr>
+                                <td>Explainable (XAI)</td>
+                                <td>Trace rules, audit logic, validate explanations</td>
+                                <td style="color:#8bc34a;">Most certifiable</td>
+                            </tr>
+                            <tr>
+                                <td>Generative (LLMs)</td>
+                                <td>Human review of each output</td>
+                                <td style="color:#f44336;">Not certifiable directly</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        Certification readiness varies dramatically by AI type.
+                    </p>
+                </section>
+            </section>
+
+            <!-- RESPONSIBILITY AND GOVERNANCE -->
+            <section>
+                <section>
+                    <h3>Responsibility cannot be automated</h3>
+                    <ul>
+                        <li class="fragment">Automation shifts <em>perceived</em> responsibility</li>
+                        <li class="fragment">But legal and ethical responsibility remains human</li>
+                        <li class="fragment">AI creates a <strong>responsibility vacuum</strong> if not managed</li>
+                        <li class="fragment">"The AI decided" is never an acceptable answer</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        This is the ethical and legal core.
+                        Responsibility is not a technical property.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Critical questions for SE governance</h3>
+                    <p>When integrating AI, always ask:</p>
+                    <ul>
+                        <li class="fragment"><strong>Who decides?</strong> (not "what decides")</li>
+                        <li class="fragment"><strong>Who validates?</strong> (not "is it validated")</li>
+                        <li class="fragment"><strong>Who signs?</strong> (not "is it approved")</li>
+                        <li class="fragment"><strong>Who is liable?</strong> (not "is it safe")</li>
+                    </ul>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        These questions must have human names as answers.
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        These questions are your defense against automation narratives.
+                        If you can't name a person, you don't have responsibility.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Reassigning responsibility explicitly</h3>
+                    <p>SE must explicitly reassign:</p>
+                    <div class="two-columns fragment">
+                        <div>
+                            <h4>From AI system</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Output generation</li>
+                                <li>Pattern recognition</li>
+                                <li>Suggestion synthesis</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>To Human roles</h4>
+                            <ul style="font-size:0.85em;">
+                                <li>Validation authority</li>
+                                <li>Decision authority</li>
+                                <li>Approval authority</li>
+                                <li>Liability holder</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        This must be documented in:<br/>
+                        processes, roles, RACI matrices, approval workflows
+                    </p>
+                    
+                    <aside class="notes">
+                        This is very practical governance advice.
+                        AFIS audiences need actionable guidance.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Safety and certification implications</h3>
+                    <ul>
+                        <li class="fragment">Safety cases require traceable decisions</li>
+                        <li class="fragment">Certification requires identified decision-makers</li>
+                        <li class="fragment">Liability requires justified uncertainty management</li>
+                        <li class="fragment">Compliance requires auditable responsibility chains</li>
+                    </ul>
+                    <div class="fragment warning-box" style="margin-top:1.5em;">
+                        <strong>Warning:</strong> Using AI without explicit responsibility assignment<br/>
+                        may invalidate your safety case or certification argument.
+                    </div>
+                    
+                    <aside class="notes">
+                        This connects to AFIS core concerns.
+                        Certification is not optional in many SE domains.
+                    </aside>
+                </section>
+            </section>
+
+            <!-- PRACTICAL INTEGRATION -->
+            <section>
+                <section>
+                    <h3>A pragmatic integration pattern</h3>
+                    <p>How to actually integrate AI into SE practice:</p>
+                    <ol>
+                        <li class="fragment">Explicit separation of artifacts</li>
+                        <li class="fragment">Clear role boundaries</li>
+                        <li class="fragment">Validation checkpoints</li>
+                        <li class="fragment">Traceability of decisions</li>
+                    </ol>
+                    
+                    <aside class="notes">
+                        Move from principles to practice.
+                        Give them something they can implement Monday.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>1. Explicit artifact separation</h3>
+                    <p>Maintain clear distinction between:</p>
+                    <ul>
+                        <li class="fragment"><strong>Baselined artifacts</strong> — validated, approved, controlled
+                            <br/><span style="font-size:0.85em; font-style:italic;">(requirements, models, specifications)</span>
+                        </li>
+                        <li class="fragment"><strong>AI-generated suggestions</strong> — unvalidated, exploratory
+                            <br/><span style="font-size:0.85em; font-style:italic;">(drafts, alternatives, syntheses)</span>
+                        </li>
+                        <li class="fragment"><strong>Human decisions</strong> — which suggestions to accept, reject, modify
+                            <br/><span style="font-size:0.85em; font-style:italic;">(with rationale and responsibility)</span>
+                        </li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        Never allow AI outputs to automatically become baselined artifacts.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>2. Clear role boundaries</h3>
+                    <table style="font-size:0.7em;">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>AI Role</th>
+                                <th>Human Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment">
+                                <td>Requirements elicitation</td>
+                                <td>Suggest, reformulate</td>
+                                <td>Validate, approve</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Architecture exploration</td>
+                                <td>Generate alternatives</td>
+                                <td>Select, justify</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Document synthesis</td>
+                                <td>Draft, summarize</td>
+                                <td>Review, sign</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Verification</td>
+                                <td>Suggest test cases</td>
+                                <td>Validate coverage</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Trade studies</td>
+                                <td>Compute options</td>
+                                <td>Weight criteria, decide</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h3>3. Validation checkpoints</h3>
+                    <p>Insert explicit human validation before:</p>
+                    <ul>
+                        <li class="fragment">AI suggestion becomes requirement</li>
+                        <li class="fragment">AI draft becomes approved document</li>
+                        <li class="fragment">AI analysis becomes decision basis</li>
+                        <li class="fragment">AI output enters certification evidence</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em;">
+                        Each checkpoint must have:
+                    </p>
+                    <ul>
+                        <li class="fragment">Named validator</li>
+                        <li class="fragment">Validation criteria</li>
+                        <li class="fragment">Accept/reject decision</li>
+                        <li class="fragment">Documented rationale</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>4. Traceability of decisions</h3>
+                    <p>Record not just <em>what</em> was decided, but:</p>
+                    <ul>
+                        <li class="fragment"><strong>Who</strong> decided</li>
+                        <li class="fragment"><strong>When</strong> they decided</li>
+                        <li class="fragment"><strong>Why</strong> they decided (rationale)</li>
+                        <li class="fragment"><strong>What alternatives</strong> were considered</li>
+                        <li class="fragment"><strong>What uncertainties</strong> remain</li>
+                    </ul>
+                    <blockquote class="fragment" style="margin-top:1.5em;">
+                        If AI was involved, trace:<br/>
+                        what AI suggested → what human decided → why
+                    </blockquote>
+                </section>
+            </section>
+
+            <!-- WARNINGS AND MYTHS -->
+            <section>
+                <section>
+                    <h3>What AFIS working groups should watch for</h3>
+                    <p class="fragment">Be alert to these dangerous narratives:</p>
+                    
+                    <aside class="notes">
+                        This section helps people resist marketing pressure.
+                        Give them language to push back.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Dangerous narrative #1</h3>
+                    <blockquote style="background:#ffebee; border-color:#c62828;">
+                        "AI understands the system"
+                    </blockquote>
+                    <p class="fragment" style="margin-top:1.5em;"><strong>Reality:</strong></p>
+                    <ul>
+                        <li class="fragment">AI manipulates representations, not meanings</li>
+                        <li class="fragment">It has no model of intent or purpose</li>
+                        <li class="fragment">It cannot distinguish important from unimportant</li>
+                        <li class="fragment">"Understanding" requires grounding AI lacks</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        This is the most common and dangerous claim.
+                        Understanding requires intentionality.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Dangerous narrative #2</h3>
+                    <blockquote style="background:#ffebee; border-color:#c62828;">
+                        "We'll just validate the AI outputs"
+                    </blockquote>
+                    <p class="fragment" style="margin-top:1.5em;"><strong>Reality:</strong></p>
+                    <ul>
+                        <li class="fragment">If you can validate everything, you don't need AI</li>
+                        <li class="fragment">If you can't validate everything, you're accepting risk</li>
+                        <li class="fragment">Validation cost may exceed generation savings</li>
+                        <li class="fragment">Non-determinism makes comprehensive testing impossible</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        This reveals the validation paradox.
+                        "Just validate" is not a strategy.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Dangerous narrative #3</h3>
+                    <blockquote style="background:#ffebee; border-color:#c62828;">
+                        "Knowledge graphs solve the grounding problem"
+                    </blockquote>
+                    <p class="fragment" style="margin-top:1.5em;"><strong>Reality:</strong></p>
+                    <ul>
+                        <li class="fragment">Knowledge graphs are valuable infrastructure</li>
+                        <li class="fragment">But they don't make AI "understand"</li>
+                        <li class="fragment">Symbol grounding remains unsolved</li>
+                        <li class="fragment">Responsibility still requires human judgment</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        Knowledge graphs help — but they're not magic.
+                        They don't eliminate the need for human judgment.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Dangerous narrative #4</h3>
+                    <blockquote style="background:#ffebee; border-color:#c62828;">
+                        "Autonomous engineering systems"
+                    </blockquote>
+                    <p class="fragment" style="margin-top:1.5em;"><strong>Reality:</strong></p>
+                    <ul>
+                        <li class="fragment">Autonomy implies independent decision-making</li>
+                        <li class="fragment">Independent decisions require accountability</li>
+                        <li class="fragment">AI systems cannot be held accountable</li>
+                        <li class="fragment">Therefore "autonomous engineering" is a category error</li>
+                    </ul>
+                    
+                    <aside class="notes">
+                        "Autonomous" is marketing language.
+                        It confuses automation with autonomy.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Better questions to ask</h3>
+                    <p>Instead of accepting narratives, ask:</p>
+                    <ul>
+                        <li class="fragment">Who validates this AI output?</li>
+                        <li class="fragment">Who decides whether to act on it?</li>
+                        <li class="fragment">Who signs the safety case?</li>
+                        <li class="fragment">What happens when the AI is wrong?</li>
+                        <li class="fragment">How do we trace this decision in 5 years?</li>
+                        <li class="fragment">Can this be certified?</li>
+                    </ul>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        If these questions make people uncomfortable,<br/>
+                        you're asking the right questions.
+                    </p>
+                </section>
+            </section>
+
+            <!-- KEY TAKEAWAYS -->
+            <section>
+                <section>
+                    <h3>Key takeaways</h3>
+                    <ol>
+                        <li class="fragment">Data ≠ Information ≠ Knowledge ≠ Decision</li>
+                        <li class="fragment">AI is a Virtual Assistant, not a Virtual Engineer</li>
+                        <li class="fragment">Different AI families have different strengths and limits</li>
+                        <li class="fragment">Models and ontologies ground AI, they don't compete with it</li>
+                        <li class="fragment">AI outputs are hypotheses requiring validation</li>
+                        <li class="fragment">Responsibility cannot be automated</li>
+                    </ol>
+                    
+                    <aside class="notes">
+                        Recap the core messages.
+                        These should be memorable and quotable.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>The core principle</h3>
+                    <blockquote style="font-size:1.2em; padding:1.5em;">
+                        AI changes how we explore knowledge.<br/><br/>
+                        It does not change who is responsible for decisions.
+                    </blockquote>
+                    
+                    <aside class="notes">
+                        This is your closing statement.
+                        Simple, clear, memorable.
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Implications for SE practice</h3>
+                    <ul>
+                        <li class="fragment"><strong>AI accelerates cognition</strong> — use it for exploration</li>
+                        <li class="fragment"><strong>AI does not replace judgment</strong> — keep humans in decision loops</li>
+                        <li class="fragment"><strong>SE rigor is needed more than ever</strong> — not less</li>
+                        <li class="fragment"><strong>Formalism protects against confusion</strong> — invest in models and ontologies</li>
+                        <li class="fragment"><strong>Responsibility must be explicit</strong> — name names, document decisions</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>What this means for AFIS working groups</h3>
+                    <p class="fragment">You are not <em>rejecting</em> AI</p>
+                    <p class="fragment">You are <em>integrating</em> AI responsibly</p>
+                    <p class="fragment">You are <em>protecting</em> SE foundations</p>
+                    <p class="fragment">You are <em>clarifying</em> roles and boundaries</p>
+                    <p class="fragment" style="margin-top:1.5em; font-weight:bold;">
+                        This is not resistance to change.<br/>
+                        This is engineering discipline.
+                    </p>
+                    
+                    <aside class="notes">
+                        End on a constructive note.
+                        You're helping them integrate AI well, not blocking it.
+                    </aside>
+                </section>
+            </section>
+
+            <!-- CLOSING -->
+            <section>
+                <h2>Thank you</h2>
+                <p style="margin-top:2em;">Questions and discussion</p>
+                <div style="margin-top:3em; font-size:0.8em;">
+                    <p><strong>Remember:</strong></p>
+                    <p>AI systems are powerful Virtual Assistants.</p>
+                    <p>They amplify cognition.</p>
+                    <p>They do not replace judgment.</p>
+                </div>
+                
+                <aside class="notes">
+                    Prepared for Q&A.
+                    Likely pushback: "But AI is getting better" — response: "Better at what? Generating text? Yes. Making accountable decisions? No."
+                    Stay calm, stay precise, stay SE-focused.
+                </aside>
+            </section>
+
+            <!-- BACKUP SLIDES (hidden unless needed) -->
+            <section style="display:none;">
+                <section>
+                    <h3>Backup: Q&A preparation</h3>
+                    <p>Common objections and responses</p>
+                </section>
+
+                <section>
+                    <h3>"But AI can reason now"</h3>
+                    <p><strong>Response:</strong></p>
+                    <ul style="font-size:0.85em;">
+                        <li>AI performs inference over representations</li>
+                        <li>This is computation, not reasoning in the SE sense</li>
+                        <li>Reasoning in SE requires understanding purpose and consequences</li>
+                        <li>AI has neither — it pattern-matches</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>"This will slow us down"</h3>
+                    <p><strong>Response:</strong></p>
+                    <ul style="font-size:0.85em;">
+                        <li>Validation always takes time — AI doesn't change that</li>
+                        <li>Fast but wrong is not an improvement</li>
+                        <li>Clear boundaries actually speed integration</li>
+                        <li>Confusion and rework are what slow projects</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>"Other companies are moving faster"</h3>
+                    <p><strong>Response:</strong></p>
+                    <ul style="font-size:0.85em;">
+                        <li>Speed without rigor leads to failure</li>
+                        <li>We integrate AI where it adds value</li>
+                        <li>We maintain responsibility where it's required</li>
+                        <li>This is competitive advantage, not obstacle</li>
+                    </ul>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            slideNumber: 'c/t',
+            showNotes: false,
+            plugins: [ RevealNotes ]
+        });
+    </script>
+</body>
+</html>
+
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true
+  });
+</script>
+
+</body>
+</html>
+
 
       <!-- Slide 1 -->
       <section>
