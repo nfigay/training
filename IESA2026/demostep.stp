@@ -1,0 +1,90 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('Example with product, assembly, and relations'),'2;1');
+FILE_NAME('assembly_example.p21','2026-04-15T10:00:00',
+('Nicolas Figay'),('ArchiCG Demo'),'','','');
+FILE_SCHEMA(('CONFIG_CONTROL_DESIGN'));
+ENDSEC;
+
+DATA;
+
+-- =====================
+-- CONTEXT
+-- =====================
+#10 = APPLICATION_CONTEXT('mechanical design');
+#11 = PRODUCT_CONTEXT('', #10, 'mechanical');
+
+-- =====================
+-- PRODUCTS
+-- =====================
+#100 = PRODUCT('ASSEMBLY_1', 'Main Assembly', '', (#11));
+#101 = PRODUCT('PART_A', 'Component A', '', (#11));
+#102 = PRODUCT('PART_B', 'Component B', '', (#11));
+
+-- =====================
+-- PRODUCT DEFINITIONS
+-- =====================
+#110 = PRODUCT_DEFINITION_FORMATION('', '', #100);
+#111 = PRODUCT_DEFINITION_FORMATION('', '', #101);
+#112 = PRODUCT_DEFINITION_FORMATION('', '', #102);
+
+#120 = PRODUCT_DEFINITION('design', '', #110, #10);
+#121 = PRODUCT_DEFINITION('design', '', #111, #10);
+#122 = PRODUCT_DEFINITION('design', '', #112, #10);
+
+-- =====================
+-- SHAPE REPRESENTATIONS
+-- =====================
+#200 = CARTESIAN_POINT('', (0.0, 0.0, 0.0));
+#201 = DIRECTION('', (0.0, 0.0, 1.0));
+#202 = DIRECTION('', (1.0, 0.0, 0.0));
+#203 = AXIS2_PLACEMENT_3D('', #200, #201, #202);
+
+#210 = SHAPE_REPRESENTATION('', (#203), #300);
+#211 = SHAPE_REPRESENTATION('', (#203), #300);
+#212 = SHAPE_REPRESENTATION('', (#203), #300);
+
+#220 = PRODUCT_DEFINITION_SHAPE('', '', #120);
+#221 = PRODUCT_DEFINITION_SHAPE('', '', #121);
+#222 = PRODUCT_DEFINITION_SHAPE('', '', #122);
+
+#230 = SHAPE_DEFINITION_REPRESENTATION(#220, #210);
+#231 = SHAPE_DEFINITION_REPRESENTATION(#221, #211);
+#232 = SHAPE_DEFINITION_REPRESENTATION(#222, #212);
+
+-- =====================
+-- GEOMETRIC CONTEXT
+-- =====================
+#300 = GEOMETRIC_REPRESENTATION_CONTEXT(3);
+#301 = GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT((#302), #300);
+#302 = UNCERTAINTY_MEASURE_WITH_UNIT(LENGTH_MEASURE(1.E-6), #303, 'distance_accuracy_value', '');
+#303 = (LENGTH_UNIT() NAMED_UNIT(*) SI_UNIT(.MILLI., .METRE.));
+
+-- =====================
+-- ASSEMBLY RELATIONSHIPS
+-- =====================
+#400 = NEXT_ASSEMBLY_USAGE_OCCURRENCE(
+  'usage1',
+  'Assembly uses Component A',
+  '',
+  #120,  -- parent: ASSEMBLY_1
+  #121   -- child: PART_A
+);
+
+#401 = NEXT_ASSEMBLY_USAGE_OCCURRENCE(
+  'usage2',
+  'Assembly uses Component B',
+  '',
+  #120,
+  #122
+);
+
+-- =====================
+-- OPTIONAL: PLACEMENTS IN ASSEMBLY
+-- =====================
+#410 = PRODUCT_DEFINITION_SHAPE('', '', #121);
+#411 = PRODUCT_DEFINITION_SHAPE('', '', #122);
+
+ENDSEC;
+
+END-ISO-10303-21;

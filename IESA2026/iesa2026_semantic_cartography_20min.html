@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic Cartography — I-ESA 2026 [20 min]</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Mulish:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c1a26;
+      --bg2: #122030;
+      --bg3: #1a2d3e;
+      --text: #ddd7cc;
+      --muted: #7a8a96;
+      --gold: #c49a38;
+      --gold-l: #dbb84e;
+      --blue: #4d96b8;
+      --blue-l: #72b4d0;
+      --green: #6aaa78;
+      --red: #b87070;
+      --bdr: rgba(196, 154, 56, 0.22);
+      --bdr2: rgba(77, 150, 184, 0.20);
+    }
+
+    .reveal {
+      font-family: 'Mulish', sans-serif;
+      font-size: 26px;
+      color: var(--text);
+      background-color: var(--bg);
+    }
+
+    .reveal-viewport::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(77, 150, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77, 150, 184, 0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal .slides section {
+      padding: 16px 44px 12px;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    /* breadcrumb */
+    .bc {
+      font-size: 0.41em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .bc .on {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .bc .sp {
+      opacity: 0.35;
+    }
+
+    /* headings */
+    .reveal h1 {
+      font-family: 'Spectral', serif;
+      font-weight: 400;
+      font-size: 1.30em;
+      color: var(--gold-l);
+      letter-spacing: 0.01em;
+      line-height: 1.22;
+      margin: 0 0 9px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .reveal h2 {
+      font-family: 'Spectral', serif;
+      font-weight: 600;
+      font-size: 0.95em;
+      color: var(--blue-l);
+      margin: 13px 0 5px;
+    }
+
+    .reveal h3 {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 700;
+      font-size: 0.70em;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin: 11px 0 3px;
+    }
+
+    .reveal p {
+      font-size: 0.73em;
+      line-height: 1.62;
+      margin: 5px 0;
+    }
+
+    .reveal strong {
+      color: var(--gold-l);
+      font-weight: 700;
+    }
+
+    .reveal em {
+      color: var(--blue-l);
+      font-style: italic;
+    }
+
+    .reveal ul,
+    .reveal ol {
+      margin: 3px 0 3px 1.05em;
+      padding: 0;
+    }
+
+    .reveal li {
+      font-size: 0.72em;
+      line-height: 1.58;
+      margin-bottom: 4px;
+    }
+
+    .reveal li li {
+      font-size: 0.92em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    /* boxes */
+    .box {
+      border-left: 3px solid var(--blue);
+      background: rgba(77, 150, 184, 0.07);
+      padding: 9px 13px;
+      margin: 8px 0;
+      font-size: 0.71em;
+      line-height: 1.58;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .bg {
+      border-left-color: var(--gold);
+      background: rgba(196, 154, 56, 0.07);
+    }
+
+    .br {
+      border-left-color: var(--red);
+      background: rgba(184, 112, 112, 0.07);
+    }
+
+    .bgn {
+      border-left-color: var(--green);
+      background: rgba(106, 170, 120, 0.07);
+    }
+
+    /* layout */
+    .g {
+      display: grid;
+      gap: 18px;
+    }
+
+    .g2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .g3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .g5545 {
+      grid-template-columns: 55% 45%;
+    }
+
+    .g4060 {
+      grid-template-columns: 40% 60%;
+    }
+
+    hr.d {
+      border: none;
+      border-top: 1px solid var(--bdr);
+      margin: 8px 0;
+    }
+
+    /* fig */
+    .fig {
+      background: rgba(18, 32, 48, 0.7);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .figcap {
+      font-size: 0.53em;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+      padding: 4px 4px 2px;
+    }
+
+    /* title slide */
+    .ts {
+      text-align: center;
+      padding: 8px 60px !important;
+    }
+
+    .ts h1 {
+      border: none;
+      font-size: 1.42em;
+      padding: 0;
+      line-height: 1.28;
+    }
+
+    .rule {
+      border: none;
+      border-top: 1px solid var(--bdr);
+      width: 55%;
+      margin: 20px auto;
+    }
+
+    .auth {
+      font-size: 0.59em;
+      line-height: 1.88;
+      color: var(--muted);
+    }
+
+    .auth strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* contrib rows */
+    .cr {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      margin-bottom: 9px;
+    }
+
+    .cb {
+      flex-shrink: 0;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: rgba(196, 154, 56, 0.18);
+      border: 1px solid rgba(196, 154, 56, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.56em;
+      font-weight: 800;
+      color: var(--gold-l);
+      margin-top: 2px;
+    }
+
+    .ct {
+      flex: 1;
+      font-size: 0.70em;
+      line-height: 1.53;
+    }
+
+    /* limit rows */
+    .lr {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+
+    .ll {
+      flex-shrink: 0;
+      min-width: 115px;
+      font-size: 0.67em;
+      font-weight: 700;
+      color: var(--red);
+      padding-top: 2px;
+    }
+
+    .lt {
+      flex: 1;
+      font-size: 0.67em;
+      line-height: 1.5;
+    }
+
+    /* refbar */
+    .rb {
+      font-size: 0.47em;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 7px;
+      padding-top: 5px;
+      border-top: 1px solid rgba(122, 138, 150, 0.18);
+      line-height: 1.5;
+    }
+
+    /* timer badge */
+    .tbadge {
+      display: inline-block;
+      font-size: 0.38em;
+      background: rgba(196, 154, 56, 0.12);
+      border: 1px solid rgba(196, 154, 56, 0.32);
+      color: var(--gold);
+      border-radius: 3px;
+      padding: 1px 7px;
+      letter-spacing: 0.08em;
+      vertical-align: middle;
+      margin-left: 8px;
+      font-family: 'Mulish', sans-serif;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ─────────────── SLIDE 1 TITLE ─────────────── -->
+      <section class="ts">
+        <div
+          style="font-size:0.49em; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:22px; margin-top:6px;">
+          I-ESA 2026 · Funchal · April 2026</div>
+        <h1>Semantic Cartography:<br>Enabling Evolutionary PLM Interoperability<br>in Sovereign Data Spaces</h1>
+        <hr class="rule">
+        <div class="g g2" style="text-align:left; max-width:660px; margin:0 auto;">
+          <div class="auth"><strong>Nicolas Figay</strong><br>Airbus Defence &amp; Space<br>UMR 5205 CNRS / Université
+            Lyon 1<br><span style="color:var(--blue-l); font-size:0.90em;">nicolas.figay@airbus.com</span></div>
+          <div class="auth"><strong>Parisa Ghodous</strong><br>UMR 5205 CNRS<br>INSA Lyon / Université Lyon 1<br><span
+              style="color:var(--blue-l); font-size:0.90em;">parisa.ghodous@univ-lyon1.fr</span></div>
+        </div>
+        <aside class="notes">~30 sec. Présenter les deux auteurs et leurs affiliations. Objet : identifier un gap
+          cognitif dans les frameworks d'interopérabilité et proposer Applied Semantic Cartography pour y répondre.
+          Structure : problème → état de l'art → approche → 3 démonstrateurs → contributions.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 2 CONTEXT + PROBLEM ─────────────── -->
+      <section>
+        <div class="bc"><span class="on">Introduction</span><span class="sp">·</span>Related Work<span
+            class="sp">·</span>Approach<span class="sp">·</span>Evidence<span class="sp">·</span>Discussion</div>
+        <h1>1. Industrial Context &amp; Research Problem <span class="tbadge">~2 min</span></h1>
+        <div class="g g2">
+          <div>
+            <h2>Extended enterprise product development</h2>
+            <ul>
+              <li>OEMs, suppliers, certification authorities — multi-decade lifecycles</li>
+              <li><strong>PLM standards:</strong> ISO STEP AP242 (3D engineering), AP239 (lifecycle support)</li>
+              <li><strong>MBSE:</strong> SysML, Arcadia/Capella — structurally isolated from PLM geometric data</li>
+              <li><strong>Sovereign data spaces:</strong> Gaia-X, Catena-X, <strong>DecadeX</strong> — governed sharing
+                via <strong>RDF, OWL, SHACL, DCAT, ODRL</strong></li>
+            </ul>
+            <div class="box br" style="margin-top:9px;">
+              <strong>The layering problem</strong><br>
+              Sovereign platforms ensure <em>technical-layer interoperability</em> — not <em>semantic consistency</em>
+              of engineering payloads.<br>
+              Two partners may exchange STEP AP242 files under identical ODRL policies yet interpret assembly
+              constraints differently.
+            </div>
+          </div>
+          <div>
+            <h2>Two research limitations</h2>
+            <div class="box" style="margin-bottom:8px;">
+              <strong>L1 — Semantic consistency</strong><br>
+              Heterogeneous formats (STEP, SysML, ArchiMate) remain semantically opaque in sovereign data space
+              architectures.
+            </div>
+            <div class="box" style="margin-bottom:8px;">
+              <strong>L2 — "RDFize everything"</strong><br>
+              OWL 2 expressiveness–decidability trade-offs → either <em>non-decidable ontologies</em> or
+              <em>semantically lossy translations</em>. Legacy PLM standards cannot be fully absorbed.
+            </div>
+            <div class="box br">
+              <strong>Consequence</strong><br>
+              Legacy PLM standards remain <em>opaque artifacts</em> — governed access without explorable semantics for
+              the architects governing multi-year transformations.
+            </div>
+            <div class="rb">ISO 10303-242:2014 · Gaia-X (2022) · DecadeX (2024) · Figay (2020) HAL tel-04413469v2</div>
+          </div>
+        </div>
+        <aside class="notes">~2 min. Deux colonnes à lire en parallèle. Insister sur DecadeX — c'est le data space de
+          notre domaine, mot-clé pour cette audience. La phrase "governed access without explorable semantics" est la
+          formulation à retenir — c'est le cœur du problème.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 3 RESEARCH QUESTION ─────────────── -->
+      <section>
+        <div class="bc"><span class="on">Introduction</span><span class="sp">·</span>Related Work<span
+            class="sp">·</span>Approach<span class="sp">·</span>Evidence<span class="sp">·</span>Discussion</div>
+        <h1>2. Research Question &amp; Scope <span class="tbadge">~1 min 30</span></h1>
+        <div class="box bg" style="font-size:0.77em; line-height:1.70; margin:12px 0 16px;">
+          How can <strong>interactive compound graph visualization with semantic typing</strong> support <em>Continuous
+            Operational Interoperability (COI)</em> within the Federative Interoperability Framework (FIF), across
+          heterogeneous standards — STEP, OWL/DCAT, ArchiMate — during evolutionary enterprise transformation?
+        </div>
+        <div class="g g2" style="margin-top:12px;">
+          <div>
+            <h2>Operational framing</h2>
+            <ul>
+              <li><strong>COI</strong> — maintaining interoperability through continuous change [Figay, 2020]</li>
+              <li><strong>FIF</strong> — Federative Interoperability Framework [Tchoffa et al, 2021]</li>
+              <li><strong>EH4I</strong> — Enterprise Hypermodel for Interoperability</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Methodological positioning</h2>
+            <ul>
+              <li>Design Science Research</li>
+              <li>Artefact construction precedes controlled validation</li>
+              <li>Contribution: <strong>conceptual paradigm + proof of technical feasibility</strong></li>
+              <li>Evaluation: exploratory, qualitative</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rb">Figay, N. (2020). Continuous Operational Interoperability, HAL tel-04413469v2 · Vernadat et al.
+          (2025). Interoperability Principles and Standards, Springer doi:10.1007/978-3-031-81497-6</div>
+        <aside class="notes">~1 min 30. Formuler la question précisément — c'est le pivot de la présentation. Annoncer
+          le positionnement DSR : artefact d'abord, validation contrôlée = direction future. Transition vers l'état de
+          l'art et le gap.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 4 RELATED WORK + GAP ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span><span class="on">Related Work</span><span
+            class="sp">·</span>Approach<span class="sp">·</span>Evidence<span class="sp">·</span>Discussion</div>
+        <h1>3. Related Work &amp; Identified Gap <span class="tbadge">~2 min</span></h1>
+        <div class="g g3" style="margin-top:8px;">
+          <div>
+            <h2>Interoperability frameworks</h2>
+            <ul>
+              <li>36 types, 117 definitions [Maciel, 2023]</li>
+              <li><strong>ATHENA</strong> — ontology, MDA, SOA [Berre, 2007]</li>
+              <li><strong>FIF + EH4I</strong> — formal interoperability, continuous change [Vernadat, 2025]</li>
+            </ul>
+            <div class="box" style="margin-top:8px; font-size:0.68em;">
+              Address formal alignment, technical integration, standards governance — <em>not</em> the cognitive
+              challenge of comprehension.
+            </div>
+          </div>
+          <div>
+            <h2>Visualization tools</h2>
+            <ul>
+              <li>UML/SysML/ArchiMate — static diagrams, tree/canvas separation</li>
+              <li>Linked Data viewers — non-hierarchical "hairball" graphs</li>
+              <li><strong>Cytoscape.js + fCoSE</strong> — compound graphs, animated transitions — <em>but no semantic
+                  typing</em></li>
+            </ul>
+            <div class="rb">Katifori et al. (2019) · Franz et al. (2016) · Balci &amp; Dogrusoz (2022)</div>
+          </div>
+          <div>
+            <div class="box br" style="margin-top:5px;">
+              <strong>The gap (3 simultaneous requirements):</strong>
+              <ul style="margin-top:6px;">
+                <li>① Interactive compound graph navigation</li>
+                <li>② Semantic typing from language specs</li>
+                <li>③ Multi-standard heterogeneity (STEP + OWL + ArchiMate)</li>
+              </ul>
+            </div>
+            <div class="box bg" style="margin-top:8px; font-size:0.67em;">
+              <strong>Implicit assumption in current frameworks:</strong> stakeholders can mentally construct coherent
+              multi-standard system pictures from fragmented documentation. Prototype evidence suggests this assumption
+              fails — and that the failure is costly.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">~2 min. Trois colonnes lisibles rapidement. Attention : des auteurs FIF/ATHENA peuvent être
+          dans la salle. Le gap n'est pas une critique — c'est une dimension non adressée. La phrase sur "l'hypothèse
+          implicite" est la contribution épistémique centrale. Formuler avec précision.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 5 ASC DEFINITION ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span><span
+            class="on">Approach</span><span class="sp">·</span>Evidence<span class="sp">·</span>Discussion</div>
+        <h1>4. Applied Semantic Cartography — Definition <span class="tbadge">~1 min 30</span></h1>
+        <div class="box bg" style="font-size:0.78em; line-height:1.68; margin:10px 0 14px;">
+          <strong>Applied Semantic Cartography (ASC):</strong><br>
+          Semantization of a compound graph by deriving types and rendering rules from a visual language specification,
+          while <em>preserving underlying formal semantics in their native frameworks</em> (OWL axioms, STEP schemas,
+          ArchiMate metamodel).
+        </div>
+        <div class="g g2">
+          <div>
+            <h2>What ASC is</h2>
+            <ul>
+              <li>A <strong>cognitive layer</strong> over heterogeneous formal standards</li>
+              <li>A <strong>unified interactive space</strong> where evolution pathways become comprehensible to
+                architects</li>
+              <li>An instrument for <strong>visual semantic coherence</strong> — seeing and interacting with
+                cross-standard relationships</li>
+            </ul>
+            <h2>Key distinction</h2>
+            <p>ASC does not replace OWL, STEP, or ArchiMate. It provides the <em>navigational and cognitive
+                infrastructure</em> these standards do not themselves supply.</p>
+          </div>
+          <div>
+            <h2>What ASC is not</h2>
+            <ul>
+              <li>Not a new semantic standard</li>
+              <li>Not a translation layer or middleware</li>
+              <li>Not a replacement for formal ontological alignment</li>
+            </ul>
+            <div class="box" style="margin-top:9px;">
+              <strong>Theoretical grounding:</strong><br>
+              Interoperability challenges are not merely technical problems solvable through standardisation, but
+              <em>wicked problems</em> requiring continuous stakeholder alignment — the cognitive dimension must be
+              addressed, not assumed.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">~1 min 30. Définition centrale — lire précisément. Insister sur la préservation de la
+          sémantique formelle dans les frameworks natifs. "Wicked problems" peut générer des questions — être prête avec
+          une formulation courte. Transition : architecture technique.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 6 TECHNICAL APPROACH ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span><span
+            class="on">Approach</span><span class="sp">·</span>Evidence<span class="sp">·</span>Discussion</div>
+        <h1>5. Technical Approach &amp; Semantization <span class="tbadge">~1 min 30</span></h1>
+        <div class="g g2">
+          <div>
+            <h2>Compound graph foundation (existing)</h2>
+            <ul>
+              <li><strong>Cytoscape.js</strong> — traversal, centrality, clustering, compound node support</li>
+              <li><strong>fCoSE</strong> — fast layout with constraint support, animated transitions</li>
+              <li><strong>expand/collapse plugin</strong> — selective animated hierarchical navigation</li>
+            </ul>
+            <h2>Semantization layer (contribution)</h2>
+            <ul>
+              <li>Type system derived from visual language specification</li>
+              <li>Rendering rules engine: type → symbol (shape, color, icon, line weight, dash pattern)</li>
+              <li>Graph analytics (Cytoscape.js) + animated compound viz + semantic typing = capability absent from
+                existing tools</li>
+            </ul>
+          </div>
+          <div>
+            <h2>From specification to rendering — ArchiMate 3.2</h2>
+            <ul>
+              <li>Extract <em>node construct types</em> (business-actor, application-component, data-object…)</li>
+              <li>Extract <em>relationship types</em> (association, aggregation, realization, triggering…)</li>
+              <li>Derive <em>rendering rules</em> per type — formal semantics remain in native framework</li>
+            </ul>
+            <div class="box bg" style="margin-top:9px;">
+              <strong>Generalised to languages without formal visual spec:</strong><br>
+              OWL/SHACL/DCAT, ISO STEP Part 11 (EXPRESS), Part 21 (exchange format) — feasibility demonstrated in all
+              cases. <strong>Identifiers preserved throughout → cross-tool traceability.</strong>
+            </div>
+            <div class="rb">Franz et al. (2016) · Balci &amp; Dogrusoz (2022) · Dogrusoz et al. (2009, 2018)</div>
+          </div>
+        </div>
+        <aside class="notes">~1 min 30. Slide technique — aller vite si l'audience est orientée interopérabilité plus
+          que visualisation. L'essentiel : on ne réinvente pas le compound graph, on y ajoute la couche sémantique
+          manquante. La préservation des identifiants est le point pratique clé.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 7 COMPOUND GRAPH VISUAL ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span><span
+            class="on">Approach</span><span class="sp">·</span>Evidence<span class="sp">·</span>Discussion</div>
+        <h1>6. Compound Graph — Visual Properties <span class="tbadge">~1 min 30</span></h1>
+        <div class="g g5545" style="align-items:start;">
+          <div>
+            <div class="fig" style="padding:8px;">
+              <a href="https://ivis-at-bilkent.github.io/cytoscape.js-expand-collapse" target="_blank"
+                rel="noopener noreferrer" title="Open ArchiCG">
+                <img src="fig1.png" style="width:100%; display:block; cursor:pointer;" alt="Open Cytoscape">
+              </a>
+              <div class="figcap">Fig. 1 — Compound graph: nested containers, semantic node types, cross-boundary edges.
+                Orphaned node (red) = missing traceability link.</div>
+            </div>
+          </div>
+          <div>
+            <h2>Properties demonstrated</h2>
+            <ul>
+              <li><strong>Containment</strong> — arbitrary nesting depth; collapsed container with count badge</li>
+              <li><strong>Semantic typing</strong> — node shape and color encode construct type per language spec</li>
+              <li><strong>Cross-boundary edges</strong> — relationships span containers and standards</li>
+              <li><strong>Visual anomaly detection</strong> — orphaned nodes signal missing traceability links,
+                identifiable without textual search</li>
+            </ul>
+            <div class="box bg" style="margin-top:10px; font-size:0.67em;">
+              Live demos of dynamic expand/collapse and animated layout:<br>
+              <a href="https://ivis-at-bilkent.github.io/cytoscape.js-fcose" target="_blank"
+                style="color:var(--blue-l);">
+                ivis-at-bilkent.github.io/cytoscape.js-fcose
+              </a><br>
+
+              <a href="https://ivis-at-bilkent.github.io/cytoscape.js-expand-collapse" target="_blank"
+                style="color:var(--blue-l);">
+                ivis-at-bilkent.github.io/cytoscape.js-expand-collapse
+              </a>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">~1 min 30. Slide le plus visuel de la partie Approche. Si tu as une démo live, c'est ici.
+          Insister sur le nœud orphelin rouge — valeur pratique immédiate pour les architectes. L'animated
+          expand/collapse ne peut pas se voir statiquement : pointer vers les démos en ligne.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 8 ARCHIMATE DEMONSTRATOR ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span>Approach<span
+            class="sp">·</span><span class="on">Evidence</span><span class="sp">·</span>Discussion</div>
+        <h1>7. Prototype &amp; Demonstrator 1 — ArchiMate with ArchiCG <span class="tbadge">~2 min</span></h1>
+        <div class="g g5545" style="align-items:start;">
+          <div>
+            <div class="fig" style="padding:6px;">
+
+              <a href="https://nfigay.github.io/ArchiCG/" target="_blank" rel="noopener noreferrer"
+                title="Open ArchiCG">
+                <img src="fig2.png" style="width:100%; display:block; cursor:pointer;" alt="Open ArchiCG diagram">
+              </a>
+
+              <div class="figcap">Fig. 2 — ArchiCG: full ArchiMate semantization</div>
+            </div>
+          </div>
+          <div>
+            <h2>Implementation — Browser-based, serverless</h2>
+            <ul>
+              <li>Pure JavaScript (Cytoscape.js + plugins)</li>
+              <li>No server, no executable, no installation</li>
+              <li>Reproducibility + extended enterprise deployment without infrastructure investment</li>
+            </ul>
+            <h2>ArchiMate SC — key distinction</h2>
+            <ul>
+              <li>Model explorer and canvas <em>merged</em> — no tree/canvas separation</li>
+              <li>Graph analytics (traversal, centrality, clustering) directly on architectural models</li>
+              <li>Impact analysis via visual containment; orphaned nodes = missing traceability</li>
+              <li><strong>Import:</strong> ArchiMate Open Exchange Format · <strong>Export:</strong> CSV + OWL ·
+                identifiers preserved</li>
+            </ul>
+            <div class="box bg" style="margin-top:8px; font-size:0.68em;">
+              Two further demonstrators: <strong>OWL SC</strong> (DProd ontology) and <strong>STEP Part 21 SC</strong>
+              (product model structures) — each establishing feasibility for a distinct language family.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">~2 min. Insister sur la fusion model explorer / canvas. Pour quelqu'un qui connaît Archi
+          (outil open source ArchiMate), c'est la comparaison concrète. Annoncer les deux autres démonstrateurs sur la
+          slide suivante.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 9 OWL + STEP ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span>Approach<span
+            class="sp">·</span><span class="on">Evidence</span><span class="sp">·</span>Discussion</div>
+        <h1>8. Demonstrators 2 &amp; 3 — OWL SC &amp; STEP Part 21 <span class="tbadge">~2 min</span></h1>
+        <div class="g g2" style="align-items:start;">
+          <div>
+            <h2>OWL SC — DProd (OMG Data Products Ontology)</h2>
+            <div class="fig" style="padding:5px; margin-bottom:8px;">
+              <a href="https://nfigay.github.io/ArchiCG/" target="_blank" rel="noopener noreferrer"
+                title="Open ArchiCG">
+                <img src="fig3a.png" style="width:100%; display:block; cursor:pointer;" alt="Open SC OWL diagram">
+              </a>
+              <div class="figcap">Fig. 3a — OWL SC: DProd ontology — annotation properties, imports, class hierarchy
+              </div>
+            </div>
+            <div class="box" style="font-size:0.67em;">
+              Makes visible what standard OWL viewers omit: object/data properties with domains/ranges, import
+              cross-references, annotation structures — <em>without modifying the OWL source</em>. Directly relevant for
+              <strong>DecadeX</strong> data catalog architectures.
+            </div>
+          </div>
+          <div>
+            <h2>STEP Part 21 SC &amp; the polyglot opening</h2>
+            <div class="fig" style="padding:5px; margin-bottom:8px;">
+              <a href="https://nfigay.github.io/ArchiCG/" target="_blank" rel="noopener noreferrer"
+                title="Open ArchiCG">
+                <img src="fig3b.png" style="width:100%; display:block; cursor:pointer;" alt="Open SC OWL diagram">
+              </a>
+              <div class="figcap">Fig. 3b — STEP Part 21 SC: product model with node type filtering and attribute
+                inspection</div>
+            </div>
+            <div class="box bg" style="font-size:0.67em;">
+              <strong>Feasibility demonstrated per language separately.</strong><br>
+              Simultaneous multi-language cartography (STEP + OWL + DCAT/ODRL in one compound graph) is the next
+              research step. Individual semantizations are the necessary prerequisite — identifiers preserved
+              throughout.
+            </div>
+          </div>
+        </div>
+        <aside class="notes">~2 min. Être direct sur la limite STEP : scope basique (Part 21 exchange instances
+          seulement, pas les reference models ni EXPRESS schemas). L'ouverture polyglotte est importante pour l'audience
+          I-ESA — cadrer clairement : pas encore là, mais les briques sont posées. DProd est pertinent pour les data
+          catalogs sovereign.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 10 CONTRIBUTIONS ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span>Approach<span
+            class="sp">·</span>Evidence<span class="sp">·</span><span class="on">Discussion</span></div>
+        <h1>9. Contributions <span class="tbadge">~1 min 30</span></h1>
+        <div class="g g2">
+          <div>
+            <h2>Theoretical</h2>
+            <div class="cr">
+              <div class="cb">T1</div>
+              <div class="ct"><strong>Applied Semantic Cartography</strong> — a paradigm bridging the cognitive gap in
+                enterprise interoperability transformation; semantic typing as a first-class concern alongside formal
+                semantic alignment</div>
+            </div>
+            <div class="cr">
+              <div class="cb">T2</div>
+              <div class="ct"><strong>Requalification of the problem</strong> — interoperability challenges as wicked
+                problems requiring stakeholder comprehension, not only technical integration; <em>visual semantic
+                  coherence</em> equally critical as formal semantic consistency</div>
+            </div>
+            <div class="cr">
+              <div class="cb">T3</div>
+              <div class="ct"><strong>Identification of a methodological blind spot</strong> — the cognitive dimension
+                of complexity navigation is assumed, not addressed, in FIF/Hypermodel literature</div>
+            </div>
+          </div>
+          <div>
+            <h2>Practical</h2>
+            <div class="cr">
+              <div class="cb">P1</div>
+              <div class="ct"><strong>Multi-standard visualization</strong> — STEP AP242, OWL/DCAT, ArchiMate in a
+                single interactive compound graph; semantic types preserved across standard boundaries</div>
+            </div>
+            <div class="cr">
+              <div class="cb">P2</div>
+              <div class="ct"><strong>Traceability through containment</strong> — hierarchical relationships as visual
+                nesting; impact analysis on shared components; cross-discipline misalignment detection</div>
+            </div>
+            <div class="cr">
+              <div class="cb">P3</div>
+              <div class="ct"><strong>Serverless browser-based architecture</strong> — rapid pilot deployment without
+                infrastructure investment; import/export across formats with identifier preservation</div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">~1 min 30. Synthèse rapide. Insister sur T2 — c'est la thèse la plus forte. P2
+          (traceability through containment) a une valeur pratique immédiate pour les ingénieurs PLM. P3 répond à une
+          vraie contrainte de déploiement en extended enterprise.</aside>
+      </section>
+
+      <!-- ─────────────── SLIDE 11 CONCLUSION ─────────────── -->
+      <section>
+        <div class="bc">Introduction<span class="sp">·</span>Related Work<span class="sp">·</span>Approach<span
+            class="sp">·</span>Evidence<span class="sp">·</span><span class="on">Discussion</span></div>
+        <h1>10. Limitations, Perspectives &amp; Conclusion <span class="tbadge">~2 min</span></h1>
+        <div class="g g2">
+          <div>
+            <h2>Known limitations</h2>
+            <div class="lr">
+              <div class="ll">Evaluation</div>
+              <div class="lt">Exploratory and qualitative — prototype usage scenarios, not controlled experiment.</div>
+            </div>
+            <hr class="d">
+            <div class="lr">
+              <div class="ll">Scalability</div>
+              <div class="lt">Acceptable up to ~2,000 nodes. Semantic lenses and multi-view coordination required beyond
+                density thresholds.</div>
+            </div>
+            <hr class="d">
+            <div class="lr">
+              <div class="ll">Polyglot SC</div>
+              <div class="lt">Feasibility per language separately. Multi-language unified map (incl. ODRL policies) not
+                yet resolved — type system unification required.</div>
+            </div>
+            <hr class="d">
+            <div class="lr">
+              <div class="ll">STEP coverage</div>
+              <div class="lt">Part 21 exchange instances only. Reference models and EXPRESS schemas not yet addressed.
+              </div>
+            </div>
+            <h2 style="margin-top:10px;">Future directions</h2>
+            <ul>
+              <li>Controlled evaluation of navigation effort and misalignment detection</li>
+              <li>Category theory — formal mapping types across cartographies</li>
+              <li>SC of <strong>DecadeX</strong> for Required PLM Interoperability Assessment</li>
+            </ul>
+          </div>
+          <div>
+            <div class="box bg" style="font-size:0.74em; line-height:1.65; margin:0 0 12px;">
+              This paper addresses a gap in the interoperability literature: the absence of interactive compound graph
+              visualization for semantic relationships across STEP, OWL/DCAT, and ArchiMate — a <em>methodological blind
+                spot</em> in existing frameworks.
+            </div>
+            <div class="g g3" style="gap:10px;">
+              <div class="box" style="text-align:center; padding:10px 6px;">
+                <div style="font-size:1.2em; margin-bottom:4px;">🗺</div>
+                <strong style="font-size:0.64em;">Paradigm</strong>
+                <p style="font-size:0.56em; color:var(--muted); margin-top:4px;">ASC — cognitive layer complementing
+                  formal semantic alignment</p>
+              </div>
+              <div class="box bg" style="text-align:center; padding:10px 6px;">
+                <div style="font-size:1.2em; margin-bottom:4px;">⚙</div>
+                <strong style="font-size:0.64em;">Feasibility</strong>
+                <p style="font-size:0.56em; color:var(--muted); margin-top:4px;">ArchiMate, OWL, STEP — browser-based,
+                  serverless</p>
+              </div>
+              <div class="box" style="text-align:center; padding:10px 6px;">
+                <div style="font-size:1.2em; margin-bottom:4px;">⬡</div>
+                <strong style="font-size:0.64em;">Polyglot reality</strong>
+                <p style="font-size:0.56em; color:var(--muted); margin-top:4px;">Graduated transparency — legacy formats
+                  as black boxes when appropriate</p>
+              </div>
+            </div>
+            <div class="box bgn" style="margin-top:10px; font-size:0.67em;">
+              <strong>Immediate practical value:</strong> Surfacing semantic misalignments before costly integration
+              failures — pilot-deployable without infrastructure investment. Natural deployment context:
+              <strong>DecadeX</strong>.
+            </div>
+            <div style="margin-top:10px; text-align:center; font-size:0.58em; color:var(--muted);">
+              nicolas.figay@airbus.com · parisa.ghodous@univ-lyon1.fr</div>
+          </div>
+        </div>
+        <aside class="notes">~2 min. Nommer chaque limite clairement et rapidement — ça renforce la crédibilité.
+          Terminer sur "graduated transparency" et DecadeX, pas sur les limites. "Graduated transparency" est la
+          formulation à retenir : c'est ce qui distingue ASC d'une approche qui essaierait de tout montrer d'un coup.
+          Remercier, ouvrir les questions.</aside>
+      </section>
+      <section>
+        <h1>Many kind of collaboration could be envisaged and are welcome</h1>
+         <div class="g g5545" style="align-items:start;">
+            <div>
+               <div class="fig" style="padding:6px;">
+                 <a href="https://nfigay.github.io/ArchiCG/" target="_blank" rel="noopener noreferrer"
+                   title="Open ArchiCG">
+                 <img src="collaboration style 23.png" style="width:100%; display:block; cursor:pointer;" alt="Collaboration">
+               </a>
+              <div class="figcap">Let's experiment</div>
+            </div>
+          </div>
+              <ul>
+                <li>ASC as research experimental platform for many topics
+                </li>
+                <li>ASC for education
+                </li>
+                <li>ASC for REX by consultants
+                </li>
+                </li>
+                <li>Development and Improvement of modules/features
+                </li>
+                <p>Contacts<br> <span ><a
+                      href="nicolas.figay@gmail.com">nicolas.figay@gmail.com</a><br>
+                    <a href="parisa.ghodous@univ-lyon1.fr">parisa.ghodous@univ-lyon1.fr</a></span>
+                </p>
+                <p>Github: <a href="https://github.com/nfigay/ArchiCG/">here</a></p>
+                <p>LinkedIn Community: <a href="https://www.linkedin.com/groups/13164530/">here</a>
+                <p>Inhabiting Babel: Manifesto for Responsible Meaning Engineering <a href="https://nfigay.gumroad.com/l/InhabitingBabel">here</a>
+                </p>
+              </ul>
+          </div>
+          <blockquote>
+            <p style="font-size: 1em; text-align: center;color:blue">
+              <em> A good way to break silos ;)
+
+              </em>
+            </p>
+          </blockquote>
+
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      controls: true,
+      center: false,
+      transition: 'fade',
+      transitionSpeed: 'fast',
+      width: 1280,
+      height: 720,
+      margin: 0.02,
+      minScale: 0.4,
+      maxScale: 2.0,
+      plugins: [RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
