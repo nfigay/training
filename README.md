@@ -7,7 +7,7 @@ démonstrations et ressources pédagogiques.
 
 ### Année universitaire 2026–2027
 
-[Initiation à UML — programme, séances et synthèses](courses/uml/2026-2027/README.md)
+[Initiation à UML — page de formation](courses/uml/2026-2027/index.html)
 
 [Support de cours transversal — PowerPoint](courses/uml/2026-2027/supports/initiation-uml-2026-2027.pptx)
 
@@ -28,7 +28,9 @@ Le PowerPoint commun couvre plusieurs séances.
 
 ## Accès au portail
 
-[Ouvrir le portail des supports](index.html)
+[Catalogue des formations](catalogue/index.html)
+
+[Portail historique des présentations](index.html)
 
 ## Organisation du dépôt
 
