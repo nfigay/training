@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthèse de la séance 1 — Initiation à UML assistée par LLM — Initiation UML</title>
+<style>
+:root { color-scheme: light; font-family: system-ui, -apple-system,
+BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f7fb; color: #172b43;
+line-height: 1.7; }
+header { background: #142a42; color: white; padding: 1.5rem max(1rem,calc((100% - 920px)/2)); }
+header a { color: #d9eaff; }
+header nav { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+main { max-width: 920px; margin: 2rem auto; padding: 2.5rem;
+background: white; border: 1px solid #dce5ee; border-radius: 12px; }
+h1,h2,h3 { line-height: 1.25; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
+h2 { margin-top: 2.2rem; border-bottom: 1px solid #dce5ee;
+padding-bottom: .4rem; }
+a { color: #155ca5; }
+pre { overflow-x: auto; padding: 1rem; background: #f0f4f8; }
+code { overflow-wrap: anywhere; }
+table { border-collapse: collapse; display: block; overflow-x: auto; }
+th,td { border: 1px solid #cbd5e1; padding: .5rem .75rem; }
+blockquote { border-left: 3px solid #4777a8; padding-left: 1rem; }
+@media(max-width: 700px) {
+  main { margin: 0; padding: 1.2rem; border: 0; border-radius: 0; }
+}</style>
+</head>
+<body>
+<header>
+
+<nav aria-label="Navigation">
+<a href="../../../../../catalogue/index.html">Catalogue</a>
+<a href="../../index.html">Initiation UML 2026–2027</a>
+</nav>
+</header>
+<main><article><h1>Synthèse de la séance 1 — Initiation à UML assistée par LLM</h1>
+<p><strong>Date :</strong> 21 octobre 2026<br><strong>Nature :</strong> synthèse du cours effectivement dispensé, complémentaire au support transversal.</p>
+<h2>Intention de la séance</h2>
+<p>Découvrir UML comme langage de modélisation visuel pour représenter la structure et le comportement de systèmes. Les étudiants ont exploré leurs propres domaines avec l&#39;aide d&#39;un LLM, puis visualisé et discuté des propositions produites sous forme de diagrammes PlantUML.</p>
+<p>La démarche part des questions et du vocabulaire des étudiants : notamment <strong>physique subatomique</strong>, <strong>environnement</strong> et <strong>gestion de l&#39;eau</strong>. Le diagramme est un support de discussion, non une preuve de validité.</p>
+<h2>UML : un langage, pas une méthode</h2>
+<p>UML (<em>Unified Modeling Language</em>) unifie des concepts et notations de modélisation. Il définit des constructions dotées d&#39;une syntaxe et d&#39;une sémantique ; il n&#39;impose pas une démarche de développement particulière. Le choix des diagrammes, leur niveau de détail et les conventions de travail dépendent du problème posé et des destinataires.</p>
+<p>Une bonne représentation est <strong>sélective</strong> : elle doit permettre de comprendre quelque chose de précis, sans prétendre décrire toute la réalité ni remplacer l&#39;implémentation.</p>
+<h2>Expérimenter un LLM dans un domaine connu</h2>
+<p>L&#39;exercice a consisté à :</p>
+<ol>
+<li>Choisir un système connu dans son domaine et une question à examiner.</li>
+<li>Demander à un LLM des concepts et un diagramme UML au format PlantUML.</li>
+<li>Afficher le diagramme avec un outil en ligne.</li>
+<li>Revoir le vocabulaire, les relations, les hypothèses et les conventions UML.</li>
+<li>Identifier les corrections nécessaires et ce que le diagramme apporte réellement.</li>
+</ol>
+<p><strong>Principe :</strong> le LLM accélère l&#39;exploration et la production d&#39;un brouillon ; il ne remplace pas la connaissance du domaine. Une proposition plausible peut contenir des erreurs métier ou des constructions mal adaptées. Des productions différentes peuvent résulter d&#39;une même consigne.</p>
+<h2>Diagrammes abordés et exemples</h2>
+<h3>Diagrammes de classes : structure du domaine</h3>
+<p>Un diagramme de classes représente des concepts, attributs et relations. Dans l&#39;exemple de <strong>physique subatomique</strong>, il relie événements, traces, <em>hits</em> et éléments du détecteur ; dans l&#39;exemple environnemental, bassins versants, cours d&#39;eau, stations de mesure, sources de pollution et mesures de qualité de l&#39;eau.</p>
+<p>Les multiplicités traduisent des règles à vérifier : une station peut enregistrer plusieurs mesures, chaque mesure étant liée à une station. Les relations de composition et d&#39;agrégation doivent être interprétées en fonction des contraintes réelles du domaine, et non choisies pour leur aspect graphique. L&#39;exemple événement–hits a notamment servi à discuter l&#39;appartenance des parties à un tout.</p>
+<h3>Diagrammes de séquence : interactions</h3>
+<p>Le diagramme de séquence montre les échanges entre participants dans un ordre temporel. L&#39;exemple d&#39;une simulation fait intervenir un utilisateur, un gestionnaire d&#39;exécution, un générateur primaire, la construction du détecteur, le traitement des données et la production des résultats. Les conditions et répétitions permettent de préciser le scénario.</p>
+<h3>Diagrammes d&#39;activités : déroulement d&#39;un processus</h3>
+<p>Le cas de la <strong>surveillance de la qualité de l&#39;eau</strong> illustre l&#39;analyse d&#39;un seuil de pollution, une décision, des activités parallèles (alerter les autorités et étudier la propagation), puis une synchronisation avant d&#39;autres mesures de protection. On distingue décision, parallélisme et synchronisation.</p>
+<h3>Composants et déploiement : architecture</h3>
+<p>L&#39;exemple environnemental comporte un capteur de terrain, une passerelle MQTT, un moteur d&#39;alerte, une base géospatiale PostgreSQL et un tableau de bord SIG web. Ces vues aident à comprendre l&#39;organisation technique et les échanges entre éléments, sans se substituer à un scénario temporel.</p>
+<h2>Pourquoi utiliser des représentations visuelles ?</h2>
+<p>Les diagrammes donnent une vue d&#39;ensemble et facilitent la détection de questions ou d&#39;incohérences qui se perdraient dans un texte long. L&#39;analogie avec une figure géométrique est utile : <strong>la figure aide à voir et à formuler une hypothèse, mais ne constitue pas à elle seule une démonstration</strong>.</p>
+<h2>Points de vigilance</h2>
+<ul>
+<li>Vérifier les faits et hypothèses métier auprès de personnes compétentes.</li>
+<li>Ne pas confondre validité du code PlantUML, correction de la notation et exactitude du modèle.</li>
+<li>Choisir les diagrammes en fonction d&#39;une question et d&#39;un destinataire.</li>
+<li>Ne pas chercher à employer toutes les constructions d&#39;UML.</li>
+<li>Considérer les résultats du LLM comme des propositions révisables, non comme une autorité.</li>
+</ul>
+<h2>Retours et suite</h2>
+<p>Les exemples issus des domaines des étudiants ont favorisé la participation. Une demande de <strong>support plus structuré</strong> a été exprimée ; la séance suivante a donc développé explicitement les fondements de la modélisation et les normes. Les synthèses complètent le PowerPoint transversal et l&#39;enregistrement transmis séparément aux participants.</p>
+<h2>Ressource commune</h2>
+<p><a href="../../supports/initiation-uml-2026-2027.pptx">Support PowerPoint UML 2026–2027</a>.</p>
+<p><em>Document rédigé à partir de la synthèse de séance fournie par l&#39;enseignant ; à relire avant publication.</em></p>
+
+<section id="videos-seance" aria-labelledby="titre-videos">
+  <h2 id="titre-videos">Revoir cette séance en vidéo</h2>
+  <p><strong>Publication en cours sur YouTube.</strong></p>
+  <p>
+    L'enregistrement de cette séance est en cours de préparation
+    et de publication sur YouTube. Il sera proposé sous forme
+    de plusieurs capsules vidéo, organisées selon les thèmes abordés.
+  </p>
+  <p>
+    Les liens vers les vidéos seront ajoutés ici progressivement.
+  </p>
+</section>
+
+</article></main>
+</body>
+</html>

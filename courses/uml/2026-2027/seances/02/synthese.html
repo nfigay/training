@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthèse de la séance 2 — Fondamentaux d&#39;UML, normes et modélisation — Initiation UML</title>
+<style>
+:root { color-scheme: light; font-family: system-ui, -apple-system,
+BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f7fb; color: #172b43;
+line-height: 1.7; }
+header { background: #142a42; color: white; padding: 1.5rem max(1rem,calc((100% - 920px)/2)); }
+header a { color: #d9eaff; }
+header nav { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+main { max-width: 920px; margin: 2rem auto; padding: 2.5rem;
+background: white; border: 1px solid #dce5ee; border-radius: 12px; }
+h1,h2,h3 { line-height: 1.25; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
+h2 { margin-top: 2.2rem; border-bottom: 1px solid #dce5ee;
+padding-bottom: .4rem; }
+a { color: #155ca5; }
+pre { overflow-x: auto; padding: 1rem; background: #f0f4f8; }
+code { overflow-wrap: anywhere; }
+table { border-collapse: collapse; display: block; overflow-x: auto; }
+th,td { border: 1px solid #cbd5e1; padding: .5rem .75rem; }
+blockquote { border-left: 3px solid #4777a8; padding-left: 1rem; }
+@media(max-width: 700px) {
+  main { margin: 0; padding: 1.2rem; border: 0; border-radius: 0; }
+}</style>
+</head>
+<body>
+<header>
+
+<nav aria-label="Navigation">
+<a href="../../../../../catalogue/index.html">Catalogue</a>
+<a href="../../index.html">Initiation UML 2026–2027</a>
+</nav>
+</header>
+<main><article><h1>Synthèse de la séance 2 — Fondamentaux d&#39;UML, normes et modélisation</h1>
+<p><strong>Date :</strong> 28 octobre 2026<br><strong>Nature :</strong> synthèse du cours effectivement dispensé, complémentaire au support transversal.</p>
+<h2>Le fil conducteur</h2>
+<p>Cette séance approfondit les questions ouvertes lors de la découverte pratique : <strong>qu&#39;est-ce qu&#39;un modèle, pourquoi modéliser, pourquoi UML est-il standardisé et qu&#39;apporte un modèle informatisé au-delà d&#39;un diagramme ?</strong> L&#39;analyse critique de la génération de diagrammes par LLM demeure transversale.</p>
+<h2>1. Un modèle est une représentation sélective</h2>
+<p>Un modèle représente certains aspects d&#39;un système <strong>pour répondre à une question et servir un objectif précis</strong>. Toute représentation laisse délibérément des éléments de côté. Le même système appelle donc différents modèles selon la préoccupation : plan de métro pour les correspondances, carte topographique pour les distances, plan d&#39;évacuation pour les sorties et les contraintes de sécurité.</p>
+<p>Plusieurs analogies ont nourri la discussion :</p>
+<ul>
+<li>Le <strong>« vertige pascalien »</strong> rappelle l&#39;impossibilité de tout décrire, à toutes les échelles et sous tous les points de vue.</li>
+<li>Le problème physique de <strong>l&#39;aiguille et de l&#39;aimant</strong> illustre qu&#39;un raisonnement formellement correct peut reposer sur une représentation inadéquate du réel : la confrontation au domaine reste indispensable.</li>
+<li>La <strong>géométrie</strong>, visuelle et analytique, montre la complémentarité entre intuition graphique et vérification formelle.</li>
+</ul>
+<p><strong>Maîtriser le formalisme ne garantit pas la justesse du contenu.</strong> Une représentation utile n&#39;est pas une copie exhaustive du réel.</p>
+<h2>2. Modéliser doit créer de la valeur</h2>
+<p>Un modèle peut clarifier des besoins, expliciter des hypothèses, réduire les malentendus, préparer des décisions et aider à vérifier une cohérence. Mais sa création, sa validation et sa maintenance ont un coût.</p>
+<p>Les risques discutés sont notamment :</p>
+<ul>
+<li><strong>Obsolescence</strong> : une carte ou un modèle non maintenu devient progressivement trompeur.</li>
+<li><strong>Illusion de précision</strong> : augmenter le détail et l&#39;exactitude coûte du temps et des moyens ; la précision doit être proportionnée au besoin.</li>
+<li><strong>Faux consensus</strong> : des interlocuteurs peuvent approuver un même diagramme tout en lui donnant des sens différents.</li>
+</ul>
+<p>La question préalable est donc : <strong>« À quelle question doit répondre ce modèle, et pour qui ? »</strong> On ne modélise pas pour modéliser.</p>
+<h2>3. D&#39;où vient UML ?</h2>
+<p>La séance replace UML dans l&#39;évolution de l&#39;ingénierie logicielle : approches séparant données et traitements, montée de l&#39;orientation objet, multiplication des méthodes et notations dans les années 1980–1990 (Booch, OMT, OOSE), puis effort d&#39;unification.</p>
+<p>Repères historiques présentés : adoption d&#39;UML 1.1 par l&#39;<strong>OMG</strong> en 1997 ; évolution majeure avec UML 2.0 autour de 2005 ; normalisation <strong>ISO/IEC 19505</strong> en 2012 ; spécification OMG UML <strong>2.5.1</strong> en 2017.</p>
+<p>Il faut distinguer <strong>langage</strong> et <strong>méthode</strong> : UML définit des concepts, des relations, des règles et des notations ; une démarche de projet décide quand, pourquoi et comment les employer. L&#39;adoption d&#39;un langage commun ne prescrit pas une méthodologie unique.</p>
+<h2>4. Pourquoi les standards comptent-ils ?</h2>
+<p>La standardisation favorise des interfaces et représentations communes, plutôt qu&#39;une multitude de solutions particulières. Les exemples des <strong>dimensions standardisées de portes et de fenêtres</strong>, des <strong>connecteurs téléphoniques</strong> et du <strong>passage à l&#39;USB-C</strong> ont permis d&#39;illustrer la production, le remplacement et l&#39;interopérabilité.</p>
+<p>Les spécifications publiées, la gouvernance du standard, les normes ISO et le caractère open source d&#39;un logiciel sont des notions distinctes. Une déclaration de « compatibilité UML » ne constitue pas à elle seule une preuve de conformité ni d&#39;échange fiable des modèles.</p>
+<h2>5. Le langage commun concerne les personnes ET les outils</h2>
+<p>La double dimension est au cœur du cours :</p>
+<table>
+<thead>
+<tr>
+<th>Pour les personnes</th>
+<th>Pour les systèmes informatiques</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Notation lisible et vocabulaire partagé</td>
+<td>Éléments identifiés et typés</td>
+</tr>
+<tr>
+<td>Discussion entre disciplines et métiers</td>
+<td>Propriétés, relations et contraintes exploitables</td>
+</tr>
+<tr>
+<td>Analyse et validation collective</td>
+<td>Vérification, requêtes et transformations</td>
+</tr>
+<tr>
+<td>Transmission des connaissances</td>
+<td>Échange, migration et réutilisation des modèles</td>
+</tr>
+</tbody></table>
+<p>Les deux dimensions soutiennent la communication, la continuité des connaissances, l&#39;indépendance vis-à-vis des fournisseurs et le décloisonnement des outils et des organisations. <strong>La norme rend ces capacités possibles, mais leur réalisation dépend des outils, des pratiques de gouvernance et des formats d&#39;échange effectivement pris en charge.</strong></p>
+<h2>6. UML et l&#39;écosystème des spécifications OMG</h2>
+<ul>
+<li><strong>UML</strong> : langage de modélisation, ses concepts et ses notations.</li>
+<li><strong>MOF</strong> : cadre de métamodélisation, permettant de définir la structure de langages de modélisation.</li>
+<li><strong>XMI</strong> : sérialisation et échange XML de modèles.</li>
+<li><strong>OCL</strong> : formulation de contraintes et expressions sur des modèles.</li>
+<li><strong>Profils UML</strong> : mécanisme de spécialisation de constructions UML pour des besoins particuliers.</li>
+</ul>
+<p>La séance souligne que l&#39;échange des <strong>diagrammes</strong> et de leur mise en page entre ateliers reste particulièrement problématique. Même lorsque les outils prennent en charge les mêmes spécifications, la fidélité des échanges doit être vérifiée en pratique.</p>
+<h2>7. Dessiner n&#39;est pas modéliser</h2>
+<p>Trois catégories ont été distinguées :</p>
+<ol>
+<li><strong>Dessin</strong> : formes, traits, textes ou pixels ; efficace pour communiquer, mais sans référentiel explicite d&#39;éléments de modèle.</li>
+<li><strong>Source de diagramme</strong> : PlantUML ou Mermaid produisent des représentations à partir de textes structurés ; un rendu réussi n&#39;atteste pas l&#39;existence d&#39;un modèle UML sémantique, partagé et cohérent.</li>
+<li><strong>Modèle sémantique informatisé</strong> : référentiel d&#39;éléments, propriétés et relations permettant, selon les capacités de l&#39;atelier, interrogation, validation, documentation, transformations et échange.</li>
+</ol>
+<p>Le <strong>diagramme est une vue sur un modèle</strong>. Plusieurs représentations doivent pouvoir renvoyer aux mêmes éléments, plutôt que reconstituer leur cohérence uniquement dans la tête de leurs lecteurs.</p>
+<p>L&#39;analogie de <strong>l&#39;atlas imprimé et du GPS</strong> oppose une vue figée à des vues produites et actualisées à partir de données exploitables. Une exportation PDF peut être une trace documentaire utile sans être elle-même le référentiel vivant.</p>
+<h2>8. Quels diagrammes pour quelles questions ?</h2>
+<ul>
+<li><strong>Cas d&#39;utilisation</strong> : qui interagit avec le système, pour quels services ou objectifs ? Exemple : réservation d&#39;un livre dans une bibliothèque.</li>
+<li><strong>Classes</strong> : quels concepts, propriétés et relations du domaine ? Exemple : étudiant, réservation, livre, indépendamment des choix d&#39;implémentation.</li>
+<li><strong>Activités</strong> : comment les actions et décisions s&#39;enchaînent-elles ?</li>
+<li><strong>Séquences</strong> : quels échanges entre participants, dans quel ordre ?</li>
+<li><strong>Composants / déploiement</strong> : comment les éléments techniques sont-ils organisés et hébergés ?</li>
+</ul>
+<p>Une même réalité peut nécessiter plusieurs vues ; aucune n&#39;est exhaustive.</p>
+<h2>9. Trois critères pour évaluer un modèle</h2>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>Question à poser</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Conformité</strong></td>
+<td>Les constructions respectent-elles les règles de la notation et du langage applicables ?</td>
+</tr>
+<tr>
+<td><strong>Interopérabilité</strong></td>
+<td>Peut-on échanger et réinterpréter les informations du modèle entre outils, avec un niveau de fidélité suffisant ?</td>
+</tr>
+<tr>
+<td><strong>Utilité</strong></td>
+<td>Le modèle aide-t-il son destinataire à répondre à une question réelle, à un coût justifié ?</td>
+</tr>
+</tbody></table>
+<p>Un diagramme bien présenté ou accepté par un moteur de rendu ne suffit pas à satisfaire ces critères. La validité des connaissances métier reste à contrôler séparément.</p>
+<h2>10. IA, retours des étudiants et suite</h2>
+<p>Le LLM permet de produire rapidement du PlantUML et de suggérer des concepts, mais il peut introduire des hypothèses incorrectes et ne garantit pas la cohérence des différentes vues. L&#39;enseignant propose de reprendre les productions étudiantes en appliquant les critères de conformité, d&#39;interopérabilité et d&#39;utilité.</p>
+<p>Le support projeté a amélioré la structuration perçue, mais la densité a suscité le besoin de <strong>synthèses et de fiches récapitulatives</strong>. La suite annoncée comprend un mini-QCM, un retour critique sur les modèles générés et une découverte plus concrète des ateliers de modélisation.</p>
+<h2>Ressource commune</h2>
+<p><a href="../../supports/initiation-uml-2026-2027.pptx">Support PowerPoint UML 2026–2027</a>.</p>
+<p><em>Document rédigé à partir de la synthèse de séance fournie par l&#39;enseignant ; à relire avant publication. Les informations d&#39;accès aux enregistrements ne figurent pas dans cette version.</em></p>
+
+<section id="videos-seance" aria-labelledby="titre-videos">
+  <h2 id="titre-videos">Revoir cette séance en vidéo</h2>
+  <p><strong>Publication en cours sur YouTube.</strong></p>
+  <p>
+    L'enregistrement de cette séance est en cours de préparation
+    et de publication sur YouTube. Il sera proposé sous forme
+    de plusieurs capsules vidéo, organisées selon les thèmes abordés.
+  </p>
+  <p>
+    Les liens vers les vidéos seront ajoutés ici progressivement.
+  </p>
+</section>
+
+</article></main>
+</body>
+</html>
