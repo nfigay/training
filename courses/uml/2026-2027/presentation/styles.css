@@ -1,0 +1,229 @@
+*{box-sizing:border-box}html,body{margin:0;background:#061c3b} .reveal{font-family:Arial,Helvetica,sans-serif}.reveal .slides{text-align:left}
+.reveal .slides > section{padding:0;text-align:left;box-sizing:border-box}
+.reveal .slides section.couverture{color:white}
+.cover{width:1600px;height:900px;position:relative;overflow:hidden;background:#092a50 url('assets/fond-etretat-portrait.jpg') center/cover no-repeat}
+.topline{position:absolute;top:66px;left:74px;right:74px;display:flex;align-items:center;gap:24px;color:#e5f4ff;font-size:23px;font-weight:550;letter-spacing:.24em;text-transform:uppercase}.topline .rule{height:1px;flex:1;background:rgba(225,240,251,.52)}.topline .year{letter-spacing:.14em}
+.main{position:absolute;top:180px;left:76px;width:1000px}.main h1{margin:0;font-size:92px;line-height:1.02;font-weight:700;letter-spacing:-.045em;text-transform:none;color:#fff;text-shadow:0 2px 20px rgba(0,17,36,.17)}.main h1 strong{display:block;font-size:126px;letter-spacing:-.06em;color:#8cd4ff;font-weight:800}.accent{margin-top:24px;width:126px;height:7px;background:#68d0ff;border-radius:2px}.subtitle{margin:19px 0 0;font-size:26px;color:#e0edf8;letter-spacing:.13em;font-weight:500;line-height:1.4}
+.author{position:absolute;left:455px;bottom:72px;width:550px;padding-left:35px;border-left:2px solid rgba(192,222,249,.8)}.author .label{font-size:19px;letter-spacing:.23em;text-transform:uppercase;color:#e1f2ff;margin:0 0 15px}.author .name{font-size:35px;font-weight:720;color:#fff;margin:0 0 10px}.author .period{font-size:26px;color:#d7eaff;margin:0}.footer{position:absolute;bottom:52px;right:74px;font-size:17px;letter-spacing:.23em;color:#d5e9fb;text-transform:uppercase}
+.reveal .course-slide{background:#fff;color:#24364a}.slide-pad{padding:63px 72px 55px;width:100%;height:100%}.course-slide h2{font-size:57px;font-weight:700;letter-spacing:-1.2px;margin:0 0 15px;color:#07275a;text-transform:none;line-height:1.13}.underline{height:2px;background:#d9e2ed;width:100%;margin-bottom:26px}.lead{font-size:29px;line-height:1.32;color:#4a5c73;margin:0 0 28px}
+.goal-grid,.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.goal{border:1px solid #e0e7f0;border-top:5px solid #267fb8;border-radius:10px;background:#f8fafc;padding:26px 24px;min-height:600px}.goal .num{font-size:18px;color:#267fb8;font-weight:700}.goal h3,.skill-card h3{font-size:31px;font-weight:700;color:#092c59;text-transform:none;margin:12px 0 20px;line-height:1.15}.course-slide ul{padding-left:23px;margin:0;list-style:disc}.course-slide li{font-size:23px;line-height:1.35;color:#394b60;margin-bottom:18px}.course-slide li::marker{color:#267fb8}
+.skills-grid{gap:20px}.skill-card{background:#f8fafc;border:1px solid #e0e7f0;border-top:5px solid #267fb8;border-radius:10px;padding:21px 21px 15px;min-height:709px}.skill-card h3{font-size:28px;margin:8px 0 18px}.skill-card li{font-size:21px;line-height:1.26;margin-bottom:13px}.skill-card h3.subhead{font-size:27px;margin:18px 0 10px}.reveal .progress{color:#70baff}
+
+/* Les contrôles / la progression / le numéro sont ceux de Reveal.js. */
+.reveal .controls{z-index:50}
+.reveal .slide-number{z-index:50}
+
+
+/* Corrected cover: whole image is shown (no clipping), with dark letterboxing as needed */
+.reveal .slides .cover {background-size: contain; background-position: center; background-repeat:no-repeat; background-color:#061c3b;}
+.reveal .slides .history-slide { background: #fff; color: #273142; }
+.reveal .slides .history-slide h2, .reveal .slides .history-slide h3 {color:#082b6f;text-transform:none;}
+.reveal .slides .history-slide p, .reveal .slides .history-slide li {line-height:1.33;}
+.reveal .slides .history-slide .slide-pad { padding:56px 72px 46px; box-sizing:border-box; height:100%; }
+.reveal .slides .history-slide .footbar { position:absolute;bottom:26px;left:72px;right:72px; }
+.reveal .slides .history-slide .section-title {height:100%;}
+.reveal .slides .history-slide img {max-width:100%;}
+
+.reveal .slides .history-slide .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.reveal .slides .history-slide .grid-3 { display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.reveal .slides .history-slide .card, .reveal .slides .history-slide .tile, .reveal .slides .history-slide .pill-card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-sizing: border-box;
+    }
+.reveal .slides .history-slide .card h3, .reveal .slides .history-slide .tile h3, .reveal .slides .history-slide .pill-card h3 { margin-bottom: 8px; font-size: 0.54em; }
+.reveal .slides .history-slide .card p, .reveal .slides .history-slide .tile p, .reveal .slides .history-slide .pill-card p, .reveal .slides .history-slide .card li, .reveal .slides .history-slide .tile li { margin: 0; }
+.reveal .slides .history-slide .card ul, .reveal .slides .history-slide .tile ul { margin: 10px 0 0 20px; }
+.reveal .slides .history-slide .number-tag { display:inline-block; font-size:.30em; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); font-weight:700; margin-bottom:9px; }
+.reveal .slides .history-slide .cols { display:grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items:start; }
+.reveal .slides .history-slide .compare { display:grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.reveal .slides .history-slide .compare .side { background: var(--soft); border:1px solid var(--line); border-radius:18px; padding:18px 20px; }
+.reveal .slides .history-slide .compare .side h3 { font-size:.56em; margin-bottom: 10px; }
+.reveal .slides .history-slide .compare .side ul { margin:0 0 0 18px; }
+.reveal .slides .history-slide .compare .side li { margin-bottom: 8px; }
+.reveal .slides .history-slide .goals-merge { display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:start; }
+.reveal .slides .history-slide .goal-stack { display:grid; gap:16px; }
+.reveal .slides .history-slide .goal-item { background: var(--soft); border:1px solid var(--line); border-radius:16px; padding:14px 18px; }
+.reveal .slides .history-slide .goal-item h3 { font-size:.54em; margin-bottom:8px; }
+.reveal .slides .history-slide .goal-item ul { margin:0 0 0 18px; }
+.reveal .slides .history-slide .focus-box { background: linear-gradient(180deg, #f9fbff, #eef4fd); border:1px solid var(--line); border-radius:18px; padding:20px 22px; }
+.reveal .slides .history-slide .focus-box h3 { font-size:.60em; margin-bottom:10px; }
+.reveal .slides .history-slide .focus-box ul { margin:0 0 0 18px; }
+.reveal .slides .history-slide .skills-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+.reveal .slides .history-slide .skills-grid .skill { background:var(--soft); border:1px solid var(--line); border-radius:18px; padding:16px 18px; }
+.reveal .slides .history-slide .skills-grid h3 { font-size:.52em; margin-bottom:8px; }
+.reveal .slides .history-slide .skills-grid .subhead { font-size:.40em; color:var(--blue); text-transform:uppercase; margin:12px 0 6px; }
+.reveal .slides .history-slide .skills-grid ul { margin:0 0 0 18px; }
+.reveal .slides .history-slide .section-title {
+      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      height:100%; padding: 68px 82px; box-sizing: border-box;
+      background: linear-gradient(135deg, #f7fbff 0%, #edf4ff 100%);
+    }
+.reveal .slides .history-slide .section-title .part { color:var(--blue); font-size:.34em; letter-spacing:.16em; text-transform:uppercase; font-weight:700; }
+.reveal .slides .history-slide .section-title h2 { font-size: 1.55em; margin-top:18px; }
+.reveal .slides .history-slide .section-title p { font-size:.66em; max-width: 60%; color:#405166; margin-top:14px; }
+.reveal .slides .history-slide .methods { display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; }
+.reveal .slides .history-slide .method-list { display:grid; gap:14px; }
+.reveal .slides .history-slide .method-row { background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:14px 18px; }
+.reveal .slides .history-slide .method-row h3 { font-size:.52em; margin-bottom: 4px; }
+.reveal .slides .history-slide .method-row p { font-size:.47em; color:#4b5869; }
+.reveal .slides .history-slide .takeaway { background:#082b6f; color:#fff; border-radius:22px; padding:24px 26px; }
+.reveal .slides .history-slide .takeaway h3 { color:#fff; font-size:.60em; margin-bottom: 10px; }
+.reveal .slides .history-slide .takeaway ul { margin:0 0 0 18px; }
+.reveal .slides .history-slide .takeaway li { font-size:.48em; margin-bottom: 8px; }
+.reveal .slides .history-slide .media-frame { background:#fff; border:1px solid var(--line); border-radius:20px; padding:14px; box-shadow:0 8px 26px rgba(7,27,70,.07); }
+.reveal .slides .history-slide .media-frame img { width:100%; height:auto; display:block; border-radius: 12px; }
+.reveal .slides .history-slide .caption { margin-top: 8px; font-size:.30em; color: var(--muted); text-align:right; }
+.reveal .slides .history-slide .timeline-points { display:grid; gap:12px; }
+.reveal .slides .history-slide .timeline-point { display:grid; grid-template-columns: 84px 1fr; gap: 14px; align-items:start; }
+.reveal .slides .history-slide .timeline-point .year { color:var(--blue); font-weight:700; font-size:.50em; }
+.reveal .slides .history-slide .timeline-point .text { font-size:.47em; color:#38465b; }
+.reveal .slides .history-slide .triptych { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
+.reveal .slides .history-slide .triptych .tile { min-height: 230px; }
+.reveal .slides .history-slide .triptych h3 { font-size:.56em; }
+.reveal .slides .history-slide .triptych .tile p { font-size:.46em; color:#47566a; }
+.reveal .slides .history-slide .tag { display:inline-block; font-size:.28em; text-transform:uppercase; letter-spacing:.14em; color:var(--blue); font-weight:700; margin-bottom:10px; }
+.reveal .slides .history-slide .spec-grid { display:grid; grid-template-columns: 1fr 1fr; gap:22px; }
+.reveal .slides .history-slide .spec-list { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+.reveal .slides .history-slide .spec { background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:14px 16px; }
+.reveal .slides .history-slide .spec h3 { font-size:.50em; margin-bottom:4px; }
+.reveal .slides .history-slide .spec p { font-size:.43em; color:#4a586a; }
+.reveal .slides .history-slide .footbar { position:absolute; left:72px; right:72px; bottom:30px; display:flex; justify-content:space-between; font-size:.28em; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+.reveal .slides .history-slide .extension-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px}
+.reveal .slides .history-slide .extension-card{border:1px solid #d7e2f1;border-top:6px solid #267fb8;border-radius:16px;background:#f7faff;padding:32px 27px;min-height:315px}
+.reveal .slides .history-slide .extension-card h3{font-size:31px;margin:0 0 18px;color:#082b6f}
+.reveal .slides .history-slide .extension-card p{font-size:25px;line-height:1.36;color:#33455a;margin:0}
+
+
+/* Extension cumulative : panorama UML. Les styles précédents restent inchangés. */
+.reveal .slides .diagram-slide{background:#fff;color:#233652;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+.diagram-pad{height:900px;box-sizing:border-box;padding:45px 70px 36px;background:linear-gradient(180deg,#fff 74%,#f6faff)}
+.diagram-kicker{font-size:17px;text-transform:uppercase;color:#2f76bb;letter-spacing:2px;font-weight:700;margin-bottom:12px}
+.diagram-pad h2{font-size:56px!important;font-weight:750;color:#082b6f;margin:0 0 14px;line-height:1.05}
+.diagram-subtitle{font-size:29px;color:#55647e;margin:0 0 22px}
+.diagram-content{width:100%;height:700px;display:flex;flex-direction:column;justify-content:center}
+.graphic-figure{margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.graphic-figure img{display:block;max-width:100%;max-height:645px;width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 8px 30px rgba(10,33,78,.08)}
+.graphic-figure figcaption{font-size:16px;margin-top:9px;color:#66778e}
+.dgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-content:center;width:100%}
+.dcard{box-sizing:border-box;min-height:142px;padding:25px 30px;background:#eef5ff;border:1px solid #cde0fa;border-radius:18px;box-shadow:0 4px 14px rgba(12,49,100,.04)}
+.dcard:nth-child(3n+2){background:#f2f8f4;border-color:#d5e9df}.dcard:nth-child(3n+3){background:#fff5ed;border-color:#f1dfcd}
+.dcard h3{font-size:28px;color:#092d71;margin:0 0 11px;font-weight:750}.dcard p{font-size:23px;color:#38506b;margin:0;line-height:1.30}
+/* La vue d'ensemble possède maintenant quatre groupes horizontaux. */
+.reveal.overview .slides>section:nth-child(4){left:5650px}
+
+/* Extension 2026–2027 : outils et ingénierie par les modèles */
+.tools-slide{background:#fff;color:#183450;font-family:Arial,Helvetica,sans-serif;}
+.tools-pad{box-sizing:border-box;height:100%;padding:55px 75px 50px;display:flex;flex-direction:column;gap:14px;}
+.tools-slide .tool-kicker{font-size:17px;font-weight:700;color:#4489ba;text-transform:uppercase;letter-spacing:.12em;}
+.tools-slide h2{font:700 49px/1.1 Arial,Helvetica,sans-serif!important;color:#082d67!important; margin:0!important; text-transform:none!important;letter-spacing:-.035em!important;}
+.tools-slide .tool-sub{font:400 24px/1.35 Arial,Helvetica,sans-serif!important;color:#596e87;margin:0!important;}
+.tools-body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.tools-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;}
+.tools-grid.two{grid-template-columns:repeat(2,minmax(0,1fr));}
+.tools-grid.four{grid-template-columns:repeat(4,minmax(0,1fr));}
+.tools-card{border-radius:19px;border:1px solid #dce7f4;background:#f5f9fe;padding:23px;box-sizing:border-box;min-height:145px;}
+.tools-card:nth-child(3n+2){background:#f9f8ff;border-color:#e7e1f4}.tools-card:nth-child(3n){background:#f1faf9;border-color:#d9ecea}
+.tools-card h3{font:700 25px/1.2 Arial,Helvetica,sans-serif!important;color:#0b326d!important;text-transform:none!important;margin:0 0 11px!important;}
+.tools-card p,.tools-card li{font:400 21px/1.38 Arial,Helvetica,sans-serif!important;color:#354e66!important;margin:0!important;}
+.tools-card ul{margin:8px 0 0 22px;padding:0}
+.tools-claim{border-left:7px solid #2687c4;background:#eaf4fd;border-radius:8px;padding:15px 21px;color:#123963;font-size:24px;line-height:1.35;}
+.tools-claim strong{color:#072d65;}
+.tools-two{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch;}
+.tools-half{min-width:0;display:flex;flex-direction:column;gap:14px;}
+.tools-demo{border:1px solid #d7e4ef;border-radius:16px;background:white;padding:14px;box-shadow:0 6px 20px #173b6812;box-sizing:border-box;min-width:0;}
+.tools-demo img{width:100%;max-height:465px;object-fit:contain;display:block;}
+.tools-demo figcaption{color:#61738a;font-size:14px;text-align:right;margin-top:6px;}
+.tools-example{font:19px/1.35 ui-monospace,SFMono-Regular,Consolas,monospace;background:#0b2443;color:#eef9ff;padding:23px;border-radius:13px;white-space:pre-wrap;margin:0;}
+.tools-bar{display:flex;gap:15px;align-items:center;justify-content:space-between;font-size:15px;color:#708198;padding-top:12px;border-top:1px solid #e5edf5;}
+.tools-flow{display:flex;align-items:stretch;gap:12px;}
+.tools-flow .tools-card{flex:1;min-width:0;}
+.tools-arrow{font-size:42px;color:#468bc0;align-self:center;}
+.tools-table{width:100%;border-collapse:collapse;font-size:21px;}
+.tools-table th{background:#0d3b78;color:white;text-align:left;padding:16px;}
+.tools-table td{border-bottom:1px solid #e0e7f1;padding:16px;vertical-align:top;line-height:1.35}
+.tools-table tr:nth-child(even){background:#f5f8fc}
+.tools-mini{font-size:19px;color:#506984;line-height:1.45}
+.tools-highlight{color:#146ba3;font-weight:700}
+
+/* Refonte visuelle : SVG vectoriels intégrés, sans image pixellisée */
+.tools-demo > svg { width:100%; height:auto; max-height:490px; display:block; object-fit:contain; }
+
+/* Illustrations générées ajoutées aux explications HTML ; captures de référence préservées */
+.generated-mini{margin:3px auto 0;display:flex;flex-direction:column;align-items:center;max-width:650px;max-height:236px;overflow:hidden;}
+.generated-mini img{max-width:100%;height:auto;max-height:204px;object-fit:contain;border:1px solid #d6e4ef;border-radius:12px;}
+.generated-mini figcaption{font-size:13px;color:#5c7187;margin-top:4px;}
+.tools-slide[aria-label="yEd : mise en page assistée"] .tools-demo img{max-height:375px;}
+.tools-slide[aria-label="yEd : mise en page assistée"] .tools-claim{font-size:19px;}
+.tools-slide[aria-label="yEd : dessins, export SVG et sens UML"] .tools-grid{grid-template-columns:1fr;}
+.tools-slide[aria-label="yEd : dessins, export SVG et sens UML"] .tools-card{min-height:0;padding:12px 19px;}
+.tools-slide[aria-label="yEd : dessins, export SVG et sens UML"] .tools-card p{font-size:18px;}
+.tools-slide[aria-label="yEd : dessins, export SVG et sens UML"] .tools-claim{font-size:19px;padding:12px;}
+
+/* Visuels réintégrés en pleine taille de projection — non miniaturisés. */
+.tools-slide.tools-illustrated .tools-pad{height:900px; padding:38px 62px 34px; gap:9px}
+.tools-slide.tools-illustrated h2{font-size:43px!important}
+.tools-slide.tools-illustrated .tool-sub{font-size:22px!important;max-width:1480px}
+.projection-figure{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;margin:4px 0 0;padding:8px;background:#fff;border:1px solid #d9e4f1;border-radius:15px;box-sizing:border-box}
+.projection-figure img{display:block;max-width:100%;max-height:100%;height:100%;width:100%;object-fit:contain;box-sizing:border-box}
+.projection-caption{font:18px/1.25 Arial,sans-serif;color:#4e657b;margin:0}
+.tools-slide.tools-illustrated .tools-bar{margin-top:3px}
+/* Les vignettes des diapositives d'explication restent lisibles sans recadrer les images */
+.generated-mini{max-width:940px;max-height:300px;overflow:visible}
+.generated-mini img{max-height:265px}
+
+/* Corrections localisées — 31 octobre 2026. Ne pas modifier les autres diapositives. */
+.reveal .slides .layout-corrected-32 .slide-pad{padding-bottom:95px}
+.reveal .slides .layout-corrected-32 .methods{align-items:start;gap:26px}
+.reveal .slides .layout-corrected-32 .method-list{gap:9px}
+.reveal .slides .layout-corrected-32 .method-row{padding:10px 15px}
+.reveal .slides .layout-corrected-32 .method-row h3{margin-bottom:3px}
+.reveal .slides .layout-corrected-32 .takeaway{align-self:start;padding:25px 27px;min-height:0}
+.reveal .slides .layout-corrected-32 .takeaway li{margin-bottom:9px}
+.reveal .slides .layout-corrected-32 .footbar{right:180px}
+.reveal .slides .layout-corrected-33 .cols{grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);gap:24px}
+.reveal .slides .layout-corrected-33 .timeline-points{gap:7px}
+.reveal .slides .layout-corrected-33 .timeline-point{grid-template-columns:94px 1fr;gap:8px}
+.reveal .slides .layout-corrected-33 .media-frame{padding:9px}
+.reveal .slides .layout-corrected-33 .media-frame img{width:100%;max-height:650px;object-fit:contain}
+.reveal .slides .layout-corrected-53 .tools-body{justify-content:flex-start}
+.reveal .slides .layout-corrected-53 .tools-image-layout{display:grid;grid-template-columns: minmax(0,.91fr) minmax(0,1.09fr);gap:20px;align-items:stretch;min-height:0;flex:1}
+.reveal .slides .layout-corrected-53 .tools-grid.two{grid-template-columns:1fr;gap:9px}
+.reveal .slides .layout-corrected-53 .tools-card{min-height:0;padding:12px 18px}
+.reveal .slides .layout-corrected-53 .tools-card h3{font-size:21px!important;margin-bottom:4px!important}
+.reveal .slides .layout-corrected-53 .tools-card p{font-size:17px!important;line-height:1.28!important}
+.reveal .slides .layout-corrected-53 .generated-mini{width:100%;height:100%;max-width:none;max-height:none;margin:0;justify-content:center;overflow:visible}
+.reveal .slides .layout-corrected-53 .generated-mini img{width:100%;height:auto;max-height:500px;max-width:100%;object-fit:contain}
+.reveal .slides .layout-corrected-53 .tools-claim{margin-top:3px}
+.reveal .slides .layout-corrected-520 .tools-body{justify-content:flex-start}
+.reveal .slides .layout-corrected-520 .tools-selection-layout{display:grid;grid-template-columns:minmax(0,.54fr) minmax(0,.46fr);gap:18px;align-items:center;flex:1;min-height:0}
+.reveal .slides .layout-corrected-520 .tools-table{font-size:17px;align-self:center}
+.reveal .slides .layout-corrected-520 .tools-table th{padding:10px 12px}
+.reveal .slides .layout-corrected-520 .tools-table td{padding:10px 12px;line-height:1.25}
+.reveal .slides .layout-corrected-520 .generated-mini{max-height:none;max-width:none;width:100%;margin:0;overflow:visible}
+.reveal .slides .layout-corrected-520 .generated-mini img{width:100%;height:auto;max-height:570px;object-fit:contain}
+.reveal .slides .perspective-links .perspective-resource-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:center}
+.reveal .slides .perspective-links .perspective-resource{border-radius:15px;border:1px solid #cbdff3;background:#f5f9ff;padding:28px;display:flex;flex-direction:column;gap:12px}
+.reveal .slides .perspective-links .resource-index{font:700 19px Arial;color:#5395ca}
+.reveal .slides .perspective-links .perspective-resource a{font:700 27px/1.3 Arial;color:#0b438a;text-decoration:underline;overflow-wrap:anywhere}
+.reveal .slides .perspective-links .perspective-resource p{font:20px/1.3 Arial;color:#566b7f;margin:0}
+.reveal .slides .perspective-links .resource-note{font:18px/1.35 Arial;color:#62738a;margin:5px 0}
+.reveal a[href^="https://"],.reveal a[href^="http://"]{cursor:pointer;text-decoration:underline}
+
+/* Correction ciblée du véritable transparent 5.35 : aucun texte dans une image composite. */
+.tools-slide.perspective-535 .future-pad {box-sizing:border-box; height:900px; padding:34px 54px 35px; display:flex; flex-direction:column; gap:8px;}
+.perspective-535 .tool-kicker {font-size:17px!important; letter-spacing:1px;}
+.perspective-535 h2 {font-size:43px!important;line-height:1.07!important;margin:0!important;}
+.perspective-535 .tool-sub {font-size:21px!important;line-height:1.22!important;margin:0 0 9px!important;}
+.perspective-535 .future-main {display:grid; grid-template-columns: 1.04fr 0.96fr;gap:24px;flex:1;min-height:0;}
+.perspective-535 .future-explanations {display:grid;grid-template-rows:repeat(4,1fr);gap:11px;min-height:0;}
+.perspective-535 .future-point {box-sizing:border-box;min-height:0;border-left:5px solid #327fb4;border-radius:11px;background:#f5f8fd;padding:11px 16px;}
+.perspective-535 .future-point h3 {font-size:20px!important;line-height:1.15!important;color:#0a2b63!important;margin:0 0 5px!important;}
+.perspective-535 .future-point p {font-size:17px!important;line-height:1.23!important;margin:0!important;color:#2e425f!important;}
+.perspective-535 .future-figures {display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:10px;min-height:0;}
+.perspective-535 .future-figures figure {box-sizing:border-box;margin:0;border:1px solid #dbe4ed;border-radius:13px;overflow:hidden;display:flex;flex-direction:column;min-height:0;background:white;}
+.perspective-535 .future-figures img {display:block;width:100%;flex:1;min-height:0;object-fit:contain;}
+.perspective-535 .future-figures figcaption {font-size:14px;line-height:1.05;font-weight:650;color:#16467e;padding:4px 10px 6px;}
+.perspective-535 .tools-bar {position:relative; flex-shrink:0;}
