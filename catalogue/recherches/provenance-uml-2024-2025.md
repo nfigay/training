@@ -209,6 +209,143 @@ Aucune relation avec les six enseignements HDR,
 une édition universitaire 2024–2025 ou une séance précise
 n'est établie par ces seuls éléments.
 
+
+### 5.2. Variantes HTML et réutilisations textuelles
+
+Deux audits réalisés le 31 octobre 2026 ont comparé les
+fichiers suivants :
+
+- `IntroductionUML copie.html` : synthèse relativement compacte
+  des séances, avec 30 372 octets ;
+- `IntroductionUML00.html` : résumés et retranscriptions
+  détaillées, avec 61 193 octets ;
+- `uml_course_improved.html` : présentation pédagogique
+  enrichie, avec 119 376 octets.
+
+Les trois fichiers sont distincts au niveau binaire.
+
+**Empreintes SHA-256 des documents analysés :**
+
+| Fichier | SHA-256 |
+|---|---|
+| `IntroductionUML copie.html` | `55123306deadbd9e0565bdf65a6eb9180067aaad5ed7618fd2c44f9d0b0b5443` |
+| `IntroductionUML00.html` | `213e5e8fdbbf97c2aa1373fa5f8aaad4e48cc3e3f2fb5c8d830b56a3d620bd90` |
+| `uml_course_improved.html` | `efb23f3a9bd950b96289427b0f30e565d0e4553ea7b23a0d20da8c14b1d1c8d5` |
+
+#### 5.2.1. Liens et organisation pédagogique
+
+Les trois pages détaillées référencent le même PDF
+`IntroductionUML.pdf`, les trois playlists YouTube décrites
+en section 4 et les mêmes références externes principales.
+
+Elles présentent une progression voisine autour de la pensée
+systémique, de la modélisation, des niveaux CIM/PIM/PSM,
+des outils UML et de Papyrus.
+
+`uml_course_improved.html` contient en outre un glossaire,
+une table des matières, des questions pédagogiques et de
+nombreux liens complémentaires.
+
+Ces caractéristiques permettent de décrire les fonctions
+des documents ; elles ne permettent pas de dater leur
+rédaction ni de démontrer une succession de versions.
+
+#### 5.2.2. Mesures de similarité textuelle
+
+L'audit a extrait des blocs HTML de type paragraphe, liste,
+citation et titre, et comparé des séquences normalisées
+de 12 mots. Les accents, la casse et la ponctuation ont
+été neutralisés pour cette comparaison.
+
+| Première page (A) | Seconde page (B) | Séquences communes de 12 mots | Couverture A dans B | Couverture B dans A |
+|---|---|---:|---:|---:|
+| `IntroductionUML copie.html` | `IntroductionUML00.html` | 453 | 19,7 % | 7,4 % |
+| `IntroductionUML copie.html` | `uml_course_improved.html` | 411 | 17,9 % | 5,9 % |
+| `IntroductionUML00.html` | `uml_course_improved.html` | 263 | 4,3 % | 3,7 % |
+
+Ces proportions reposent sur des ensembles de séquences
+distinctes et ne mesurent ni une probabilité de filiation
+ni la qualité des documents.
+
+La couverture est asymétrique : un document plus court peut
+partager une part importante de son contenu avec un document
+plus long sans que la réciproque soit vraie.
+
+#### 5.2.3. Passages communs et reformulations
+
+Les comparaisons de blocs indiquent :
+
+| Paire | Blocs strictement communs | Blocs proches repérés |
+|---|---:|---:|
+| Copie / `IntroductionUML00.html` | 2 | 2 |
+| Copie / `uml_course_improved.html` | 1 | 7 |
+| `IntroductionUML00.html` / `uml_course_improved.html` | 1 | 1 |
+
+Les deux blocs identiques entre la copie et
+`IntroductionUML00.html` correspondent à des références
+normatives ISO/IEC 19505-1:2012 et 19505-2:2012.
+Ces références communes ne constituent pas, à elles seules,
+une preuve de reprise rédactionnelle.
+
+Entre la copie et `uml_course_improved.html`, un bloc
+de 63 mots apparaît identique après normalisation.
+Sept rapprochements textuels ont également été détectés,
+avec des similarités indicatives comprises entre 65 %
+et 86 % selon les blocs présentés dans le rapport.
+
+Les passages concernés portent notamment sur :
+
+- la pensée systémique et les systèmes avec rétroaction ;
+- l'évolution du paradigme objet vers les composants ;
+- les ateliers de modélisation et Papyrus ;
+- la différence entre dessin et modèle sémantique ;
+- le passage des descriptions métier CIM vers les modèles PIM.
+
+Entre `IntroductionUML00.html` et
+`uml_course_improved.html`, l'audit a notamment retrouvé
+une formulation proche concernant la concentration sur le
+domaine métier, indépendamment des considérations techniques.
+
+Ces observations attestent des proximités textuelles.
+Elles ne démontrent pas quel document serait antérieur,
+ni lequel aurait servi de source aux autres.
+
+#### 5.2.4. Limites de l'audit
+
+L'extraction repose sur un parseur HTML léger et sur
+des blocs contenant au moins 12 mots. Certaines constructions
+HTML complexes peuvent échapper à cette méthode.
+
+Un bloc qualifié de « propre » signifie uniquement qu'aucune
+correspondance strictement identique n'a été relevée parmi
+les blocs sélectionnés. Une reformulation peut exister.
+
+Les numéros de ligne issus de l'analyse par blocs sont
+indicatifs ; ils doivent être vérifiés dans les sources
+pour une citation éditoriale définitive.
+
+L'apparition simultanée des trois documents dans Git au
+commit `4b2425d`, le 8 janvier 2026, correspond à une
+importation depuis `archicg2`. Elle ne prouve ni leur
+création simultanée ni leur ordre de rédaction.
+
+#### 5.2.5. Qualification documentaire
+
+| Relation | Statut |
+|---|---|
+| Trois documents HTML distincts | Confirmé par SHA-256 |
+| Références au même PDF | Confirmé |
+| Trois playlists communes | Confirmé par les liens HTML |
+| Passages textuels communs | Confirmé par comparaison |
+| Corpus pédagogique voisin | Hypothèse fortement étayée |
+| Direction d'une reprise entre les pages | Non établie |
+| Succession chronologique de versions | Non établie |
+| Appartenance à une édition 2025 unique | Non établie |
+| Association aux six enseignements HDR | Non établie |
+
+Les documents restent conservés individuellement, sans
+fusion, renommage ni modification de leurs liens historiques.
+
 ## 6. Enseignements UML historiques — Source HDR
 
 Les lignes suivantes sont conservées comme unités
