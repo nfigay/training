@@ -210,6 +210,29 @@ une édition universitaire 2024–2025 ou une séance précise
 n'est établie par ces seuls éléments.
 
 
+
+#### 5.1.1. Première apparition Git et renommage
+
+L'historique Git avec suivi des renommages
+(`git log --follow`) précise deux événements distincts :
+
+- **5 novembre 2024** : première introduction
+  identifiée du PDF dans Git sous le nom
+  `Introduction à UML.pdf`, commit `905edec`
+  (`initialisation`).
+- **6 novembre 2024** : renommage en
+  `IntroductionUML.pdf`, commit `02e7ea7`
+  (`initialisation`). Git indique `R100`,
+  soit une similarité de contenu de 100 %.
+
+Le 6 novembre correspond donc à la première
+apparition du **chemin actuel** dans Git,
+et non à la première introduction du PDF.
+
+La date interne du support, le **26 octobre 2022**,
+reste distincte de ces événements Git.
+Elle ne prouve pas une intervention à cette date.
+
 ### 5.2. Variantes HTML et réutilisations textuelles
 
 Deux audits réalisés le 31 octobre 2026 ont comparé les
