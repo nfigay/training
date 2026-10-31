@@ -346,6 +346,144 @@ création simultanée ni leur ordre de rédaction.
 Les documents restent conservés individuellement, sans
 fusion, renommage ni modification de leurs liens historiques.
 
+
+### 5.3. Processus de production et de capitalisation pédagogique
+
+Cette section documente le fonctionnement pédagogique décrit
+par l'enseignant le 31 octobre 2026, après les audits des
+ressources UML.
+
+**Nature de la source :** témoignage rétrospectif de
+l'enseignant, distinct des preuves extraites des fichiers
+et de l'historique Git.
+
+#### 5.3.1. Distinction entre support préparé et cours réalisé
+
+Le dispositif d'enseignement UML repose sur plusieurs
+productions complémentaires.
+
+Le support PowerPoint ou PDF constitue une ressource
+préparée pour organiser les objectifs, les concepts et
+la progression envisagée.
+
+Les interventions effectivement réalisées ne suivent
+pas nécessairement ce support de manière stricte.
+Les discussions, démonstrations et approfondissements
+peuvent modifier la progression initiale.
+
+Il convient donc de distinguer :
+
+- le contenu prévu et présenté dans le support ;
+- le déroulement effectif de chaque intervention ;
+- les traces audiovisuelles de l'intervention ;
+- la synthèse rédigée après la séance ;
+- les approfondissements thématiques produits ensuite.
+
+Le support ne doit pas être considéré comme une
+retranscription exhaustive de la séance.
+
+#### 5.3.2. Enregistrement, nettoyage et publication
+
+L'enseignant indique que l'évolution des cours UML
+s'est accompagnée de l'utilisation de Zoom.
+
+Les interventions ont pu être enregistrées,
+puis leurs enregistrements nettoyés avant publication
+sur YouTube.
+
+Les pages HTML ont été structurées progressivement
+pour présenter les enregistrements et leurs synthèses,
+en reflétant les interventions effectivement réalisées.
+
+**Références déjà constatées dans le dépôt :**
+
+- trois identifiants de playlists YouTube sont présents
+  dans les pages HTML détaillées ;
+- plusieurs sections de séances comportent des résumés
+  et des retranscriptions ;
+- les différentes pages HTML partagent des références
+  documentaires et des contenus pédagogiques.
+
+**Limite :** ces constats ne permettent pas d'associer
+de manière exhaustive chaque séance à un enregistrement,
+à une vidéo publiée et à une synthèse.
+
+La disponibilité actuelle et le contenu effectif de
+chaque vidéo n'ont pas été vérifiés dans cet audit.
+
+#### 5.3.3. Enrichissements thématiques
+
+Le déroulement des interventions a également suscité
+des ressources développant des thématiques particulières.
+
+L'enseignant cite notamment la pensée systémique.
+
+L'audit des pages HTML avait déjà identifié des liens
+vers des développements complémentaires sur ce thème,
+ainsi que des passages consacrés à l'architecture à
+composants et à l'ingénierie par les modèles.
+
+Ces ressources peuvent compléter une intervention
+sans être des supports de séance autonomes
+ni appartenir nécessairement à une nouvelle édition.
+
+Leur relation exacte à chaque séance doit être
+documentée individuellement.
+
+#### 5.3.4. Évolution pédagogique en 2026–2027
+
+Selon l'enseignant, le cours 2026–2027 s'appuie plus
+systématiquement sur l'utilisation de ChatGPT+,
+en complément de Zoom.
+
+Cette évolution vise aussi à intégrer davantage
+la thématique de l'intelligence artificielle
+dans l'enseignement UML.
+
+La comparaison formulée par l'enseignant est
+relative : l'IA n'était pas nécessairement absente
+des cours précédents, mais son intégration y était
+moins systématique.
+
+Cette évolution doit être distinguée des
+caractéristiques historiquement démontrées
+pour chaque édition.
+
+Les interventions 2026–2027 restent documentées
+dans leur propre espace de formation.
+
+#### 5.3.5. Conséquences pour la provenance documentaire
+
+| Objet documentaire | Fonction | Relation à vérifier |
+|---|---|---|
+| Support PPT/PDF | Progression pédagogique préparée | Utilisation par une édition ou une séance |
+| Intervention | Contenu effectivement enseigné | Date, public et édition |
+| Enregistrement Zoom | Trace de l'intervention | Séance enregistrée |
+| Vidéo YouTube nettoyée | Diffusion audiovisuelle | Enregistrement source et séance |
+| Synthèse HTML | Capitalisation de l'intervention | Séance décrite |
+| Enrichissement thématique | Développement complémentaire | Sujet et intervention à l'origine du développement |
+| Usage de ChatGPT+ | Pratique pédagogique davantage systématisée en 2026–2027 | Activités et séances documentées |
+
+Ces relations représentent des catégories de liens
+à étudier et non des associations automatiquement
+établies pour toutes les ressources.
+
+#### 5.3.6. Statut des informations
+
+| Information | Provenance | Statut |
+|---|---|---|
+| Supports PPT/PDF et interventions non strictement alignées | Témoignage enseignant | Fonctionnement déclaré |
+| Utilisation de Zoom pour les interventions | Témoignage enseignant | Fonctionnement déclaré |
+| Nettoyage puis publication des enregistrements sur YouTube | Témoignage enseignant | Processus déclaré |
+| Structuration progressive des synthèses HTML | Témoignage enseignant et structure observable | Déclaration cohérente avec les fichiers |
+| Création d'approfondissements thématiques | Témoignage et liens HTML | Principe déclaré, exemples documentés |
+| Usage plus systématique de ChatGPT+ en 2026–2027 | Témoignage enseignant | Évolution pédagogique déclarée |
+| Relation exhaustive séance–vidéo–synthèse | Correspondances individuelles non vérifiées | Non établie |
+| Filiation chronologique des variantes HTML | Ordre de rédaction non vérifié | Non établie |
+
+Ce témoignage complète les preuves techniques
+et documentaires déjà réunies ; il ne les remplace pas.
+
 ## 6. Enseignements UML historiques — Source HDR
 
 Les lignes suivantes sont conservées comme unités
