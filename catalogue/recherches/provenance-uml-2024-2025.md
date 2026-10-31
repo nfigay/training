@@ -136,8 +136,78 @@ D'autres documents contiennent des indices apparentés :
 Aucun de ces rapprochements ne prouve une identité de version
 ou une utilisation commune dans une édition donnée.
 
-Les métadonnées internes et le texte des PDF restent à examiner :
-l'audit précédent n'avait pas pu extraire leur contenu.
+Les métadonnées et un échantillon textuel du PDF principal
+ont désormais été examinés. Les résultats sont détaillés
+dans la section 5.1 ; l'intégralité des 74 pages reste
+à analyser si une recherche de provenance plus fine s'avère utile.
+
+
+### 5.1. Origine et identité du support PDF
+
+L'audit du 31 octobre 2026 a examiné directement
+`IntroductionUML.pdf` au moyen de PDFKit sur macOS.
+
+**Faits observés dans le document :**
+
+| Propriété | Constat | Nature de la preuve |
+|---|---|---|
+| Titre visible | Introduction to UML | Première page |
+| Auteur indiqué | Nicolas FIGAY | Première page |
+| Date visible | 26 Octobre 2022 | Première page |
+| Titre PDF | Introduction à UML-3 | Métadonnée PDF |
+| Date de création PDF | 26 octobre 2022, 15:37 UTC | Métadonnée PDFKit |
+| Date de modification PDF | 26 octobre 2022, 15:37 UTC | Métadonnée PDFKit |
+| Logiciel créateur | Keynote | Métadonnée PDFKit |
+| Producteur PDF | Quartz PDFContext, macOS 10.14.6 | Métadonnée PDFKit |
+| Nombre de pages | 74 | PDFKit |
+| Première apparition constatée dans Git | 6 novembre 2024 | Commit `02e7ea7` |
+
+**Empreinte SHA-256 :**
+
+`0b014b4584ee84943bada8b835524b85e21ac713482bb9367cb084d125e9c011`
+
+Le fichier `IntroductionUML copie.pdf` présente cette même
+empreinte. Une comparaison binaire avec `cmp` confirme
+que les deux fichiers sont strictement identiques.
+
+Les deux chemins correspondent donc, au moment de cet audit,
+à un même contenu binaire. Ils sont néanmoins conservés
+sans suppression ni déplacement.
+
+**Interprétation chronologique :**
+
+- **2022 :** la première page et les métadonnées PDF concordent
+  sur le 26 octobre 2022. Cette concordance étaye la datation
+  documentaire du support, sans prouver une séance ce jour-là.
+- **2024 :** `IntroductionUML00.html` présente le lien vers ce PDF
+  sous « Supports de cours 2024 ». Le premier commit Git
+  identifié pour le PDF date du 6 novembre 2024.
+- **2025 :** une retranscription de la section « Session 05 »
+  mentionne le 12 novembre 2025. L'utilisation effective du
+  PDF lors de cette séance n'est pas démontrée.
+
+**Portée de l'analyse :**
+
+PDFKit a pu extraire du texte des huit premières et deux dernières
+pages, soit dix pages sur 74. Ces pages présentent notamment
+les objectifs pédagogiques, la modélisation des besoins,
+la conception, les diagrammes UML 2 et les liens avec les
+spécifications OMG, MDA, MOF, OCL, XMI et QVT.
+
+Aucune organisation ITIN, IIA, ITESCIA ou Université Lyon 1
+n'a été détectée dans cet échantillon. Cela ne permet pas
+de conclure à leur absence sur les 64 autres pages.
+
+Les métadonnées Spotlight observées sur le Mac indiquaient
+une date du 5 février 2026, différente des métadonnées PDFKit.
+Cette date technique ne doit pas être confondue avec celle
+qui figure dans le contenu du support.
+
+**Conclusion :** le PDF possède une origine documentaire
+située en 2022 et un référencement explicite en 2024.
+Aucune relation avec les six enseignements HDR,
+une édition universitaire 2024–2025 ou une séance précise
+n'est établie par ces seuls éléments.
 
 ## 6. Enseignements UML historiques — Source HDR
 
@@ -197,12 +267,15 @@ enseignements HDR n'est considérée comme démontrée.
 | Document → trois playlists | Liens L188, L505, L699, L874 | Références présentes |
 | Playlists → séances effectivement tenues | Contenus non vérifiés | Non établi |
 | PDF → édition 2024 | Date d'utilisation non vérifiée | Non établi |
+| PDF → 26 octobre 2022 | Première page et métadonnées PDFKit concordantes | Datation documentaire étayée |
+| PDF principal → copie PDF | SHA-256 identique ; comparaison binaire | Identité confirmée |
+| PDF → référencement en 2024 | Rubrique HTML L76–L78 | Référencement attesté, utilisation non établie |
 | Ressources 2024–2025 → sessions HDR | Aucune preuve directe | Non établi |
 | Ressources 2024–2025 → édition 2026–2027 | Continuité non documentée | Non établi |
 
 ## 9. Questions à résoudre
 
-1. Le PDF présente-t-il un titre, une date interne ou un numéro de version ?
+1. Les 64 pages du PDF non examinées apportent-elles des indices supplémentaires de provenance ou de version ?
 2. Les playlists sont-elles publiques et à quelles séances correspondent-elles ?
 3. La date du 12 novembre 2025 est-elle cohérente avec les autres retranscriptions ?
 4. Les documents 2024 et 2025 représentent-ils différentes versions d'un même cours ?
